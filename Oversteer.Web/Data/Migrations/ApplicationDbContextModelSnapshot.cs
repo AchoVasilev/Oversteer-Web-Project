@@ -285,19 +285,28 @@ namespace Oversteer.Web.Data.Migrations
                     b.Property<decimal>("DailyPrice")
                         .HasColumnType("decimal(18,2)");
 
+                    b.Property<string>("Description")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<int>("FuelId")
                         .HasColumnType("int");
 
-                    b.Property<int>("GearBoxId")
-                        .HasColumnType("int");
+                    b.Property<string>("ImageUrl")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Model")
-                        .HasColumnType("nvarchar(max)");
+                        .IsRequired()
+                        .HasMaxLength(30)
+                        .HasColumnType("nvarchar(30)");
 
                     b.Property<int>("ModelYear")
                         .HasColumnType("int");
 
                     b.Property<int>("SeatsCount")
+                        .HasColumnType("int");
+
+                    b.Property<int>("TransmissionId")
                         .HasColumnType("int");
 
                     b.HasKey("Id");
@@ -312,7 +321,7 @@ namespace Oversteer.Web.Data.Migrations
 
                     b.HasIndex("FuelId");
 
-                    b.HasIndex("GearBoxId");
+                    b.HasIndex("TransmissionId");
 
                     b.ToTable("Cars");
                 });
@@ -332,29 +341,6 @@ namespace Oversteer.Web.Data.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("CarBrands");
-                });
-
-            modelBuilder.Entity("Oversteer.Models.Cars.CarImage", b =>
-                {
-                    b.Property<string>("Id")
-                        .HasMaxLength(40)
-                        .HasColumnType("nvarchar(40)");
-
-                    b.Property<int>("CarId")
-                        .HasColumnType("int");
-
-                    b.Property<DateTime>("ImageDate")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("Path")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("CarId");
-
-                    b.ToTable("CarImages");
                 });
 
             modelBuilder.Entity("Oversteer.Models.Cars.CarType", b =>
@@ -881,7 +867,7 @@ namespace Oversteer.Web.Data.Migrations
 
                     b.HasOne("Oversteer.Web.Data.Cars.Transmission", "Transmission")
                         .WithMany("Cars")
-                        .HasForeignKey("GearBoxId")
+                        .HasForeignKey("TransmissionId")
                         .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
@@ -894,17 +880,6 @@ namespace Oversteer.Web.Data.Migrations
                     b.Navigation("Fuel");
 
                     b.Navigation("Transmission");
-                });
-
-            modelBuilder.Entity("Oversteer.Models.Cars.CarImage", b =>
-                {
-                    b.HasOne("Oversteer.Models.Cars.Car", "Car")
-                        .WithMany("CarImages")
-                        .HasForeignKey("CarId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Car");
                 });
 
             modelBuilder.Entity("Oversteer.Models.Others.Feedback", b =>
@@ -1027,11 +1002,6 @@ namespace Oversteer.Web.Data.Migrations
             modelBuilder.Entity("Oversteer.Models.Add.Destination", b =>
                 {
                     b.Navigation("Rentals");
-                });
-
-            modelBuilder.Entity("Oversteer.Models.Cars.Car", b =>
-                {
-                    b.Navigation("CarImages");
                 });
 
             modelBuilder.Entity("Oversteer.Models.Cars.CarType", b =>

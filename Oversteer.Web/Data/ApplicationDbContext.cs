@@ -37,14 +37,13 @@
 
         public DbSet<Car> Cars { get; set; }
 
-        public DbSet<CarImage> CarImages { get; set; }
+       // public DbSet<CarImage> CarImages { get; set; }
 
         public DbSet<CarType> CarTypes { get; set; }
 
         public DbSet<Color> Colors { get; set; }
 
         public DbSet<Fuel> Fuels { get; set; }
-
 
         public DbSet<CarAdd> CarAdds { get; set; }
 
@@ -124,7 +123,7 @@
 
                 entity.HasOne(x => x.Transmission)
                     .WithMany(x => x.Cars)
-                    .HasForeignKey(x => x.GearBoxId)
+                    .HasForeignKey(x => x.TransmissionId)
                     .OnDelete(DeleteBehavior.Restrict);
             });
 

@@ -24,41 +24,89 @@
                 <div class="col">
                     <div class="form-group">
                         <label asp-for="Model"></label>
-                        <input asp-for="Model" class="form-control" placeholder="640D, S-Class, etc...">
+                        <input asp-for="Model" class="form-control" placeholder="Example: 640D, S-Class, etc...">
                         <span asp-validation-for="Model" class="small text-danger"></span>
                     </div>
                 </div>
             </div>
-            <div class="form-group">
-                <label asp-for="Year"></label>
-                <input asp-for="Year" class="form-control" placeholder="@DateTime.Now.Year">
-                <span asp-validation-for="Year" class="small text-danger"></span>
+            <div class="form-row">
+                <div class="col">
+                    <div class="form-group">
+                        <label asp-for="Year"></label>
+                        <input asp-for="Year" class="form-control" placeholder="Example: @DateTime.Now.Year">
+                        <span asp-validation-for="Year" class="small text-danger"></span>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="form-group">
+                        <label asp-for="ColorId"></label>
+                        <select asp-for="ColorId" class="form-control">
+                            @foreach (var color in Model.Colors)
+                            {
+                                <option value="@color.Id">@color.Name</option>
+                            }
+                        </select>
+                    </div>
+                </div>
             </div>
-            <div class="form-group">
-                <label asp-for="ColorId"></label>
-                <select asp-for="ColorId" class="form-control">
-                    @foreach (var color in Model.Colors)
-                    {
-                        <option value="@color.Id">@color.Name</option>
-                    }
-                </select>
+            <div class="form-row">
+                <div class="col">
+                    <div class="form-group">
+                        <label asp-for="FuelId"></label>
+                        <select asp-for="FuelId" class="form-control">
+                            @foreach (var fuelType in Model.FuelTypes)
+                            {
+                                <option value="@fuelType.Id">@fuelType.Name</option>
+                            }
+                        </select>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="form-group">
+                        <label asp-for="TransmissionId"></label>
+                        <select asp-for="TransmissionId" class="form-control">
+                            @foreach (var transmission in Model.Transmissions)
+                            {
+                                <option value="@transmission.Id">@transmission.Name</option>
+                            }
+                        </select>
+                    </div>
+                </div>
             </div>
-            <div class="form-group">
-                <label asp-for="FuelId"></label>
-                <select asp-for="FuelId" class="form-control">
-                    @foreach (var fuelType in Model.FuelTypes)
-                    {
-                        <option value="@fuelType.Id">@fuelType.Name</option>
-                    }
-                </select>
+            <div class="form-row">
+                <div class="col">
+                    <div class="form-group">
+                        <label asp-for="CarTypeId"></label>
+                        <select asp-for="CarTypeId" class="form-control">
+                            @foreach (var carType in Model.CarTypes)
+                            {
+                                <option value="@carType.Id">@carType.Name</option>
+                            }
+                        </select>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="form-group">
+                        <label asp-for="SeatsCount"></label>
+                        <input asp-for="SeatsCount" class="form-control" placeholder="Example: 4">
+                        <span asp-validation-for="SeatsCount" class="small text-danger"></span>
+                    </div>
+                </div>
             </div>
             <div class="form-group">
                 <label asp-for="DailyPrice"></label>
-                <input asp-for="DailyPrice" class="form-control" placeholder="Example: 230.02 Leva">
+                <input asp-for="DailyPrice" class="form-control" placeholder="Example: 230.02">
+                <span asp-validation-for="DailyPrice" class="small text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="SeatsCount"></label>
-                <input asp-for="SeatsCount" class="form-control" placeholder="Example: 4">
+                <label asp-for="ImageUrl"></label>
+                <input asp-for="ImageUrl" class="form-control" placeholder="Your fine URL here...">
+                <span asp-validation-for="ImageUrl" class="small text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Description"></label>
+                <textarea asp-for="Description" rows="4" class="form-control" placeholder="This is the perfect car..."></textarea>
+                <span asp-validation-for="Description" class="small text-danger"></span>
             </div>
             <input class="btn btn-primary" type="submit" value="Save" />
         </form>

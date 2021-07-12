@@ -4,6 +4,7 @@
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
     using System.ComponentModel.DataAnnotations.Schema;
+    using static Oversteer.Models.Constants.DataConstants;
 
     public class Car
     {
@@ -16,6 +17,8 @@
 
         public virtual CarBrand Brand { get; set; }
 
+        [Required]
+        [MaxLength(CarModelMaxValue)]
         public string Model { get; set; }
 
         public int ModelYear { get; set; }
@@ -24,6 +27,9 @@
 
         public int SeatsCount { get; set; }
 
+        public string ImageUrl { get; set; }
+
+        [Required]
         public string Description { get; set; }
 
         [ForeignKey(nameof(Color))]
@@ -43,10 +49,10 @@
         public virtual CarType CarType { get; set; }
 
         [ForeignKey(nameof(Transmission))]
-        public int GearBoxId { get; set; }
+        public int TransmissionId { get; set; }
 
         public virtual Transmission Transmission { get; set; }
 
-        public virtual ICollection<CarImage> CarImages { get; set; } = new HashSet<CarImage>();
+       // public virtual ICollection<CarImage> CarImages { get; set; } = new HashSet<CarImage>();
     }
 }

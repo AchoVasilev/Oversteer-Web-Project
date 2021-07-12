@@ -16,11 +16,12 @@
         public const int MinRating = 1;
 
         public const int CarBrandNameMaxValue = 20;
-        public const int CarBrandModelMaxValue = 30;
-
+        public const int CarModelMaxValue = 30;
+        public const int CarModelMinValue = 1;
         public const int CarYearMinValue = 1900;
         public const int CarYearMaxValue = 2022;
-
         public const int CarDescriptionMinValue = 8;
+        public const int CarSeatMinCount = 1;
+        public const int CarSeatMaxCount = 10;
     }
 }
