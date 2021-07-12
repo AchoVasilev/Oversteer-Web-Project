@@ -17,5 +17,10 @@
 
         public const int CarBrandNameMaxValue = 20;
         public const int CarBrandModelMaxValue = 30;
+
+        public const int CarYearMinValue = 1900;
+        public const int CarYearMaxValue = 2022;
+
+        public const int CarDescriptionMinValue = 8;
     }
 }

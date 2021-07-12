@@ -1,5 +1,6 @@
 ﻿namespace Oversteer.Models.Cars
 {
+    using Oversteer.Web.Data.Cars;
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
     using System.ComponentModel.DataAnnotations.Schema;
@@ -15,11 +16,15 @@
 
         public virtual CarBrand Brand { get; set; }
 
+        public string Model { get; set; }
+
         public int ModelYear { get; set; }
 
         public decimal DailyPrice { get; set; }
 
         public int SeatsCount { get; set; }
+
+        public string Description { get; set; }
 
         [ForeignKey(nameof(Color))]
 
@@ -37,7 +42,10 @@
 
         public virtual CarType CarType { get; set; }
 
-        public virtual ICollection<InteriourFeature> InteriourFeatures { get; set; } = new HashSet<InteriourFeature>();
+        [ForeignKey(nameof(Transmission))]
+        public int GearBoxId { get; set; }
+
+        public virtual Transmission Transmission { get; set; }
 
         public virtual ICollection<CarImage> CarImages { get; set; } = new HashSet<CarImage>();
     }

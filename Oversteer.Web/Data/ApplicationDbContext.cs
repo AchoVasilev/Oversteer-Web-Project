@@ -45,7 +45,6 @@
 
         public DbSet<Fuel> Fuels { get; set; }
 
-        public DbSet<InteriourFeature> InteriourFeatures { get; set; }
 
         public DbSet<CarAdd> CarAdds { get; set; }
 
@@ -54,6 +53,8 @@
         public DbSet<Payment> Payments { get; set; }
 
         public DbSet<Rental> Rentals { get; set; }
+
+        public DbSet<Transmission> Transmissions { get; set; }
 
         protected override void OnModelCreating(ModelBuilder builder)
         {
@@ -77,9 +78,9 @@
                     .OnDelete(DeleteBehavior.Restrict);
 
                 entity.HasOne(x => x.City)
-                .WithMany(x => x.Users)
-                .HasForeignKey(x => x.CityId)
-                .OnDelete(DeleteBehavior.Restrict);
+                    .WithMany(x => x.Users)
+                    .HasForeignKey(x => x.CityId)
+                    .OnDelete(DeleteBehavior.Restrict);
             });
 
             builder.Entity<Country>()
@@ -91,30 +92,40 @@
             builder.Entity<Destination>(entity =>
                {
                    entity.HasOne(x => x.Country)
-                   .WithMany(x => x.Destinations)
-                   .HasForeignKey(x => x.CountryId)
-                   .OnDelete(DeleteBehavior.Restrict);
+                       .WithMany(x => x.Destinations)
+                       .HasForeignKey(x => x.CountryId)
+                       .OnDelete(DeleteBehavior.Restrict);
 
                    entity.HasOne(x => x.City)
-                   .WithMany(x => x.Destinations)
-                   .HasForeignKey(x => x.CityId)
-                   .OnDelete(DeleteBehavior.Restrict);
+                       .WithMany(x => x.Destinations)
+                       .HasForeignKey(x => x.CityId)
+                       .OnDelete(DeleteBehavior.Restrict);
                });
 
             builder.Entity<Rental>(entity =>
             {
                 entity.HasOne(x => x.Place)
-                .WithMany(x => x.Rentals)
-                .HasForeignKey(x => x.PlaceId)
-                .OnDelete(DeleteBehavior.Restrict);
+                    .WithMany(x => x.Rentals)
+                    .HasForeignKey(x => x.PlaceId)
+                    .OnDelete(DeleteBehavior.Restrict);
             });
 
-            builder.Entity<CarModel>(entity =>
+            builder.Entity<Car>(entity =>
             {
-                entity.HasOne(x => x.CarBrand)
-                .WithMany(x => x.CarModels)
-                .HasForeignKey(x => x.CarBrandId)
-                .OnDelete(DeleteBehavior.Restrict);
+                entity.HasOne(x => x.Fuel)
+                    .WithMany(x => x.Cars)
+                    .HasForeignKey(x => x.FuelId)
+                    .OnDelete(DeleteBehavior.Restrict);
+
+                entity.HasOne(x => x.Color)
+                    .WithMany(x => x.Cars)
+                    .HasForeignKey(x => x.ColorId)
+                    .OnDelete(DeleteBehavior.Restrict);
+
+                entity.HasOne(x => x.Transmission)
+                    .WithMany(x => x.Cars)
+                    .HasForeignKey(x => x.GearBoxId)
+                    .OnDelete(DeleteBehavior.Restrict);
             });
 
             base.OnModelCreating(builder);

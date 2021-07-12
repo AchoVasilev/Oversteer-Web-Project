@@ -10,6 +10,8 @@ namespace Oversteer.Web
     using Oversteer.Models.Users;
     using Oversteer.Web.Data;
     using Oversteer.Web.Infrastructure;
+    using Oversteer.Web.Services.Cars;
+    using Oversteer.Web.Services.Contracts;
 
     public class Startup
     {
@@ -42,6 +44,7 @@ namespace Oversteer.Web
             services.AddControllersWithViews();
 
             services.AddRazorPages();
+            services.AddTransient<ICarsService, CarsService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

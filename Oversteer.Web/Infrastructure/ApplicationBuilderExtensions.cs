@@ -24,6 +24,7 @@
             SeedCarBrands(data);
             SeedColors(data);
             SeedFuel(data);
+            SeedTransmission(data);
 
             return app;
         }
@@ -64,12 +65,7 @@
             {
                 var carBrand = new CarBrand
                 {
-                    Name = carBrandDto.Name,
-                    CarModels = carBrandDto.Models.Select(x => new CarModel
-                    {
-                        Name = x.Title,
-                    })
-                    .ToList(),
+                    Name = carBrandDto.Title,
                 };
 
                 data.CarBrands.Add(carBrand);
@@ -120,6 +116,24 @@
                 new Fuel() { Name = "LPG" },
                 new Fuel() { Name = "Electricity" },
                 new Fuel() { Name = "Hybrid" },
+            });
+
+            data.SaveChanges();
+        }
+
+        private static void SeedTransmission(ApplicationDbContext data)
+        {
+            if (data.Transmissions.Any())
+            {
+                return;
+            }
+
+            data.Transmissions.AddRange(new[]
+            {
+                new Transmission() { Name = "Manual" },
+                new Transmission() { Name = "Automatic" },
+                new Transmission() { Name = "Continuously variable transmission" },
+                new Transmission() { Name = "Semi-automatic" },
             });
 
             data.SaveChanges();
