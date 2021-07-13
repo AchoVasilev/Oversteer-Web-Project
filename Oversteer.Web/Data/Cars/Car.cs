@@ -1,10 +1,9 @@
 ﻿namespace Oversteer.Models.Cars
 {
     using Oversteer.Web.Data.Cars;
-    using System.Collections.Generic;
+
     using System.ComponentModel.DataAnnotations;
     using System.ComponentModel.DataAnnotations.Schema;
-    using static Oversteer.Models.Constants.DataConstants;
 
     public class Car
     {
@@ -12,14 +11,15 @@
         [Required]
         public int Id { get; set; }
 
-        [ForeignKey(nameof(Brand))]
-        public int BrandId { get; set; }
+        [ForeignKey(nameof(CarBrand))]
+        public int CarBrandId { get; set; }
 
         public virtual CarBrand Brand { get; set; }
 
-        [Required]
-        [MaxLength(CarModelMaxValue)]
-        public string Model { get; set; }
+        [ForeignKey(nameof(CarModel))]
+        public int CarModelId { get; set; }
+
+        public virtual CarModel Model { get; set; }
 
         public int ModelYear { get; set; }
 

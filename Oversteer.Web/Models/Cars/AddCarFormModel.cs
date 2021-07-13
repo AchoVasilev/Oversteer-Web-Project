@@ -21,10 +21,6 @@
         public int BrandId { get; init; }
 
         [Required]
-        [StringLength(CarModelMaxValue, MinimumLength = CarModelMinValue)]
-        public string Model { get; init; }
-
-        [Required]
         [Range(CarYearMinValue, CarYearMaxValue)]
         public int? Year { get; init; }
 
@@ -53,6 +49,9 @@
         [Display(Name = CarType)]
         public int CarTypeId { get; set; }
 
+        [Display(Name = CarModel)]
+        public int ModelId { get; set; }
+
         public IEnumerable<CarBrandFormModel> Brands { get; set; }
 
         public IEnumerable<ColorFormModel> Colors { get; set; }
@@ -62,6 +61,8 @@
         public IEnumerable<TransmissionTypeFormModel> Transmissions { get; set; }
 
         public IEnumerable<CarTypeFormModel> CarTypes { get; set; }
+
+        public IEnumerable<CarModelFormModel> CarModels { get; set; }
 
        // public IEnumerable<CarImageFormModel> CarImages { get; init; }
     }

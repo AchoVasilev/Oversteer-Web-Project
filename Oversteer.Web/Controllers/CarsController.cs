@@ -17,6 +17,7 @@
         public IActionResult Add() => this.View(new AddCarFormModel()
         {
             Brands = this.carService.GetCarBrands(),
+            CarModels = this.carService.GetCarModels(),
             Colors = this.carService.GetCarColors(),
             FuelTypes = this.carService.GetFuelTypes(),
             Transmissions = this.carService.GetTransmissionTypes(),

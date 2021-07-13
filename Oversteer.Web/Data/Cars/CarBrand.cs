@@ -1,6 +1,10 @@
 ﻿namespace Oversteer.Models.Cars
 {
+    using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
+
+    using Oversteer.Web.Data.Cars;
+
     using static Oversteer.Models.Constants.DataConstants;
 
     public class CarBrand
@@ -12,5 +16,9 @@
         [Required]
         [MaxLength(CarBrandNameMaxValue)]
         public string Name { get; set; }
+
+        public virtual ICollection<CarModel> CarModels { get; set; } = new HashSet<CarModel>();
+
+        public virtual ICollection<Car> Cars { get; set; } = new HashSet<Car>();
     }
 }

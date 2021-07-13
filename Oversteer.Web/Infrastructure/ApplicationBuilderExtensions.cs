@@ -66,6 +66,10 @@
                 var carBrand = new CarBrand
                 {
                     Name = carBrandDto.Title,
+                    CarModels = carBrandDto.Models.Select(x => new CarModel
+                    {
+                        Name = x.Title
+                    }).ToList()
                 };
 
                 data.CarBrands.Add(carBrand);

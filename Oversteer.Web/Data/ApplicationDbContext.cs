@@ -2,6 +2,7 @@
 {
     using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
     using Microsoft.EntityFrameworkCore;
+
     using Oversteer.Models.Add;
     using Oversteer.Models.Cars;
     using Oversteer.Models.Others;
@@ -37,7 +38,7 @@
 
         public DbSet<Car> Cars { get; set; }
 
-       // public DbSet<CarImage> CarImages { get; set; }
+        // public DbSet<CarImage> CarImages { get; set; }
 
         public DbSet<CarType> CarTypes { get; set; }
 
@@ -54,6 +55,8 @@
         public DbSet<Rental> Rentals { get; set; }
 
         public DbSet<Transmission> Transmissions { get; set; }
+
+        public DbSet<CarModel> CarModels { get; set; }
 
         protected override void OnModelCreating(ModelBuilder builder)
         {
@@ -124,6 +127,16 @@
                 entity.HasOne(x => x.Transmission)
                     .WithMany(x => x.Cars)
                     .HasForeignKey(x => x.TransmissionId)
+                    .OnDelete(DeleteBehavior.Restrict);
+
+                entity.HasOne(x => x.Brand)
+                    .WithMany(x => x.Cars)
+                    .HasForeignKey(x => x.CarBrandId)
+                    .OnDelete(DeleteBehavior.Restrict);
+
+                entity.HasOne(x => x.Model)
+                    .WithMany(x => x.Cars)
+                    .HasForeignKey(x => x.CarModelId)
                     .OnDelete(DeleteBehavior.Restrict);
             });
 

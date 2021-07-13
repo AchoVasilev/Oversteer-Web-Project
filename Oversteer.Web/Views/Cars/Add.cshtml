@@ -13,19 +13,27 @@
                 <div class="col">
                     <div class="form-group">
                         <label asp-for="BrandId"></label>
-                        <select asp-for="BrandId" class="form-control">
-                            @foreach (var brand in Model.Brands)
+                        <select asp-for="BrandId" id="selectcat" class="form-control">
+                            <option value="" class="rhth">Select Brand</option>
+                            @foreach (var carBrand in Model.Brands)
                             {
-                                <option value="@brand.Id">@brand.Name</option>
+                                <option class="@carBrand.Id" value="@carBrand.Id">@carBrand.Name</option>
                             }
                         </select>
+                        <span asp-validation-for="BrandId" class="small text-danger"></span>
                     </div>
                 </div>
                 <div class="col">
                     <div class="form-group">
-                        <label asp-for="Model"></label>
-                        <input asp-for="Model" class="form-control" placeholder="Example: 640D, S-Class, etc...">
-                        <span asp-validation-for="Model" class="small text-danger"></span>
+                        <label asp-for="ModelId"></label>
+                        <select asp-for="ModelId" id="selectprod" class="form-control">
+                            <option value="" class="rhth23">Select Model</option>
+                            @foreach (var carModel in Model.CarModels)
+                            {
+                                <option value="@carModel.Id" class="selectors @carModel.CarBrandId">@carModel.Name</option>
+                            }
+                        </select>
+                        <span asp-validation-for="ModelId" class="small text-danger"></span>
                     </div>
                 </div>
             </div>
@@ -46,6 +54,7 @@
                                 <option value="@color.Id">@color.Name</option>
                             }
                         </select>
+                        <span asp-validation-for="ColorId" class="small text-danger"></span>
                     </div>
                 </div>
             </div>
@@ -59,6 +68,7 @@
                                 <option value="@fuelType.Id">@fuelType.Name</option>
                             }
                         </select>
+                        <span asp-validation-for="FuelId" class="small text-danger"></span>
                     </div>
                 </div>
                 <div class="col">
@@ -70,6 +80,7 @@
                                 <option value="@transmission.Id">@transmission.Name</option>
                             }
                         </select>
+                        <span asp-validation-for="TransmissionId" class="small text-danger"></span>
                     </div>
                 </div>
             </div>
@@ -83,6 +94,7 @@
                                 <option value="@carType.Id">@carType.Name</option>
                             }
                         </select>
+                        <span asp-validation-for="CarTypeId" class="small text-danger"></span>
                     </div>
                 </div>
                 <div class="col">
@@ -112,3 +124,26 @@
         </form>
     </div>
 </div>
+
+@section Scripts {
+    <script src="https://code.jquery.com/jquery-3.6.0.js"
+            integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk="
+            crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-migrate-3.3.2.js"
+            integrity="sha256-BDmtN+79VRrkfamzD16UnAoJP8zMitAz093tvZATdiE="
+            crossorigin="anonymous"></script>
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+            var allOptions = $('#selectprod option')
+            $('#selectcat').change(function () {
+                $('#selectprod option').remove()
+                var classN = $('#selectcat option:selected').prop('class');
+                var opts = allOptions.filter('.' + classN);
+                $.each(opts, function (i, j) {
+                    $(j).appendTo('#selectprod');
+                });
+            });
+        });
+    </script>
+}
