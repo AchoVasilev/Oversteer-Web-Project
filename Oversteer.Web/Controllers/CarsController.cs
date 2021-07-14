@@ -32,6 +32,11 @@
                 this.ModelState.AddModelError(nameof(carModel.BrandId), CarBrandDoesntExist);
             }
 
+            if (!this.carService.GetModelId(carModel.ModelId))
+            {
+                this.ModelState.AddModelError(nameof(carModel.BrandId), CarBrandDoesntExist);
+            }
+
             if (!this.carService.GetCarTypeId(carModel.CarTypeId))
             {
                 this.ModelState.AddModelError(nameof(carModel.CarTypeId), CarTypeDoesntExist);

@@ -5,6 +5,7 @@
     using static Oversteer.Models.Constants.DataConstants;
     using static Oversteer.Web.Data.Constants.FormModelsDisplayNames;
     using static Oversteer.Web.Data.Constants.ErrorMessages;
+    using Oversteer.Web.Infrastructure.CustomAttributes;
 
     public class AddCarFormModel
     {
@@ -21,7 +22,7 @@
         public int BrandId { get; init; }
 
         [Required]
-        [Range(CarYearMinValue, CarYearMaxValue)]
+        [CurrentYearMaxValue(CarYearMinValue)]
         public int? Year { get; init; }
 
         [Required]

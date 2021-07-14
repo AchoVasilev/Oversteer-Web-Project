@@ -19,7 +19,6 @@
         public const int CarModelMaxValue = 100;
         public const int CarModelMinValue = 1;
         public const int CarYearMinValue = 1900;
-        public const int CarYearMaxValue = 2022;
         public const int CarDescriptionMinValue = 8;
         public const int CarSeatMinCount = 1;
         public const int CarSeatMaxCount = 10;
