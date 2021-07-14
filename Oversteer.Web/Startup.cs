@@ -10,6 +10,7 @@ namespace Oversteer.Web
     using Oversteer.Models.Users;
     using Oversteer.Web.Data;
     using Oversteer.Web.Infrastructure;
+    using Oversteer.Web.Services;
     using Oversteer.Web.Services.Cars;
     using Oversteer.Web.Services.Contracts;
 
@@ -39,6 +40,8 @@ namespace Oversteer.Web
                     })
                 .AddRoles<IdentityRole>()
                 .AddEntityFrameworkStores<ApplicationDbContext>();
+
+            services.AddTransient<ICarsScraperService, CarsScraperService>();
 
             // services.AddAutoMapper(typeof(Startup));
             services.AddControllersWithViews();

@@ -721,8 +721,8 @@ namespace Oversteer.Web.Data.Migrations
 
                     b.Property<string>("Name")
                         .IsRequired()
-                        .HasMaxLength(30)
-                        .HasColumnType("nvarchar(30)");
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
 
                     b.HasKey("Id");
 
@@ -862,13 +862,13 @@ namespace Oversteer.Web.Data.Migrations
                     b.HasOne("Oversteer.Models.Cars.CarBrand", "Brand")
                         .WithMany("Cars")
                         .HasForeignKey("CarBrandId")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
                     b.HasOne("Oversteer.Web.Data.Cars.CarModel", "Model")
                         .WithMany("Cars")
                         .HasForeignKey("CarModelId")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
                     b.HasOne("Oversteer.Models.Cars.CarType", "CarType")

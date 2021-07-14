@@ -1,15 +1,14 @@
 ﻿namespace Oversteer.Web.Infrastructure
 {
-    using System.IO;
     using System.Linq;
+
     using Microsoft.AspNetCore.Builder;
     using Microsoft.EntityFrameworkCore;
     using Microsoft.Extensions.DependencyInjection;
-    using Newtonsoft.Json;
+
     using Oversteer.Models.Cars;
     using Oversteer.Web.Data;
     using Oversteer.Web.Data.Cars;
-    using Oversteer.Web.Dto;
 
     public static class ApplicationBuilderExtensions
     {
@@ -21,7 +20,6 @@
             data.Database.Migrate();
 
             SeedCarTypes(data);
-            SeedCarBrands(data);
             SeedColors(data);
             SeedFuel(data);
             SeedTransmission(data);
@@ -49,32 +47,6 @@
             });
 
             data.SaveChanges();
-        }
-
-        private static void SeedCarBrands(ApplicationDbContext data)
-        {
-            if (data.CarBrands.Any())
-            {
-                return;
-            }
-
-            var carsJson = File.ReadAllText("Datasets/CarsJson.json");
-            var carBrandDtos = JsonConvert.DeserializeObject<CarBrandDto[]>(carsJson);
-
-            foreach (var carBrandDto in carBrandDtos)
-            {
-                var carBrand = new CarBrand
-                {
-                    Name = carBrandDto.Title,
-                    CarModels = carBrandDto.Models.Select(x => new CarModel
-                    {
-                        Name = x.Title
-                    }).ToList()
-                };
-
-                data.CarBrands.Add(carBrand);
-                data.SaveChanges();
-            }
         }
 
         private static void SeedColors(ApplicationDbContext data)

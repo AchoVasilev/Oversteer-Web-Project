@@ -35,7 +35,7 @@
 
         [Display(Name = CarImageUrl)]
         [Required]
-        [Url]
+        [Url(ErrorMessage = IvalidURL)]
         public string ImageUrl { get; set; }
 
         [Display(Name = CarColor)]
@@ -65,6 +65,6 @@
 
         public IEnumerable<CarModelFormModel> CarModels { get; set; }
 
-       // public IEnumerable<CarImageFormModel> CarImages { get; init; }
+        // public IEnumerable<CarImageFormModel> CarImages { get; init; }
     }
 }
