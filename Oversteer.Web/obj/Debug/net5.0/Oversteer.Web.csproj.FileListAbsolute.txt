@@ -447,4 +447,4 @@ D:\Курс програмиране\CSharp - ASP.NET Core\Oversteer\Oversteer\O
 D:\Курс програмиране\CSharp - ASP.NET Core\Oversteer\Oversteer\Oversteer.Web\bin\Debug\net5.0\prepros-6.config.json
 D:\Курс програмиране\CSharp - ASP.NET Core\Oversteer\Oversteer\Oversteer.Web\obj\Debug\net5.0\Razor\Views\Cars\Add.cshtml.g.cs
 D:\Курс програмиране\CSharp - ASP.NET Core\Oversteer\Oversteer\Oversteer.Web\bin\Debug\net5.0\AngleSharp.dll
-D:\Курс програмиране\CSharp - ASP.NET Core\Oversteer\Oversteer\Oversteer.Web\obj\Debug\net5.0\Razor\Views\GatherCars\Index.cshtml.g.cs
+D:\Курс програмиране\CSharp - ASP.NET Core\Oversteer\Oversteer\Oversteer.Web\obj\Debug\net5.0\Razor\Views\Cars\All.cshtml.g.cs

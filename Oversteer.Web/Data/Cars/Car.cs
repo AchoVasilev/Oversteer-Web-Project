@@ -17,7 +17,7 @@
         public virtual CarBrand Brand { get; set; }
 
         [ForeignKey(nameof(CarModel))]
-        public int CarModelId { get; set; }
+        public int? CarModelId { get; set; }
 
         public virtual CarModel Model { get; set; }
 

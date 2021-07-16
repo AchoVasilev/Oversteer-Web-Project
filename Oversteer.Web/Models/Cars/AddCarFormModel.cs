@@ -51,7 +51,7 @@
         public int CarTypeId { get; set; }
 
         [Display(Name = CarModel)]
-        public int ModelId { get; set; }
+        public int? ModelId { get; set; }
 
         public IEnumerable<CarBrandFormModel> Brands { get; set; }
 

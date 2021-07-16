@@ -26,7 +26,6 @@
 
   <ItemGroup>
     <Folder Include="Datasets\" />
-    <Folder Include="Views\Cars\" />
   </ItemGroup>
 
 </Project>

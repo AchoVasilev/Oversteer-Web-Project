@@ -30,6 +30,11 @@
                             <option value="" class="rhth23">Select Model</option>
                             @foreach (var carModel in Model.CarModels)
                             {
+                                @if (carModel.Id == null)
+                                {
+                                    continue;
+                                }
+
                                 <option value="@carModel.Id" class="selectors @carModel.CarBrandId">@carModel.Name</option>
                             }
                         </select>

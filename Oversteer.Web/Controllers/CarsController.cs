@@ -34,7 +34,7 @@
 
             if (!this.carService.GetModelId(carModel.ModelId))
             {
-                this.ModelState.AddModelError(nameof(carModel.BrandId), CarBrandDoesntExist);
+                this.ModelState.AddModelError(nameof(carModel.ModelId), CarModelDoesntExist);
             }
 
             if (!this.carService.GetCarTypeId(carModel.CarTypeId))
@@ -65,12 +65,15 @@
                 carModel.Transmissions = this.carService.GetTransmissionTypes();
                 carModel.CarTypes = this.carService.GetCarTypes();
 
-                return View(carModel);
+                return this.View(carModel);
             }
 
             this.carService.CreateCar(carModel);
 
             return RedirectToAction("Index", "Home");
         }
+
+        public IActionResult All()
+            => this.View(carService.GetAllCars());
     }
 }

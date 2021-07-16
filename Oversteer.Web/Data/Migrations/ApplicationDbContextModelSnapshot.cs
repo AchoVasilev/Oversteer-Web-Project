@@ -273,7 +273,7 @@ namespace Oversteer.Web.Data.Migrations
                     b.Property<int>("CarBrandId")
                         .HasColumnType("int");
 
-                    b.Property<int>("CarModelId")
+                    b.Property<int?>("CarModelId")
                         .HasColumnType("int");
 
                     b.Property<int>("CarTypeId")
@@ -711,7 +711,7 @@ namespace Oversteer.Web.Data.Migrations
 
             modelBuilder.Entity("Oversteer.Web.Data.Cars.CarModel", b =>
                 {
-                    b.Property<int>("Id")
+                    b.Property<int?>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
@@ -868,8 +868,7 @@ namespace Oversteer.Web.Data.Migrations
                     b.HasOne("Oversteer.Web.Data.Cars.CarModel", "Model")
                         .WithMany("Cars")
                         .HasForeignKey("CarModelId")
-                        .OnDelete(DeleteBehavior.Restrict)
-                        .IsRequired();
+                        .OnDelete(DeleteBehavior.Restrict);
 
                     b.HasOne("Oversteer.Models.Cars.CarType", "CarType")
                         .WithMany("Cars")
