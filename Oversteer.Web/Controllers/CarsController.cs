@@ -3,6 +3,7 @@
     using Microsoft.AspNetCore.Mvc;
 
     using Oversteer.Web.Models.Cars;
+    using Oversteer.Web.Models.Cars.Enumerations;
     using Oversteer.Web.Services.Contracts;
 
     using static Oversteer.Web.Data.Constants.ErrorMessages;
@@ -75,12 +76,16 @@
             return RedirectToAction(nameof(All));
         }
 
-        public IActionResult All(string brand, string searchTerm)
+        public IActionResult All([FromQuery] CarsSearchQueryModel query)
             => this.View(new CarsSearchQueryModel() 
             { 
+                Brand = query.Brand,
                 Brands = this.carService.GetAddedCarBrands(),
-                Cars = this.carService.GetAllCars(brand, searchTerm),
-                SearchTerm = searchTerm
+                Cars = this.carService.GetAllCars(query),
+                CarSorting = query.CarSorting,
+                SearchTerm = query.SearchTerm,
+                CurrentPage = query.CurrentPage,
+                TotalCars = this.carService.GetQueryCarsCount(query)
             });
     }
 }

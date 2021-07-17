@@ -3,7 +3,7 @@
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
     using static Oversteer.Models.Constants.DataConstants;
-    using static Oversteer.Web.Data.Constants.FormModelsDisplayNames;
+    using static Oversteer.Web.Data.Constants.ModelsDisplayNames;
     using static Oversteer.Web.Data.Constants.ErrorMessages;
     using Oversteer.Web.Infrastructure.CustomAttributes;
 
