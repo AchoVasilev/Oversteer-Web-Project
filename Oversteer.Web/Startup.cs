@@ -13,6 +13,7 @@ namespace Oversteer.Web
     using Oversteer.Web.Services;
     using Oversteer.Web.Services.Cars;
     using Oversteer.Web.Services.Contracts;
+    using Oversteer.Web.Services.Home;
 
     public class Startup
     {
@@ -41,7 +42,8 @@ namespace Oversteer.Web
                 .AddRoles<IdentityRole>()
                 .AddEntityFrameworkStores<ApplicationDbContext>();
 
-            services.AddTransient<ICarsScraperService, CarsScraperService>();
+            services.AddTransient<ICarsScraperService, CarsScraperService>()
+                .AddTransient<IHomeService, HomeService>();
 
             // services.AddAutoMapper(typeof(Startup));
             services.AddControllersWithViews();

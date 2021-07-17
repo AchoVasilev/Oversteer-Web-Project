@@ -1,8 +1,10 @@
 ﻿namespace Oversteer.Web.Controllers
 {
     using Microsoft.AspNetCore.Mvc;
+
     using Oversteer.Web.Models.Cars;
     using Oversteer.Web.Services.Contracts;
+
     using static Oversteer.Web.Data.Constants.ErrorMessages;
 
     public class CarsController : Controller
@@ -70,10 +72,15 @@
 
             this.carService.CreateCar(carModel);
 
-            return RedirectToAction("Index", "Home");
+            return RedirectToAction(nameof(All));
         }
 
-        public IActionResult All()
-            => this.View(carService.GetAllCars());
+        public IActionResult All(string brand, string searchTerm)
+            => this.View(new CarsSearchQueryModel() 
+            { 
+                Brands = this.carService.GetAddedCarBrands(),
+                Cars = this.carService.GetAllCars(brand, searchTerm),
+                SearchTerm = searchTerm
+            });
     }
 }

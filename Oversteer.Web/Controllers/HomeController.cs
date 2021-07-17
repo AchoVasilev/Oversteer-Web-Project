@@ -1,21 +1,36 @@
 ﻿namespace Oversteer.Web.Controllers
 {
     using System.Diagnostics;
+    using System.Linq;
+
     using Microsoft.AspNetCore.Mvc;
-    using Microsoft.Extensions.Logging;
+
     using Oversteer.Web.Models;
+    using Oversteer.Web.Models.Home;
+    using Oversteer.Web.Services.Contracts;
 
     public class HomeController : Controller
     {
-        private readonly ILogger<HomeController> logger;
+        private readonly ICarsService carsService;
+        private readonly IHomeService homeService;
 
-        public HomeController(ILogger<HomeController> logger)
+        public HomeController(ICarsService carsService, IHomeService homeService)
         {
-            this.logger = logger;
+            this.carsService = carsService;
+            this.homeService = homeService;
         }
 
         public IActionResult Index()
-            => this.View();
+        {
+            var cars = this.carsService.GetThreeNewestCars();
+            var totalCars = this.homeService.GetTotalCarsCount();
+
+            return View(new IndexViewModel()
+            {
+                TotalCars = totalCars,
+                Cars = cars.ToList()
+            });
+        }
 
         public IActionResult Privacy()
             => this.View();

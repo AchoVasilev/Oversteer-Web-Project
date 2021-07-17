@@ -28,13 +28,20 @@ using Oversteer.Web.Models;
 #nullable disable
 #nullable restore
 #line 3 "D:\Курс програмиране\CSharp - ASP.NET Core\Oversteer\Oversteer\Oversteer.Web\Views\_ViewImports.cshtml"
+using Oversteer.Web.Models.Home;
+
+#line default
+#line hidden
+#nullable disable
+#nullable restore
+#line 4 "D:\Курс програмиране\CSharp - ASP.NET Core\Oversteer\Oversteer\Oversteer.Web\Views\_ViewImports.cshtml"
 using Oversteer.Web.Models.Cars;
 
 #line default
 #line hidden
 #nullable disable
     [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"35499247fafb391ea89b82a48ec8c98a799dc7db", @"/Views/Accounts/Register.cshtml")]
-    [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"12ed888d20981b9ddb43f726f960a56937209760", @"/Views/_ViewImports.cshtml")]
+    [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"0a4e39f3ef8e74c8e4d8127f4cacfdfdce6ea815", @"/Views/_ViewImports.cshtml")]
     public class Views_Accounts_Register : global::Microsoft.AspNetCore.Mvc.Razor.RazorPage<dynamic>
     {
         private static readonly global::Microsoft.AspNetCore.Razor.TagHelpers.TagHelperAttribute __tagHelperAttribute_0 = new global::Microsoft.AspNetCore.Razor.TagHelpers.TagHelperAttribute("value", "Client", global::Microsoft.AspNetCore.Razor.TagHelpers.HtmlAttributeValueStyle.DoubleQuotes);
@@ -68,7 +75,7 @@ using Oversteer.Web.Models.Cars;
         public async override global::System.Threading.Tasks.Task ExecuteAsync()
         {
             WriteLiteral("<h1 class=\"text-center mt-2\">Register</h1>\n<hr class=\"bg-primary w-75\">\n\n");
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("form", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "35499247fafb391ea89b82a48ec8c98a799dc7db4987", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("form", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "35499247fafb391ea89b82a48ec8c98a799dc7db5204", async() => {
                 WriteLiteral(@"
     <div class=""form-group"">
         <div class=""label-holder textCol d-flex justify-content-center"">
@@ -102,7 +109,7 @@ using Oversteer.Web.Models.Cars;
         </div>
         <select class=""custom-select"" name=""userType"" id=""userType"">
             ");
-                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("option", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "35499247fafb391ea89b82a48ec8c98a799dc7db6830", async() => {
+                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("option", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "35499247fafb391ea89b82a48ec8c98a799dc7db7047", async() => {
                     WriteLiteral("Client");
                 }
                 );
@@ -118,7 +125,7 @@ using Oversteer.Web.Models.Cars;
                 Write(__tagHelperExecutionContext.Output);
                 __tagHelperExecutionContext = __tagHelperScopeManager.End();
                 WriteLiteral("\n            ");
-                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("option", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "35499247fafb391ea89b82a48ec8c98a799dc7db8063", async() => {
+                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("option", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "35499247fafb391ea89b82a48ec8c98a799dc7db8280", async() => {
                     WriteLiteral("Mechanic");
                 }
                 );
