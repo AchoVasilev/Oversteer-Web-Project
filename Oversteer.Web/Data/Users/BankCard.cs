@@ -27,9 +27,8 @@
         [Required]
         public string Cvc { get; set; }
 
-        [Required]
         [ForeignKey(nameof(Client))]
-        public string ClientId { get; set; }
+        public int ClientId { get; set; }
 
         public virtual Client Client { get; set; }
     }

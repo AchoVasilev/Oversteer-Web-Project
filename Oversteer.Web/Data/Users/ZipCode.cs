@@ -7,13 +7,10 @@
     public class ZipCode
     {
         [Key]
-        [Required]
         public int Id { get; set; }
 
-        [Required]
         public int Code { get; set; }
 
-        [Required]
         [ForeignKey(nameof(City))]
         public int CityId { get; set; }
 

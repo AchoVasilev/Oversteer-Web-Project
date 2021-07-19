@@ -1,24 +1,33 @@
 ﻿namespace Oversteer.Models.Users
 {
-    using System;
     using System.ComponentModel.DataAnnotations;
     using System.ComponentModel.DataAnnotations.Schema;
+
     using static Oversteer.Models.Constants.DataConstants;
+    using static Oversteer.Models.Constants.DataConstants.Users;
 
     public class Client
     {
         [Key]
-        [Required]
         [MaxLength(IdMaxLength)]
-        public string Id { get; set; } = Guid.NewGuid().ToString();
+        public int Id { get; set; }
 
+        [Required]
+        [MaxLength(NameMaxLength)]
         public string FirstName { get; set; }
 
+        [MaxLength(NameMaxLength)]
         public string Surname { get; set; }
 
+        [Required]
+        [MaxLength(NameMaxLength)]
         public string LastName { get; set; }
 
         public string Gender { get; set; }
+
+        [Required]
+        [MaxLength(PhoneNumberMaxLength)]
+        public string PhoneNumber { get; set; }
 
         [ForeignKey(nameof(ApplicationUser))]
         [Required]

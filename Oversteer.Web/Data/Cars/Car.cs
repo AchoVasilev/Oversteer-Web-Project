@@ -1,9 +1,13 @@
 ﻿namespace Oversteer.Models.Cars
 {
+    using Oversteer.Models.Add;
+    using Oversteer.Models.Users;
     using Oversteer.Web.Data.Cars;
 
     using System.ComponentModel.DataAnnotations;
     using System.ComponentModel.DataAnnotations.Schema;
+
+    using static Oversteer.Models.Constants.DataConstants.Cars;
 
     public class Car
     {
@@ -17,14 +21,16 @@
         public virtual CarBrand Brand { get; set; }
 
         [ForeignKey(nameof(CarModel))]
-        public int? CarModelId { get; set; }
+        public int CarModelId { get; set; }
 
         public virtual CarModel Model { get; set; }
 
+        [MaxLength(CarYearLength)]
         public int ModelYear { get; set; }
 
         public decimal DailyPrice { get; set; }
 
+        [MaxLength(CarSeatMaxLength)]
         public int SeatsCount { get; set; }
 
         public string ImageUrl { get; set; }
@@ -33,7 +39,6 @@
         public string Description { get; set; }
 
         [ForeignKey(nameof(Color))]
-
         public int ColorId { get; set; }
 
         public virtual Color Color { get; set; }
@@ -53,6 +58,16 @@
 
         public virtual Transmission Transmission { get; set; }
 
-       // public virtual ICollection<CarImage> CarImages { get; set; } = new HashSet<CarImage>();
+        [ForeignKey(nameof(Company))]
+        public int CompanyId { get; init; }
+
+        public virtual Company Company { get; init; }
+
+        [ForeignKey(nameof(CarAdd))]
+        public int CarAddId { get; init; }
+
+        public virtual CarAdd CarAdd { get; init; }
+
+        // public virtual ICollection<CarImage> CarImages { get; set; } = new HashSet<CarImage>();
     }
 }

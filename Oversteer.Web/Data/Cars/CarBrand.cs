@@ -5,7 +5,7 @@
 
     using Oversteer.Web.Data.Cars;
 
-    using static Oversteer.Models.Constants.DataConstants;
+    using static Oversteer.Models.Constants.DataConstants.Cars;
 
     public class CarBrand
     {

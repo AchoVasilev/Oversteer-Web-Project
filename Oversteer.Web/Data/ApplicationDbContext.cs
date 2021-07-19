@@ -1,5 +1,6 @@
 ﻿namespace Oversteer.Web.Data
 {
+
     using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
     using Microsoft.EntityFrameworkCore;
 
@@ -8,6 +9,8 @@
     using Oversteer.Models.Others;
     using Oversteer.Models.Users;
     using Oversteer.Web.Data.Cars;
+
+    using static Oversteer.Models.Constants.DataConstants;
 
     public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
     {
@@ -137,6 +140,48 @@
                 entity.HasOne(x => x.Model)
                     .WithMany(x => x.Cars)
                     .HasForeignKey(x => x.CarModelId)
+                    .OnDelete(DeleteBehavior.Restrict);
+
+                entity.HasOne(x => x.Company)
+                     .WithMany(x => x.Cars)
+                     .HasForeignKey(x => x.CompanyId)
+                     .OnDelete(DeleteBehavior.Restrict);
+
+                entity.HasOne(x => x.CarAdd)
+                    .WithOne(x => x.Car)
+                    .HasForeignKey<Car>(x => x.CarAddId)
+                    .OnDelete(DeleteBehavior.Restrict);
+
+                entity.Property(p => p.DailyPrice)
+                    .HasColumnType(SpecifyDecimalColumnType);
+            });
+
+            builder.Entity<Company>(entity =>
+            {
+                entity.HasOne(x => x.User)
+                        .WithOne(x => x.Company)
+                        .HasForeignKey<Company>(x => x.UserId)
+                        .OnDelete(DeleteBehavior.Restrict);
+            });
+
+            builder.Entity<Client>(entity =>
+            {
+                entity.HasOne(x => x.User)
+                    .WithOne(x => x.Client)
+                    .HasForeignKey<Client>(x => x.UserId)
+                    .OnDelete(DeleteBehavior.Restrict);
+            });
+
+            builder.Entity<CarAdd>(entity =>
+            {
+                entity.HasOne(x => x.Car)
+                    .WithOne(x => x.CarAdd)
+                    .HasForeignKey<CarAdd>(x => x.CarId)
+                    .OnDelete(DeleteBehavior.Restrict);
+
+                entity.HasOne(x => x.Company)
+                    .WithMany(x => x.CarAdds)
+                    .HasForeignKey(x => x.CompanyId)
                     .OnDelete(DeleteBehavior.Restrict);
             });
 

@@ -29,7 +29,7 @@
 
         [Required]
         [ForeignKey(nameof(Company))]
-        public string CompanyId { get; set; }
+        public int CompanyId { get; set; }
 
         public virtual Company Company { get; set; }
     }

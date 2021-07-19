@@ -3,7 +3,9 @@
     using System;
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations.Schema;
+
     using Microsoft.AspNetCore.Identity;
+
     using Oversteer.Models.Others;
 
     public class ApplicationUser : IdentityUser
@@ -36,10 +38,16 @@
 
         public virtual ZipCode ZipCode { get; set; }
 
+        [ForeignKey(nameof(Company))]
+        public int CompanyId { get; set; }
+
+        public virtual Company Company { get; set; }
+
+        [ForeignKey(nameof(Client))]
+        public int ClientId { get; set; }
+
+        public virtual Client Client { get; set; }
+
         public virtual ICollection<Feedback> Feedbacks { get; set; } = new HashSet<Feedback>();
-
-        public virtual ICollection<Client> Clients { get; set; } = new HashSet<Client>();
-
-        public virtual ICollection<Company> Companies { get; set; } = new HashSet<Company>();
     }
 }

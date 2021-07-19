@@ -1,9 +1,10 @@
 ﻿namespace Oversteer.Web.Controllers
 {
+    using Microsoft.AspNetCore.Authorization;
     using Microsoft.AspNetCore.Mvc;
 
+    using Oversteer.Web.Infrastructure;
     using Oversteer.Web.Models.Cars;
-    using Oversteer.Web.Models.Cars.Enumerations;
     using Oversteer.Web.Services.Contracts;
 
     using static Oversteer.Web.Data.Constants.ErrorMessages;
@@ -11,22 +12,36 @@
     public class CarsController : Controller
     {
         private readonly ICarsService carService;
+        private readonly ICompaniesService companiesService;
 
-        public CarsController(ICarsService carService)
+        public CarsController(ICarsService carService, ICompaniesService companiesService)
         {
             this.carService = carService;
+            this.companiesService = companiesService;
         }
 
-        public IActionResult Add() => this.View(new AddCarFormModel()
+        [Authorize]
+        public IActionResult Add()
         {
-            Brands = this.carService.GetCarBrands(),
-            CarModels = this.carService.GetCarModels(),
-            Colors = this.carService.GetCarColors(),
-            FuelTypes = this.carService.GetFuelTypes(),
-            Transmissions = this.carService.GetTransmissionTypes(),
-            CarTypes = this.carService.GetCarTypes(),
-        });
+            var userId = this.User.GetId();
 
+            if (this.companiesService.UserIsDealer(userId))
+            {
+                RedirectToAction(nameof(CompaniesController.Create), "Companies");
+            }
+
+            return this.View(new AddCarFormModel()
+            {
+                Brands = this.carService.GetCarBrands(),
+                CarModels = this.carService.GetCarModels(),
+                Colors = this.carService.GetCarColors(),
+                FuelTypes = this.carService.GetFuelTypes(),
+                Transmissions = this.carService.GetTransmissionTypes(),
+                CarTypes = this.carService.GetCarTypes(),
+            });
+        }
+
+        [Authorize]
         [HttpPost]
         public IActionResult Add(AddCarFormModel carModel)
         {

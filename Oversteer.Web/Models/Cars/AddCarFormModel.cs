@@ -2,7 +2,7 @@
 {
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
-    using static Oversteer.Models.Constants.DataConstants;
+    using static Oversteer.Models.Constants.DataConstants.Cars;
     using static Oversteer.Web.Data.Constants.ModelsDisplayNames;
     using static Oversteer.Web.Data.Constants.ErrorMessages;
     using Oversteer.Web.Infrastructure.CustomAttributes;
@@ -23,6 +23,8 @@
 
         [Required]
         [CurrentYearMaxValue(CarYearMinValue)]
+        [MaxLength(CarYearLength)]
+        [MinLength(CarYearLength)]
         public int? Year { get; init; }
 
         [Required]
@@ -51,7 +53,7 @@
         public int CarTypeId { get; set; }
 
         [Display(Name = CarModel)]
-        public int? ModelId { get; set; }
+        public int ModelId { get; set; }
 
         public IEnumerable<CarBrandFormModel> Brands { get; set; }
 

@@ -8,7 +8,6 @@
     public class Country
     {
         [Key]
-        [Required]
         public int Id { get; set; }
 
         [Required]

@@ -6,7 +6,6 @@
     public class Fuel
     {
         [Key]
-        [Required]
         public int Id { get; set; }
 
         [Required]
