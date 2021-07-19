@@ -13,11 +13,6 @@
         [Required]
         public string Name { get; set; }
 
-        [ForeignKey(nameof(CountryCode))]
-        public int CountryCodeId { get; set; }
-
-        public CountryCode CountryCode { get; set; }
-
         public ICollection<City> Cities { get; set; } = new HashSet<City>();
 
         public ICollection<Destination> Destinations { get; set; } = new HashSet<Destination>();

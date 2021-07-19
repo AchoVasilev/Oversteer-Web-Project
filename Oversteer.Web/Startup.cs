@@ -12,6 +12,7 @@ namespace Oversteer.Web
     using Oversteer.Web.Infrastructure;
     using Oversteer.Web.Services;
     using Oversteer.Web.Services.Cars;
+    using Oversteer.Web.Services.Companies;
     using Oversteer.Web.Services.Contracts;
     using Oversteer.Web.Services.Home;
 
@@ -43,9 +44,10 @@ namespace Oversteer.Web
                 .AddEntityFrameworkStores<ApplicationDbContext>();
 
             services.AddTransient<ICarsScraperService, CarsScraperService>()
-                .AddTransient<IHomeService, HomeService>();
+                .AddTransient<IHomeService, HomeService>()
+                .AddTransient<ICompaniesService, CompaniesService>();
 
-            // services.AddAutoMapper(typeof(Startup));
+           // services.AddAutoMapper(typeof(Startup));
             services.AddControllersWithViews();
 
             services.AddRazorPages();

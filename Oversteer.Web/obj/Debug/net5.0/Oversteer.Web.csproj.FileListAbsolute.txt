@@ -440,12 +440,10 @@ D:\Курс програмиране\CSharp - ASP.NET Core\Oversteer\Oversteer\O
 D:\Курс програмиране\CSharp - ASP.NET Core\Oversteer\Oversteer\Oversteer.Web\obj\Debug\net5.0\Razor\Areas\Identity\Pages\Account\_ViewImports.cshtml.g.cs
 D:\Курс програмиране\CSharp - ASP.NET Core\Oversteer\Oversteer\Oversteer.Web\obj\Debug\net5.0\Razor\Areas\Identity\Pages\_ValidationScriptsPartial.cshtml.g.cs
 D:\Курс програмиране\CSharp - ASP.NET Core\Oversteer\Oversteer\Oversteer.Web\obj\Debug\net5.0\Razor\Areas\Identity\Pages\_ViewImports.cshtml.g.cs
-D:\Курс програмиране\CSharp - ASP.NET Core\Oversteer\Oversteer\Oversteer.Web\obj\Debug\net5.0\Razor\Views\Accounts\Register.cshtml.g.cs
 D:\Курс програмиране\CSharp - ASP.NET Core\Oversteer\Oversteer\Oversteer.Web\bin\Debug\net5.0\AutoMapper.dll
 D:\Курс програмиране\CSharp - ASP.NET Core\Oversteer\Oversteer\Oversteer.Web\bin\Debug\net5.0\AutoMapper.Extensions.Microsoft.DependencyInjection.dll
-D:\Курс програмиране\CSharp - ASP.NET Core\Oversteer\Oversteer\Oversteer.Web\bin\Debug\net5.0\Datasets\CarsJson.json
-D:\Курс програмиране\CSharp - ASP.NET Core\Oversteer\Oversteer\Oversteer.Web\bin\Debug\net5.0\prepros-6.config.json
 D:\Курс програмиране\CSharp - ASP.NET Core\Oversteer\Oversteer\Oversteer.Web\obj\Debug\net5.0\Razor\Views\Cars\Add.cshtml.g.cs
 D:\Курс програмиране\CSharp - ASP.NET Core\Oversteer\Oversteer\Oversteer.Web\bin\Debug\net5.0\AngleSharp.dll
 D:\Курс програмиране\CSharp - ASP.NET Core\Oversteer\Oversteer\Oversteer.Web\obj\Debug\net5.0\Razor\Views\Cars\All.cshtml.g.cs
-D:\Курс програмиране\CSharp - ASP.NET Core\Oversteer\Oversteer\Oversteer.Web\bin\Debug\net5.0\Datasets\Country Codes, Phone Codes, Dialing Codes, Telephone Codes, ISO Country Codes.json
+D:\Курс програмиране\CSharp - ASP.NET Core\Oversteer\Oversteer\Oversteer.Web\bin\Debug\net5.0\Datasets\Countries.json
+D:\Курс програмиране\CSharp - ASP.NET Core\Oversteer\Oversteer\Oversteer.Web\obj\Debug\net5.0\Razor\Views\Companies\Create.cshtml.g.cs

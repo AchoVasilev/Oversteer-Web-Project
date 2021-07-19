@@ -39,6 +39,7 @@
             public const int PhoneNumberMaxLength = 30;
             public const int NameMinLength = 2;
             public const int NameMaxLength = 30;
+            public const string PhoneNumberRegularExpression = @"^[+]*[(]{0,1}[0-9]{1,4}[)]{0,1}[-\s\./0-9]*";
         }
     }
 }

@@ -428,7 +428,7 @@ namespace Oversteer.Web.Data.Migrations
                     b.Property<int>("AccessFailedCount")
                         .HasColumnType("int");
 
-                    b.Property<int>("CityId")
+                    b.Property<int?>("CityId")
                         .HasColumnType("int");
 
                     b.Property<int>("ClientId")
@@ -441,10 +441,7 @@ namespace Oversteer.Web.Data.Migrations
                         .IsConcurrencyToken()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("CountryCodeId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("CountryId")
+                    b.Property<int?>("CountryId")
                         .HasColumnType("int");
 
                     b.Property<DateTime>("CreatedOn")
@@ -499,14 +496,12 @@ namespace Oversteer.Web.Data.Migrations
                         .HasMaxLength(256)
                         .HasColumnType("nvarchar(256)");
 
-                    b.Property<int>("ZipCodeId")
+                    b.Property<int?>("ZipCodeId")
                         .HasColumnType("int");
 
                     b.HasKey("Id");
 
                     b.HasIndex("CityId");
-
-                    b.HasIndex("CountryCodeId");
 
                     b.HasIndex("CountryId");
 
@@ -565,7 +560,6 @@ namespace Oversteer.Web.Data.Migrations
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<string>("Address")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("CityName")
@@ -689,38 +683,13 @@ namespace Oversteer.Web.Data.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<int>("CountryCodeId")
-                        .HasColumnType("int");
-
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
 
-                    b.HasIndex("CountryCodeId");
-
                     b.ToTable("Countries");
-                });
-
-            modelBuilder.Entity("Oversteer.Models.Users.CountryCode", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<string>("Code")
-                        .IsRequired()
-                        .HasMaxLength(10)
-                        .HasColumnType("nvarchar(10)");
-
-                    b.Property<string>("IsoCode")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("CountryCodes");
                 });
 
             modelBuilder.Entity("Oversteer.Models.Users.ZipCode", b =>
@@ -967,19 +936,12 @@ namespace Oversteer.Web.Data.Migrations
                     b.HasOne("Oversteer.Models.Users.City", "City")
                         .WithMany("Users")
                         .HasForeignKey("CityId")
-                        .OnDelete(DeleteBehavior.Restrict)
-                        .IsRequired();
-
-                    b.HasOne("Oversteer.Models.Users.CountryCode", "CountryCode")
-                        .WithMany("Users")
-                        .HasForeignKey("CountryCodeId")
                         .OnDelete(DeleteBehavior.Restrict);
 
                     b.HasOne("Oversteer.Models.Users.Country", "Country")
                         .WithMany("ApplicationUsers")
                         .HasForeignKey("CountryId")
-                        .OnDelete(DeleteBehavior.Restrict)
-                        .IsRequired();
+                        .OnDelete(DeleteBehavior.Restrict);
 
                     b.HasOne("Oversteer.Models.Users.ZipCode", "ZipCode")
                         .WithMany("Users")
@@ -989,8 +951,6 @@ namespace Oversteer.Web.Data.Migrations
                     b.Navigation("City");
 
                     b.Navigation("Country");
-
-                    b.Navigation("CountryCode");
 
                     b.Navigation("ZipCode");
                 });
@@ -1011,7 +971,7 @@ namespace Oversteer.Web.Data.Migrations
                     b.HasOne("Oversteer.Models.Users.Country", "Country")
                         .WithMany("Cities")
                         .HasForeignKey("CountryId")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
                     b.Navigation("Country");
@@ -1048,17 +1008,6 @@ namespace Oversteer.Web.Data.Migrations
                         .IsRequired();
 
                     b.Navigation("Company");
-                });
-
-            modelBuilder.Entity("Oversteer.Models.Users.Country", b =>
-                {
-                    b.HasOne("Oversteer.Models.Users.CountryCode", "CountryCode")
-                        .WithMany("Countries")
-                        .HasForeignKey("CountryCodeId")
-                        .OnDelete(DeleteBehavior.Restrict)
-                        .IsRequired();
-
-                    b.Navigation("CountryCode");
                 });
 
             modelBuilder.Entity("Oversteer.Models.Users.ZipCode", b =>
@@ -1149,13 +1098,6 @@ namespace Oversteer.Web.Data.Migrations
                     b.Navigation("Cities");
 
                     b.Navigation("Destinations");
-                });
-
-            modelBuilder.Entity("Oversteer.Models.Users.CountryCode", b =>
-                {
-                    b.Navigation("Countries");
-
-                    b.Navigation("Users");
                 });
 
             modelBuilder.Entity("Oversteer.Models.Users.ZipCode", b =>

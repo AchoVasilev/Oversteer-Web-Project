@@ -25,9 +25,9 @@
         {
             var userId = this.User.GetId();
 
-            if (this.companiesService.UserIsDealer(userId))
+            if (!this.companiesService.UserIsCompany(userId))
             {
-                RedirectToAction(nameof(CompaniesController.Create), "Companies");
+                return RedirectToAction(nameof(CompaniesController.Create), "Companies");
             }
 
             return this.View(new AddCarFormModel()
@@ -41,10 +41,19 @@
             });
         }
 
-        [Authorize]
         [HttpPost]
+        [Authorize]
         public IActionResult Add(AddCarFormModel carModel)
         {
+            var currentUserId = this.User.GetId();
+
+            var companyId = this.companiesService.GetCurrentCompanyId(currentUserId);
+
+            if (companyId == 0)
+            {
+                return RedirectToAction(nameof(CompaniesController.Create), "Companies");
+            }
+
             if (!this.carService.GetBrandId(carModel.BrandId))
             {
                 this.ModelState.AddModelError(nameof(carModel.BrandId), CarBrandDoesntExist);
@@ -86,7 +95,7 @@
                 return this.View(carModel);
             }
 
-            this.carService.CreateCar(carModel);
+            this.carService.CreateCar(carModel, companyId);
 
             return RedirectToAction(nameof(All));
         }

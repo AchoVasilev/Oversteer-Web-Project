@@ -13,7 +13,6 @@
     public class Company
     {
         [Key]
-        [Required]
         [MaxLength(IdMaxLength)]
         public int Id { get; set; }
 

@@ -1,6 +1,5 @@
 ﻿namespace Oversteer.Web.Data
 {
-
     using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
     using Microsoft.EntityFrameworkCore;
 
@@ -30,8 +29,6 @@
         public DbSet<CompanyService> CompanyServices { get; set; }
 
         public DbSet<Country> Countries { get; set; }
-
-        public DbSet<CountryCode> CountryCodes { get; set; }
 
         public DbSet<ZipCode> ZipCodes { get; set; }
 
@@ -71,12 +68,6 @@
                     .OnDelete(DeleteBehavior.Restrict)
                     .IsRequired(false);
 
-                entity.HasOne(x => x.CountryCode)
-                    .WithMany(x => x.Users)
-                    .HasForeignKey(x => x.CountryCodeId)
-                    .OnDelete(DeleteBehavior.Restrict)
-                    .IsRequired(false);
-
                 entity.HasOne(x => x.Country)
                     .WithMany(x => x.ApplicationUsers)
                     .HasForeignKey(x => x.CountryId)
@@ -88,11 +79,13 @@
                     .OnDelete(DeleteBehavior.Restrict);
             });
 
-            builder.Entity<Country>()
-               .HasOne(x => x.CountryCode)
-               .WithMany(x => x.Countries)
-               .HasForeignKey(x => x.CountryCodeId)
-               .OnDelete(DeleteBehavior.Restrict);
+            builder.Entity<Country>(entity =>
+            {
+                entity.HasMany(x => x.Cities)
+                    .WithOne(x => x.Country)
+                    .HasForeignKey(x => x.CountryId)
+                    .OnDelete(DeleteBehavior.Restrict);
+            });
 
             builder.Entity<Destination>(entity =>
                {

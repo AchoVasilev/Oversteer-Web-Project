@@ -1,14 +1,20 @@
 ﻿namespace Oversteer.Web.Infrastructure
 {
+    using System.Collections.Generic;
+    using System.IO;
     using System.Linq;
 
     using Microsoft.AspNetCore.Builder;
     using Microsoft.EntityFrameworkCore;
     using Microsoft.Extensions.DependencyInjection;
 
+    using Newtonsoft.Json;
+
     using Oversteer.Models.Cars;
+    using Oversteer.Models.Users;
     using Oversteer.Web.Data;
     using Oversteer.Web.Data.Cars;
+    using Oversteer.Web.Dto;
 
     public static class ApplicationBuilderExtensions
     {
@@ -23,6 +29,7 @@
             SeedColors(data);
             SeedFuel(data);
             SeedTransmission(data);
+            SeedCountries(data);
 
             return app;
         }
@@ -112,6 +119,31 @@
                 new Transmission() { Name = "Semi-automatic" },
             });
 
+            data.SaveChanges();
+        }
+
+        private static void SeedCountries(ApplicationDbContext data)
+        {
+            if (data.Countries.Any())
+            {
+                return;
+            }
+
+            var countries = new List<Country>();
+            var countriesJson = File.ReadAllText("Datasets/Countries.json");
+            var countriesDto = JsonConvert.DeserializeObject<CountryDto[]>(countriesJson);
+
+            foreach (var countryDto in countriesDto)
+            {
+                var country = new Country()
+                {
+                    Name = countryDto.Name
+                };
+
+                countries.Add(country);
+            }
+
+            data.Countries.AddRange(countries);
             data.SaveChanges();
         }
     }

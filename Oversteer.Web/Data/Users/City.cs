@@ -8,13 +8,11 @@
     public class City
     {
         [Key]
-        [Required]
         public int Id { get; set; }
 
         [Required]
         public string CityName { get; set; }
 
-        [Required]
         public string Address { get; set; }
 
         [ForeignKey(nameof(Country))]

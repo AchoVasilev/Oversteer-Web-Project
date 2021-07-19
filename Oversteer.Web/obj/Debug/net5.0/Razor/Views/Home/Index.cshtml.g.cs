@@ -40,8 +40,15 @@ using Oversteer.Web.Models.Cars;
 #line default
 #line hidden
 #nullable disable
+#nullable restore
+#line 5 "D:\Курс програмиране\CSharp - ASP.NET Core\Oversteer\Oversteer\Oversteer.Web\Views\_ViewImports.cshtml"
+using Oversteer.Web.Models.Companies;
+
+#line default
+#line hidden
+#nullable disable
     [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"0d2934d84a44769bb9ae61050890a470f88caa7f", @"/Views/Home/Index.cshtml")]
-    [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"0a4e39f3ef8e74c8e4d8127f4cacfdfdce6ea815", @"/Views/_ViewImports.cshtml")]
+    [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"c3be4b71c8e9a1c4d628e32372118262554fd4d7", @"/Views/_ViewImports.cshtml")]
     public class Views_Home_Index : global::Microsoft.AspNetCore.Mvc.Razor.RazorPage<IndexViewModel>
     {
         private static readonly global::Microsoft.AspNetCore.Razor.TagHelpers.TagHelperAttribute __tagHelperAttribute_0 = new global::Microsoft.AspNetCore.Razor.TagHelpers.TagHelperAttribute("asp-controller", "Cars", global::Microsoft.AspNetCore.Razor.TagHelpers.HtmlAttributeValueStyle.DoubleQuotes);
@@ -104,7 +111,7 @@ using Oversteer.Web.Models.Cars;
 #line hidden
 #nullable disable
             WriteLiteral("    <div class=\"jumbotron\">\r\n        <h1 class=\"display-4\">Welcome to Oversteer!</h1>\r\n        <p class=\"lead\">There are no available cars at the moment, so why don\'t you add one?\'</p>\r\n        <hr class=\"my-4\">\r\n        <p class=\"lead\">\r\n            ");
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "0d2934d84a44769bb9ae61050890a470f88caa7f6699", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "0d2934d84a44769bb9ae61050890a470f88caa7f6921", async() => {
                 WriteLiteral("Add Car");
             }
             );
@@ -176,7 +183,7 @@ WriteAttributeValue(" ", 1303, firstCar.Model, 1304, 15, false);
 #nullable disable
             EndWriteAttribute();
             WriteLiteral(">\r\n                <div class=\"carousel-caption d-none d-md-block\">\r\n                    <h5>");
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "0d2934d84a44769bb9ae61050890a470f88caa7f10378", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "0d2934d84a44769bb9ae61050890a470f88caa7f10600", async() => {
 #nullable restore
 #line 38 "D:\Курс програмиране\CSharp - ASP.NET Core\Oversteer\Oversteer\Oversteer.Web\Views\Home\Index.cshtml"
                                                                                                                      Write(firstCar.Model);
@@ -267,7 +274,7 @@ WriteAttributeValue(" ", 1779, secondCar.Model, 1780, 16, false);
 #nullable disable
             EndWriteAttribute();
             WriteLiteral(">\r\n                <div class=\"carousel-caption d-none d-md-block\">\r\n                    <h5>");
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "0d2934d84a44769bb9ae61050890a470f88caa7f15269", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "0d2934d84a44769bb9ae61050890a470f88caa7f15491", async() => {
 #nullable restore
 #line 48 "D:\Курс програмиране\CSharp - ASP.NET Core\Oversteer\Oversteer\Oversteer.Web\Views\Home\Index.cshtml"
                                                                                                                       Write(secondCar.Model);
@@ -358,7 +365,7 @@ WriteAttributeValue(" ", 2256, thirdCar.Model, 2257, 15, false);
 #nullable disable
             EndWriteAttribute();
             WriteLiteral(">\r\n                <div class=\"carousel-caption d-none d-md-block\">\r\n                    <h5>");
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "0d2934d84a44769bb9ae61050890a470f88caa7f20162", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "0d2934d84a44769bb9ae61050890a470f88caa7f20384", async() => {
 #nullable restore
 #line 58 "D:\Курс програмиране\CSharp - ASP.NET Core\Oversteer\Oversteer\Oversteer.Web\Views\Home\Index.cshtml"
                                                                                                                      Write(thirdCar.Model);
