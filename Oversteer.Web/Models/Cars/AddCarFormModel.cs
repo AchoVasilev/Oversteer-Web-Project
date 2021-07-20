@@ -23,8 +23,6 @@
 
         [Required]
         [CurrentYearMaxValue(CarYearMinValue)]
-        [MaxLength(CarYearLength)]
-        [MinLength(CarYearLength)]
         public int? Year { get; init; }
 
         [Required]

@@ -5,7 +5,6 @@
         public const string SpecifyDecimalColumnType = "decimal(18,2)";
         public const int IdMaxLength = 40;
 
-
         public const int PassworMinLength = 8;
 
         public const int MobilePhoneLength = 10;

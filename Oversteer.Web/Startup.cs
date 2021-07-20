@@ -1,5 +1,7 @@
 namespace Oversteer.Web
 {
+    using AutoMapper;
+
     using Microsoft.AspNetCore.Builder;
     using Microsoft.AspNetCore.Hosting;
     using Microsoft.AspNetCore.Identity;
@@ -47,7 +49,7 @@ namespace Oversteer.Web
                 .AddTransient<IHomeService, HomeService>()
                 .AddTransient<ICompaniesService, CompaniesService>();
 
-           // services.AddAutoMapper(typeof(Startup));
+            services.AddAutoMapper(typeof(Startup));
             services.AddControllersWithViews();
 
             services.AddRazorPages();

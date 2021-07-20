@@ -1,5 +1,7 @@
 ﻿namespace Oversteer.Web.Controllers
 {
+    using System.Linq;
+
     using Microsoft.AspNetCore.Authorization;
     using Microsoft.AspNetCore.Mvc;
 
@@ -87,6 +89,7 @@
             if (!ModelState.IsValid)
             {
                 carModel.Brands = this.carService.GetCarBrands();
+                carModel.CarModels = this.carService.GetCarModels();
                 carModel.Colors = this.carService.GetCarColors();
                 carModel.FuelTypes = this.carService.GetFuelTypes();
                 carModel.Transmissions = this.carService.GetTransmissionTypes();
@@ -98,6 +101,31 @@
             this.carService.CreateCar(carModel, companyId);
 
             return RedirectToAction(nameof(All));
+        }
+
+        [Authorize]
+        public IActionResult MyCars([FromQuery] CarsSearchQueryModel query)
+        {
+            var currentUserId = this.User.GetId();
+
+            var companyId = this.companiesService.GetCurrentCompanyId(currentUserId);
+
+            if (companyId == 0)
+            {
+                return RedirectToAction(nameof(CompaniesController.Create), "Companies");
+            }
+
+            return this.View(new CarsSearchQueryModel()
+            {
+                Brand = query.Brand,
+                Brands = this.carService.GetAddedByCompanyCarBrands(companyId),
+                Cars = this.carService.GetAllCars(query).Where(x => x.CompanyId == companyId),
+                CarSorting = query.CarSorting,
+                SearchTerm = query.SearchTerm,
+                CurrentPage = query.CurrentPage,
+                TotalCars = this.carService.GetQueryCarsCount(query),
+                CompanyId = companyId
+            });
         }
 
         public IActionResult All([FromQuery] CarsSearchQueryModel query)
