@@ -3,6 +3,7 @@
     using System.Linq;
 
     using Microsoft.AspNetCore.Authorization;
+    using Microsoft.AspNetCore.Components;
     using Microsoft.AspNetCore.Mvc;
 
     using Oversteer.Web.Infrastructure;
@@ -10,6 +11,8 @@
     using Oversteer.Web.Services.Contracts;
 
     using static Oversteer.Web.Data.Constants.ErrorMessages;
+
+    using RouteAttribute = Microsoft.AspNetCore.Mvc.RouteAttribute;
 
     public class CarsController : Controller
     {
@@ -139,5 +142,12 @@
                 CurrentPage = query.CurrentPage,
                 TotalCars = this.carService.GetQueryCarsCount(query)
             });
+
+        public IActionResult Details(int id)
+        {
+            var car = this.carService.GetCarDetails(id);
+
+            return this.View(car);
+        }
     }
 }

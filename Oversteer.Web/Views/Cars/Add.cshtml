@@ -30,7 +30,7 @@
                             <option value="" class="rhth23">Select Model</option>
                             @foreach (var carModel in Model.CarModels)
                             {
-                                @if (carModel.Id == null)
+                                @if (carModel.Id == 0)
                                 {
                                     continue;
                                 }

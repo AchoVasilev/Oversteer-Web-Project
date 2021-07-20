@@ -36,6 +36,8 @@
           "AngleSharp": "0.16.0",
           "AutoMapper": "10.1.1",
           "AutoMapper.Extensions.Microsoft.DependencyInjection": "8.1.1",
+          "Bootstrap.v3.Datetimepicker": "4.17.49",
+          "Bootstrap.v3.Datetimepicker.CSS": "4.17.49",
           "Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore": "5.0.7",
           "Microsoft.AspNetCore.Identity.EntityFrameworkCore": "5.0.7",
           "Microsoft.AspNetCore.Identity.UI": "5.0.7",
@@ -43,6 +45,7 @@
           "Microsoft.EntityFrameworkCore.SqlServer": "5.0.7",
           "Microsoft.EntityFrameworkCore.Tools": "5.0.7",
           "Microsoft.VisualStudio.Web.CodeGeneration.Design": "5.0.2",
+          "Moment.js": "2.29.1",
           "Newtonsoft.Json": "13.0.1",
           "bootstrap-select": "1.13.18",
           "Microsoft.AspNetCore.Antiforgery": "5.0.0.0",
@@ -375,15 +378,32 @@
           "lib/netstandard2.0/AutoMapper.Extensions.Microsoft.DependencyInjection.dll": {}
         }
       },
-      "bootstrap/3.0.0": {
+      "bootstrap/3.4.1": {
         "dependencies": {
           "jQuery": "1.9.1"
         }
       },
       "bootstrap-select/1.13.18": {
         "dependencies": {
-          "bootstrap": "3.0.0",
+          "bootstrap": "3.4.1",
           "jQuery": "1.9.1"
+        }
+      },
+      "bootstrap.less/3.4.1": {
+        "dependencies": {
+          "jQuery": "1.9.1"
+        }
+      },
+      "Bootstrap.v3.Datetimepicker/4.17.49": {
+        "dependencies": {
+          "Moment.js": "2.29.1",
+          "bootstrap.less": "3.4.1"
+        }
+      },
+      "Bootstrap.v3.Datetimepicker.CSS/4.17.49": {
+        "dependencies": {
+          "Moment.js": "2.29.1",
+          "bootstrap": "3.4.1"
         }
       },
       "Humanizer.Core/2.8.26": {
@@ -1300,6 +1320,7 @@
           "Microsoft.NETCore.Platforms": "5.0.0"
         }
       },
+      "Moment.js/2.29.1": {},
       "Newtonsoft.Json/13.0.1": {
         "runtime": {
           "lib/netstandard2.0/Newtonsoft.Json.dll": {
@@ -3707,12 +3728,12 @@
       "path": "automapper.extensions.microsoft.dependencyinjection/8.1.1",
       "hashPath": "automapper.extensions.microsoft.dependencyinjection.8.1.1.nupkg.sha512"
     },
-    "bootstrap/3.0.0": {
+    "bootstrap/3.4.1": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-d1JUd1ZjfbhGGTxjBSjCLIV+O//hZDcvI0hnaeTL3VHAD+6Z89vgPwV0K/nmPM4hZKq172iPV55lCSpohT6WmA==",
-      "path": "bootstrap/3.0.0",
-      "hashPath": "bootstrap.3.0.0.nupkg.sha512"
+      "sha512": "sha512-rnqnZV4sFAgB240hnLRwqoUaV2DfzrYsc6PbsYzRTObrrucLZyvb+8F1yTVT1sDbXMi/NXlyRmiL6wF+d4ZJMA==",
+      "path": "bootstrap/3.4.1",
+      "hashPath": "bootstrap.3.4.1.nupkg.sha512"
     },
     "bootstrap-select/1.13.18": {
       "type": "package",
@@ -3720,6 +3741,27 @@
       "sha512": "sha512-ArC0wRl1xqpwEdxRnodYo3qnhyiiGgAevYRGoQIjg/LqfY7nQ3dK0YYQFTrHyDvI5BbIzSgiG6uuR6OqbvxyHg==",
       "path": "bootstrap-select/1.13.18",
       "hashPath": "bootstrap-select.1.13.18.nupkg.sha512"
+    },
+    "bootstrap.less/3.4.1": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-G/laxBbHVHq4G7LCbfRLISrJf8wjaMsx7qpEDzAorUr+jbl66xP5Pd7IPmqAIi5u8six7/ETv9M4nU7amvbN7g==",
+      "path": "bootstrap.less/3.4.1",
+      "hashPath": "bootstrap.less.3.4.1.nupkg.sha512"
+    },
+    "Bootstrap.v3.Datetimepicker/4.17.49": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-dBA3TmQCXJ7xZuxQo0IekWJog0dpuS5fgCo8Mjho4To06+pFzEOFn/qPxZ8IlxvVuwG3c3rBIXJ7dRgflsEtqg==",
+      "path": "bootstrap.v3.datetimepicker/4.17.49",
+      "hashPath": "bootstrap.v3.datetimepicker.4.17.49.nupkg.sha512"
+    },
+    "Bootstrap.v3.Datetimepicker.CSS/4.17.49": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-L9cJ+BibhmOw/O40CnuOGlWpgculIszHMR6Kov1GNV8IYijI04LRWl2moSW4ByzN6+toqj3LI+3FF8ff+0YXeQ==",
+      "path": "bootstrap.v3.datetimepicker.css/4.17.49",
+      "hashPath": "bootstrap.v3.datetimepicker.css.4.17.49.nupkg.sha512"
     },
     "Humanizer.Core/2.8.26": {
       "type": "package",
@@ -4154,6 +4196,13 @@
       "sha512": "sha512-mtVirZr++rq+XCDITMUdnETD59XoeMxSpLRIII7JRI6Yj0LEDiO1pPn0ktlnIj12Ix8bfvQqQDMMIF9wC98oCA==",
       "path": "microsoft.win32.systemevents/4.7.0",
       "hashPath": "microsoft.win32.systemevents.4.7.0.nupkg.sha512"
+    },
+    "Moment.js/2.29.1": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-CSpZfBYACe5QBFtPRv7k6IS5TZmdcisKFIRdQee1ZINjKl05AlSCTaXn/bo25XUnD82L0vvdEJXH+uv3nKeaiA==",
+      "path": "moment.js/2.29.1",
+      "hashPath": "moment.js.2.29.1.nupkg.sha512"
     },
     "Newtonsoft.Json/13.0.1": {
       "type": "package",

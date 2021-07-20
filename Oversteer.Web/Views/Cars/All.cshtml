@@ -1,0 +1,97 @@
+﻿@model CarsSearchQueryModel
+
+@{
+    ViewData["Title"] = "All Cars";
+}
+
+<form id="brand" method="get">
+    <div class="row">
+        <div class="form-group col-md-4">
+            <div class="form-group">
+                <label asp-for="Brand"></label>
+                <select asp-for="Brand" class="form-control" onchange="change()">
+                    <option value="">All</option>
+                    @foreach (var carBrand in Model.Brands)
+                    {
+                        <option value="@carBrand">@carBrand</option>
+                    }
+                </select>
+            </div>
+        </div>
+
+        <div class="form-group col-md-4">
+            <label asp-for="SearchTerm"></label>
+            <input asp-for="SearchTerm" class="form-control" placeholder="Enter your desired car model">
+        </div>
+
+        <div class="form-group col-md-4">
+            <div class="form-group">
+                <label asp-for="CarSorting"></label>
+                <select asp-for="CarSorting" class="form-control" onchange="change()">
+                    <option value="0" selected>Date Created</option>
+                    <option value="1">Year</option>
+                    <option value="2">Brand and Model</option>
+                </select>
+            </div>
+        </div>
+    </div>
+</form>
+
+<div class="row">
+    @foreach (var car in Model.Cars)
+    {
+        <div class="col-md-4">
+            <div class="card-img-top img-fluid mb-3">
+                <img class="img-fluid img-thumbnail card-img-top" src="@car.Url" alt="Responsive image">
+                <div class="card-body" style="width: 18rem;">
+                    <h5 class="card-title">@car.Model (@car.Year)</h5>
+                    <a asp-controller="Cars" asp-action="Details" asp-route-id="@car.Id" class="btn btn-primary">Details</a>
+                </div>
+            </div>
+        </div>
+    }
+</div>
+
+@{
+    var previousPage = Model.CurrentPage - 1;
+    if (previousPage < 1)
+    {
+        previousPage = 1;
+    }
+
+    var maxPage = Math.Ceiling((double)Model.TotalCars / CarsSearchQueryModel.CarsPerPage);
+}
+<div class="row">
+    <div class="col-md-6">
+        <a class="btn btn-primary @(Model.CurrentPage == 1 ? "disabled" : string.Empty)"
+           asp-controller="Cars"
+           asp-action="All"
+           asp-route-currentPage="@previousPage"
+           asp-route-brand="@Model.Brand"
+           asp-route-searchTerm="@Model.SearchTerm"
+           asp-route-carSorting="@((int)Model.CarSorting)">Previous</a>
+    </div>
+
+    @{
+        var shouldButtonBeDisabled = Model.CurrentPage == maxPage ||
+                                     !Model.Cars.Any();
+    }
+
+    <div class="col-md-6">
+        <a class="btn btn-primary float-sm-right @(shouldButtonBeDisabled ? "disabled" : string.Empty)"
+           asp-controller="Cars"
+           asp-action="All"
+           asp-route-currentPage="@(Model.CurrentPage + 1)"
+           asp-route-brand="@Model.Brand"
+           asp-route-searchTerm="@Model.SearchTerm"
+           asp-route-carSorting="@((int)Model.CarSorting)">Next</a>
+    </div>
+</div>
+
+@section Scripts {
+    <script type="text/javascript" language="javascript">
+        function change() {
+            document.getElementById("brand").submit();
+        }
+    </script>
+}

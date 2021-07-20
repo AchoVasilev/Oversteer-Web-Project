@@ -7,8 +7,6 @@
     using System.ComponentModel.DataAnnotations;
     using System.ComponentModel.DataAnnotations.Schema;
 
-    using static Oversteer.Models.Constants.DataConstants.Cars;
-
     public class Car
     {
         [Key]
@@ -25,12 +23,10 @@
 
         public virtual CarModel Model { get; set; }
 
-        [MaxLength(CarYearLength)]
         public int ModelYear { get; set; }
 
         public decimal DailyPrice { get; set; }
 
-        [MaxLength(CarSeatMaxLength)]
         public int SeatsCount { get; set; }
 
         public string ImageUrl { get; set; }

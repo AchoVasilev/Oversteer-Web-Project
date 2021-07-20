@@ -24,8 +24,6 @@
             public const int CarDescriptionMinValue = 8;
             public const int CarSeatMinCount = 1;
             public const int CarSeatMaxCount = 10;
-            public const int CarSeatMaxLength = 4;
-            public const int CarYearLength = 4;
         }
 
         public class Companies
