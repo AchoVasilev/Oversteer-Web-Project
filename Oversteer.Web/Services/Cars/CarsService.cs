@@ -70,7 +70,7 @@
                 .Where(x => x.CompanyId == companyId)
                 .ToList();
 
-        public CarDetailsFormModel GetCarDetails(int carId) 
+        public CarDetailsFormModel GetCarDetails(int carId)
             => this.data.Cars
                 .Where(x => x.Id == carId)
                 .Select(x => new CarDetailsFormModel
@@ -91,7 +91,7 @@
                 })
                 .FirstOrDefault();
 
-        public IEnumerable<CarIndexViewModel> GetThreeNewestCars() 
+        public IEnumerable<CarIndexViewModel> GetThreeNewestCars()
             => this.data.Cars
                 .Select(x => new CarIndexViewModel()
                 {
@@ -118,50 +118,51 @@
         }
 
         public IEnumerable<CarModelFormModel> GetCarModels()
-            => this.data.CarModels
-                    .Select(x => new CarModelFormModel
-                    {
-                        Id = x.Id,
-                        Name = x.Name,
-                        CarBrandId = x.CarBrandId
-                    })
-                    .ToList();
+        {
+            var cars = this.data.CarModels
+                .ToList();
+            var models = this.mapper.Map<List<CarModelFormModel>>(cars);
+
+            return models;
+        }
 
         public IEnumerable<ColorFormModel> GetCarColors()
-            => this.data.Colors
-                    .Select(x => new ColorFormModel
-                    {
-                        Id = x.Id,
-                        Name = x.Name
-                    })
-                    .ToList();
+        {
+            var colors = this.data.Colors
+                               .ToList();
+            var colorModels = this.mapper.Map<List<ColorFormModel>>(colors);
+
+            return colorModels;
+        }
 
         public IEnumerable<FuelTypeFormModel> GetFuelTypes()
-            => this.data.Fuels
-                    .Select(x => new FuelTypeFormModel
-                    {
-                        Id = x.Id,
-                        Name = x.Name
-                    })
-                    .ToList();
+        {
+            var fuels = this.data.Fuels
+                               .ToList();
+            var fuelModels = this.mapper.Map<List<FuelTypeFormModel>>(fuels);
+
+            return fuelModels;
+        }
 
         public IEnumerable<TransmissionTypeFormModel> GetTransmissionTypes()
-            => this.data.Transmissions
-                    .Select(x => new TransmissionTypeFormModel
-                    {
-                        Id = x.Id,
-                        Name = x.Name
-                    })
-                    .ToList();
+        {
+            var transmissions = this.data.Transmissions
+                                        .ToList();
+
+            var transmissionsModels = this.mapper.Map<List<TransmissionTypeFormModel>>(transmissions);
+
+            return transmissionsModels;
+        }
 
         public IEnumerable<CarTypeFormModel> GetCarTypes()
-            => this.data.CarTypes
-                    .Select(x => new CarTypeFormModel
-                    {
-                        Id = x.Id,
-                        Name = x.Name
-                    })
-                    .ToList();
+        {
+            var carTypes = this.data.CarTypes
+                               .ToList();
+
+            var carTypesModels = this.mapper.Map<List<CarTypeFormModel>>(carTypes);
+
+            return carTypesModels;
+        }
 
         public int GetQueryCarsCount(CarsSearchQueryModel query)
             => this.QueryCars(query).Count();
