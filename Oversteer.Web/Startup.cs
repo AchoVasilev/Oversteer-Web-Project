@@ -17,6 +17,7 @@ namespace Oversteer.Web
     using Oversteer.Web.Services.Companies;
     using Oversteer.Web.Services.Contracts;
     using Oversteer.Web.Services.Home;
+    using Oversteer.Web.Services.Statistics;
 
     public class Startup
     {
@@ -47,7 +48,8 @@ namespace Oversteer.Web
 
             services.AddTransient<ICarsScraperService, CarsScraperService>()
                 .AddTransient<IHomeService, HomeService>()
-                .AddTransient<ICompaniesService, CompaniesService>();
+                .AddTransient<ICompaniesService, CompaniesService>()
+                .AddTransient<IStatisticsService, StatisticsService>();
 
             services.AddAutoMapper(typeof(Startup));
             services.AddControllersWithViews();

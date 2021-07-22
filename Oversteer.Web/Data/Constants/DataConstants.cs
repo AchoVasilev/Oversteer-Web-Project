@@ -38,5 +38,11 @@
             public const int NameMaxLength = 30;
             public const string PhoneNumberRegularExpression = @"^[+]*[(]{0,1}[0-9]{1,4}[)]{0,1}[-\s\./0-9]*";
         }
+
+        public class ApiRoutes
+        {
+            public const string StatisticsApiControllerRoute = "api/statistics";
+            public const string CarsApiControllerRoute = "api/cars";
+        }
     }
 }
