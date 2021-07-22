@@ -45,6 +45,16 @@
             this.data.SaveChanges();
         }
 
+        public void DeleteCar(int companyId, int carId)
+        {
+            var car = this.data.Cars
+                               .Where(x => x.Id == carId && x.CompanyId == companyId)
+                               .FirstOrDefault();
+            car.IsDeleted = true;
+
+            this.data.SaveChanges();
+        }
+
         public IEnumerable<string> GetAddedCarBrands()
             => this.data.Cars
                     .Select(c => c.Brand.Name)
@@ -234,6 +244,7 @@
             var returnQuery = carsQuery
                 .Skip((query.CurrentPage - 1) * CarsSearchQueryModel.CarsPerPage)
                 .Take(CarsSearchQueryModel.CarsPerPage)
+                .Where(x => !x.IsDeleted)
                 .Select(x => new ListCarFormModel
                 {
                     Id = x.Id,

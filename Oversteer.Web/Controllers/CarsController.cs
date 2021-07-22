@@ -149,5 +149,16 @@
 
             return this.View(car);
         }
+
+        [Authorize]
+        public IActionResult Delete(int id)
+        {
+            var userId = this.User.GetId();
+            var companyId = this.companiesService.GetCurrentCompanyId(userId);
+
+            this.carService.DeleteCar(companyId, id);
+
+            return RedirectToAction(nameof(CarsController.MyCars), "Cars");
+        }
     }
 }

@@ -42,8 +42,9 @@
             }
             catch
             { }
-            
-            Parallel.For(1, carBrands.Count, (i) =>
+
+            var carCount = 1;
+            Parallel.For(1, carCount, (i) =>
             {
                 try
                 {

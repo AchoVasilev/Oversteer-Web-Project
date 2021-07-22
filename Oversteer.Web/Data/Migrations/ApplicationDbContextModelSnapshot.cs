@@ -16,7 +16,7 @@ namespace Oversteer.Web.Data.Migrations
 #pragma warning disable 612, 618
             modelBuilder
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
-                .HasAnnotation("ProductVersion", "5.0.7")
+                .HasAnnotation("ProductVersion", "5.0.8")
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>
@@ -166,7 +166,13 @@ namespace Oversteer.Web.Data.Migrations
                     b.Property<int>("CompanyId")
                         .HasColumnType("int");
 
+                    b.Property<DateTime?>("DeleteDate")
+                        .HasColumnType("datetime2");
+
                     b.Property<bool>("IsAvailable")
+                        .HasColumnType("bit");
+
+                    b.Property<bool>("IsDeleted")
                         .HasColumnType("bit");
 
                     b.Property<DateTime>("PostedOn")
@@ -291,6 +297,9 @@ namespace Oversteer.Web.Data.Migrations
                     b.Property<decimal>("DailyPrice")
                         .HasColumnType("decimal(18,2)");
 
+                    b.Property<DateTime?>("DeleteDate")
+                        .HasColumnType("datetime2");
+
                     b.Property<string>("Description")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
@@ -301,12 +310,13 @@ namespace Oversteer.Web.Data.Migrations
                     b.Property<string>("ImageUrl")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("bit");
+
                     b.Property<int>("ModelYear")
-                        .HasMaxLength(4)
                         .HasColumnType("int");
 
                     b.Property<int>("SeatsCount")
-                        .HasMaxLength(4)
                         .HasColumnType("int");
 
                     b.Property<int>("TransmissionId")

@@ -4,6 +4,7 @@
     using Oversteer.Models.Users;
     using Oversteer.Web.Data.Cars;
 
+    using System;
     using System.ComponentModel.DataAnnotations;
     using System.ComponentModel.DataAnnotations.Schema;
 
@@ -63,6 +64,10 @@
         public int CarAddId { get; init; }
 
         public virtual CarAdd CarAdd { get; init; }
+
+        public bool IsDeleted { get; set; } = false;
+
+        public DateTime? DeleteDate { get; set; }
 
         // public virtual ICollection<CarImage> CarImages { get; set; } = new HashSet<CarImage>();
     }

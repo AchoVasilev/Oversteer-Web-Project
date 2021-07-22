@@ -39,9 +39,9 @@
             return true;
         }
 
-        public int GetCurrentCompanyId(string id)
+        public int GetCurrentCompanyId(string userId)
             => this.data.Companies
-                    .Where(x => x.UserId == id)
+                    .Where(x => x.UserId == userId)
                     .Select(x => x.Id)
                     .FirstOrDefault();
     }

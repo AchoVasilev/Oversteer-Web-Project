@@ -11,6 +11,6 @@
 
         bool UserIsCompany(string id);
 
-        int GetCurrentCompanyId(string id);
+        int GetCurrentCompanyId(string userId);
     }
 }

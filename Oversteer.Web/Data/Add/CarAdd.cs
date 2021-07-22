@@ -32,5 +32,9 @@
         public int CompanyId { get; set; }
 
         public virtual Company Company { get; set; }
+
+        public bool IsDeleted { get; set; } = false;
+
+        public DateTime? DeleteDate { get; set; }
     }
 }

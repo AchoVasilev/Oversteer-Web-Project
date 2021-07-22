@@ -8,9 +8,11 @@
 
     public interface ICarsService
     {
-        IEnumerable<Car> GetCompanyCars(int companyId);
-
         void CreateCar(AddCarFormModel carModel, int companyId);
+
+        void DeleteCar(int companyId, int carId);
+
+        IEnumerable<Car> GetCompanyCars(int companyId);
 
         IEnumerable<CarModelFormModel> GetCarModels();
 
