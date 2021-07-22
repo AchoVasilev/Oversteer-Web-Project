@@ -15,6 +15,8 @@
         }
 
         public int GetTotalCarsCount()
-            => this.data.Cars.Count();
+            => this.data.Cars
+                .Where(x => !x.IsDeleted)
+                .Count();
     }
 }

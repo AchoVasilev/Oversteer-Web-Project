@@ -22,7 +22,7 @@
 
         public int CurrentPage { get; init; } = 1;
 
-        public int TotalCars { get; init; }
+        public int TotalCars { get; init; } = 0;
 
         public IEnumerable<ListCarFormModel> Cars { get; init; }
 

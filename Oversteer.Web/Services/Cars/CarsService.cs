@@ -57,6 +57,7 @@
 
         public IEnumerable<string> GetAddedCarBrands()
             => this.data.Cars
+                    .Where(x => !x.IsDeleted)
                     .Select(c => c.Brand.Name)
                     .OrderBy(c => c)
                     .Distinct()
@@ -64,7 +65,7 @@
 
         public IEnumerable<string> GetAddedByCompanyCarBrands(int companyId)
             => this.data.Cars
-            .Where(x => x.CompanyId == companyId)
+            .Where(x => x.CompanyId == companyId && !x.IsDeleted)
             .Select(c => c.Brand.Name)
             .OrderBy(c => c)
             .Distinct()
@@ -77,12 +78,12 @@
 
         public IEnumerable<Car> GetCompanyCars(int companyId)
             => this.data.Cars
-                .Where(x => x.CompanyId == companyId)
+                .Where(x => x.CompanyId == companyId && !x.IsDeleted)
                 .ToList();
 
         public CarDetailsFormModel GetCarDetails(int carId)
             => this.data.Cars
-                .Where(x => x.Id == carId)
+                .Where(x => x.Id == carId && !x.IsDeleted)
                 .Select(x => new CarDetailsFormModel
                 {
                     Id = x.Id,
@@ -103,6 +104,7 @@
 
         public IEnumerable<CarIndexViewModel> GetThreeNewestCars()
             => this.data.Cars
+                .Where(x => !x.IsDeleted)
                 .Select(x => new CarIndexViewModel()
                 {
                     Id = x.Id,
@@ -175,7 +177,9 @@
         }
 
         public int GetQueryCarsCount(CarsSearchQueryModel query)
-            => this.QueryCars(query).Count();
+            => this.QueryCars(query)
+                    .Where(x => !x.IsDeleted)
+                    .Count();
 
         public bool GetBrandId(int id)
         {
@@ -265,7 +269,9 @@
 
         private IQueryable<Car> QueryCars(CarsSearchQueryModel query)
         {
-            var carsQuery = this.data.Cars.AsQueryable();
+            var carsQuery = this.data.Cars
+                .Where(x => !x.IsDeleted)
+                .AsQueryable();
 
             if (!string.IsNullOrWhiteSpace(query.Brand))
             {
