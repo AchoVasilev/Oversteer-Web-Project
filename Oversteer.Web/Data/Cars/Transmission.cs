@@ -1,8 +1,9 @@
 ﻿namespace Oversteer.Web.Data.Cars
 {
-    using Oversteer.Models.Cars;
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
+
+    using Oversteer.Models.Cars;
 
     public class Transmission
     {

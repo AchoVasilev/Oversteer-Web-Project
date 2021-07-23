@@ -1,12 +1,12 @@
 ﻿namespace Oversteer.Models.Cars
 {
-    using Oversteer.Models.Add;
-    using Oversteer.Models.Users;
-    using Oversteer.Web.Data.Cars;
-
     using System;
     using System.ComponentModel.DataAnnotations;
     using System.ComponentModel.DataAnnotations.Schema;
+
+    using Oversteer.Models.Add;
+    using Oversteer.Models.Users;
+    using Oversteer.Web.Data.Cars;
 
     public class Car
     {

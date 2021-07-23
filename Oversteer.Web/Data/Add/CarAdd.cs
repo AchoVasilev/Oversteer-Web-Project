@@ -3,8 +3,10 @@
     using System;
     using System.ComponentModel.DataAnnotations;
     using System.ComponentModel.DataAnnotations.Schema;
+
     using Oversteer.Models.Cars;
     using Oversteer.Models.Users;
+
     using static Oversteer.Models.Constants.DataConstants;
 
     public class CarAdd

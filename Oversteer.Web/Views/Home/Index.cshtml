@@ -48,11 +48,11 @@
                     </div>
                     <div class="form-group col-md-3">
                         <label for="cf-3">Journey date</label>
-                        <input type="text" id="cf-3" placeholder="Your pickup address" class="form-control datepicker px-3">
+                        <input type="text" id="datepicker" placeholder="Your pickup address" class="form-control datepicker px-3">
                     </div>
                     <div class="form-group col-md-3">
                         <label for="cf-4">Return date</label>
-                        <input type="text" id="cf-4" placeholder="Your pickup address" class="form-control datepicker px-3">
+                        <input type="text" id="datepicker-return" placeholder="Your pickup address" class="form-control datepicker px-3">
                     </div>
                 </div>
                 <div class="row">
@@ -108,6 +108,10 @@
 </div>
 
 @section Scripts{
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/jquery/latest/jquery.min.js"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
+
     <script>
         $('#statistics-button').on('click', e => {
             $.get('/api/statistics', (data) => {
@@ -120,5 +124,36 @@
                 $('#statistics-button').hide();
             });
         });
+    </script>
+
+    <script>
+        $('#datepicker').daterangepicker(
+            {
+                "singleDatePicker": true,
+                "timePicker": true,
+                "startDate": moment().startOf('hour'),
+                "endDate": moment().startOf('hour').add(32, 'hour'),
+                "opens": "center",
+                "timePicker24Hour": true,
+                "autoApply": true,
+                "locale": {
+                    format: 'DD/MM/YYYY HH:mm'
+                }
+            });
+    </script>
+
+    <script>
+        $('#datepicker-return').daterangepicker(
+            {
+                "singleDatePicker": true,
+                "timePicker": true,
+                "startDate": moment().startOf('hour'),
+                "endDate": moment().startOf('hour').add(32, 'hour'),
+                "opens": "center",
+                "timePicker24Hour": true,
+                "locale": {
+                    format: 'DD/MM/YYYY HH:mm'
+                }
+            });
     </script>
 }

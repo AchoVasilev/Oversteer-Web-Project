@@ -6,6 +6,7 @@
     using System.Text;
     using System.Text.Encodings.Web;
     using System.Threading.Tasks;
+
     using Microsoft.AspNetCore.Authentication;
     using Microsoft.AspNetCore.Authorization;
     using Microsoft.AspNetCore.Identity;
@@ -14,6 +15,7 @@
     using Microsoft.AspNetCore.Mvc.RazorPages;
     using Microsoft.AspNetCore.WebUtilities;
     using Microsoft.Extensions.Logging;
+
     using Oversteer.Models.Users;
 
     [AllowAnonymous]

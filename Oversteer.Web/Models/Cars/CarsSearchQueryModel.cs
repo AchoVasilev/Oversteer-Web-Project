@@ -4,6 +4,7 @@
     using System.ComponentModel.DataAnnotations;
 
     using Oversteer.Web.Models.Cars.Enumerations;
+
     using static Oversteer.Web.Data.Constants.ModelsDisplayNames;
 
     public class CarsSearchQueryModel
@@ -27,6 +28,5 @@
         public IEnumerable<ListCarFormModel> Cars { get; init; }
 
         public int CompanyId { get; init; }
-
     }
 }

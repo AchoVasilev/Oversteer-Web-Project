@@ -1,6 +1,5 @@
 namespace Oversteer.Web
 {
-    using AutoMapper;
 
     using Microsoft.AspNetCore.Builder;
     using Microsoft.AspNetCore.Hosting;
@@ -9,6 +8,7 @@ namespace Oversteer.Web
     using Microsoft.Extensions.Configuration;
     using Microsoft.Extensions.DependencyInjection;
     using Microsoft.Extensions.Hosting;
+
     using Oversteer.Models.Users;
     using Oversteer.Web.Data;
     using Oversteer.Web.Infrastructure;

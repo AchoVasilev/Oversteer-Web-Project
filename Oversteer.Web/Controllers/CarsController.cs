@@ -3,7 +3,6 @@
     using System.Linq;
 
     using Microsoft.AspNetCore.Authorization;
-    using Microsoft.AspNetCore.Components;
     using Microsoft.AspNetCore.Mvc;
 
     using Oversteer.Web.Infrastructure;
@@ -11,8 +10,6 @@
     using Oversteer.Web.Services.Contracts;
 
     using static Oversteer.Web.Data.Constants.ErrorMessages;
-
-    using RouteAttribute = Microsoft.AspNetCore.Mvc.RouteAttribute;
 
     public class CarsController : Controller
     {
@@ -132,8 +129,8 @@
         }
 
         public IActionResult All([FromQuery] CarsSearchQueryModel query)
-            => this.View(new CarsSearchQueryModel() 
-            { 
+            => this.View(new CarsSearchQueryModel()
+            {
                 Brand = query.Brand,
                 Brands = this.carService.GetAddedCarBrands(),
                 Cars = this.carService.GetAllCars(query),

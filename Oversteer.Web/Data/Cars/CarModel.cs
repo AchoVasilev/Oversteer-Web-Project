@@ -6,6 +6,7 @@ namespace Oversteer.Web.Data.Cars
     using System.ComponentModel.DataAnnotations.Schema;
 
     using Oversteer.Models.Cars;
+
     using static Oversteer.Models.Constants.DataConstants.Cars;
 
     public class CarModel

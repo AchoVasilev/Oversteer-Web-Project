@@ -3,8 +3,8 @@
     using System.ComponentModel.DataAnnotations;
 
     using static Oversteer.Models.Constants.DataConstants.Users;
-    using static Oversteer.Web.Data.Constants.ModelsDisplayNames;
     using static Oversteer.Web.Data.Constants.ErrorMessages.CompanyErrors;
+    using static Oversteer.Web.Data.Constants.ModelsDisplayNames;
 
     public class CreateCompanyFormModel
     {

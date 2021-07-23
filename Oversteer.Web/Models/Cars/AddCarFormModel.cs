@@ -2,10 +2,12 @@
 {
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
-    using static Oversteer.Models.Constants.DataConstants.Cars;
-    using static Oversteer.Web.Data.Constants.ModelsDisplayNames;
-    using static Oversteer.Web.Data.Constants.ErrorMessages;
+
     using Oversteer.Web.Infrastructure.CustomAttributes;
+
+    using static Oversteer.Models.Constants.DataConstants.Cars;
+    using static Oversteer.Web.Data.Constants.ErrorMessages;
+    using static Oversteer.Web.Data.Constants.ModelsDisplayNames;
 
     public class AddCarFormModel
     {

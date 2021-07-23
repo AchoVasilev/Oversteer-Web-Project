@@ -52,7 +52,7 @@
                 }
                 catch
                 { }
-             });
+            });
 
             foreach (var brand in carBrands)
             {
