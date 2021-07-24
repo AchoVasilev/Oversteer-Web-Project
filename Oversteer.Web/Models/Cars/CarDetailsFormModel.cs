@@ -27,5 +27,9 @@
         public decimal DailyPrice { get; init; }
 
         public int SeatsCount { get; init; }
+
+        public string UserId { get; init; }
+
+        public int CompanyId { get; init; }
     }
 }

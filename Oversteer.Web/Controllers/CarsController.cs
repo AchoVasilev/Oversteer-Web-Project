@@ -32,7 +32,7 @@
                 return RedirectToAction(nameof(CompaniesController.Create), "Companies");
             }
 
-            return this.View(new AddCarFormModel()
+            return this.View(new CarFormModel()
             {
                 Brands = this.carService.GetCarBrands(),
                 CarModels = this.carService.GetCarModels(),
@@ -45,7 +45,7 @@
 
         [HttpPost]
         [Authorize]
-        public IActionResult Add(AddCarFormModel carModel)
+        public IActionResult Add(CarFormModel carModel)
         {
             var currentUserId = this.User.GetId();
 
@@ -104,6 +104,124 @@
         }
 
         [Authorize]
+        public IActionResult Edit(int id)
+        {
+            var userId = this.User.GetId();
+
+            if (!this.companiesService.UserIsCompany(userId))
+            {
+                return RedirectToAction(nameof(CompaniesController.Create), "Companies");
+            }
+
+            var car = this.carService.GetCarDetails(id);
+
+            if (car.UserId != userId)
+            {
+                return Unauthorized();
+            }
+
+            return this.View(new CarFormModel()
+            {
+                Brands = this.carService.GetCarBrands(),
+                CarModels = this.carService.GetCarModels(),
+                Colors = this.carService.GetCarColors(),
+                FuelTypes = this.carService.GetFuelTypes(),
+                Transmissions = this.carService.GetTransmissionTypes(),
+                CarTypes = this.carService.GetCarTypes(),
+            });
+        }
+
+        [HttpPost]
+        [Authorize]
+        public IActionResult Edit(int id, CarFormModel carModel)
+        {
+            var currentUserId = this.User.GetId();
+
+            var companyId = this.companiesService.GetCurrentCompanyId(currentUserId);
+
+            if (companyId == 0)
+            {
+                return RedirectToAction(nameof(CompaniesController.Create), "Companies");
+            }
+
+            if (!this.carService.GetBrandId(carModel.BrandId))
+            {
+                this.ModelState.AddModelError(nameof(carModel.BrandId), CarBrandDoesntExist);
+            }
+
+            if (!this.carService.GetModelId(carModel.ModelId))
+            {
+                this.ModelState.AddModelError(nameof(carModel.ModelId), CarModelDoesntExist);
+            }
+
+            if (!this.carService.GetCarTypeId(carModel.CarTypeId))
+            {
+                this.ModelState.AddModelError(nameof(carModel.CarTypeId), CarTypeDoesntExist);
+            }
+
+            if (!this.carService.GetFuelTypeId(carModel.FuelId))
+            {
+                this.ModelState.AddModelError(nameof(carModel.FuelId), CarFuelTypeDoesntExist);
+            }
+
+            if (!this.carService.GetTransmissionId(carModel.TransmissionId))
+            {
+                this.ModelState.AddModelError(nameof(carModel.TransmissionId), CarTransmissionTypeDoesntExist);
+            }
+
+            if (!this.carService.GetColorId(carModel.ColorId))
+            {
+                this.ModelState.AddModelError(nameof(carModel.ColorId), CarColorDoesntExist);
+            }
+
+            if (!ModelState.IsValid)
+            {
+                carModel.Brands = this.carService.GetCarBrands();
+                carModel.CarModels = this.carService.GetCarModels();
+                carModel.Colors = this.carService.GetCarColors();
+                carModel.FuelTypes = this.carService.GetFuelTypes();
+                carModel.Transmissions = this.carService.GetTransmissionTypes();
+                carModel.CarTypes = this.carService.GetCarTypes();
+
+                return this.View(carModel);
+            }
+
+            if (!this.carService.IsCarFromCompany(id, companyId))
+            {
+                return BadRequest();
+            }
+
+            this.carService.EditCar(
+                id,
+                carModel.BrandId,
+                carModel.ModelId,
+                carModel.ColorId,
+                carModel.CarTypeId,
+                carModel.FuelId,
+                carModel.TransmissionId,
+                carModel.Year,
+                carModel.DailyPrice,
+                carModel.SeatsCount,
+                carModel.ImageUrl,
+                carModel.Description
+                );
+
+            return RedirectToAction(nameof(All));
+        }
+
+
+        [Authorize]
+        public IActionResult Delete(int id)
+        {
+            var userId = this.User.GetId();
+            var companyId = this.companiesService.GetCurrentCompanyId(userId);
+
+            this.carService.DeleteCar(companyId, id);
+
+            return RedirectToAction(nameof(CarsController.MyCars), "Cars");
+        }
+
+        [Authorize]
         public IActionResult MyCars([FromQuery] CarsSearchQueryModel query)
         {
             var currentUserId = this.User.GetId();
@@ -145,17 +263,6 @@
             var car = this.carService.GetCarDetails(id);
 
             return this.View(car);
-        }
-
-        [Authorize]
-        public IActionResult Delete(int id)
-        {
-            var userId = this.User.GetId();
-            var companyId = this.companiesService.GetCurrentCompanyId(userId);
-
-            this.carService.DeleteCar(companyId, id);
-
-            return RedirectToAction(nameof(CarsController.MyCars), "Cars");
         }
     }
 }

@@ -23,7 +23,7 @@
             this.mapper = mapper;
         }
 
-        public void CreateCar(AddCarFormModel carModel, int companyId)
+        public void CreateCar(CarFormModel carModel, int companyId)
         {
             var car = new Car()
             {
@@ -55,6 +55,33 @@
             this.data.SaveChanges();
         }
 
+        public bool EditCar(int carId, int brandId, int modelId, int colorId, int carTypeId, int fuelId, int transmissionId, int? year, 
+            decimal? dailyPrice, int? seatsCount, string imageUrl, string description)
+        {
+            var carData = this.data.Cars.Find(carId);
+
+            if (carData == null)
+            {
+                return false;
+            }
+
+            carData.CarBrandId = brandId;
+            carData.CarModelId = modelId;
+            carData.ColorId = colorId;
+            carData.CarTypeId = carTypeId;
+            carData.FuelId = fuelId;
+            carData.TransmissionId = transmissionId;
+            carData.ModelYear = (int)year;
+            carData.DailyPrice = (decimal)dailyPrice;
+            carData.SeatsCount = (int)seatsCount;
+            carData.ImageUrl = imageUrl;
+            carData.Description = description;
+
+            this.data.SaveChanges();
+
+            return true;
+        }
+
         public IEnumerable<string> GetAddedCarBrands()
             => this.data.Cars
                     .Where(x => !x.IsDeleted)
@@ -70,7 +97,6 @@
             .OrderBy(c => c)
             .Distinct()
             .ToList();
-
 
         public IEnumerable<ListCarFormModel> GetAllCars(CarsSearchQueryModel query)
             => this.SearchCar(query)
@@ -98,7 +124,9 @@
                     TransmissionType = x.Transmission.Name,
                     Url = x.ImageUrl,
                     Year = x.ModelYear,
-                    SeatsCount = x.SeatsCount
+                    SeatsCount = x.SeatsCount,
+                    CompanyId = x.CompanyId,
+                    UserId = x.Company.UserId
                 })
                 .FirstOrDefault();
 
@@ -240,6 +268,10 @@
 
             return true;
         }
+
+        public bool IsCarFromCompany(int carId, int companyId)
+            => this.data.Cars
+                    .Any(x => x.Id == carId && x.CompanyId == companyId);
 
         private IEnumerable<ListCarFormModel> SearchCar(CarsSearchQueryModel query)
         {

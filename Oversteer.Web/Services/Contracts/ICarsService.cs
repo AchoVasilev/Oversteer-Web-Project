@@ -8,9 +8,12 @@
 
     public interface ICarsService
     {
-        void CreateCar(AddCarFormModel carModel, int companyId);
+        void CreateCar(CarFormModel carModel, int companyId);
 
         void DeleteCar(int companyId, int carId);
+
+        bool EditCar(int carId, int brandId, int modelId, int colorId, int carTypeId, int fuelId, int transmissionId, int? year,
+            decimal? dailyPrice, int? seatsCount, string imageUrl, string description);
 
         IEnumerable<Car> GetCompanyCars(int companyId);
 
@@ -49,5 +52,7 @@
         bool GetTransmissionId(int id);
 
         bool GetCarTypeId(int id);
+
+        bool IsCarFromCompany(int carId, int companyId);
     }
 }

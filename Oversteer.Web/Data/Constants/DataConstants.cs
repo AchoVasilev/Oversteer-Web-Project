@@ -43,6 +43,8 @@
         {
             public const string StatisticsApiControllerRoute = "api/statistics";
             public const string CarsApiControllerRoute = "api/cars";
+            public const string CarsApiControllerBrandsRoute = "/brands";
+            public const string CarsApiControllerModelsRoute = "/models";
         }
     }
 }
