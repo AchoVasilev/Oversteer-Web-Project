@@ -13,7 +13,11 @@
         public const string CarModel = "Model";
         public const string Search = "Search";
         public const string Sorting = "Sort By:";
+
         public const string PhoneNumberDisplay = "Phone number";
+
         public const string CompanyDisplayName = "Company name";
+
+        public const string CountryDisplayName = "Country";
     }
 }

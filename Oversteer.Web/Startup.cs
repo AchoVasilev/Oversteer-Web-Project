@@ -16,6 +16,7 @@ namespace Oversteer.Web
     using Oversteer.Web.Services.Cars;
     using Oversteer.Web.Services.Companies;
     using Oversteer.Web.Services.Contracts;
+    using Oversteer.Web.Services.Countries;
     using Oversteer.Web.Services.Home;
     using Oversteer.Web.Services.Statistics;
 
@@ -47,15 +48,16 @@ namespace Oversteer.Web
                 .AddEntityFrameworkStores<ApplicationDbContext>();
 
             services.AddTransient<ICarsScraperService, CarsScraperService>()
+                .AddTransient<ICarsService, CarsService>()
                 .AddTransient<IHomeService, HomeService>()
                 .AddTransient<ICompaniesService, CompaniesService>()
-                .AddTransient<IStatisticsService, StatisticsService>();
+                .AddTransient<IStatisticsService, StatisticsService>()
+                .AddTransient<ICountriesService, CountriesService>();
 
             services.AddAutoMapper(typeof(Startup));
             services.AddControllersWithViews();
 
             services.AddRazorPages();
-            services.AddTransient<ICarsService, CarsService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

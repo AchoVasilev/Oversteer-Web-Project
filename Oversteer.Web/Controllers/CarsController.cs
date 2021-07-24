@@ -209,7 +209,6 @@
             return RedirectToAction(nameof(All));
         }
 
-
         [Authorize]
         public IActionResult Delete(int id)
         {
