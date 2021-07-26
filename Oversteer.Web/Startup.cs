@@ -4,6 +4,7 @@ namespace Oversteer.Web
     using Microsoft.AspNetCore.Builder;
     using Microsoft.AspNetCore.Hosting;
     using Microsoft.AspNetCore.Identity;
+    using Microsoft.AspNetCore.Mvc;
     using Microsoft.EntityFrameworkCore;
     using Microsoft.Extensions.Configuration;
     using Microsoft.Extensions.DependencyInjection;
@@ -14,6 +15,7 @@ namespace Oversteer.Web
     using Oversteer.Web.Infrastructure;
     using Oversteer.Web.Services;
     using Oversteer.Web.Services.Cars;
+    using Oversteer.Web.Services.Cities;
     using Oversteer.Web.Services.Companies;
     using Oversteer.Web.Services.Contracts;
     using Oversteer.Web.Services.Countries;
@@ -52,10 +54,15 @@ namespace Oversteer.Web
                 .AddTransient<IHomeService, HomeService>()
                 .AddTransient<ICompaniesService, CompaniesService>()
                 .AddTransient<IStatisticsService, StatisticsService>()
-                .AddTransient<ICountriesService, CountriesService>();
+                .AddTransient<ICountriesService, CountriesService>()
+                .AddTransient<ICitiesService, CitiesService>()
+                .AddTransient<IZipCodesService, ZipCodesService>();
 
             services.AddAutoMapper(typeof(Startup));
-            services.AddControllersWithViews();
+            services.AddControllersWithViews(configure =>
+            {
+                configure.Filters.Add(new AutoValidateAntiforgeryTokenAttribute());
+            });
 
             services.AddRazorPages();
         }

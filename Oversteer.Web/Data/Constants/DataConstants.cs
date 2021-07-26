@@ -26,10 +26,6 @@
             public const int CarSeatMaxCount = 10;
         }
 
-        public class Companies
-        {
-        }
-
         public class Users
         {
             public const int PhoneNumberMinLength = 6;
@@ -45,6 +41,15 @@
             public const string CarsApiControllerRoute = "api/cars";
             public const string CarsApiControllerBrandsRoute = "/brands";
             public const string CarsApiControllerModelsRoute = "/models";
+        }
+
+        public class Cities
+        {
+            public const int CityNameMinLength = 3;
+            public const int CityNameMaxLength = 60;
+
+            public const int ZipCodeMinLength = 1;
+            public const int ZipCodeMaxLength = 10000;
         }
     }
 }

@@ -47,8 +47,15 @@ using Oversteer.Web.Models.Companies;
 #line default
 #line hidden
 #nullable disable
+#nullable restore
+#line 6 "D:\Курс програмиране\CSharp - ASP.NET Core\Oversteer\Oversteer\Oversteer.Web\Views\_ViewImports.cshtml"
+using Oversteer.Web.Models.Countries;
+
+#line default
+#line hidden
+#nullable disable
     [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"29b3fb44b8a0c488ed3d337fab2cbab47bb384a7", @"/Views/Cars/Details.cshtml")]
-    [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"c3be4b71c8e9a1c4d628e32372118262554fd4d7", @"/Views/_ViewImports.cshtml")]
+    [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"4b7018547d8c6374d50e04cbd8cdc0d0aaa0c399", @"/Views/_ViewImports.cshtml")]
     public class Views_Cars_Details : global::Microsoft.AspNetCore.Mvc.Razor.RazorPage<CarDetailsFormModel>
     {
         #pragma warning disable 1998

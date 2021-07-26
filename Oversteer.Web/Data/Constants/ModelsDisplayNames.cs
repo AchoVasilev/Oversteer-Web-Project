@@ -19,5 +19,6 @@
         public const string CompanyDisplayName = "Company name";
 
         public const string CountryDisplayName = "Country";
+        public const string ZipCodeDisplayName = "Zip code";
     }
 }
