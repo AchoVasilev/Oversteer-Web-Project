@@ -98,6 +98,10 @@
               "target": "Package",
               "version": "[13.0.1, )"
             },
+            "SendGrid": {
+              "target": "Package",
+              "version": "[9.24.1, )"
+            },
             "bootstrap-select": {
               "target": "Package",
               "version": "[1.13.18, )"

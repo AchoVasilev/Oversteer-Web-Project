@@ -1,9 +1,9 @@
 namespace Oversteer.Web
 {
-
     using Microsoft.AspNetCore.Builder;
     using Microsoft.AspNetCore.Hosting;
     using Microsoft.AspNetCore.Identity;
+    using Microsoft.AspNetCore.Identity.UI.Services;
     using Microsoft.AspNetCore.Mvc;
     using Microsoft.EntityFrameworkCore;
     using Microsoft.Extensions.Configuration;
@@ -13,12 +13,14 @@ namespace Oversteer.Web
     using Oversteer.Models.Users;
     using Oversteer.Web.Data;
     using Oversteer.Web.Infrastructure;
+    using Oversteer.Web.Models.SendGrid;
     using Oversteer.Web.Services;
     using Oversteer.Web.Services.Cars;
     using Oversteer.Web.Services.Cities;
     using Oversteer.Web.Services.Companies;
     using Oversteer.Web.Services.Contracts;
     using Oversteer.Web.Services.Countries;
+    using Oversteer.Web.Services.EmailSenders;
     using Oversteer.Web.Services.Home;
     using Oversteer.Web.Services.Statistics;
 
@@ -56,8 +58,10 @@ namespace Oversteer.Web
                 .AddTransient<IStatisticsService, StatisticsService>()
                 .AddTransient<ICountriesService, CountriesService>()
                 .AddTransient<ICitiesService, CitiesService>()
-                .AddTransient<IZipCodesService, ZipCodesService>();
+                .AddTransient<IZipCodesService, ZipCodesService>()
+                .AddTransient<IEmailSender, EmailSender>();
 
+            services.Configure<AuthMessageSenderOptions>(Configuration);
             services.AddAutoMapper(typeof(Startup));
             services.AddControllersWithViews(configure =>
             {

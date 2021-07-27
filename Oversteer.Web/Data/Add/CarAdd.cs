@@ -23,13 +23,11 @@
 
         public bool IsAvailable { get; set; }
 
-        [Required]
         [ForeignKey(nameof(Car))]
         public int CarId { get; set; }
 
         public virtual Car Car { get; set; }
 
-        [Required]
         [ForeignKey(nameof(Company))]
         public int CompanyId { get; set; }
 
