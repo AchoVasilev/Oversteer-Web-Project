@@ -1,6 +1,7 @@
 ﻿namespace Oversteer.Models.Cars
 {
     using System;
+    using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
     using System.ComponentModel.DataAnnotations.Schema;
 
@@ -29,8 +30,6 @@
         public decimal DailyPrice { get; set; }
 
         public int SeatsCount { get; set; }
-
-        public string ImageUrl { get; set; }
 
         [Required]
         public string Description { get; set; }
@@ -69,6 +68,6 @@
 
         public DateTime? DeleteDate { get; set; }
 
-        // public virtual ICollection<CarImage> CarImages { get; set; } = new HashSet<CarImage>();
+        public virtual ICollection<CarImage> CarImages { get; set; } = new HashSet<CarImage>();
     }
 }

@@ -16,6 +16,10 @@
             this.CreateMap<Fuel, FuelTypeFormModel>();
             this.CreateMap<Transmission, TransmissionTypeFormModel>();
             this.CreateMap<CarType, CarTypeFormModel>();
+          //  this.CreateMap<Car, CarDetailsFormModel>()
+          //      .ForMember(x => x.Url, opt =>
+          //          opt.MapFrom(x => x.CarImages.FirstOrDefault().RemoteImageUrl ??
+          //                "/images/cars/" + x.CarImages.FirstOrDefault().Id + "." + x.CarImages.FirstOrDefault().Extension));
         }
     }
 }

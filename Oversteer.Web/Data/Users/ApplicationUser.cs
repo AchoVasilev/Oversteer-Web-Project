@@ -6,6 +6,7 @@
 
     using Microsoft.AspNetCore.Identity;
 
+    using Oversteer.Models.Cars;
     using Oversteer.Models.Others;
 
     public class ApplicationUser : IdentityUser

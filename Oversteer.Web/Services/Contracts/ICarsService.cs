@@ -8,7 +8,7 @@
 
     public interface ICarsService
     {
-        void CreateCar(CarFormModel carModel, int companyId);
+        void CreateCar(CarFormModel carModel, int companyId, string path);
 
         void DeleteCar(int companyId, int carId);
 

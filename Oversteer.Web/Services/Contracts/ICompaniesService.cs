@@ -9,5 +9,7 @@
         bool UserIsCompany(string id);
 
         int GetCurrentCompanyId(string userId);
+
+        string GetCompanyPhoneNumber(string userId);
     }
 }

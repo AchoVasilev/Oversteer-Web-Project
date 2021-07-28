@@ -1,8 +1,10 @@
 ﻿namespace Oversteer.Web.Controllers
 {
+    using System;
     using System.Linq;
 
     using Microsoft.AspNetCore.Authorization;
+    using Microsoft.AspNetCore.Hosting;
     using Microsoft.AspNetCore.Mvc;
 
     using Oversteer.Web.Infrastructure;
@@ -15,11 +17,13 @@
     {
         private readonly ICarsService carService;
         private readonly ICompaniesService companiesService;
+        IWebHostEnvironment environment;
 
-        public CarsController(ICarsService carService, ICompaniesService companiesService)
+        public CarsController(ICarsService carService, ICompaniesService companiesService, IWebHostEnvironment environment)
         {
             this.carService = carService;
             this.companiesService = companiesService;
+            this.environment = environment;
         }
 
         [Authorize]
@@ -98,7 +102,15 @@
                 return this.View(carModel);
             }
 
-            this.carService.CreateCar(carModel, companyId);
+            try
+            {
+                this.carService.CreateCar(carModel, companyId, $"{environment.WebRootPath}/images");
+            }
+            catch (Exception ex)
+            {
+                this.ModelState.AddModelError("", ex.Message);
+                return this.View(carModel);
+            }
 
             return RedirectToAction(nameof(All));
         }
@@ -115,7 +127,7 @@
 
             var car = this.carService.GetCarDetails(id);
 
-            if (car.UserId != userId)
+            if (car.CompanyUserId != userId)
             {
                 return Unauthorized();
             }
@@ -262,6 +274,11 @@
             var car = this.carService.GetCarDetails(id);
 
             return this.View(car);
+        }
+
+        public IActionResult ById()
+        {
+            return this.View();
         }
     }
 }

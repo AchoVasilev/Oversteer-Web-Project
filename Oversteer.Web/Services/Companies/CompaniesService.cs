@@ -20,7 +20,7 @@
         {
             var company = new Company()
             {
-                CompanyName = companyFormModel.CompanyName,
+                Name = companyFormModel.CompanyName,
                 PhoneNumber = companyFormModel.PhoneNumber,
                 UserId = userId
             };
@@ -43,6 +43,12 @@
             => this.data.Companies
                     .Where(x => x.UserId == userId)
                     .Select(x => x.Id)
+                    .FirstOrDefault();
+
+        public string GetCompanyPhoneNumber(string userId)
+            => this.data.Companies
+                    .Where(x => x.UserId == userId)
+                    .Select(x => x.PhoneNumber)
                     .FirstOrDefault();
     }
 }

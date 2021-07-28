@@ -18,7 +18,7 @@
 
         [Required]
         [MaxLength(NameMaxLength)]
-        public string CompanyName { get; set; }
+        public string Name { get; set; }
 
         [Required]
         [MaxLength(PhoneNumberMaxLength)]

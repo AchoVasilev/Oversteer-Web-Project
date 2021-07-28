@@ -6,7 +6,6 @@
     public class Color
     {
         [Key]
-        [Required]
         public int Id { get; set; }
 
         [Required]

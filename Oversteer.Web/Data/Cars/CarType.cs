@@ -6,7 +6,6 @@
     public class CarType
     {
         [Key]
-        [Required]
         public int Id { get; set; }
 
         [Required]

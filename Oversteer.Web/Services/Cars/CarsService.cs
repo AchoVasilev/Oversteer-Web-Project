@@ -1,6 +1,8 @@
 ﻿namespace Oversteer.Web.Services.Cars
 {
+    using System;
     using System.Collections.Generic;
+    using System.IO;
     using System.Linq;
 
     using AutoMapper;
@@ -14,6 +16,7 @@
 
     public class CarsService : ICarsService
     {
+        private readonly string[] AllowedExtensions = new[] { "jpg", "png", "gif" };
         private readonly ApplicationDbContext data;
         private readonly IMapper mapper;
 
@@ -23,7 +26,7 @@
             this.mapper = mapper;
         }
 
-        public void CreateCar(CarFormModel carModel, int companyId)
+        public void CreateCar(CarFormModel carModel, int companyId, string imagePath)
         {
             var car = new Car()
             {
@@ -36,10 +39,34 @@
                 ModelYear = (int)carModel.Year,
                 DailyPrice = (decimal)carModel.DailyPrice,
                 SeatsCount = (int)carModel.SeatsCount,
-                ImageUrl = carModel.ImageUrl,
                 Description = carModel.Description,
                 CompanyId = companyId
             };
+
+            Directory.CreateDirectory($"{imagePath}/cars/");
+
+            foreach (var image in carModel.Images)
+            {
+                var extension = Path.GetExtension(image.FileName).TrimStart('.');
+
+                if (!AllowedExtensions.Any(x => extension.EndsWith(x)))
+                {
+                    throw new Exception($"Invalid image extension {extension}");
+                }
+
+                var dbImage = new CarImage()
+                {
+                    CompanyId = companyId,
+                    Extension = extension
+                };
+
+                car.CarImages.Add(dbImage);
+
+                var physicalPath = $"{imagePath}/cars/{dbImage.Id}.{extension}";
+
+                using Stream stream = new FileStream(physicalPath, FileMode.Create);
+                image.CopyTo(stream);
+            }
 
             this.data.Cars.Add(car);
             this.data.SaveChanges();
@@ -55,7 +82,7 @@
             this.data.SaveChanges();
         }
 
-        public bool EditCar(int carId, int brandId, int modelId, int colorId, int carTypeId, int fuelId, int transmissionId, int? year, 
+        public bool EditCar(int carId, int brandId, int modelId, int colorId, int carTypeId, int fuelId, int transmissionId, int? year,
             decimal? dailyPrice, int? seatsCount, string imageUrl, string description)
         {
             var carData = this.data.Cars.Find(carId);
@@ -74,7 +101,6 @@
             carData.ModelYear = (int)year;
             carData.DailyPrice = (decimal)dailyPrice;
             carData.SeatsCount = (int)seatsCount;
-            carData.ImageUrl = imageUrl;
             carData.Description = description;
 
             this.data.SaveChanges();
@@ -113,20 +139,21 @@
                 .Select(x => new CarDetailsFormModel
                 {
                     Id = x.Id,
-                    Brand = x.Brand.Name,
-                    Model = x.Model.Name,
-                    CompanyName = x.Company.CompanyName,
+                    BrandName = x.Brand.Name,
+                    ModelName = x.Model.Name,
+                    CompanyName = x.Company.Name,
                     Description = x.Description,
-                    FuelType = x.Fuel.Name,
+                    FuelName = x.Fuel.Name,
                     DailyPrice = x.DailyPrice,
-                    CarType = x.CarType.Name,
-                    Color = x.Color.Name,
-                    TransmissionType = x.Transmission.Name,
-                    Url = x.ImageUrl,
-                    Year = x.ModelYear,
+                    CarTypeName = x.CarType.Name,
+                    ColorName = x.Color.Name,
+                    TransmissionName = x.Transmission.Name,
+                    ModelYear = x.ModelYear,
                     SeatsCount = x.SeatsCount,
                     CompanyId = x.CompanyId,
-                    UserId = x.Company.UserId
+                    CompanyUserId = x.Company.UserId,
+                    Url = x.CarImages.FirstOrDefault().RemoteImageUrl ??
+                          "/images/cars/" + x.CarImages.FirstOrDefault().Id + "." + x.CarImages.FirstOrDefault().Extension
                 })
                 .FirstOrDefault();
 
@@ -142,8 +169,9 @@
                     Color = x.Color.Name,
                     FuelType = x.Fuel.Name,
                     TransmissionType = x.Transmission.Name,
+                    Url = x.CarImages.FirstOrDefault().RemoteImageUrl ?? 
+                          "/images/cars/" + x.CarImages.FirstOrDefault().Id + "." + x.CarImages.FirstOrDefault().Extension,
                     Year = x.ModelYear,
-                    Url = x.ImageUrl
                 })
                            .Take(3)
                            .ToList();
@@ -291,10 +319,10 @@
                     Color = x.Color.Name,
                     FuelType = x.Fuel.Name,
                     TransmissionType = x.Transmission.Name,
-                    Url = x.ImageUrl,
+                    Url = x.CarImages.FirstOrDefault().RemoteImageUrl ?? 
+                          "/images/cars/" + x.CarImages.FirstOrDefault().Id + "." + x.CarImages.FirstOrDefault().Extension,
                     CompanyId = x.CompanyId
-                })
-                .ToList();
+                }).ToList();
 
             return returnQuery;
         }
