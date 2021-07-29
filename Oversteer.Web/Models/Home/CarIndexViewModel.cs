@@ -16,6 +16,8 @@
 
         public string FuelType { get; init; }
 
+        public decimal DailyPrice { get; init; }
+
         public string Url { get; init; }
 
         public string TransmissionType { get; init; }

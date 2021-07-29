@@ -1,53 +1,113 @@
 ﻿@model CarDetailsFormModel
-
-<div class="pricing-header px-3 py-3 pt-md-5 pb-md-4 mx-auto text-center">
-    <h1 class="display-4">@Model.ModelName details</h1>
-</div>
-
 <div class="container">
-    <div class="card-deck mb-3 text-center">
-        <div class="card mb-4">
-            <div class="card-header">
-                <h4 class="my-0 font-weight-normal">Daily Price</h4>
-            </div>
-            <div class="card-body">
-                <h1 class="card-title pricing-card-title">$@Model.DailyPrice</h1>
-                <ul class="list-unstyled mt-3 mb-4">
-                    <li class="list-group-item d-flex justify-content-between lh-condensed">
-                        <div>
-                            <h6 class="my-0">Car Year</h6>
-                        </div>
-                        <span class="text-muted">@Model.ModelYear</span>
-                    </li>
-                    <li class="list-group-item d-flex justify-content-between lh-condensed">
-                        <div>
-                            <h6 class="my-0">Color</h6>
-                        </div>
-                        <span class="text-muted">@Model.ColorName</span>
-                    </li>
-                    <li class="list-group-item d-flex justify-content-between lh-condensed">
-                        <div>
-                            <h6 class="my-0">Fuel</h6>
-                        </div>
-                        <span class="text-muted">@Model.FuelName</span>
-                    </li>
-                    <li class="list-group-item d-flex justify-content-between lh-condensed">
-                        <div>
-                            <h6 class="my-0">Transmission</h6>
-                        </div>
-                        <span class="text-muted">@Model.TransmissionName</span>
-                    </li>
-                </ul>
-                <button type="button" class="btn btn-lg btn-block btn-outline-primary">Rent this car</button>
+    <div class="row justify-content-center">
+        <div class="col-md-12">
+            <div class="car-details">
+                <div class="text text-center">
+                    <img src="@Model.Url" class="img-fluid img rounded" alt="Responsive image">
+                    <span class="subheading">@Model.BrandName</span>
+                    <h2>@Model.ModelName</h2>
+                </div>
             </div>
         </div>
-        <div class="card mb-5 box-shadow">
-            <img src="@Model.Url" class="img-fluid" alt="Responsive image">
+        <div class="row justify-content-center">
+            <div class="d-flex mb-3 align-items-center">
+                <div class="media block-6 services">
+                    <div class="icon d-flex align-items-center justify-content-center"><span class="flaticon-dashboard"></span></div>
+                    <div class="text">
+                        <h3>Car Model Year</h3>
+                        <span>@Model.ModelYear</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="d-flex mb-3 align-items-center">
+                <div class="media block-6 services">
+                    <div class="icon d-flex align-items-center justify-content-center"><span class="flaticon-pistons"></span></div>
+                    <div class="text">
+                        <h3>Transmission</h3>
+                        <span>@Model.TransmissionName</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="d-flex mb-3 align-items-center">
+                <div class="media block-6 services">
+                    <div class="icon d-flex align-items-center justify-content-center"><span class="flaticon-car-seat"></span></div>
+                    <div class="text">
+                        <h3>Seats</h3>
+                        <span>@Model.SeatsCount Adults</span>
+                    </div>
+                </div>
+            </div>
+            <div class="d-flex mb-3 align-items-center">
+                <div class="media block-6 services">
+                    <div class="icon d-flex align-items-center justify-content-center"><span class="flaticon-diesel"></span></div>
+                    <div class="text">
+                        <h3>Fuel</h3>
+                        <span>@Model.FuelName</span>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
-    <div class="jumbotron text-black rounded">
-        <div class="col-md-6 px-0">
-            <p class="lead my-3">@Model.Description</p>
+</div>
+
+<div class="row">
+    <div class="col-md-12 pills">
+        <div class="bd-example bd-example-tabs">
+            <div class="d-flex justify-content-center">
+                <ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
+
+                    <li class="nav-item">
+                        <a class="nav-link active" id="pills-description-tab" data-toggle="pill" href="#pills-description" role="tab" aria-controls="pills-description" aria-expanded="true">Features</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" id="pills-manufacturer-tab" data-toggle="pill" href="#pills-manufacturer" role="tab" aria-controls="pills-manufacturer" aria-expanded="true">Description</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" id="pills-review-tab" data-toggle="pill" href="#pills-review" role="tab" aria-controls="pills-review" aria-expanded="true">Review</a>
+                    </li>
+                </ul>
+            </div>
+
+            <div class="tab-content" id="pills-tabContent">
+                <div class="tab-pane fade show active" id="pills-description" role="tabpanel" aria-labelledby="pills-description-tab">
+                    <div class="row">
+                        <div class="col-md-4">
+                            <ul class="features">
+                                <li class="check"><span class="ion-ios-checkmark"></span>Airconditions</li>
+                                <li class="check"><span class="ion-ios-checkmark"></span>Child Seat</li>
+                                <li class="check"><span class="ion-ios-checkmark"></span>GPS</li>
+                                <li class="check"><span class="ion-ios-checkmark"></span>Luggage</li>
+                                <li class="check"><span class="ion-ios-checkmark"></span>Music</li>
+                            </ul>
+                        </div>
+                        <div class="col-md-4">
+                            <ul class="features">
+                                <li class="check"><span class="ion-ios-checkmark"></span>Seat Belt</li>
+                                <li class="remove"><span class="ion-ios-close"></span>Sleeping Bed</li>
+                                <li class="check"><span class="ion-ios-checkmark"></span>Water</li>
+                                <li class="check"><span class="ion-ios-checkmark"></span>Bluetooth</li>
+                                <li class="remove"><span class="ion-ios-close"></span>Onboard computer</li>
+                            </ul>
+                        </div>
+                        <div class="col-md-4">
+                            <ul class="features">
+                                <li class="check"><span class="ion-ios-checkmark"></span>Audio input</li>
+                                <li class="check"><span class="ion-ios-checkmark"></span>Long Term Trips</li>
+                                <li class="check"><span class="ion-ios-checkmark"></span>Car Kit</li>
+                                <li class="check"><span class="ion-ios-checkmark"></span>Remote central locking</li>
+                                <li class="check"><span class="ion-ios-checkmark"></span>Climate control</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="tab-pane fade" id="pills-manufacturer" role="tabpanel" aria-labelledby="pills-manufacturer-tab">
+                    <p>@Model.Description</p>
+                </div>
+            </div>
         </div>
     </div>
 </div>

@@ -20,6 +20,8 @@
 
         public string TransmissionType { get; init; }
 
+        public decimal DailyPrice { get; init; }
+
         public int CompanyId { get; init; }
     }
 }

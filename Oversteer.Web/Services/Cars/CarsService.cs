@@ -169,6 +169,7 @@
                     Color = x.Color.Name,
                     FuelType = x.Fuel.Name,
                     TransmissionType = x.Transmission.Name,
+                    DailyPrice = x.DailyPrice,
                     Url = x.CarImages.FirstOrDefault().RemoteImageUrl ?? 
                           "/images/cars/" + x.CarImages.FirstOrDefault().Id + "." + x.CarImages.FirstOrDefault().Extension,
                     Year = x.ModelYear,
@@ -318,6 +319,7 @@
                     CarType = x.CarType.Name,
                     Color = x.Color.Name,
                     FuelType = x.Fuel.Name,
+                    DailyPrice = x.DailyPrice,
                     TransmissionType = x.Transmission.Name,
                     Url = x.CarImages.FirstOrDefault().RemoteImageUrl ?? 
                           "/images/cars/" + x.CarImages.FirstOrDefault().Id + "." + x.CarImages.FirstOrDefault().Extension,
