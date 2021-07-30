@@ -6,6 +6,7 @@
     using System.Linq;
 
     using AutoMapper;
+    using AutoMapper.QueryableExtensions;
 
     using Oversteer.Models.Cars;
     using Oversteer.Web.Data;
@@ -136,46 +137,15 @@
         public CarDetailsFormModel GetCarDetails(int carId)
             => this.data.Cars
                 .Where(x => x.Id == carId && !x.IsDeleted)
-                .Select(x => new CarDetailsFormModel
-                {
-                    Id = x.Id,
-                    BrandName = x.Brand.Name,
-                    ModelName = x.Model.Name,
-                    CompanyName = x.Company.Name,
-                    Description = x.Description,
-                    FuelName = x.Fuel.Name,
-                    DailyPrice = x.DailyPrice,
-                    CarTypeName = x.CarType.Name,
-                    ColorName = x.Color.Name,
-                    TransmissionName = x.Transmission.Name,
-                    ModelYear = x.ModelYear,
-                    SeatsCount = x.SeatsCount,
-                    CompanyId = x.CompanyId,
-                    CompanyUserId = x.Company.UserId,
-                    Url = x.CarImages.FirstOrDefault().RemoteImageUrl ??
-                          "/images/cars/" + x.CarImages.FirstOrDefault().Id + "." + x.CarImages.FirstOrDefault().Extension
-                })
+                .ProjectTo<CarDetailsFormModel>(this.mapper.ConfigurationProvider)
                 .FirstOrDefault();
 
         public IEnumerable<CarIndexViewModel> GetThreeNewestCars()
             => this.data.Cars
                 .Where(x => !x.IsDeleted)
-                .Select(x => new CarIndexViewModel()
-                {
-                    Id = x.Id,
-                    Brand = x.Brand.Name,
-                    Model = x.Model.Name,
-                    CarType = x.CarType.Name,
-                    Color = x.Color.Name,
-                    FuelType = x.Fuel.Name,
-                    TransmissionType = x.Transmission.Name,
-                    DailyPrice = x.DailyPrice,
-                    Url = x.CarImages.FirstOrDefault().RemoteImageUrl ?? 
-                          "/images/cars/" + x.CarImages.FirstOrDefault().Id + "." + x.CarImages.FirstOrDefault().Extension,
-                    Year = x.ModelYear,
-                })
-                           .Take(3)
-                           .ToList();
+                .ProjectTo<CarIndexViewModel>(this.mapper.ConfigurationProvider)
+                .Take(3)
+                .ToList();
 
         public IEnumerable<CarBrandFormModel> GetCarBrands()
         {
@@ -313,15 +283,15 @@
                 .Select(x => new ListCarFormModel
                 {
                     Id = x.Id,
-                    Brand = x.Brand.Name,
-                    Model = x.Model.Name,
-                    Year = x.ModelYear,
-                    CarType = x.CarType.Name,
-                    Color = x.Color.Name,
-                    FuelType = x.Fuel.Name,
+                    BrandName = x.Brand.Name,
+                    ModelName = x.Model.Name,
+                    ModelYear = x.ModelYear,
+                    CarTypeName = x.CarType.Name,
+                    ColorName = x.Color.Name,
+                    FuelName = x.Fuel.Name,
                     DailyPrice = x.DailyPrice,
-                    TransmissionType = x.Transmission.Name,
-                    Url = x.CarImages.FirstOrDefault().RemoteImageUrl ?? 
+                    TransmissionName = x.Transmission.Name,
+                    Url = x.CarImages.FirstOrDefault().RemoteImageUrl ??
                           "/images/cars/" + x.CarImages.FirstOrDefault().Id + "." + x.CarImages.FirstOrDefault().Extension,
                     CompanyId = x.CompanyId
                 }).ToList();

@@ -54,7 +54,7 @@ else
                 <div class="card-img-top img-fluid mb-3">
                     <img class="img-fluid img-thumbnail card-img-top" src="@car.Url" alt="Responsive image">
                     <div class="card-body" style="width: 18rem;">
-                        <h5 class="card-title">@car.Model (@car.Year)</h5>
+                        <h5 class="card-title">@car.ModelName (@car.ModelYear)</h5>
                         <a asp-controller="Cars" asp-action="Details" asp-route-id="@car.Id" class="btn btn-primary">Details</a>
                         <a asp-controller="Cars" asp-action="Edit" asp-route-id="@car.Id" class="btn btn-warning">Edit</a>
                         <a asp-controller="Cars" asp-action="Delete" asp-route-id="@car.Id" class="btn btn-danger">Delete</a>
