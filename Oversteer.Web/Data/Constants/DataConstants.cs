@@ -51,5 +51,12 @@
             public const int ZipCodeMinLength = 1;
             public const int ZipCodeMaxLength = 10000;
         }
+
+        public class Companies
+        {
+            public const int DescriptionMinLength = 8;
+            public const int ServiceNameMinLength = 5;
+            public const int ServiceNameMaxLength = 50;
+        }
     }
 }

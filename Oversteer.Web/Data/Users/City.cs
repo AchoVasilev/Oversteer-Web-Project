@@ -5,6 +5,7 @@
     using System.ComponentModel.DataAnnotations.Schema;
 
     using Oversteer.Models.Add;
+    using Oversteer.Web.Data.Users;
 
     public class City
     {
@@ -14,17 +15,17 @@
         [Required]
         public string Name { get; set; }
 
-        public string Address { get; set; }
-
         [ForeignKey(nameof(Country))]
         public int CountryId { get; set; }
 
-        public Country Country { get; set; }
+        public virtual Country Country { get; set; }
 
-        public ICollection<ZipCode> ZipCodes { get; set; } = new HashSet<ZipCode>();
+        public virtual ICollection<ZipCode> ZipCodes { get; set; } = new HashSet<ZipCode>();
 
-        public ICollection<ApplicationUser> Users { get; set; } = new HashSet<ApplicationUser>();
+        public virtual ICollection<ApplicationUser> Users { get; set; } = new HashSet<ApplicationUser>();
 
-        public ICollection<Destination> Destinations { get; set; } = new HashSet<Destination>();
+        public virtual ICollection<Destination> Destinations { get; set; } = new HashSet<Destination>();
+
+        public virtual ICollection<Address> Addresses { get; set; } = new HashSet<Address>();
     }
 }

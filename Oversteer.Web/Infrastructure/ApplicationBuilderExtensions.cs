@@ -30,6 +30,7 @@
             SeedFuel(data);
             SeedTransmission(data);
             SeedCountries(data);
+            SeedCitiesInBulgaria(data);
 
             return app;
         }
@@ -144,6 +145,32 @@
             }
 
             data.Countries.AddRange(countries);
+            data.SaveChanges();
+        }
+
+        private static void SeedCitiesInBulgaria(ApplicationDbContext data)
+        {
+            var countryBulgariaId = data.Countries
+                .Where(x => x.Name == "Bulgaria")
+                .Select(x => x.Id)
+                .FirstOrDefault();
+
+            var citiesJson = File.ReadAllText("Datasets/Cities.json");
+            var citiesDto = JsonConvert.DeserializeObject<CityDto[]>(citiesJson);
+            var cities = new List<City>();
+
+            foreach (var cityDto in citiesDto)
+            {
+                var city = new City()
+                {
+                    Name = cityDto.Town,
+                    CountryId = countryBulgariaId
+                };
+
+                cities.Add(city);
+            }
+
+            data.Cities.AddRange(cities);
             data.SaveChanges();
         }
     }

@@ -37,5 +37,7 @@
         public virtual ICollection<CompanyService> CompanyServices { get; set; } = new HashSet<CompanyService>();
 
         public virtual ICollection<CarAdd> CarAdds { get; set; } = new HashSet<CarAdd>();
+
+        public virtual ICollection<Rental> Rentals { get; set; } = new HashSet<Rental>();
     }
 }

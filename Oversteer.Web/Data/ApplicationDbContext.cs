@@ -103,9 +103,9 @@
 
             builder.Entity<Rental>(entity =>
             {
-                entity.HasOne(x => x.Place)
-                    .WithMany(x => x.Rentals)
-                    .HasForeignKey(x => x.PlaceId)
+                entity.HasOne(x => x.Destination)
+                    .WithMany(x => x.Rental)
+                    .HasForeignKey(x => x.DestinationId)
                     .OnDelete(DeleteBehavior.Restrict);
             });
 

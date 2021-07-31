@@ -1,5 +1,7 @@
 namespace Oversteer.Web
 {
+    using System;
+
     using Microsoft.AspNetCore.Builder;
     using Microsoft.AspNetCore.Hosting;
     using Microsoft.AspNetCore.Identity;
@@ -13,6 +15,7 @@ namespace Oversteer.Web
     using Oversteer.Models.Users;
     using Oversteer.Web.Data;
     using Oversteer.Web.Infrastructure;
+    using Oversteer.Web.Models.Email;
     using Oversteer.Web.Models.SendGrid;
     using Oversteer.Web.Services;
     using Oversteer.Web.Services.Cars;
@@ -22,6 +25,7 @@ namespace Oversteer.Web
     using Oversteer.Web.Services.Countries;
     using Oversteer.Web.Services.EmailSenders;
     using Oversteer.Web.Services.Home;
+    using Oversteer.Web.Services.Rentals;
     using Oversteer.Web.Services.Statistics;
 
     public class Startup
@@ -59,9 +63,21 @@ namespace Oversteer.Web
                 .AddTransient<ICountriesService, CountriesService>()
                 .AddTransient<ICitiesService, CitiesService>()
                 .AddTransient<IZipCodesService, ZipCodesService>()
-                .AddTransient<IEmailSender, EmailSender>();
+                .AddTransient<IRentingService, RentingService>();
 
-            services.Configure<AuthMessageSenderOptions>(Configuration);
+            // services.Configure<AuthMessageSenderOptions>(Configuration);
+
+            services.AddTransient<IEmailSender, MailKitSender>();
+            services.Configure<MailKitEmailSenderOptions>(options =>
+            {
+                options.Host_Address = Configuration["ExternalProviders:MailKit:SMTP:Address"];
+                options.Host_Port = Convert.ToInt32(Configuration["ExternalProviders:MailKit:SMTP:Port"]);
+                options.Host_Username = Configuration["ExternalProviders:MailKit:SMTP:Account"];
+                options.Host_Password = Configuration["ExternalProviders:MailKit:SMTP:Password"];
+                options.Sender_EMail = Configuration["ExternalProviders:MailKit:SMTP:SenderEmail"];
+                options.Sender_Name = Configuration["ExternalProviders:MailKit:SMTP:SenderName"];
+            });
+
             services.AddAutoMapper(typeof(Startup));
             services.AddControllersWithViews(configure =>
             {

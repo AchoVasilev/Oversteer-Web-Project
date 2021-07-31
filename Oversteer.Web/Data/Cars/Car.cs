@@ -66,6 +66,8 @@
 
         public bool IsDeleted { get; set; } = false;
 
+        public bool IsAvailable { get; set; } = true;
+
         public DateTime? DeleteDate { get; set; }
 
         public virtual ICollection<CarImage> CarImages { get; set; } = new HashSet<CarImage>();

@@ -60,6 +60,10 @@
               "target": "Package",
               "version": "[4.17.49, )"
             },
+            "MailKit": {
+              "target": "Package",
+              "version": "[2.14.0, )"
+            },
             "Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore": {
               "target": "Package",
               "version": "[5.0.7, )"
