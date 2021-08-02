@@ -22,7 +22,12 @@
             {
                 Name = companyFormModel.CompanyName,
                 PhoneNumber = companyFormModel.PhoneNumber,
-                UserId = userId
+                UserId = userId,
+                Description = companyFormModel.Description,
+                CompanyServices = companyFormModel.CompanyServices.Select(x => new CompanyService()
+                {
+                    Name = x.Name
+                }).ToList()
             };
 
             this.data.Companies.Add(company);

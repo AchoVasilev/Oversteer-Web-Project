@@ -1,8 +1,10 @@
 ﻿namespace Oversteer.Web.Models.Companies
 {
+    using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
 
     using static Oversteer.Models.Constants.DataConstants.Users;
+    using static Oversteer.Models.Constants.DataConstants.Companies;
     using static Oversteer.Web.Data.Constants.ErrorMessages.CompanyErrors;
     using static Oversteer.Web.Data.Constants.ModelsDisplayNames;
 
@@ -18,5 +20,12 @@
         [Display(Name = PhoneNumberDisplay)]
         [RegularExpression(PhoneNumberRegularExpression, ErrorMessage = InvalidPhoneNumber)]
         public string PhoneNumber { get; set; }
+
+        [Required]
+        [StringLength(int.MaxValue, MinimumLength = DescriptionMinLength)]
+        public string Description { get; set; }
+
+        [Display(Name = "Add your offered services")]
+        public IEnumerable<CreateCompanyServiceFormModel> CompanyServices { get; set; }
     }
 }

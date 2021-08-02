@@ -16,7 +16,6 @@ namespace Oversteer.Web
     using Oversteer.Web.Data;
     using Oversteer.Web.Infrastructure;
     using Oversteer.Web.Models.Email;
-    using Oversteer.Web.Models.SendGrid;
     using Oversteer.Web.Services;
     using Oversteer.Web.Services.Cars;
     using Oversteer.Web.Services.Cities;
@@ -70,12 +69,12 @@ namespace Oversteer.Web
             services.AddTransient<IEmailSender, MailKitSender>();
             services.Configure<MailKitEmailSenderOptions>(options =>
             {
-                options.Host_Address = Configuration["ExternalProviders:MailKit:SMTP:Address"];
-                options.Host_Port = Convert.ToInt32(Configuration["ExternalProviders:MailKit:SMTP:Port"]);
-                options.Host_Username = Configuration["ExternalProviders:MailKit:SMTP:Account"];
-                options.Host_Password = Configuration["ExternalProviders:MailKit:SMTP:Password"];
-                options.Sender_EMail = Configuration["ExternalProviders:MailKit:SMTP:SenderEmail"];
-                options.Sender_Name = Configuration["ExternalProviders:MailKit:SMTP:SenderName"];
+                options.HostAddress = Configuration["ExternalProviders:MailKit:SMTP:Address"];
+                options.HostPort = Convert.ToInt32(Configuration["ExternalProviders:MailKit:SMTP:Port"]);
+                options.HostUsername = Configuration["ExternalProviders:MailKit:SMTP:Account"];
+                options.HostPassword = Configuration["ExternalProviders:MailKit:SMTP:Password"];
+                options.SenderEmail = Configuration["ExternalProviders:MailKit:SMTP:SenderEmail"];
+                options.SenderName = Configuration["ExternalProviders:MailKit:SMTP:SenderName"];
             });
 
             services.AddAutoMapper(typeof(Startup));

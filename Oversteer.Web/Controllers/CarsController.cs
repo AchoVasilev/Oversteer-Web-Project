@@ -17,7 +17,7 @@
     {
         private readonly ICarsService carService;
         private readonly ICompaniesService companiesService;
-        IWebHostEnvironment environment;
+        private readonly IWebHostEnvironment environment;
 
         public CarsController(ICarsService carService, ICompaniesService companiesService, IWebHostEnvironment environment)
         {

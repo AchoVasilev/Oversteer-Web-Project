@@ -19,7 +19,27 @@
                 <input asp-for="PhoneNumber" class="form-control" placeholder="Example: +359888888888">
                 <span asp-validation-for="PhoneNumber" class="small text-danger"></span>
             </div>
+            <div class="form-group">
+                <label asp-for="Description"></label>
+                <textarea asp-for="Description" rows="4" class="form-control"></textarea>
+                <span asp-validation-for="Description" class="small text-danger"></span>
+            </div>
+            <div class="form-group" id="names">
+                <label asp-for="CompanyServices"></label>
+            </div>
+            <a class="btn btn-success" onclick="AddMoreNames()">+</a>
             <input class="btn btn-primary" type="submit" value="Save" />
         </form>
     </div>
 </div>
+
+@section Scripts {
+    <script>
+        var nameIndex = 0;
+        function AddMoreNames() {
+            $("#names").
+                append("<div class='form-group'>Name: <input class='form-control' name='CompanyServices[" + nameIndex + "].Name' /></div>");
+            nameIndex++;
+        }
+    </script>
+}

@@ -11,9 +11,6 @@
         [Required]
         public string Name { get; set; }
 
-        [Required]
-        public string Description { get; set; }
-
         [ForeignKey(nameof(Company))]
         public int CompanyId { get; set; }
 
