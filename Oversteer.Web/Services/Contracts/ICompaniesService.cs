@@ -1,10 +1,12 @@
 ﻿namespace Oversteer.Web.Services.Contracts
 {
+    using System.Threading.Tasks;
+
     using Oversteer.Web.Models.Companies;
 
     public interface ICompaniesService
     {
-        void CreateCompany(CreateCompanyFormModel companyFormModel, string userId);
+        Task CreateCompanyAsync(CreateCompanyFormModel companyFormModel, string userId);
 
         bool UserIsCompany(string id);
 

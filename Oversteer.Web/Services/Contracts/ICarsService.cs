@@ -1,6 +1,7 @@
 ﻿namespace Oversteer.Web.Services.Contracts
 {
     using System.Collections.Generic;
+    using System.Threading.Tasks;
 
     using Oversteer.Models.Cars;
     using Oversteer.Web.Models.Cars;
@@ -8,11 +9,11 @@
 
     public interface ICarsService
     {
-        void CreateCar(CarFormModel carModel, int companyId, string path);
+        Task CreateCarAsync(CarFormModel carModel, int companyId, string path);
 
-        void DeleteCar(int companyId, int carId);
+        Task DeleteCarAsync(int companyId, int carId);
 
-        bool EditCar(int carId, int brandId, int modelId, int colorId, int carTypeId, int fuelId, int transmissionId, int? year,
+        Task<bool> EditCarAsync(int carId, int brandId, int modelId, int colorId, int carTypeId, int fuelId, int transmissionId, int? year,
             decimal? dailyPrice, int? seatsCount, string imageUrl, string description);
 
         IEnumerable<Car> GetCompanyCars(int companyId);

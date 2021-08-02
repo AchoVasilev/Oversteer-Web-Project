@@ -2,6 +2,7 @@
 {
     using System;
     using System.Linq;
+    using System.Threading.Tasks;
 
     using Microsoft.AspNetCore.Authorization;
     using Microsoft.AspNetCore.Hosting;
@@ -49,7 +50,7 @@
 
         [HttpPost]
         [Authorize]
-        public IActionResult Add(CarFormModel carModel)
+        public async Task<IActionResult> Add(CarFormModel carModel)
         {
             var currentUserId = this.User.GetId();
 
@@ -104,7 +105,7 @@
 
             try
             {
-                this.carService.CreateCar(carModel, companyId, $"{environment.WebRootPath}/images");
+                await this.carService.CreateCarAsync(carModel, companyId, $"{environment.WebRootPath}/images");
             }
             catch (Exception ex)
             {
@@ -145,7 +146,7 @@
 
         [HttpPost]
         [Authorize]
-        public IActionResult Edit(int id, CarFormModel carModel)
+        public async Task<IActionResult> Edit(int id, CarFormModel carModel)
         {
             var currentUserId = this.User.GetId();
 
@@ -203,7 +204,7 @@
                 return BadRequest();
             }
 
-            this.carService.EditCar(
+            await this.carService.EditCarAsync(
                 id,
                 carModel.BrandId,
                 carModel.ModelId,
@@ -222,12 +223,12 @@
         }
 
         [Authorize]
-        public IActionResult Delete(int id)
+        public async Task<IActionResult> Delete(int id)
         {
             var userId = this.User.GetId();
             var companyId = this.companiesService.GetCurrentCompanyId(userId);
 
-            this.carService.DeleteCar(companyId, id);
+            await this.carService.DeleteCarAsync(companyId, id);
 
             return RedirectToAction(nameof(CarsController.MyCars), "Cars");
         }

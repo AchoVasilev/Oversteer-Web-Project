@@ -4,6 +4,7 @@
     using System.Collections.Generic;
     using System.IO;
     using System.Linq;
+    using System.Threading.Tasks;
 
     using AutoMapper;
     using AutoMapper.QueryableExtensions;
@@ -27,7 +28,7 @@
             this.mapper = mapper;
         }
 
-        public void CreateCar(CarFormModel carModel, int companyId, string imagePath)
+        public async Task CreateCarAsync(CarFormModel carModel, int companyId, string imagePath)
         {
             var car = new Car()
             {
@@ -66,24 +67,24 @@
                 var physicalPath = $"{imagePath}/cars/{dbImage.Id}.{extension}";
 
                 using Stream stream = new FileStream(physicalPath, FileMode.Create);
-                image.CopyTo(stream);
+                await image.CopyToAsync(stream);
             }
 
-            this.data.Cars.Add(car);
-            this.data.SaveChanges();
+            await this.data.Cars.AddAsync(car);
+            await this.data.SaveChangesAsync();
         }
 
-        public void DeleteCar(int companyId, int carId)
+        public async Task DeleteCarAsync(int companyId, int carId)
         {
             var car = this.data.Cars
                                .Where(x => x.Id == carId && x.CompanyId == companyId)
                                .FirstOrDefault();
             car.IsDeleted = true;
 
-            this.data.SaveChanges();
+            await this.data.SaveChangesAsync();
         }
 
-        public bool EditCar(int carId, int brandId, int modelId, int colorId, int carTypeId, int fuelId, int transmissionId, int? year,
+        public async Task<bool> EditCarAsync(int carId, int brandId, int modelId, int colorId, int carTypeId, int fuelId, int transmissionId, int? year,
             decimal? dailyPrice, int? seatsCount, string imageUrl, string description)
         {
             var carData = this.data.Cars.Find(carId);
@@ -104,7 +105,7 @@
             carData.SeatsCount = (int)seatsCount;
             carData.Description = description;
 
-            this.data.SaveChanges();
+            await this.data.SaveChangesAsync();
 
             return true;
         }

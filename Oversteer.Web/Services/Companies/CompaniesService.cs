@@ -1,6 +1,7 @@
 ﻿namespace Oversteer.Web.Services.Companies
 {
     using System.Linq;
+    using System.Threading.Tasks;
 
     using Oversteer.Models.Users;
     using Oversteer.Web.Data;
@@ -16,7 +17,7 @@
             this.data = data;
         }
 
-        public void CreateCompany(CreateCompanyFormModel companyFormModel, string userId)
+        public async Task CreateCompanyAsync(CreateCompanyFormModel companyFormModel, string userId)
         {
             var company = new Company()
             {
@@ -30,8 +31,8 @@
                 }).ToList()
             };
 
-            this.data.Companies.Add(company);
-            this.data.SaveChanges();
+            await this.data.Companies.AddAsync(company);
+            await this.data.SaveChangesAsync();
         }
 
         public bool UserIsCompany(string id)

@@ -1,5 +1,6 @@
 ﻿namespace Oversteer.Web.Controllers
 {
+    using System.Threading.Tasks;
 
     using Microsoft.AspNetCore.Authorization;
     using Microsoft.AspNetCore.Mvc;
@@ -22,7 +23,7 @@
 
         [HttpPost]
         [Authorize]
-        public IActionResult Create(CreateCompanyFormModel companyModel)
+        public async Task<IActionResult> Create(CreateCompanyFormModel companyModel)
         {
             var userId = this.User.GetId();
             var userIsCompany = this.companiesService.UserIsCompany(userId);
@@ -37,7 +38,7 @@
                 return this.View(companyModel);
             }
 
-            this.companiesService.CreateCompany(companyModel, userId);
+            await this.companiesService.CreateCompanyAsync(companyModel, userId);
 
             return RedirectToAction("All", "Cars");
         }
