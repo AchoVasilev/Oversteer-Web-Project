@@ -136,10 +136,30 @@
                 .ToList();
 
         public CarDetailsFormModel GetCarDetails(int carId)
-            => this.data.Cars
-                .Where(x => x.Id == carId && !x.IsDeleted)
-                .ProjectTo<CarDetailsFormModel>(this.mapper.ConfigurationProvider)
-                .FirstOrDefault();
+        {
+            var details = new CarDetailsFormModel();
+            var images = this.data.Cars
+                .Where(x => x.Id == carId)
+                .Select(x => x.CarImages)
+                .ToList();
+
+            var car = this.data.Cars
+                           .Where(x => x.Id == carId && !x.IsDeleted)
+                           .ProjectTo<CarDetailsFormModel>(this.mapper.ConfigurationProvider)
+                           .FirstOrDefault();
+
+            foreach (var image in images)
+            {
+                foreach (var img in image)
+                {
+                    var imagePath = "/images/cars/" + img.Id + "." + img.Extension;
+
+                    car.Urls.Add(imagePath);
+                }
+            }
+
+            return car;
+        }
 
         public IEnumerable<CarIndexViewModel> GetThreeNewestCars()
             => this.data.Cars

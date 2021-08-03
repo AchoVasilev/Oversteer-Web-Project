@@ -39,7 +39,7 @@
 
         public DbSet<Car> Cars { get; set; }
 
-        // public DbSet<CarImage> CarImages { get; set; }
+        public DbSet<CarImage> CarImages { get; set; }
 
         public DbSet<CarType> CarTypes { get; set; }
 

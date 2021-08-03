@@ -1,4 +1,6 @@
-﻿namespace Oversteer.Web.Models.Cars
+﻿using System.Collections.Generic;
+
+namespace Oversteer.Web.Models.Cars
 {
     public class CarDetailsFormModel
     {
@@ -31,5 +33,7 @@
         public string CompanyUserId { get; init; }
 
         public int CompanyId { get; init; }
+
+        public List<string> Urls { get; init; } = new List<string>();
     }
 }

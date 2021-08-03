@@ -393,7 +393,7 @@ namespace Oversteer.Web.Data.Migrations
 
                     b.HasIndex("CompanyId");
 
-                    b.ToTable("CarImage");
+                    b.ToTable("CarImages");
                 });
 
             modelBuilder.Entity("Oversteer.Models.Cars.CarType", b =>

@@ -26,12 +26,12 @@
 
             data.Database.Migrate();
 
-            SeedCarTypesAsync(data);
-            SeedColors(data);
-            SeedFuel(data);
-            SeedTransmission(data);
-            SeedCountries(data);
-            SeedCitiesInBulgaria(data);
+            await SeedCarTypesAsync(data);
+            await SeedColorsAsync(data);
+            await SeedFuelAsync(data);
+            await SeedTransmissionAsync(data);
+            await SeedCountriesAsync(data);
+            await SeedCitiesInBulgariaAsync(data);
 
             return app;
         }
@@ -43,7 +43,7 @@
                 return;
             }
 
-            data.CarTypes.AddRange(new[]
+            await data.CarTypes.AddRangeAsync(new[]
             {
                 new CarType() { Name = "Mini" },
                 new CarType() { Name = "Economy" },
@@ -58,14 +58,14 @@
             await data.SaveChangesAsync();
         }
 
-        private static void SeedColors(ApplicationDbContext data)
+        private static async Task SeedColorsAsync(ApplicationDbContext data)
         {
             if (data.Colors.Any())
             {
                 return;
             }
 
-            data.Colors.AddRange(new[]
+            await data.Colors.AddRangeAsync(new[]
             {
                 new Color() { Name = "White" },
                 new Color() { Name = "Black" },
@@ -83,17 +83,17 @@
                 new Color() { Name = "Pink" },
             });
 
-            data.SaveChanges();
+            await data.SaveChangesAsync();
         }
 
-        private static void SeedFuel(ApplicationDbContext data)
+        private static async Task SeedFuelAsync(ApplicationDbContext data)
         {
             if (data.Fuels.Any())
             {
                 return;
             }
 
-            data.Fuels.AddRange(new[]
+            await data.Fuels.AddRangeAsync(new[]
             {
                 new Fuel() { Name = "Petrol" },
                 new Fuel() { Name = "Diesel" },
@@ -103,17 +103,17 @@
                 new Fuel() { Name = "Hybrid" },
             });
 
-            data.SaveChanges();
+            await data.SaveChangesAsync();
         }
 
-        private static void SeedTransmission(ApplicationDbContext data)
+        private static async Task SeedTransmissionAsync(ApplicationDbContext data)
         {
             if (data.Transmissions.Any())
             {
                 return;
             }
 
-            data.Transmissions.AddRange(new[]
+            await data.Transmissions.AddRangeAsync(new[]
             {
                 new Transmission() { Name = "Manual" },
                 new Transmission() { Name = "Automatic" },
@@ -121,10 +121,10 @@
                 new Transmission() { Name = "Semi-automatic" },
             });
 
-            data.SaveChanges();
+            await data.SaveChangesAsync();
         }
 
-        private static void SeedCountries(ApplicationDbContext data)
+        private static async Task SeedCountriesAsync(ApplicationDbContext data)
         {
             if (data.Countries.Any())
             {
@@ -145,11 +145,11 @@
                 countries.Add(country);
             }
 
-            data.Countries.AddRange(countries);
-            data.SaveChanges();
+            await data.Countries.AddRangeAsync(countries);
+            await data.SaveChangesAsync();
         }
 
-        private static void SeedCitiesInBulgaria(ApplicationDbContext data)
+        private static async Task SeedCitiesInBulgariaAsync(ApplicationDbContext data)
         {
             var countryBulgariaId = data.Countries
                 .Where(x => x.Name == "Bulgaria")
@@ -171,8 +171,8 @@
                 cities.Add(city);
             }
 
-            data.Cities.AddRange(cities);
-            data.SaveChanges();
+            await data .Cities.AddRangeAsync(cities);
+            await data.SaveChangesAsync();
         }
     }
 }
