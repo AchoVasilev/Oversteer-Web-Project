@@ -281,21 +281,7 @@
                 .Skip((query.CurrentPage - 1) * CarsSearchQueryModel.CarsPerPage)
                 .Take(CarsSearchQueryModel.CarsPerPage)
                 .Where(x => !x.IsDeleted)
-                .Select(x => new ListCarFormModel
-                {
-                    Id = x.Id,
-                    BrandName = x.Brand.Name,
-                    ModelName = x.Model.Name,
-                    ModelYear = x.ModelYear,
-                    CarTypeName = x.CarType.Name,
-                    ColorName = x.Color.Name,
-                    FuelName = x.Fuel.Name,
-                    DailyPrice = x.DailyPrice,
-                    TransmissionName = x.Transmission.Name,
-                    Url = x.CarImages.FirstOrDefault().RemoteImageUrl ??
-                          "/images/cars/" + x.CarImages.FirstOrDefault().Id + "." + x.CarImages.FirstOrDefault().Extension,
-                    CompanyId = x.CompanyId
-                }).ToList();
+                .ProjectTo<ListCarFormModel>(this.mapper.ConfigurationProvider).ToList();
 
             return returnQuery;
         }

@@ -113,7 +113,9 @@
                 return this.View(carModel);
             }
 
-            return RedirectToAction(nameof(All));
+            this.TempData["Message"] = "Car added successfully.";
+
+            return RedirectToAction(nameof(MyCars));
         }
 
         [Authorize]
@@ -219,7 +221,9 @@
                 carModel.Description
                 );
 
-            return RedirectToAction(nameof(All));
+            this.TempData["Message"] = "The car was edited successfully.";
+
+            return RedirectToAction(nameof(MyCars));
         }
 
         [Authorize]

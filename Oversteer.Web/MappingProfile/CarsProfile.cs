@@ -34,6 +34,11 @@
                 .ForMember(x => x.Url, opt =>
                     opt.MapFrom(x => x.CarImages.FirstOrDefault().RemoteImageUrl ??
                           "/images/cars/" + x.CarImages.FirstOrDefault().Id + "." + x.CarImages.FirstOrDefault().Extension));
+
+            this.CreateMap<Car, ListCarFormModel>()
+                .ForMember(x => x.Url, opt =>
+                    opt.MapFrom(x => x.CarImages.FirstOrDefault().RemoteImageUrl ??
+                          "/images/cars/" + x.CarImages.FirstOrDefault().Id + "." + x.CarImages.FirstOrDefault().Extension));
         }
     }
 }

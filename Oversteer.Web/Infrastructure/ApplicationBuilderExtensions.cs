@@ -3,6 +3,7 @@
     using System.Collections.Generic;
     using System.IO;
     using System.Linq;
+    using System.Threading.Tasks;
 
     using Microsoft.AspNetCore.Builder;
     using Microsoft.EntityFrameworkCore;
@@ -18,14 +19,14 @@
 
     public static class ApplicationBuilderExtensions
     {
-        public static IApplicationBuilder PrepareDatabase(this IApplicationBuilder app)
+        public static async Task<IApplicationBuilder> PrepareDatabase(this IApplicationBuilder app)
         {
             using var scopedServices = app.ApplicationServices.CreateScope();
             var data = scopedServices.ServiceProvider.GetService<ApplicationDbContext>();
 
             data.Database.Migrate();
 
-            SeedCarTypes(data);
+            SeedCarTypesAsync(data);
             SeedColors(data);
             SeedFuel(data);
             SeedTransmission(data);
@@ -35,7 +36,7 @@
             return app;
         }
 
-        private static void SeedCarTypes(ApplicationDbContext data)
+        private static async Task SeedCarTypesAsync(ApplicationDbContext data)
         {
             if (data.CarTypes.Any())
             {
@@ -54,7 +55,7 @@
                 new CarType() { Name = "Cabrio" },
             });
 
-            data.SaveChanges();
+            await data.SaveChangesAsync();
         }
 
         private static void SeedColors(ApplicationDbContext data)

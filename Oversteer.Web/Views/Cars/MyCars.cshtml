@@ -5,6 +5,11 @@
     ViewBag.AllowCarEdit = true;
 }
 
+@if (this.TempData.ContainsKey("Message"))
+{
+    <div class="alert alert-success">@this.TempData["Message"]</div>
+}
+
 @if (!Model.Cars.Any())
 {
     <h2 class="text-center">You do not have any cars yet. So why don't you add one?</h2>
