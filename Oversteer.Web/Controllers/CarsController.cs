@@ -123,19 +123,19 @@
         {
             var userId = this.User.GetId();
 
-            if (!this.companiesService.UserIsCompany(userId))
+            if (!this.companiesService.UserIsCompany(userId) && !User.IsAdmin())
             {
                 return RedirectToAction(nameof(CompaniesController.Create), "Companies");
             }
 
             var car = this.carService.GetCarDetails(id);
 
-            if (car.CompanyUserId != userId)
+            if (car.CompanyUserId != userId && !User.IsAdmin())
             {
                 return Unauthorized();
             }
 
-            return this.View(new CarFormModel()
+            var carForm = new CarFormModel()
             {
                 Brands = this.carService.GetCarBrands(),
                 CarModels = this.carService.GetCarModels(),
@@ -143,7 +143,9 @@
                 FuelTypes = this.carService.GetFuelTypes(),
                 Transmissions = this.carService.GetTransmissionTypes(),
                 CarTypes = this.carService.GetCarTypes(),
-            });
+            };
+
+            return this.View(carForm);
         }
 
         [HttpPost]
@@ -154,7 +156,7 @@
 
             var companyId = this.companiesService.GetCurrentCompanyId(currentUserId);
 
-            if (companyId == 0)
+            if (!this.companiesService.UserIsCompany(currentUserId) && !User.IsAdmin())
             {
                 return RedirectToAction(nameof(CompaniesController.Create), "Companies");
             }
@@ -201,7 +203,7 @@
                 return this.View(carModel);
             }
 
-            if (!this.carService.IsCarFromCompany(id, companyId))
+            if (!this.carService.IsCarFromCompany(id, companyId) && !User.IsAdmin())
             {
                 return BadRequest();
             }
@@ -230,9 +232,17 @@
         public async Task<IActionResult> Delete(int id)
         {
             var userId = this.User.GetId();
+
+            if (!this.companiesService.UserIsCompany(userId) || !User.IsAdmin())
+            {
+                return RedirectToAction(nameof(CompaniesController.Create), "Companies");
+            }
+
             var companyId = this.companiesService.GetCurrentCompanyId(userId);
 
             await this.carService.DeleteCarAsync(companyId, id);
+
+            this.TempData["Message"] = "The car was removed successfully.";
 
             return RedirectToAction(nameof(CarsController.MyCars), "Cars");
         }
@@ -244,7 +254,7 @@
 
             var companyId = this.companiesService.GetCurrentCompanyId(currentUserId);
 
-            if (companyId == 0)
+            if (!this.companiesService.UserIsCompany(currentUserId))
             {
                 return RedirectToAction(nameof(CompaniesController.Create), "Companies");
             }

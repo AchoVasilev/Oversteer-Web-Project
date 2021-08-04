@@ -4,6 +4,7 @@
     using System.ComponentModel.DataAnnotations;
     using System.ComponentModel.DataAnnotations.Schema;
 
+    using Oversteer.Models.Cars;
     using Oversteer.Models.Users;
 
     using static Oversteer.Models.Constants.DataConstants;
@@ -27,5 +28,10 @@
         public int CompanyId { get; set; }
 
         public virtual Company Company { get; set; }
+
+        [ForeignKey(nameof(Car))]
+        public int CarId { get; set; }
+
+        public virtual Car Car { get; set; }
     }
 }

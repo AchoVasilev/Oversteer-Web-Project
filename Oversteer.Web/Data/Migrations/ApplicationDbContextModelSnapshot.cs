@@ -253,6 +253,9 @@ namespace Oversteer.Web.Data.Migrations
                         .HasMaxLength(40)
                         .HasColumnType("nvarchar(40)");
 
+                    b.Property<int>("CarId")
+                        .HasColumnType("int");
+
                     b.Property<int>("CompanyId")
                         .HasColumnType("int");
 
@@ -266,6 +269,8 @@ namespace Oversteer.Web.Data.Migrations
                         .HasColumnType("datetime2");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("CarId");
 
                     b.HasIndex("CompanyId");
 
@@ -753,6 +758,28 @@ namespace Oversteer.Web.Data.Migrations
                     b.ToTable("ZipCodes");
                 });
 
+            modelBuilder.Entity("Oversteer.Web.Data.Cars.CarFeature", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<int>("CarId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasMaxLength(20)
+                        .HasColumnType("nvarchar(20)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("CarId");
+
+                    b.ToTable("CarFeatures");
+                });
+
             modelBuilder.Entity("Oversteer.Web.Data.Cars.CarModel", b =>
                 {
                     b.Property<int>("Id")
@@ -914,6 +941,12 @@ namespace Oversteer.Web.Data.Migrations
 
             modelBuilder.Entity("Oversteer.Models.Add.Rental", b =>
                 {
+                    b.HasOne("Oversteer.Models.Cars.Car", "Car")
+                        .WithMany()
+                        .HasForeignKey("CarId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
                     b.HasOne("Oversteer.Models.Users.Company", "Company")
                         .WithMany("Rentals")
                         .HasForeignKey("CompanyId")
@@ -925,6 +958,8 @@ namespace Oversteer.Web.Data.Migrations
                         .HasForeignKey("DestinationId")
                         .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
+
+                    b.Navigation("Car");
 
                     b.Navigation("Company");
 
@@ -1110,6 +1145,17 @@ namespace Oversteer.Web.Data.Migrations
                     b.Navigation("City");
                 });
 
+            modelBuilder.Entity("Oversteer.Web.Data.Cars.CarFeature", b =>
+                {
+                    b.HasOne("Oversteer.Models.Cars.Car", "Car")
+                        .WithMany("CarFeatures")
+                        .HasForeignKey("CarId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Car");
+                });
+
             modelBuilder.Entity("Oversteer.Web.Data.Cars.CarModel", b =>
                 {
                     b.HasOne("Oversteer.Models.Cars.CarBrand", "CarBrand")
@@ -1140,6 +1186,8 @@ namespace Oversteer.Web.Data.Migrations
             modelBuilder.Entity("Oversteer.Models.Cars.Car", b =>
                 {
                     b.Navigation("CarAdd");
+
+                    b.Navigation("CarFeatures");
 
                     b.Navigation("CarImages");
                 });

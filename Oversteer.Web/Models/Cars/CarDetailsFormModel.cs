@@ -1,7 +1,7 @@
-﻿using System.Collections.Generic;
-
-namespace Oversteer.Web.Models.Cars
+﻿namespace Oversteer.Web.Models.Cars
 {
+    using System.Collections.Generic;
+
     public class CarDetailsFormModel
     {
         public int Id { get; init; }

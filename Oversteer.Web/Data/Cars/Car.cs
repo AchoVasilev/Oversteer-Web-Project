@@ -71,5 +71,7 @@
         public DateTime? DeleteDate { get; set; }
 
         public virtual ICollection<CarImage> CarImages { get; set; } = new HashSet<CarImage>();
+
+        public virtual ICollection<CarFeature> CarFeatures { get; set; } = new HashSet<CarFeature>();
     }
 }

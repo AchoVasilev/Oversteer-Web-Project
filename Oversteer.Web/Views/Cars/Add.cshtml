@@ -1,12 +1,13 @@
 ﻿@model CarFormModel
 
 @{
-    ViewData["Title"] = "Add Car";
+    ViewBag.Title = "Add Car";
 }
 
 <partial name="_CarFormPartial" model="@Model" />
-
-
+<div class="col-sm-12 offset-lg-2 col-lg-8 offset-xl-3 col-xl-6">
+    <input class="btn btn-primary" type="submit" onclick="carForm.submit()" value="Save" />
+</div>
 @section Scripts {
     <partial name="_ValidationScriptsPartial" />
 

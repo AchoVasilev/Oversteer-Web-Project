@@ -17,7 +17,8 @@
         public class Cars
         {
             public const int DescriptionMinLength = 6;
-            public const int CarBrandNameMaxValue = 20;
+            public const int NameMaxValue = 20;
+            public const int NameMinValue = 3;
             public const int CarModelMaxValue = 100;
             public const int CarModelMinValue = 1;
             public const int CarYearMinValue = 1900;

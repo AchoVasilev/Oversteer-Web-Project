@@ -14,7 +14,7 @@
         public int Id { get; set; }
 
         [Required]
-        [MaxLength(CarBrandNameMaxValue)]
+        [MaxLength(NameMaxValue)]
         public string Name { get; set; }
 
         public virtual ICollection<CarModel> CarModels { get; set; } = new HashSet<CarModel>();

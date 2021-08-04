@@ -13,6 +13,7 @@
         public const string CarModel = "Model";
         public const string Search = "Search";
         public const string Sorting = "Sort By:";
+        public const string Features = "Add car features";
 
         public const string PhoneNumberDisplay = "Phone number";
 
