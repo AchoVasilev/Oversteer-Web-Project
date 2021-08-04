@@ -7,7 +7,7 @@
 
 @if (this.TempData.ContainsKey("Message"))
 {
-    <div class="alert alert-success">@this.TempData["Message"]</div>
+    <div class="alert alert-success" id="carMessage">@this.TempData["Message"]</div>
 }
 
 @if (!Model.Cars.Any())
@@ -108,5 +108,12 @@ else
         function change() {
             document.getElementById("brand").submit();
         }
+    </script>
+
+    <script type="text/javascript">
+        $(function () {
+
+            $('#carMessage').hide(1000);
+        });
     </script>
 }
