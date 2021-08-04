@@ -64,8 +64,6 @@ namespace Oversteer.Web
                 .AddTransient<IZipCodesService, ZipCodesService>()
                 .AddTransient<IRentingService, RentingService>();
 
-            // services.Configure<AuthMessageSenderOptions>(Configuration);
-
             services.AddTransient<IEmailSender, MailKitSender>();
             services.Configure<MailKitEmailSenderOptions>(options =>
             {
@@ -89,7 +87,9 @@ namespace Oversteer.Web
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
-            app.PrepareDatabase();
+            app.PrepareDatabase()
+                .GetAwaiter()
+                .GetResult();
 
             if (env.IsDevelopment())
             {

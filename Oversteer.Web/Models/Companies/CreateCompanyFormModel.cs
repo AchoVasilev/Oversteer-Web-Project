@@ -25,7 +25,7 @@
         [StringLength(int.MaxValue, MinimumLength = DescriptionMinLength)]
         public string Description { get; set; }
 
-        [Display(Name = "Add your offered services")]
+        [Display(Name = DisplayCompanyServices)]
         public IEnumerable<CreateCompanyServiceFormModel> CompanyServices { get; set; }
     }
 }

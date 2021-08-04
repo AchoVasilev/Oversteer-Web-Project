@@ -2,16 +2,29 @@
 @using Oversteer.Models.Users;
 @inject SignInManager<ApplicationUser> SignInManager
 @inject UserManager<ApplicationUser> UserManager
+@inject ICompaniesService Companies
 
 <ul class="navbar-nav">
     @if (SignInManager.IsSignedIn(User))
     {
-        <li class="nav-item">
-            <a class="nav-link text-black" asp-area="" asp-controller="Companies" asp-action="Create">Register Renting Service</a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link text-black" asp-area="" asp-controller="Cars" asp-action="MyCars">My Cars</a>
-        </li>
+        var userId = User.GetId();
+        var userIsCompany = Companies.UserIsCompany(userId);
+        var userIsAdmin = User.IsAdmin();
+
+        @if (!userIsAdmin && userIsCompany)
+        {
+            <li class="nav-item">
+                <a class="nav-link text-black" asp-area="" asp-controller="Cars" asp-action="MyCars">My Cars</a>
+            </li>
+        }
+        else if (!userIsAdmin)
+        {
+            <li class="nav-item">
+                <a class="nav-link text-black" asp-area="" asp-controller="Companies" asp-action="Create">Register Renting Service</a>
+            </li>
+        }
+
+
         <li class="nav-item">
             <a class="nav-link text-black" asp-area="Identity" asp-page="/Account/Manage/Index" title="Manage">Hello @User.Identity.Name!</a>
         </li>

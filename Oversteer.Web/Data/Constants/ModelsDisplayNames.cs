@@ -20,5 +20,7 @@
 
         public const string CountryDisplayName = "Country";
         public const string ZipCodeDisplayName = "Zip code";
+
+        public const string DisplayCompanyServices = "Add your offered services";
     }
 }

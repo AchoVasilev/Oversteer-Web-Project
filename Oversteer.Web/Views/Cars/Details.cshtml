@@ -4,12 +4,16 @@
         <div class="col-md-12">
             <div class="car-details">
                 <div class="text text-center">
+                    @if (string.IsNullOrWhiteSpace(Model.Url))
+                    {
+                        <img src="@Model.Url" class="img-fluid rounded" />
+                    }
                     <div class="carousel-inner">
                         <div id="carouselExampleControls" class="carousel slide">
                             @for (int i = 0; i < Model.Urls.Count; i++)
                             {
                                 <div class="carousel-item @(i == 0 ? "active" : string.Empty)">
-                                    <img src="@Model.Urls[i]" class="img-fluid img rounded" alt="Responsive image">
+                                    <img src="@Model.Urls[i]" class="img-fluid rounded" alt="Responsive image">
                                 </div>
                             }
                         </div>

@@ -1,11 +1,13 @@
 ﻿namespace Oversteer.Web.Infrastructure
 {
+    using System;
     using System.Collections.Generic;
     using System.IO;
     using System.Linq;
     using System.Threading.Tasks;
 
     using Microsoft.AspNetCore.Builder;
+    using Microsoft.AspNetCore.Identity;
     using Microsoft.EntityFrameworkCore;
     using Microsoft.Extensions.DependencyInjection;
 
@@ -17,12 +19,16 @@
     using Oversteer.Web.Data.Cars;
     using Oversteer.Web.Dto;
 
+    using static Oversteer.Web.Data.Constants.WebConstants;
+
     public static class ApplicationBuilderExtensions
     {
         public static async Task<IApplicationBuilder> PrepareDatabase(this IApplicationBuilder app)
         {
             using var scopedServices = app.ApplicationServices.CreateScope();
-            var data = scopedServices.ServiceProvider.GetService<ApplicationDbContext>();
+
+            var serviceProvider = scopedServices.ServiceProvider;
+            var data = serviceProvider.GetRequiredService<ApplicationDbContext>();
 
             data.Database.Migrate();
 
@@ -30,8 +36,11 @@
             await SeedColorsAsync(data);
             await SeedFuelAsync(data);
             await SeedTransmissionAsync(data);
+
             await SeedCountriesAsync(data);
             await SeedCitiesInBulgariaAsync(data);
+
+            await SeedAdministratorAsync(serviceProvider);
 
             return app;
         }
@@ -173,6 +182,37 @@
 
             await data .Cities.AddRangeAsync(cities);
             await data.SaveChangesAsync();
+        }
+
+        private static async Task SeedAdministratorAsync(IServiceProvider serviceProvider)
+        {
+            var userManager = serviceProvider.GetRequiredService<UserManager<ApplicationUser>>();
+            var roleManager = serviceProvider.GetRequiredService<RoleManager<IdentityRole>>();
+
+            if (await roleManager.RoleExistsAsync(AdministratorRoleName))
+            {
+                return;
+            }
+
+            var identityRole = new IdentityRole()
+            {
+                Name = AdministratorRoleName
+            };
+
+            await roleManager.CreateAsync(identityRole);
+
+            const string adminEmail = "oversteer@abv.bg";
+            const string adminPassword = "administrator123";
+
+            var adminUser = new ApplicationUser()
+            {
+                Email = adminEmail,
+                UserName = adminEmail,
+                EmailConfirmed = true
+            };
+
+            await userManager.CreateAsync(adminUser, adminPassword);
+            await userManager.AddToRoleAsync(adminUser, identityRole.Name);
         }
     }
 }
