@@ -57,7 +57,7 @@ else
         {
             <div class="col-md-4">
                 <div class="card-img-top img-fluid mb-3">
-                    <img class="img-fluid img-thumbnail card-img-top" src="@car.Url" alt="Responsive image" style=" width:90%; height: 250px !important;">
+                    <img class="img-fluid img-thumbnail card-img-top" src="@car.Url" alt="Responsive image" style=" width:100%; height: 250px !important;">
                     <div class="card-body" style="width: 18rem;">
                         <h5 class="card-title">@car.ModelName (@car.ModelYear)</h5>
                         <a asp-controller="Cars" asp-action="Details" asp-route-id="@car.Id" class="btn btn-primary">Details</a>
@@ -112,8 +112,7 @@ else
 
     <script type="text/javascript">
         $(function () {
-
-            $('#carMessage').hide(1000);
+            $('#carMessage').hide(4000);
         });
     </script>
 }

@@ -113,9 +113,9 @@
                 return this.View(carModel);
             }
 
-            this.TempData["Message"] = "Car added successfully.";
+            this.TempData["Message"] = "Car was added successfully.";
 
-            return RedirectToAction(nameof(MyCars));
+            return RedirectToAction(nameof(this.MyCars));
         }
 
         [Authorize]
@@ -208,20 +208,33 @@
                 return BadRequest();
             }
 
-            await this.carService.EditCarAsync(
-                id,
-                carModel.BrandId,
-                carModel.ModelId,
-                carModel.ColorId,
-                carModel.CarTypeId,
-                carModel.FuelId,
-                carModel.TransmissionId,
-                carModel.Year,
-                carModel.DailyPrice,
-                carModel.SeatsCount,
-                carModel.ImageUrl,
-                carModel.Description
-                );
+            var imagePath = $"{environment.WebRootPath}/images";
+
+            try
+            {
+                await this.carService.EditCarAsync(
+                    id,
+                    carModel.BrandId,
+                    carModel.ModelId,
+                    carModel.ColorId,
+                    carModel.CarTypeId,
+                    carModel.FuelId,
+                    carModel.TransmissionId,
+                    carModel.Year,
+                    carModel.DailyPrice,
+                    carModel.SeatsCount,
+                    carModel.ImageUrl,
+                    carModel.Description,
+                    carModel.Images,
+                    imagePath,
+                    companyId
+                    );
+            }
+            catch (Exception ex)
+            {
+                this.ModelState.AddModelError("", ex.Message);
+                return this.View(carModel);
+            }
 
             this.TempData["Message"] = "The car was edited successfully.";
 
@@ -244,7 +257,7 @@
 
             this.TempData["Message"] = "The car was removed successfully.";
 
-            return RedirectToAction(nameof(CarsController.MyCars), "Cars");
+            return RedirectToAction(nameof(this.MyCars), this);
         }
 
         [Authorize]

@@ -24,6 +24,11 @@
 
         public virtual Destination Destination { get; set; }
 
+        [ForeignKey(nameof(Client))]
+        public int ClientId { get; set; }
+
+        public virtual Client Client { get; set; }
+
         [ForeignKey(nameof(Company))]
         public int CompanyId { get; set; }
 

@@ -256,6 +256,9 @@ namespace Oversteer.Web.Data.Migrations
                     b.Property<int>("CarId")
                         .HasColumnType("int");
 
+                    b.Property<int>("ClientId")
+                        .HasColumnType("int");
+
                     b.Property<int>("CompanyId")
                         .HasColumnType("int");
 
@@ -271,6 +274,8 @@ namespace Oversteer.Web.Data.Migrations
                     b.HasKey("Id");
 
                     b.HasIndex("CarId");
+
+                    b.HasIndex("ClientId");
 
                     b.HasIndex("CompanyId");
 
@@ -947,6 +952,12 @@ namespace Oversteer.Web.Data.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
+                    b.HasOne("Oversteer.Models.Users.Client", "Client")
+                        .WithMany()
+                        .HasForeignKey("ClientId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
                     b.HasOne("Oversteer.Models.Users.Company", "Company")
                         .WithMany("Rentals")
                         .HasForeignKey("CompanyId")
@@ -960,6 +971,8 @@ namespace Oversteer.Web.Data.Migrations
                         .IsRequired();
 
                     b.Navigation("Car");
+
+                    b.Navigation("Client");
 
                     b.Navigation("Company");
 

@@ -9,6 +9,8 @@
     using AutoMapper;
     using AutoMapper.QueryableExtensions;
 
+    using Microsoft.AspNetCore.Http;
+
     using Oversteer.Models.Cars;
     using Oversteer.Web.Data;
     using Oversteer.Web.Models.Cars;
@@ -47,28 +49,7 @@
 
             Directory.CreateDirectory($"{imagePath}/cars/");
 
-            foreach (var image in carModel.Images)
-            {
-                var extension = Path.GetExtension(image.FileName).TrimStart('.');
-
-                if (!AllowedExtensions.Any(x => extension.EndsWith(x)))
-                {
-                    throw new Exception($"Invalid image extension {extension}");
-                }
-
-                var dbImage = new CarImage()
-                {
-                    CompanyId = companyId,
-                    Extension = extension
-                };
-
-                car.CarImages.Add(dbImage);
-
-                var physicalPath = $"{imagePath}/cars/{dbImage.Id}.{extension}";
-
-                using Stream stream = new FileStream(physicalPath, FileMode.Create);
-                await image.CopyToAsync(stream);
-            }
+            await UploadImages(carModel.Images, companyId, imagePath, car);
 
             await this.data.Cars.AddAsync(car);
             await this.data.SaveChangesAsync();
@@ -85,7 +66,7 @@
         }
 
         public async Task<bool> EditCarAsync(int carId, int brandId, int modelId, int colorId, int carTypeId, int fuelId, int transmissionId, int? year,
-            decimal? dailyPrice, int? seatsCount, string imageUrl, string description)
+            decimal? dailyPrice, int? seatsCount, string imageUrl, string description, IEnumerable<IFormFile> images, string imagePath, int companyId)
         {
             var carData = this.data.Cars.Find(carId);
 
@@ -104,6 +85,9 @@
             carData.DailyPrice = (decimal)dailyPrice;
             carData.SeatsCount = (int)seatsCount;
             carData.Description = description;
+            carData.CarImages.Clear();
+
+            await UploadImages(images, companyId, imagePath, carData);
 
             await this.data.SaveChangesAsync();
 
@@ -340,6 +324,33 @@
             };
 
             return carsQuery;
+        }
+
+
+        private async Task UploadImages(IEnumerable<IFormFile> images, int companyId, string imagePath, Car car)
+        {
+            foreach (var image in images)
+            {
+                var extension = Path.GetExtension(image.FileName).TrimStart('.');
+
+                if (!AllowedExtensions.Any(x => extension.EndsWith(x)))
+                {
+                    throw new Exception($"Invalid image extension {extension}");
+                }
+
+                var dbImage = new CarImage()
+                {
+                    CompanyId = companyId,
+                    Extension = extension
+                };
+
+                car.CarImages.Add(dbImage);
+
+                var physicalPath = $"{imagePath}/cars/{dbImage.Id}.{extension}";
+
+                using Stream stream = new FileStream(physicalPath, FileMode.Create);
+                await image.CopyToAsync(stream);
+            }
         }
     }
 }
