@@ -44,7 +44,8 @@
                 DailyPrice = (decimal)carModel.DailyPrice,
                 SeatsCount = (int)carModel.SeatsCount,
                 Description = carModel.Description,
-                CompanyId = companyId
+                CompanyId = companyId,
+                LocationId = carModel.LocationId
             };
 
             Directory.CreateDirectory($"{imagePath}/cars/");

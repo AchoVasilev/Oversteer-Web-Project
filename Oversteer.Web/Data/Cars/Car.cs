@@ -5,9 +5,9 @@
     using System.ComponentModel.DataAnnotations;
     using System.ComponentModel.DataAnnotations.Schema;
 
-    using Oversteer.Models.Add;
     using Oversteer.Models.Users;
     using Oversteer.Web.Data.Cars;
+    using Oversteer.Web.Data.Rentals;
 
     public class Car
     {
@@ -30,6 +30,12 @@
         public decimal DailyPrice { get; set; }
 
         public int SeatsCount { get; set; }
+
+        public bool IsDeleted { get; set; } = false;
+
+        public bool IsAvailable { get; set; } = true;
+
+        public DateTime? DeleteDate { get; set; }
 
         [Required]
         public string Description { get; set; }
@@ -59,16 +65,10 @@
 
         public virtual Company Company { get; init; }
 
-        [ForeignKey(nameof(CarAdd))]
-        public int CarAddId { get; init; }
+        [ForeignKey(nameof(Location))]
+        public int LocationId { get; init; }
 
-        public virtual CarAdd CarAdd { get; init; }
-
-        public bool IsDeleted { get; set; } = false;
-
-        public bool IsAvailable { get; set; } = true;
-
-        public DateTime? DeleteDate { get; set; }
+        public virtual Location Location { get; init; }
 
         public virtual ICollection<CarImage> CarImages { get; set; } = new HashSet<CarImage>();
 

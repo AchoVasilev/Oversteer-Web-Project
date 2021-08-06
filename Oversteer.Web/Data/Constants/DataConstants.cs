@@ -49,6 +49,9 @@
             public const int CityNameMinLength = 3;
             public const int CityNameMaxLength = 60;
 
+            public const int AddressNameMinLength = 3;
+            public const int AddressNameMaxLength = 200;
+
             public const int ZipCodeMinLength = 1;
             public const int ZipCodeMaxLength = 10000;
         }

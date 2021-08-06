@@ -7,15 +7,18 @@
 
     using Oversteer.Web.Infrastructure;
     using Oversteer.Web.Models.Companies;
+    using Oversteer.Web.Models.Locations;
     using Oversteer.Web.Services.Contracts;
 
     public class CompaniesController : Controller
     {
         private readonly ICompaniesService companiesService;
+        private readonly ILocationService locationService;
 
-        public CompaniesController(ICompaniesService companiesService)
+        public CompaniesController(ICompaniesService companiesService, ILocationService locationService)
         {
             this.companiesService = companiesService;
+            this.locationService = locationService;
         }
 
         [Authorize]
@@ -40,7 +43,35 @@
 
             await this.companiesService.CreateCompanyAsync(companyModel, userId);
 
-            return RedirectToAction("All", "Cars");
+            return RedirectToAction("Add", "Cars");
+        }
+
+        [Authorize]
+        public IActionResult AddLocation() => this.View();
+
+        [HttpPost]
+        [Authorize]
+        public async Task<IActionResult> AddLocation(CreateLocationFormModel model)
+        {
+            var userId = this.User.GetId();
+            var userIsCompany = this.companiesService.UserIsCompany(userId);
+            var companyId = this.companiesService.GetCurrentCompanyId(userId);
+
+            if (!userIsCompany)
+            {
+                return BadRequest();
+            }
+
+            if (!ModelState.IsValid)
+            {
+                return this.View(model);
+            }
+
+            await this.locationService.AddLocationAsync(companyId, model);
+
+            this.TempData["Message"] = "Your office/car location was added successfully.";
+
+            return RedirectToAction(nameof(this.AddLocation));
         }
     }
 }

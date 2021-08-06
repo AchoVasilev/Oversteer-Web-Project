@@ -4,8 +4,8 @@
     using System.ComponentModel.DataAnnotations;
     using System.ComponentModel.DataAnnotations.Schema;
 
-    using Oversteer.Models.Add;
     using Oversteer.Models.Cars;
+    using Oversteer.Web.Data.Rentals;
 
     using static Oversteer.Models.Constants.DataConstants;
     using static Oversteer.Models.Constants.DataConstants.Users;
@@ -28,16 +28,14 @@
 
         [ForeignKey(nameof(ApplicationUser))]
         [Required]
-        public string UserId { get; set; }
+        public string UserId { get; init; }
 
-        public virtual ApplicationUser User { get; set; }
+        public virtual ApplicationUser User { get; init; }
 
         public virtual ICollection<Car> Cars { get; set; } = new HashSet<Car>();
 
         public virtual ICollection<CompanyService> CompanyServices { get; set; } = new HashSet<CompanyService>();
 
-        public virtual ICollection<CarAdd> CarAdds { get; set; } = new HashSet<CarAdd>();
-
-        public virtual ICollection<Rental> Rentals { get; set; } = new HashSet<Rental>();
+        public virtual ICollection<Location> Locations { get; set; } = new HashSet<Location>();
     }
 }

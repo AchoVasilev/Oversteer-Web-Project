@@ -246,7 +246,7 @@
         {
             var userId = this.User.GetId();
 
-            if (!this.companiesService.UserIsCompany(userId) || !User.IsAdmin())
+            if (!this.companiesService.UserIsCompany(userId) && !User.IsAdmin())
             {
                 return RedirectToAction(nameof(CompaniesController.Create), "Companies");
             }
@@ -257,7 +257,7 @@
 
             this.TempData["Message"] = "The car was removed successfully.";
 
-            return RedirectToAction(nameof(this.MyCars), this);
+            return RedirectToAction(nameof(this.MyCars));
         }
 
         [Authorize]

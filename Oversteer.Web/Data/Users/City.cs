@@ -4,7 +4,6 @@
     using System.ComponentModel.DataAnnotations;
     using System.ComponentModel.DataAnnotations.Schema;
 
-    using Oversteer.Models.Add;
     using Oversteer.Web.Data.Users;
 
     public class City
@@ -23,8 +22,6 @@
         public virtual ICollection<ZipCode> ZipCodes { get; set; } = new HashSet<ZipCode>();
 
         public virtual ICollection<ApplicationUser> Users { get; set; } = new HashSet<ApplicationUser>();
-
-        public virtual ICollection<Destination> Destinations { get; set; } = new HashSet<Destination>();
 
         public virtual ICollection<Address> Addresses { get; set; } = new HashSet<Address>();
     }

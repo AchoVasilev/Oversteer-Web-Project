@@ -1,16 +1,18 @@
 ﻿namespace Oversteer.Web.Data
 {
+    using System.Linq;
 
     using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
     using Microsoft.EntityFrameworkCore;
-
-    using Oversteer.Models.Add;
     using Oversteer.Models.Cars;
     using Oversteer.Models.Others;
     using Oversteer.Models.Users;
+    using Oversteer.Web.Data.Rentals;
     using Oversteer.Web.Data.Cars;
 
     using static Oversteer.Models.Constants.DataConstants;
+    using Oversteer.Models.Rentals;
+    using Oversteer.Web.Data.Users;
 
     public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
     {
@@ -22,6 +24,8 @@
         public DbSet<BankCard> BankCards { get; set; }
 
         public DbSet<City> Cities { get; set; }
+
+        public DbSet<Address> Addresses { get; set; }
 
         public DbSet<Client> Clients { get; set; }
 
@@ -47,11 +51,7 @@
 
         public DbSet<Fuel> Fuels { get; set; }
 
-        public DbSet<CarAdd> CarAdds { get; set; }
-
-        public DbSet<Destination> Destinations { get; set; }
-
-        public DbSet<Payment> Payments { get; set; }
+        public DbSet<Location> Locations { get; set; }
 
         public DbSet<Rental> Rentals { get; set; }
 
@@ -90,27 +90,6 @@
                     .OnDelete(DeleteBehavior.Restrict);
             });
 
-            builder.Entity<Destination>(entity =>
-               {
-                   entity.HasOne(x => x.Country)
-                       .WithMany(x => x.Destinations)
-                       .HasForeignKey(x => x.CountryId)
-                       .OnDelete(DeleteBehavior.Restrict);
-
-                   entity.HasOne(x => x.City)
-                       .WithMany(x => x.Destinations)
-                       .HasForeignKey(x => x.CityId)
-                       .OnDelete(DeleteBehavior.Restrict);
-               });
-
-            builder.Entity<Rental>(entity =>
-            {
-                entity.HasOne(x => x.Destination)
-                    .WithMany(x => x.Rental)
-                    .HasForeignKey(x => x.DestinationId)
-                    .OnDelete(DeleteBehavior.Restrict);
-            });
-
             builder.Entity<Car>(entity =>
             {
                 entity.HasOne(x => x.Fuel)
@@ -143,11 +122,6 @@
                      .HasForeignKey(x => x.CompanyId)
                      .OnDelete(DeleteBehavior.Restrict);
 
-                entity.HasOne(x => x.CarAdd)
-                    .WithOne(x => x.Car)
-                    .HasForeignKey<Car>(x => x.CarAddId)
-                    .OnDelete(DeleteBehavior.Restrict);
-
                 entity.Property(p => p.DailyPrice)
                     .HasColumnType(SpecifyDecimalColumnType);
             });
@@ -168,18 +142,13 @@
                     .OnDelete(DeleteBehavior.Restrict);
             });
 
-            builder.Entity<CarAdd>(entity =>
+            var entityTypes = builder.Model.GetEntityTypes().ToList();
+            var foreignKeys = entityTypes
+                    .SelectMany(e => e.GetForeignKeys().Where(f => f.DeleteBehavior == DeleteBehavior.Cascade));
+            foreach (var foreignKey in foreignKeys)
             {
-                entity.HasOne(x => x.Car)
-                    .WithOne(x => x.CarAdd)
-                    .HasForeignKey<CarAdd>(x => x.CarId)
-                    .OnDelete(DeleteBehavior.Restrict);
-
-                entity.HasOne(x => x.Company)
-                    .WithMany(x => x.CarAdds)
-                    .HasForeignKey(x => x.CompanyId)
-                    .OnDelete(DeleteBehavior.Restrict);
-            });
+                foreignKey.DeleteBehavior = DeleteBehavior.Restrict;
+            }
 
             base.OnModelCreating(builder);
         }

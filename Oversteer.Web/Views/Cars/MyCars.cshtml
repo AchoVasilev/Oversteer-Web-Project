@@ -65,8 +65,31 @@ else
                         @if (ViewBag.AllowCarEdit || User.IsAdmin())
                         {
                             <a asp-controller="Cars" asp-action="Edit" asp-route-id="@car.Id" class="btn btn-warning">Edit</a>
-                            <a asp-controller="Cars" asp-action="Delete" asp-route-id="@car.Id" class="btn btn-danger">Delete</a>
+                            <a asp-controller="Cars" asp-action="Delete" asp-route-id="@car.Id"
+                               data-toggle="modal" data-target="#modalDelete" class="btn btn-danger">Delete</a>
                         }
+                    </div>
+                </div>
+            </div>
+
+            <div class="modal fade" id="modalDelete" tabindex="-1" role="dialog" aria-labelledby="modalDeleteLabel" aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="modalDeleteLabel">Confirm Delete</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <p>
+                                Do you confirm these changes?
+                            </p>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                            <a asp-controller="Cars" asp-action="Delete" asp-route-id="@car.Id" class="btn btn-danger">Delete</a>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -103,6 +126,7 @@ else
     </div>
 }
 
+
 @section Scripts {
     <script type="text/javascript" language="javascript">
         function change() {
@@ -114,5 +138,9 @@ else
         $(function () {
             $('#carMessage').hide(4000);
         });
+    </script>
+
+    <script type="text/javascript">
+        $('modalDelete').modal('')
     </script>
 }

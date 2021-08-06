@@ -62,7 +62,8 @@ namespace Oversteer.Web
                 .AddTransient<ICountriesService, CountriesService>()
                 .AddTransient<ICitiesService, CitiesService>()
                 .AddTransient<IZipCodesService, ZipCodesService>()
-                .AddTransient<IRentingService, RentingService>();
+                .AddTransient<IRentingService, RentingService>()
+                .AddTransient<ILocationService, LocationService>();
 
             services.AddTransient<IEmailSender, MailKitSender>();
             services.Configure<MailKitEmailSenderOptions>(options =>
