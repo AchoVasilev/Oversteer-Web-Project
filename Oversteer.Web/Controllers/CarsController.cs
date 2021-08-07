@@ -8,6 +8,8 @@
     using Microsoft.AspNetCore.Hosting;
     using Microsoft.AspNetCore.Mvc;
 
+    using Oversteer.Web.Areas.Company.Controllers;
+    using Oversteer.Web.Areas.Company.Services.Companies;
     using Oversteer.Web.Infrastructure;
     using Oversteer.Web.Models.Cars;
     using Oversteer.Web.Services.Contracts;
@@ -34,7 +36,7 @@
 
             if (!this.companiesService.UserIsCompany(userId))
             {
-                return RedirectToAction(nameof(CompaniesController.Create), "Companies");
+                return this.RedirectToAction(nameof(CompaniesController.Create), "Companies");
             }
 
             return this.View(new CarFormModel()
@@ -58,7 +60,7 @@
 
             if (companyId == 0)
             {
-                return RedirectToAction(nameof(CompaniesController.Create), "Companies");
+                return this.RedirectToAction(nameof(CompaniesController.Create), "Companies");
             }
 
             if (!this.carService.GetBrandId(carModel.BrandId))
@@ -115,7 +117,7 @@
 
             this.TempData["Message"] = "Car was added successfully.";
 
-            return RedirectToAction(nameof(this.MyCars));
+            return this.RedirectToAction(nameof(this.MyCars));
         }
 
         [Authorize]
@@ -125,14 +127,14 @@
 
             if (!this.companiesService.UserIsCompany(userId) && !User.IsAdmin())
             {
-                return RedirectToAction(nameof(CompaniesController.Create), "Companies");
+                return this.RedirectToAction(nameof(CompaniesController.Create), "Companies");
             }
 
             var car = this.carService.GetCarDetails(id);
 
             if (car.CompanyUserId != userId && !User.IsAdmin())
             {
-                return Unauthorized();
+                return this.Unauthorized();
             }
 
             var carForm = new CarFormModel()
@@ -158,7 +160,7 @@
 
             if (!this.companiesService.UserIsCompany(currentUserId) && !User.IsAdmin())
             {
-                return RedirectToAction(nameof(CompaniesController.Create), "Companies");
+                return this.RedirectToAction(nameof(CompaniesController.Create), "Companies");
             }
 
             if (!this.carService.GetBrandId(carModel.BrandId))
@@ -205,7 +207,7 @@
 
             if (!this.carService.IsCarFromCompany(id, companyId) && !User.IsAdmin())
             {
-                return BadRequest();
+                return this.BadRequest();
             }
 
             var imagePath = $"{environment.WebRootPath}/images";
@@ -238,7 +240,7 @@
 
             this.TempData["Message"] = "The car was edited successfully.";
 
-            return RedirectToAction(nameof(MyCars));
+            return this.RedirectToAction(nameof(MyCars));
         }
 
         [Authorize]
@@ -248,7 +250,7 @@
 
             if (!this.companiesService.UserIsCompany(userId) && !User.IsAdmin())
             {
-                return RedirectToAction(nameof(CompaniesController.Create), "Companies");
+                return this.RedirectToAction(nameof(CompaniesController.Create), "Companies");
             }
 
             var companyId = this.companiesService.GetCurrentCompanyId(userId);
@@ -257,7 +259,7 @@
 
             this.TempData["Message"] = "The car was removed successfully.";
 
-            return RedirectToAction(nameof(this.MyCars));
+            return this.RedirectToAction(nameof(this.MyCars));
         }
 
         [Authorize]
@@ -269,7 +271,7 @@
 
             if (!this.companiesService.UserIsCompany(currentUserId))
             {
-                return RedirectToAction(nameof(CompaniesController.Create), "Companies");
+                return this.RedirectToAction(nameof(CompaniesController.Create), "Companies");
             }
 
             return this.View(new CarsSearchQueryModel()

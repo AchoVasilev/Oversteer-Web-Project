@@ -50,7 +50,7 @@
 
             Directory.CreateDirectory($"{imagePath}/cars/");
 
-            await UploadImages(carModel.Images, companyId, imagePath, car);
+            await this.UploadImages(carModel.Images, companyId, imagePath, car);
 
             await this.data.Cars.AddAsync(car);
             await this.data.SaveChangesAsync();
@@ -88,7 +88,7 @@
             carData.Description = description;
             carData.CarImages.Clear();
 
-            await UploadImages(images, companyId, imagePath, carData);
+            await this.UploadImages(images, companyId, imagePath, carData);
 
             await this.data.SaveChangesAsync();
 

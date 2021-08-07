@@ -13,13 +13,13 @@ namespace Oversteer.Web
     using Microsoft.Extensions.Hosting;
 
     using Oversteer.Models.Users;
+    using Oversteer.Web.Areas.Company.Services.Companies;
     using Oversteer.Web.Data;
     using Oversteer.Web.Infrastructure;
     using Oversteer.Web.Models.Email;
     using Oversteer.Web.Services;
     using Oversteer.Web.Services.Cars;
     using Oversteer.Web.Services.Cities;
-    using Oversteer.Web.Services.Companies;
     using Oversteer.Web.Services.Contracts;
     using Oversteer.Web.Services.Countries;
     using Oversteer.Web.Services.EmailSenders;
@@ -68,12 +68,12 @@ namespace Oversteer.Web
             services.AddTransient<IEmailSender, MailKitSender>();
             services.Configure<MailKitEmailSenderOptions>(options =>
             {
-                options.HostAddress = Configuration["ExternalProviders:MailKit:SMTP:Address"];
-                options.HostPort = Convert.ToInt32(Configuration["ExternalProviders:MailKit:SMTP:Port"]);
-                options.HostUsername = Configuration["ExternalProviders:MailKit:SMTP:Account"];
-                options.HostPassword = Configuration["ExternalProviders:MailKit:SMTP:Password"];
-                options.SenderEmail = Configuration["ExternalProviders:MailKit:SMTP:SenderEmail"];
-                options.SenderName = Configuration["ExternalProviders:MailKit:SMTP:SenderName"];
+                options.HostAddress = Configuration["SmtpSettings:Server"];
+                options.HostPort = Convert.ToInt32(Configuration["SmtpSettings:Port"]);
+                options.HostUsername = Configuration["SmtpSettings:Username"];
+                options.HostPassword = Configuration["SmtpSettings:Password"];
+                options.SenderEmail = Configuration["SmtpSettings:SenderEmail"];
+                options.SenderName = Configuration["SmtpSettings:SenderName"];
             });
 
             services.AddAutoMapper(typeof(Startup));
@@ -112,6 +112,10 @@ namespace Oversteer.Web
                 .UseAuthorization()
                 .UseEndpoints(endpoints =>
                 {
+                    endpoints.MapControllerRoute(
+                        name: "areas",
+                        pattern: "{area:exists}/{controller=Home}/{action=Index}/{id?}");
+
                     endpoints.MapControllerRoute(
                         name: "default",
                         pattern: "{controller=Home}/{action=Index}/{id?}");

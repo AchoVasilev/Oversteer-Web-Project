@@ -49,7 +49,7 @@ using Oversteer.Web.Models.Rents;
 #nullable disable
 #nullable restore
 #line 6 "D:\Курс програмиране\CSharp - ASP.NET Core\Oversteer\Oversteer\Oversteer.Web\Views\_ViewImports.cshtml"
-using Oversteer.Web.Models.Companies;
+using Oversteer.Web.Areas.Company.Models.Companies;
 
 #line default
 #line hidden
@@ -77,13 +77,20 @@ using Oversteer.Web.Infrastructure;
 #nullable disable
 #nullable restore
 #line 10 "D:\Курс програмиране\CSharp - ASP.NET Core\Oversteer\Oversteer\Oversteer.Web\Views\_ViewImports.cshtml"
-using Oversteer.Web.Models.Locations;
+using Oversteer.Web.Areas.Company.Models.Locations;
+
+#line default
+#line hidden
+#nullable disable
+#nullable restore
+#line 11 "D:\Курс програмиране\CSharp - ASP.NET Core\Oversteer\Oversteer\Oversteer.Web\Views\_ViewImports.cshtml"
+using Oversteer.Web.Areas.Company.Services.Companies;
 
 #line default
 #line hidden
 #nullable disable
     [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"7d3ee04e196b9aa40d31d86ca36cf55f5f2c35d3", @"/Views/Home/Index.cshtml")]
-    [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"013da3dc64eea2dead62a1713877bbf218c43a29", @"/Views/_ViewImports.cshtml")]
+    [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"2bef565dc2bec32c6f79a8332afc202374df3f74", @"/Views/_ViewImports.cshtml")]
     public class Views_Home_Index : global::Microsoft.AspNetCore.Mvc.Razor.RazorPage<IndexViewModel>
     {
         private static readonly global::Microsoft.AspNetCore.Razor.TagHelpers.TagHelperAttribute __tagHelperAttribute_0 = new global::Microsoft.AspNetCore.Razor.TagHelpers.TagHelperAttribute("asp-controller", "Cars", global::Microsoft.AspNetCore.Razor.TagHelpers.HtmlAttributeValueStyle.DoubleQuotes);
@@ -139,7 +146,7 @@ using Oversteer.Web.Models.Locations;
 #line hidden
 #nullable disable
             WriteLiteral("    <div class=\"jumbotron\">\r\n        <h1 class=\"display-4\">Welcome to Oversteer!</h1>\r\n        <p class=\"lead\">There are no available cars at the moment, so why don\'t you add one?\'</p>\r\n        <hr class=\"my-4\">\r\n        <p class=\"lead\">\r\n            ");
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "7d3ee04e196b9aa40d31d86ca36cf55f5f2c35d38922", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "7d3ee04e196b9aa40d31d86ca36cf55f5f2c35d39189", async() => {
                 WriteLiteral("Add Car");
             }
             );
@@ -167,7 +174,7 @@ using Oversteer.Web.Models.Locations;
 #line hidden
 #nullable disable
             WriteLiteral("\r\n<div class=\"mb-4\"></div>\r\n\r\n");
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("form", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "7d3ee04e196b9aa40d31d86ca36cf55f5f2c35d310734", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("form", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "7d3ee04e196b9aa40d31d86ca36cf55f5f2c35d311001", async() => {
                 WriteLiteral("\r\n    <div class=\"row align-items-center mb-4\">\r\n        <div class=\"col-md-6\">\r\n            <h3 class=\"m-0\">Begin your trip here</h3>\r\n        </div>\r\n        <div class=\"col-md-6 text-md-right\">\r\n");
 #nullable restore
 #line 26 "D:\Курс програмиране\CSharp - ASP.NET Core\Oversteer\Oversteer\Oversteer.Web\Views\Home\Index.cshtml"
@@ -178,7 +185,7 @@ using Oversteer.Web.Models.Locations;
 #line hidden
 #nullable disable
                 WriteLiteral("                ");
-                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "7d3ee04e196b9aa40d31d86ca36cf55f5f2c35d311495", async() => {
+                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "7d3ee04e196b9aa40d31d86ca36cf55f5f2c35d311762", async() => {
 #nullable restore
 #line 28 "D:\Курс програмиране\CSharp - ASP.NET Core\Oversteer\Oversteer\Oversteer.Web\Views\Home\Index.cshtml"
                                                                           Write(Model.TotalCars);
@@ -213,7 +220,7 @@ using Oversteer.Web.Models.Locations;
 #line hidden
 #nullable disable
                 WriteLiteral("                ");
-                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "7d3ee04e196b9aa40d31d86ca36cf55f5f2c35d313561", async() => {
+                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "7d3ee04e196b9aa40d31d86ca36cf55f5f2c35d313828", async() => {
 #nullable restore
 #line 32 "D:\Курс програмиране\CSharp - ASP.NET Core\Oversteer\Oversteer\Oversteer.Web\Views\Home\Index.cshtml"
                                                                           Write(Model.TotalCars);
@@ -350,7 +357,7 @@ WriteAttributeValue(" ", 3083, car.ModelName, 3084, 14, false);
 #line hidden
 #nullable disable
                 WriteLiteral("<span>/day</span></p>\r\n                                    </div>\r\n                                    <p class=\"d-flex mb-0 d-block\"><a href=\"#\" class=\"btn btn-primary py-2 mr-1\">Book now</a> ");
-                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "7d3ee04e196b9aa40d31d86ca36cf55f5f2c35d320691", async() => {
+                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "7d3ee04e196b9aa40d31d86ca36cf55f5f2c35d320958", async() => {
                     WriteLiteral("Details");
                 }
                 );

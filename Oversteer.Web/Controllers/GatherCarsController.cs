@@ -19,7 +19,7 @@
         {
             await this.carsScraper.PopulateDatabaseWithCarBrandsAndModels();
 
-            return RedirectToAction(nameof(HomeController.Index), "Home");
+            return this.RedirectToAction(nameof(HomeController.Index), "Home");
         }
     }
 }

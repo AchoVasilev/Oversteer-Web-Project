@@ -25,7 +25,7 @@
             var cars = this.carsService.GetThreeNewestCars();
             var totalCars = this.homeService.GetTotalCarsCount();
 
-            return View(new IndexViewModel()
+            return this.View(new IndexViewModel()
             {
                 TotalCars = totalCars,
                 Cars = cars.ToList()
