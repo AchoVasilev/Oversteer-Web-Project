@@ -73,5 +73,7 @@
         public virtual ICollection<CarImage> CarImages { get; set; } = new HashSet<CarImage>();
 
         public virtual ICollection<CarFeature> CarFeatures { get; set; } = new HashSet<CarFeature>();
+
+        public virtual ICollection<CarRentDays> RentDays { get; set; } = new HashSet<CarRentDays>();
     }
 }

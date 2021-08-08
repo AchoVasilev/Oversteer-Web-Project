@@ -459,7 +459,6 @@ D:\Курс програмиране\CSharp - ASP.NET Core\Oversteer\Oversteer\O
 D:\Курс програмиране\CSharp - ASP.NET Core\Oversteer\Oversteer\Oversteer.Web\obj\Debug\net5.0\Razor\Views\Countries\Add.cshtml.g.cs
 D:\Курс програмиране\CSharp - ASP.NET Core\Oversteer\Oversteer\Oversteer.Web\obj\Debug\net5.0\Razor\Areas\Identity\Pages\Account\RegisterConfirmation.cshtml.g.cs
 D:\Курс програмиране\CSharp - ASP.NET Core\Oversteer\Oversteer\Oversteer.Web\obj\Debug\net5.0\Razor\Views\Cars\ById.cshtml.g.cs
-D:\Курс програмиране\CSharp - ASP.NET Core\Oversteer\Oversteer\Oversteer.Web\obj\Debug\net5.0\Razor\Views\Rents\Add.cshtml.g.cs
 D:\Курс програмиране\CSharp - ASP.NET Core\Oversteer\Oversteer\Oversteer.Web\bin\Debug\net5.0\MailKit.dll
 D:\Курс програмиране\CSharp - ASP.NET Core\Oversteer\Oversteer\Oversteer.Web\bin\Debug\net5.0\MimeKit.dll
 D:\Курс програмиране\CSharp - ASP.NET Core\Oversteer\Oversteer\Oversteer.Web\bin\Debug\net5.0\BouncyCastle.Crypto.dll
@@ -474,3 +473,5 @@ D:\Курс програмиране\CSharp - ASP.NET Core\Oversteer\Oversteer\O
 D:\Курс програмиране\CSharp - ASP.NET Core\Oversteer\Oversteer\Oversteer.Web\bin\Debug\net5.0\ElasticEmail.WebApiClient.dll
 D:\Курс програмиране\CSharp - ASP.NET Core\Oversteer\Oversteer\Oversteer.Web\obj\Debug\net5.0\Razor\Areas\Company\Views\Companies\Details.cshtml.g.cs
 D:\Курс програмиране\CSharp - ASP.NET Core\Oversteer\Oversteer\Oversteer.Web\obj\Debug\net5.0\Razor\Areas\Company\Views\Companies\Cars.cshtml.g.cs
+D:\Курс програмиране\CSharp - ASP.NET Core\Oversteer\Oversteer\Oversteer.Web\obj\Debug\net5.0\Razor\Views\Rentals\Order.cshtml.g.cs
+D:\Курс програмиране\CSharp - ASP.NET Core\Oversteer\Oversteer\Oversteer.Web\obj\Debug\net5.0\Razor\Views\Shared\405.cshtml.g.cs

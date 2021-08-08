@@ -37,7 +37,18 @@
             => this.View();
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
-        public IActionResult Error()
-            => this.View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? this.HttpContext.TraceIdentifier });
+        public IActionResult Error(int? statusCode = null)
+        {
+            if (statusCode.HasValue)
+            {
+                if (statusCode.Value == 404 || statusCode.Value == 500 || statusCode.Value == 405)
+                {
+                    var viewName = statusCode.ToString();
+                    return View(viewName);
+                }
+            }
+
+            return this.View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? this.HttpContext.TraceIdentifier });
+        }
     }
 }

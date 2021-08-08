@@ -10,9 +10,11 @@
     using AutoMapper.QueryableExtensions;
 
     using Microsoft.AspNetCore.Http;
+    using Microsoft.EntityFrameworkCore;
 
     using Oversteer.Models.Cars;
     using Oversteer.Web.Data;
+    using Oversteer.Web.Data.Cars;
     using Oversteer.Web.Models.Cars;
     using Oversteer.Web.Models.Cars.Enumerations;
     using Oversteer.Web.Models.Home;
@@ -140,6 +142,53 @@
             return car;
         }
 
+        public async Task<bool> RentCarAsync(DateTime startRent, DateTime endRent, int carId)
+        {
+            var dates = new List<CarRentDays>();
+            for (var dt = startRent; dt <= endRent; dt = dt.AddDays(1))
+            {
+                dates.Add(new CarRentDays
+                {
+                    CarId = carId,
+                    RentDate = dt,
+                });
+            }
+
+            var car = await this.GetCarById(carId);
+            car.IsAvailable = false;
+
+            await this.data.CarRentDays.AddRangeAsync(dates);
+            await this.data.SaveChangesAsync();
+
+            return true;
+        }
+
+        public async Task<bool> IsRentedAsync(DateTime startDate, DateTime endDate, int carId)
+        {
+            var dates = new List<DateTime>();
+
+            for (var i = startDate; i <= endDate; i.AddDays(1))
+            {
+                dates.Add(i);
+            }
+
+            foreach (var date in dates)
+            {
+                if (await this.data.CarRentDays.AnyAsync(x => x.CarId == carId && x.RentDate == date))
+                {
+                    return true;
+                }
+            }
+
+            return false;
+        }
+
+        public async Task<string> GetCarLocationAsync(int carId)
+            => await this.data.Cars
+                        .Where(x => x.Id == carId)
+                        .Select(x => x.Location.Name)
+                        .FirstOrDefaultAsync();
+
         public IEnumerable<CarIndexViewModel> GetThreeNewestCars()
             => this.data.Cars
                 .Where(x => !x.IsDeleted)
@@ -212,6 +261,11 @@
             => this.data.Cars
                 .Where(x => x.CompanyId == companyId)
                 .Count();
+
+        public async Task<Car> GetCarById(int carId)
+            => await this.data.Cars
+                        .Where(x => x.Id == carId)
+                        .FirstOrDefaultAsync();
 
         public bool GetBrandId(int id)
         {

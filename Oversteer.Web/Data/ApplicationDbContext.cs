@@ -61,6 +61,8 @@
 
         public DbSet<CarFeature> CarFeatures { get; set; }
 
+        public DbSet<CarRentDays> CarRentDays { get; set; }
+
         protected override void OnModelCreating(ModelBuilder builder)
         {
             builder.Entity<ApplicationUser>(entity =>

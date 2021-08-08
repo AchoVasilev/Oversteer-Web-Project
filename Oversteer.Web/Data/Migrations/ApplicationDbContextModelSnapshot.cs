@@ -724,6 +724,26 @@ namespace Oversteer.Web.Data.Migrations
                     b.ToTable("CarModels");
                 });
 
+            modelBuilder.Entity("Oversteer.Web.Data.Cars.CarRentDays", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<int>("CarId")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime>("RentDate")
+                        .HasColumnType("datetime2");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("CarId");
+
+                    b.ToTable("CarRentDays");
+                });
+
             modelBuilder.Entity("Oversteer.Web.Data.Cars.Transmission", b =>
                 {
                     b.Property<int>("Id")
@@ -1100,6 +1120,17 @@ namespace Oversteer.Web.Data.Migrations
                     b.Navigation("CarBrand");
                 });
 
+            modelBuilder.Entity("Oversteer.Web.Data.Cars.CarRentDays", b =>
+                {
+                    b.HasOne("Oversteer.Models.Cars.Car", "Car")
+                        .WithMany("RentDays")
+                        .HasForeignKey("CarId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.Navigation("Car");
+                });
+
             modelBuilder.Entity("Oversteer.Web.Data.Rentals.Location", b =>
                 {
                     b.HasOne("Oversteer.Web.Data.Users.Address", "Address")
@@ -1145,6 +1176,8 @@ namespace Oversteer.Web.Data.Migrations
                     b.Navigation("CarFeatures");
 
                     b.Navigation("CarImages");
+
+                    b.Navigation("RentDays");
                 });
 
             modelBuilder.Entity("Oversteer.Models.Cars.CarBrand", b =>

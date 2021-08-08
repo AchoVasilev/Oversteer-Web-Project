@@ -1,6 +1,7 @@
 namespace Oversteer.Web
 {
     using System;
+    using System.Net;
 
     using Microsoft.AspNetCore.Builder;
     using Microsoft.AspNetCore.Hosting;
@@ -17,8 +18,8 @@ namespace Oversteer.Web
     using Oversteer.Web.Data;
     using Oversteer.Web.Infrastructure;
     using Oversteer.Web.Models.Email;
-    using Oversteer.Web.Services;
     using Oversteer.Web.Services.Cars;
+    using Oversteer.Web.Services.CarScraper;
     using Oversteer.Web.Services.Cities;
     using Oversteer.Web.Services.Clients;
     using Oversteer.Web.Services.Countries;
@@ -104,6 +105,7 @@ namespace Oversteer.Web
 
                 // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
                 app.UseHsts();
+                app.UseStatusCodePagesWithReExecute("/Home/Error", "?statusCode={0}");
             }
 
             app.UseHttpsRedirection()
