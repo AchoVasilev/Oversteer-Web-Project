@@ -16,7 +16,6 @@
     using Oversteer.Web.Models.Cars;
     using Oversteer.Web.Models.Cars.Enumerations;
     using Oversteer.Web.Models.Home;
-    using Oversteer.Web.Services.Contracts;
 
     public class CarsService : ICarsService
     {

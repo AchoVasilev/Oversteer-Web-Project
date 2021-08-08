@@ -20,7 +20,7 @@ namespace Oversteer.Web
     using Oversteer.Web.Services;
     using Oversteer.Web.Services.Cars;
     using Oversteer.Web.Services.Cities;
-    using Oversteer.Web.Services.Contracts;
+    using Oversteer.Web.Services.Clients;
     using Oversteer.Web.Services.Countries;
     using Oversteer.Web.Services.EmailSenders;
     using Oversteer.Web.Services.Home;
@@ -63,7 +63,8 @@ namespace Oversteer.Web
                 .AddTransient<ICitiesService, CitiesService>()
                 .AddTransient<IZipCodesService, ZipCodesService>()
                 .AddTransient<IRentingService, RentingService>()
-                .AddTransient<ILocationService, LocationService>();
+                .AddTransient<ILocationService, LocationService>()
+                .AddTransient<IClientsService, ClientsService>();
 
             services.AddTransient<IEmailSender, MailKitSender>();
             services.Configure<MailKitEmailSenderOptions>(options =>

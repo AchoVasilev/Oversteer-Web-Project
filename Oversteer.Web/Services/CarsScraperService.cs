@@ -12,7 +12,6 @@
     using Oversteer.Web.Data;
     using Oversteer.Web.Data.Cars;
     using Oversteer.Web.Dto;
-    using Oversteer.Web.Services.Contracts;
 
     public class CarsScraperService : ICarsScraperService
     {

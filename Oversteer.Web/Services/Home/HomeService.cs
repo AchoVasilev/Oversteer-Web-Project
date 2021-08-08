@@ -3,7 +3,6 @@
     using System.Linq;
 
     using Oversteer.Web.Data;
-    using Oversteer.Web.Services.Contracts;
 
     public class HomeService : IHomeService
     {

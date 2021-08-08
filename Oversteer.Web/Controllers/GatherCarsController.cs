@@ -4,7 +4,7 @@
 
     using Microsoft.AspNetCore.Mvc;
 
-    using Oversteer.Web.Services.Contracts;
+    using Oversteer.Web.Services;
 
     public class GatherCarsController : Controller
     {

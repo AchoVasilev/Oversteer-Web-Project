@@ -12,7 +12,7 @@
     using Oversteer.Web.Areas.Company.Services.Companies;
     using Oversteer.Web.Infrastructure;
     using Oversteer.Web.Models.Cars;
-    using Oversteer.Web.Services.Contracts;
+    using Oversteer.Web.Services.Cars;
 
     using static Oversteer.Web.Data.Constants.ErrorMessages;
 
@@ -32,7 +32,6 @@
         [Authorize]
         public IActionResult Add()
         {
-           // var currentArea = RouteData.DataTokens["area"];
             var userId = this.User.GetId();
 
             if (!this.companiesService.UserIsCompany(userId))

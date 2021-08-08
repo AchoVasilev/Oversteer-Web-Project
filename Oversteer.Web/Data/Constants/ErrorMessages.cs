@@ -12,7 +12,7 @@
         public const string CarInvalidYear = "Invalid year. The value should be between {0} and {1}.";
         public const string IvalidURL = "The URL you have entered is invalid";
 
-        public class CompanyErrors
+        public class UserErrors
         {
             public const string InvalidNameLength = "Invalid name. The length should be between {0} and {1}.";
             public const string InvalidPhoneNumberLength = "Invalid phone number. The length should be between {0} and {1}.";

@@ -17,6 +17,10 @@
     using Microsoft.Extensions.Logging;
 
     using Oversteer.Models.Users;
+    using Oversteer.Web.Services.Clients;
+
+    using static Oversteer.Models.Constants.DataConstants.Users;
+    using static Oversteer.Web.Data.Constants.ErrorMessages.UserErrors;
 
     [AllowAnonymous]
     public class RegisterModel : PageModel
@@ -25,17 +29,20 @@
         private readonly UserManager<ApplicationUser> userManager;
         private readonly ILogger<RegisterModel> logger;
         private readonly IEmailSender emailSender;
+        private readonly IClientsService clientsService;
 
         public RegisterModel(
             UserManager<ApplicationUser> userManager,
             SignInManager<ApplicationUser> signInManager,
             ILogger<RegisterModel> logger,
-            IEmailSender emailSender)
+            IEmailSender emailSender, 
+            IClientsService clientsService)
         {
             this.userManager = userManager;
             this.signInManager = signInManager;
             this.logger = logger;
             this.emailSender = emailSender;
+            this.clientsService = clientsService;
         }
 
         [BindProperty]
@@ -47,6 +54,21 @@
 
         public class InputModel
         {
+            [Required]
+            [StringLength(NameMaxLength, MinimumLength = NameMinLength)]
+            public string FirstName { get; set; }
+
+            [StringLength(NameMaxLength, MinimumLength = NameMinLength)]
+            public string Surname { get; set; }
+
+            [Required]
+            [StringLength(NameMaxLength, MinimumLength = NameMinLength)]
+            public string LastName { get; set; }
+
+            [MaxLength(PhoneNumberMaxLength)]
+            [RegularExpression(PhoneNumberRegularExpression, ErrorMessage = InvalidPhoneNumber)]
+            public string PhoneNumber { get; set; }
+
             [Required]
             [EmailAddress]
             [Display(Name = "Email")]
@@ -78,7 +100,8 @@
 
             if (this.ModelState.IsValid)
             {
-                var user = new ApplicationUser { UserName = this.Input.Email, Email = this.Input.Email };
+                var userName = string.Join("", this.Input.FirstName, this.Input.LastName);
+                var user = new ApplicationUser { UserName = userName, Email = this.Input.Email };
 
                 var result = await this.userManager.CreateAsync(user, this.Input.Password);
 
@@ -93,6 +116,8 @@
                         pageHandler: null,
                         values: new { area = "Identity", userId = user.Id, code, returnUrl },
                         protocol: this.Request.Scheme);
+
+                    user.Client = await this.clientsService.RegisterUserAsync(Input, user.Id);
 
                     await this.emailSender.SendEmailAsync(this.Input.Email, "Confirm your email",
                         $"Please confirm your account by <a href='{HtmlEncoder.Default.Encode(callbackUrl)}'>clicking here</a>.");
