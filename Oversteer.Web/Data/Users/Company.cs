@@ -24,6 +24,7 @@
         [MaxLength(PhoneNumberMaxLength)]
         public string PhoneNumber { get; set; }
 
+        [Required]
         public string Description { get; set; }
 
         [ForeignKey(nameof(ApplicationUser))]

@@ -472,3 +472,5 @@ D:\Курс програмиране\CSharp - ASP.NET Core\Oversteer\Oversteer\O
 D:\Курс програмиране\CSharp - ASP.NET Core\Oversteer\Oversteer\Oversteer.Web\obj\Debug\net5.0\Razor\Areas\Company\Views\Companies\AddLocation.cshtml.g.cs
 D:\Курс програмиране\CSharp - ASP.NET Core\Oversteer\Oversteer\Oversteer.Web\obj\Debug\net5.0\Razor\Areas\Company\Views\Companies\Create.cshtml.g.cs
 D:\Курс програмиране\CSharp - ASP.NET Core\Oversteer\Oversteer\Oversteer.Web\bin\Debug\net5.0\ElasticEmail.WebApiClient.dll
+D:\Курс програмиране\CSharp - ASP.NET Core\Oversteer\Oversteer\Oversteer.Web\obj\Debug\net5.0\Razor\Areas\Company\Views\Companies\Details.cshtml.g.cs
+D:\Курс програмиране\CSharp - ASP.NET Core\Oversteer\Oversteer\Oversteer.Web\obj\Debug\net5.0\Razor\Areas\Company\Views\Companies\Cars.cshtml.g.cs

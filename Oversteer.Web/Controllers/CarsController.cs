@@ -32,11 +32,12 @@
         [Authorize]
         public IActionResult Add()
         {
+           // var currentArea = RouteData.DataTokens["area"];
             var userId = this.User.GetId();
 
             if (!this.companiesService.UserIsCompany(userId))
             {
-                return this.RedirectToAction(nameof(CompaniesController.Create), "Companies");
+                return this.RedirectToAction(nameof(CompaniesController.Create), "Companies", new { area = "Company" });
             }
 
             return this.View(new CarFormModel()
@@ -60,7 +61,7 @@
 
             if (companyId == 0)
             {
-                return this.RedirectToAction(nameof(CompaniesController.Create), "Companies");
+                return this.RedirectToAction(nameof(CompaniesController.Create), "Companies", new { area = "Company" });
             }
 
             if (!this.carService.GetBrandId(carModel.BrandId))
@@ -127,7 +128,7 @@
 
             if (!this.companiesService.UserIsCompany(userId) && !User.IsAdmin())
             {
-                return this.RedirectToAction(nameof(CompaniesController.Create), "Companies");
+                return this.RedirectToAction(nameof(CompaniesController.Create), "Companies", new { area = "Company" });
             }
 
             var car = this.carService.GetCarDetails(id);
@@ -160,7 +161,7 @@
 
             if (!this.companiesService.UserIsCompany(currentUserId) && !User.IsAdmin())
             {
-                return this.RedirectToAction(nameof(CompaniesController.Create), "Companies");
+                return this.RedirectToAction(nameof(CompaniesController.Create), "Companies", new { area = "Company" });
             }
 
             if (!this.carService.GetBrandId(carModel.BrandId))
@@ -250,7 +251,7 @@
 
             if (!this.companiesService.UserIsCompany(userId) && !User.IsAdmin())
             {
-                return this.RedirectToAction(nameof(CompaniesController.Create), "Companies");
+                return this.RedirectToAction(nameof(CompaniesController.Create), "Companies", new { area = "Company" });
             }
 
             var companyId = this.companiesService.GetCurrentCompanyId(userId);
@@ -271,7 +272,7 @@
 
             if (!this.companiesService.UserIsCompany(currentUserId))
             {
-                return this.RedirectToAction(nameof(CompaniesController.Create), "Companies");
+                return this.RedirectToAction(nameof(CompaniesController.Create), "Companies", new { area = "Company" });
             }
 
             return this.View(new CarsSearchQueryModel()

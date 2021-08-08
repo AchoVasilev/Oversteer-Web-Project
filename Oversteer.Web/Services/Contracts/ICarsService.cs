@@ -5,7 +5,6 @@
 
     using Microsoft.AspNetCore.Http;
 
-    using Oversteer.Models.Cars;
     using Oversteer.Web.Models.Cars;
     using Oversteer.Web.Models.Home;
 
@@ -17,8 +16,6 @@
 
         Task<bool> EditCarAsync(int carId, int brandId, int modelId, int colorId, int carTypeId, int fuelId, int transmissionId, int? year,
             decimal? dailyPrice, int? seatsCount, string imageUrl, string description, IEnumerable<IFormFile> images, string imagePath, int companyId);
-
-        IEnumerable<Car> GetCompanyCars(int companyId);
 
         IEnumerable<CarModelFormModel> GetCarModels();
 
@@ -43,6 +40,8 @@
         CarDetailsFormModel GetCarDetails(int carId);
 
         int GetQueryCarsCount(CarsSearchQueryModel query);
+
+        int GetCompanyCarsCount(int companyId);
 
         bool GetBrandId(int id);
 

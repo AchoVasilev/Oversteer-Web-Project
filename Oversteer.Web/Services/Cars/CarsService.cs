@@ -115,11 +115,6 @@
             => this.SearchCar(query)
                 .ToList();
 
-        public IEnumerable<Car> GetCompanyCars(int companyId)
-            => this.data.Cars
-                .Where(x => x.CompanyId == companyId && !x.IsDeleted)
-                .ToList();
-
         public CarDetailsFormModel GetCarDetails(int carId)
         {
             var details = new CarDetailsFormModel();
@@ -214,6 +209,11 @@
                     .Where(x => !x.IsDeleted)
                     .Count();
 
+        public int GetCompanyCarsCount(int companyId)
+            => this.data.Cars
+                .Where(x => x.CompanyId == companyId)
+                .Count();
+
         public bool GetBrandId(int id)
         {
             if (!this.data.CarBrands.Any(x => x.Id == id))
@@ -306,7 +306,7 @@
 
             if (!string.IsNullOrWhiteSpace(query.SearchTerm) && query.SearchTerm.Contains(' '))
             {
-                var searchArgs = query.SearchTerm.Split(' ', System.StringSplitOptions.RemoveEmptyEntries);
+                var searchArgs = query.SearchTerm.Split(' ', StringSplitOptions.RemoveEmptyEntries);
                 arg = searchArgs.Length >= 1 ? searchArgs[0] : query.SearchTerm;
             }
 
@@ -326,7 +326,6 @@
 
             return carsQuery;
         }
-
 
         private async Task UploadImages(IEnumerable<IFormFile> images, int companyId, string imagePath, Car car)
         {
