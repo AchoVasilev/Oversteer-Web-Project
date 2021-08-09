@@ -18,6 +18,8 @@
 
         public string Url { get; init; }
 
+        public string LocationName { get; init; }
+
         public string TransmissionName { get; init; }
 
         public decimal DailyPrice { get; init; }

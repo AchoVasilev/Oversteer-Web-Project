@@ -1,6 +1,7 @@
 ﻿namespace Oversteer.Web.Controllers
 {
     using System;
+    using System.Globalization;
     using System.Linq;
     using System.Threading.Tasks;
 
@@ -12,6 +13,7 @@
     using Oversteer.Web.Areas.Company.Services.Companies;
     using Oversteer.Web.Infrastructure;
     using Oversteer.Web.Models.Cars;
+    using Oversteer.Web.Models.Home;
     using Oversteer.Web.Services.Cars;
 
     using static Oversteer.Web.Data.Constants.ErrorMessages;
@@ -309,6 +311,38 @@
         public IActionResult ById()
         {
             return this.View();
+        }
+
+        [HttpPost]
+        [Authorize]
+        public IActionResult Available(SearchRentCarModel model)
+        {
+            if (!ModelState.IsValid)
+            {
+                return RedirectToAction("Index", "Home");
+            }
+
+            var cars = this.carService.GetAvailableCars(model.PickUpDate, model.ReturnDate, model.PickUpLocation);
+
+            var start = DateTime.TryParseExact(model.PickUpDate, "dd/MM/yyyy HH:mm", CultureInfo.InvariantCulture,
+                            DateTimeStyles.None, out var startDate);
+
+            var end = DateTime.TryParseExact(model.ReturnDate, "dd/MM/yyyy HH:mm", CultureInfo.InvariantCulture,
+                            DateTimeStyles.None, out var endDate);
+
+            var daysCount = (endDate - startDate).TotalDays;
+
+            var viewModel = new AvailableCarModel()
+            {
+                Cars = cars,
+                StartDate = model.PickUpDate,
+                EndDate = model.ReturnDate,
+                Days = daysCount,
+                PickUpPlace = model.PickUpLocation,
+                ReturnPlace = model.DropOffLocation
+            };
+
+            return this.View(viewModel);
         }
     }
 }

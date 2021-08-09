@@ -2,6 +2,7 @@
 {
     using System;
     using System.Collections.Generic;
+    using System.Globalization;
     using System.IO;
     using System.Linq;
     using System.Threading.Tasks;
@@ -16,6 +17,7 @@
     using Oversteer.Web.Data;
     using Oversteer.Web.Data.Cars;
     using Oversteer.Web.Models.Cars;
+    using Oversteer.Web.Models.Cars.CarItems;
     using Oversteer.Web.Models.Cars.Enumerations;
     using Oversteer.Web.Models.Home;
 
@@ -94,6 +96,40 @@
             await this.data.SaveChangesAsync();
 
             return true;
+        }
+
+        public IEnumerable<CarDto> GetAvailableCars(string startDate, string endDate, string location)
+        {
+            var dates = new List<DateTime>();
+            var startRentDate = ParseDate(startDate);
+            var returnRentDate = ParseDate(endDate);
+
+            for (var date = startRentDate; date <= returnRentDate; date.AddDays(1))
+            {
+                dates.Add(date);
+            }
+
+            var cars = this.data.Cars
+                            .Where(x => x.Location.Name == location)
+                            .Where(x => x.RentDays.Any(y => dates.Contains(y.RentDate)) == false)
+                            .Where(x => !x.IsDeleted)
+                            .Select(x => new CarDto()
+                            {
+                                Id = x.Id,
+                                Image = x.CarImages.FirstOrDefault().RemoteImageUrl ??
+                                        "/images/cars/" + x.CarImages.FirstOrDefault().Id + "." + x.CarImages.FirstOrDefault().Extension,
+                                Description = x.Description,
+                                TransmissionName = x.Transmission.Name,
+                                DailyPrice = x.DailyPrice,
+                                BrandName = x.Brand.Name,
+                                ModelName = x.Model.Name,
+                                ModelYear = x.ModelYear,
+                                Days = dates.Count,
+                                StartRent = startDate,
+                                EndRent = endDate
+                            }).ToList();
+
+            return cars;
         }
 
         public IEnumerable<string> GetAddedCarBrands()
@@ -204,6 +240,12 @@
 
             return brandsViewModel;
         }
+
+        public async Task<int> GetCompanyByCar(int carId)
+            => await this.data.Cars
+                           .Where(x => x.Id == carId)
+                            .Select(x => x.CompanyId)
+                            .FirstOrDefaultAsync();
 
         public IEnumerable<CarModelFormModel> GetCarModels()
         {
@@ -404,6 +446,14 @@
                 using Stream stream = new FileStream(physicalPath, FileMode.Create);
                 await image.CopyToAsync(stream);
             }
+        }
+
+        private DateTime ParseDate(string date)
+        {
+            var parse = DateTime.TryParseExact(date, "dd/MM/yyyy HH:mm", CultureInfo.InvariantCulture,
+                DateTimeStyles.None, out var rentDate);
+
+            return rentDate;
         }
     }
 }

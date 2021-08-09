@@ -449,7 +449,6 @@ D:\Курс програмиране\CSharp - ASP.NET Core\Oversteer\Oversteer\O
 D:\Курс програмиране\CSharp - ASP.NET Core\Oversteer\Oversteer\Oversteer.Web\bin\Debug\net5.0\libman.json
 D:\Курс програмиране\CSharp - ASP.NET Core\Oversteer\Oversteer\Oversteer.Web\obj\Debug\net5.0\Razor\Views\Cars\MyCars.cshtml.g.cs
 D:\Курс програмиране\CSharp - ASP.NET Core\Oversteer\Oversteer\Oversteer.Web\obj\Debug\net5.0\Razor\Views\Cars\Details.cshtml.g.cs
-D:\Курс програмиране\CSharp - ASP.NET Core\Oversteer\Oversteer\Oversteer.Web\obj\Debug\net5.0\Razor\Views\Cars\_CarFormPartial.cshtml.g.cs
 D:\Курс програмиране\CSharp - ASP.NET Core\Oversteer\Oversteer\Oversteer.Web\obj\Debug\net5.0\Razor\Views\Cars\Edit.cshtml.g.cs
 D:\Курс програмиране\CSharp - ASP.NET Core\Oversteer\Oversteer\Oversteer.Web\obj\Debug\net5.0\Razor\Areas\Identity\Pages\Account\Manage\Index.cshtml.g.cs
 D:\Курс програмиране\CSharp - ASP.NET Core\Oversteer\Oversteer\Oversteer.Web\obj\Debug\net5.0\Razor\Areas\Identity\Pages\Account\Manage\_ManageNav.cshtml.g.cs
@@ -474,4 +473,7 @@ D:\Курс програмиране\CSharp - ASP.NET Core\Oversteer\Oversteer\O
 D:\Курс програмиране\CSharp - ASP.NET Core\Oversteer\Oversteer\Oversteer.Web\obj\Debug\net5.0\Razor\Areas\Company\Views\Companies\Details.cshtml.g.cs
 D:\Курс програмиране\CSharp - ASP.NET Core\Oversteer\Oversteer\Oversteer.Web\obj\Debug\net5.0\Razor\Areas\Company\Views\Companies\Cars.cshtml.g.cs
 D:\Курс програмиране\CSharp - ASP.NET Core\Oversteer\Oversteer\Oversteer.Web\obj\Debug\net5.0\Razor\Views\Rentals\Order.cshtml.g.cs
-D:\Курс програмиране\CSharp - ASP.NET Core\Oversteer\Oversteer\Oversteer.Web\obj\Debug\net5.0\Razor\Views\Shared\405.cshtml.g.cs
+D:\Курс програмиране\CSharp - ASP.NET Core\Oversteer\Oversteer\Oversteer.Web\obj\Debug\net5.0\Razor\Views\Rentals\Details.cshtml.g.cs
+D:\Курс програмиране\CSharp - ASP.NET Core\Oversteer\Oversteer\Oversteer.Web\obj\Debug\net5.0\Razor\Views\Cars\Available.cshtml.g.cs
+D:\Курс програмиране\CSharp - ASP.NET Core\Oversteer\Oversteer\Oversteer.Web\obj\Debug\net5.0\Razor\Views\Cars\_CarFormPartial.cshtml.g.cs
+D:\Курс програмиране\CSharp - ASP.NET Core\Oversteer\Oversteer\Oversteer.Web\obj\Debug\net5.0\Razor\Views\Home\_CarsSearchPartial.cshtml.g.cs

@@ -100,8 +100,7 @@
 
             if (this.ModelState.IsValid)
             {
-                var userName = string.Join("", this.Input.FirstName, this.Input.LastName);
-                var user = new ApplicationUser { UserName = userName, Email = this.Input.Email };
+                var user = new ApplicationUser { UserName = this.Input.Email, Email = this.Input.Email };
 
                 var result = await this.userManager.CreateAsync(user, this.Input.Password);
 

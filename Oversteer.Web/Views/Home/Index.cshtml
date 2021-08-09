@@ -15,9 +15,13 @@
     </div>
 }
 
+@if (this.TempData.ContainsKey("Message"))
+{
+    <div class="alert alert-danger" id="carMessage">@this.TempData["Message"]</div>
+}
+
 <div class="mb-4"></div>
 
-<form class="trip-form">
     <div class="row align-items-center mb-4">
         <div class="col-md-6">
             <h3 class="m-0">Begin your trip here</h3>
@@ -36,30 +40,7 @@
     </div>
     <div class="container-fluid">
         <div class="row">
-            <div class="col-lg">
-                <div class="form-group col-md-8">
-                    <label for="cf-1">Where you from</label>
-                    <input type="text" id="cf-1" placeholder="Your pickup address" class="form-control">
-                </div>
-                <div class="form-group col-md-8">
-                    <label for="cf-2">Where you go</label>
-                    <input type="text" id="cf-2" placeholder="Your drop-off address" class="form-control">
-                </div>
-                <div class="form-group col-md-8">
-                    <label for="cf-3">Journey date</label>
-                    <input type="text" id="datepicker" placeholder="Your pickup time" class="form-control datepicker px-3">
-                </div>
-                <div class="form-group col-md-8">
-                    <label for="cf-4">Return date</label>
-                    <input type="text" id="datepicker-return" placeholder="Your drop-off time" class="form-control datepicker px-3">
-                </div>
-                <div class="row">
-                    <div class="col-lg-6">
-                        <input type="submit" value="Submit" class="btn btn-primary">
-                    </div>
-                </div>
-            </div>
-
+            <partial name="_CarsSearchPartial" model="@Model.SearchModel" />
             <div class="col">
                 <div class="carousel-inner">
                     <div id="carouselExampleControls" class="carousel slide" data-ride="carousel" style="width:130%; height: 550px !important;">
@@ -77,7 +58,6 @@
                                     </div>
                                     <div class="form-group col-md-4 mt-3">
                                         <p class="d-flex mb-0 d-block">
-                                            <a asp-controller="Rentals" asp-action="Order" class="btn btn-primary py-2 mr-1">Book now</a>
                                             <a class="btn btn-secondary py-2 ml-1" asp-controller="Cars" asp-action="Details" asp-route-id="@car.Id">Details</a>
                                         </p>
                                     </div>
@@ -97,7 +77,6 @@
             </div>
         </div>
     </div>
-</form>
 
 <div class="mb-4"></div>
 

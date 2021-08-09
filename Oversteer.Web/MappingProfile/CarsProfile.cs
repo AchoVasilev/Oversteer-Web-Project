@@ -7,6 +7,7 @@
     using Oversteer.Models.Cars;
     using Oversteer.Web.Data.Cars;
     using Oversteer.Web.Models.Cars;
+    using Oversteer.Web.Models.Cars.CarItems;
     using Oversteer.Web.Models.Home;
 
     public class CarsProfile : Profile
