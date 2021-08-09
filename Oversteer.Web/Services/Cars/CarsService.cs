@@ -104,7 +104,7 @@
             var startRentDate = ParseDate(startDate);
             var returnRentDate = ParseDate(endDate);
 
-            for (var date = startRentDate; date <= returnRentDate; date.AddDays(1))
+            for (var date = startRentDate.Date; date <= returnRentDate.Date; date = date.AddDays(1))
             {
                 dates.Add(date);
             }
