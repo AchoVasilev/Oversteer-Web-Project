@@ -1,7 +1,6 @@
 ﻿namespace Oversteer.Web.Controllers
 {
     using System;
-    using System.Globalization;
     using System.Linq;
     using System.Threading.Tasks;
 
@@ -9,14 +8,14 @@
     using Microsoft.AspNetCore.Hosting;
     using Microsoft.AspNetCore.Mvc;
 
+    using Oversteer.Services.Cars;
+    using Oversteer.Services.Companies;
     using Oversteer.Web.Areas.Company.Controllers;
-    using Oversteer.Web.Areas.Company.Services.Companies;
     using Oversteer.Web.Infrastructure;
-    using Oversteer.Web.Models.Cars;
-    using Oversteer.Web.Models.Home;
-    using Oversteer.Web.Services.Cars;
+    using Oversteer.Web.ViewModels.Cars;
+    using Oversteer.Web.ViewModels.Home;
 
-    using static Oversteer.Web.Data.Constants.ErrorMessages;
+    using static Oversteer.Data.Common.Constants.ErrorMessages;
 
     public class CarsController : Controller
     {
@@ -324,11 +323,9 @@
 
             var cars = this.carService.GetAvailableCars(model.PickUpDate, model.ReturnDate, model.PickUpLocation);
 
-            var start = DateTime.TryParseExact(model.PickUpDate, "dd/MM/yyyy HH:mm", CultureInfo.InvariantCulture,
-                            DateTimeStyles.None, out var startDate);
+            var startDate = DateTimeParser.ParseDate(model.PickUpDate);
 
-            var end = DateTime.TryParseExact(model.ReturnDate, "dd/MM/yyyy HH:mm", CultureInfo.InvariantCulture,
-                            DateTimeStyles.None, out var endDate);
+            var endDate = DateTimeParser.ParseDate(model.ReturnDate);
 
             var daysCount = (endDate - startDate).TotalDays;
 

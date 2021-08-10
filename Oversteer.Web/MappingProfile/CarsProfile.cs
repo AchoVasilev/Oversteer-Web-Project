@@ -4,11 +4,10 @@
 
     using AutoMapper;
 
-    using Oversteer.Models.Cars;
-    using Oversteer.Web.Data.Cars;
-    using Oversteer.Web.Models.Cars;
-    using Oversteer.Web.Models.Cars.CarItems;
-    using Oversteer.Web.Models.Home;
+    using Oversteer.Data.Models.Cars;
+    using Oversteer.Web.ViewModels.Cars;
+    using Oversteer.Web.ViewModels.Cars.CarItems;
+    using Oversteer.Web.ViewModels.Home;
 
     public class CarsProfile : Profile
     {

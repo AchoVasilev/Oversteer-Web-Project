@@ -5,11 +5,11 @@
 
     using Microsoft.AspNetCore.Mvc;
 
-    using Oversteer.Web.Areas.Company.Services.Companies;
-    using Oversteer.Web.Models;
-    using Oversteer.Web.Models.Home;
-    using Oversteer.Web.Services.Cars;
-    using Oversteer.Web.Services.Home;
+    using Oversteer.Services.Cars;
+    using Oversteer.Services.Companies;
+    using Oversteer.Services.Home;
+    using Oversteer.Web.ViewModels.Home;
+    using Oversteer.Web.ViewModels;
 
     public class HomeController : Controller
     {
@@ -33,7 +33,7 @@
             {
                 TotalCars = totalCars,
                 Cars = cars.ToList(),
-                SearchModel = new Models.Cars.SearchRentCarModel()
+                SearchModel = new SearchRentCarModel()
                 {
                     Locations = this.locationService.GetAllLocationNames()
                 }

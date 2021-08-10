@@ -1,7 +1,6 @@
 namespace Oversteer.Web
 {
     using System;
-    using System.Net;
 
     using Microsoft.AspNetCore.Builder;
     using Microsoft.AspNetCore.Hosting;
@@ -13,20 +12,21 @@ namespace Oversteer.Web
     using Microsoft.Extensions.DependencyInjection;
     using Microsoft.Extensions.Hosting;
 
-    using Oversteer.Models.Users;
-    using Oversteer.Web.Areas.Company.Services.Companies;
-    using Oversteer.Web.Data;
-    using Oversteer.Web.Infrastructure;
-    using Oversteer.Web.Models.Email;
-    using Oversteer.Web.Services.Cars;
-    using Oversteer.Web.Services.CarScraper;
-    using Oversteer.Web.Services.Cities;
-    using Oversteer.Web.Services.Clients;
-    using Oversteer.Web.Services.Countries;
-    using Oversteer.Web.Services.EmailSenders;
-    using Oversteer.Web.Services.Home;
-    using Oversteer.Web.Services.Rentals;
-    using Oversteer.Web.Services.Statistics;
+    using Oversteer.Data;
+    using Oversteer.Data.Models.Users;
+    using Oversteer.Data.Seeding;
+    using Oversteer.Services.Cars;
+    using Oversteer.Services.CarScraper;
+    using Oversteer.Services.Cities;
+    using Oversteer.Services.Clients;
+    using Oversteer.Services.Companies;
+    using Oversteer.Services.Countries;
+    using Oversteer.Services.EmailSenders;
+    using Oversteer.Services.Home;
+    using Oversteer.Services.Rentals;
+    using Oversteer.Services.Statistics;
+    using Oversteer.Web.ViewModels;
+    using Oversteer.Web.ViewModels.Email;
 
     public class Startup
     {

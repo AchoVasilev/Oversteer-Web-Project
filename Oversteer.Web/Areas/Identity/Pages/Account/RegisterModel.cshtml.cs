@@ -16,11 +16,11 @@
     using Microsoft.AspNetCore.WebUtilities;
     using Microsoft.Extensions.Logging;
 
-    using Oversteer.Models.Users;
-    using Oversteer.Web.Services.Clients;
+    using Oversteer.Data.Models.Users;
+    using Oversteer.Services.Clients;
 
-    using static Oversteer.Models.Constants.DataConstants.Users;
-    using static Oversteer.Web.Data.Constants.ErrorMessages.UserErrors;
+    using static Oversteer.Data.Common.Constants.DataConstants.Users;
+    using static Oversteer.Data.Common.Constants.ErrorMessages.UserErrors;
 
     [AllowAnonymous]
     public class RegisterModel : PageModel
@@ -116,7 +116,7 @@
                         values: new { area = "Identity", userId = user.Id, code, returnUrl },
                         protocol: this.Request.Scheme);
 
-                    user.Client = await this.clientsService.RegisterUserAsync(Input, user.Id);
+                    user.Client = await this.clientsService.RegisterUserAsync(Input.FirstName, Input.Surname, Input.LastName, Input.PhoneNumber, user.Id);
 
                     await this.emailSender.SendEmailAsync(this.Input.Email, "Confirm your email",
                         $"Please confirm your account by <a href='{HtmlEncoder.Default.Encode(callbackUrl)}'>clicking here</a>.");
