@@ -2,6 +2,7 @@
 {
     using System;
     using System.Linq;
+    using System.Security.Cryptography.X509Certificates;
     using System.Threading.Tasks;
 
     using Microsoft.AspNetCore.Authorization;
@@ -22,12 +23,18 @@
         private readonly ICarsService carService;
         private readonly ICompaniesService companiesService;
         private readonly IWebHostEnvironment environment;
+        private readonly ILocationService locationService;
 
-        public CarsController(ICarsService carService, ICompaniesService companiesService, IWebHostEnvironment environment)
+        public CarsController(
+            ICarsService carService,
+            ICompaniesService companiesService,
+            IWebHostEnvironment environment,
+            ILocationService locationService)
         {
             this.carService = carService;
             this.companiesService = companiesService;
             this.environment = environment;
+            this.locationService = locationService;
         }
 
         [Authorize]
@@ -40,6 +47,8 @@
                 return this.RedirectToAction(nameof(CompaniesController.Create), "Companies", new { area = "Company" });
             }
 
+            var companyId = this.companiesService.GetCurrentCompanyId(userId);
+
             return this.View(new CarFormModel()
             {
                 Brands = this.carService.GetCarBrands(),
@@ -48,6 +57,7 @@
                 FuelTypes = this.carService.GetFuelTypes(),
                 Transmissions = this.carService.GetTransmissionTypes(),
                 CarTypes = this.carService.GetCarTypes(),
+                Locations = this.locationService.GetCompanyLocations(companyId)
             });
         }
 
@@ -102,6 +112,7 @@
                 carModel.FuelTypes = this.carService.GetFuelTypes();
                 carModel.Transmissions = this.carService.GetTransmissionTypes();
                 carModel.CarTypes = this.carService.GetCarTypes();
+                carModel.Locations = this.locationService.GetCompanyLocations(companyId);
 
                 return this.View(carModel);
             }
@@ -138,6 +149,8 @@
                 return this.Unauthorized();
             }
 
+            var companyId = this.companiesService.GetCurrentCompanyId(userId);
+
             var carForm = new CarFormModel()
             {
                 Brands = this.carService.GetCarBrands(),
@@ -146,6 +159,7 @@
                 FuelTypes = this.carService.GetFuelTypes(),
                 Transmissions = this.carService.GetTransmissionTypes(),
                 CarTypes = this.carService.GetCarTypes(),
+                Locations = this.locationService.GetCompanyLocations(companyId)
             };
 
             return this.View(carForm);
@@ -202,6 +216,7 @@
                 carModel.FuelTypes = this.carService.GetFuelTypes();
                 carModel.Transmissions = this.carService.GetTransmissionTypes();
                 carModel.CarTypes = this.carService.GetCarTypes();
+                carModel.Locations = this.locationService.GetCompanyLocations(companyId);
 
                 return this.View(carModel);
             }
