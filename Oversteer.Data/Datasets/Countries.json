@@ -1,0 +1,1922 @@
+﻿[
+  {
+    "COUNTRY": "Afghanistan",
+    "COUNTRY CODE": 93,
+    "ISO CODES": "AF / AFG",
+    "POPULATION": "29 121 286",
+    "AREA KM2": "647 500",
+    "GDP $USD": "20.65 Billion"
+  },
+  {
+    "COUNTRY": "Albania",
+    "COUNTRY CODE": 355,
+    "ISO CODES": "AL / ALB",
+    "POPULATION": "2 986 952",
+    "AREA KM2": "28 748",
+    "GDP $USD": "12.8 Billion"
+  },
+  {
+    "COUNTRY": "Algeria",
+    "COUNTRY CODE": 213,
+    "ISO CODES": "DZ / DZA",
+    "POPULATION": "34 586 184",
+    "AREA KM2": "2 381 740",
+    "GDP $USD": "215.7 Billion"
+  },
+  {
+    "COUNTRY": "American Samoa",
+    "COUNTRY CODE": "1-684",
+    "ISO CODES": "AS / ASM",
+    "POPULATION": "57 881",
+    "AREA KM2": 199,
+    "GDP $USD": "462.2 Million"
+  },
+  {
+    "COUNTRY": "Andorra",
+    "COUNTRY CODE": 376,
+    "ISO CODES": "AD / AND",
+    "POPULATION": "84 000",
+    "AREA KM2": 468,
+    "GDP $USD": "4.8 Billion"
+  },
+  {
+    "COUNTRY": "Angola",
+    "COUNTRY CODE": 244,
+    "ISO CODES": "AO / AGO",
+    "POPULATION": "13 068 161",
+    "AREA KM2": "1 246 700",
+    "GDP $USD": "124 Billion"
+  },
+  {
+    "COUNTRY": "Anguilla",
+    "COUNTRY CODE": "1-264",
+    "ISO CODES": "AI / AIA",
+    "POPULATION": "13 254",
+    "AREA KM2": 102,
+    "GDP $USD": "175.4 Million"
+  },
+  {
+    "COUNTRY": "Antarctica",
+    "COUNTRY CODE": 672,
+    "ISO CODES": "AQ / ATA",
+    "POPULATION": 0,
+    "AREA KM2": "14 000 000",
+    "GDP $USD": ""
+  },
+  {
+    "COUNTRY": "Antigua and Barbuda",
+    "COUNTRY CODE": "1-268",
+    "ISO CODES": "AG / ATG",
+    "POPULATION": "86 754",
+    "AREA KM2": 443,
+    "GDP $USD": "1.22 Billion"
+  },
+  {
+    "COUNTRY": "Argentina",
+    "COUNTRY CODE": 54,
+    "ISO CODES": "AR / ARG",
+    "POPULATION": "41 343 201",
+    "AREA KM2": "2 766 890",
+    "GDP $USD": "484.6 Billion"
+  },
+  {
+    "COUNTRY": "Armenia",
+    "COUNTRY CODE": 374,
+    "ISO CODES": "AM / ARM",
+    "POPULATION": "2 968 000",
+    "AREA KM2": "29 800",
+    "GDP $USD": "10.44 Billion"
+  },
+  {
+    "COUNTRY": "Aruba",
+    "COUNTRY CODE": 297,
+    "ISO CODES": "AW / ABW",
+    "POPULATION": "71 566",
+    "AREA KM2": 193,
+    "GDP $USD": "2.516 Billion"
+  },
+  {
+    "COUNTRY": "Australia",
+    "COUNTRY CODE": 61,
+    "ISO CODES": "AU / AUS",
+    "POPULATION": "21 515 754",
+    "AREA KM2": "7 686 850",
+    "GDP $USD": "1.488 Trillion"
+  },
+  {
+    "COUNTRY": "Austria",
+    "COUNTRY CODE": 43,
+    "ISO CODES": "AT / AUT",
+    "POPULATION": "8 205 000",
+    "AREA KM2": "83 858",
+    "GDP $USD": "417.9 Billion"
+  },
+  {
+    "COUNTRY": "Azerbaijan",
+    "COUNTRY CODE": 994,
+    "ISO CODES": "AZ / AZE",
+    "POPULATION": "8 303 512",
+    "AREA KM2": "86 600",
+    "GDP $USD": "76.01 Billion"
+  },
+  {
+    "COUNTRY": "Bahamas",
+    "COUNTRY CODE": "1-242",
+    "ISO CODES": "BS / BHS",
+    "POPULATION": "301 790",
+    "AREA KM2": "13 940",
+    "GDP $USD": "8.373 Billion"
+  },
+  {
+    "COUNTRY": "Bahrain",
+    "COUNTRY CODE": 973,
+    "ISO CODES": "BH / BHR",
+    "POPULATION": "738 004",
+    "AREA KM2": 665,
+    "GDP $USD": "28.36 Billion"
+  },
+  {
+    "COUNTRY": "Bangladesh",
+    "COUNTRY CODE": 880,
+    "ISO CODES": "BD / BGD",
+    "POPULATION": "156 118 464",
+    "AREA KM2": "144 000",
+    "GDP $USD": "140.2 Billion"
+  },
+  {
+    "COUNTRY": "Barbados",
+    "COUNTRY CODE": "1-246",
+    "ISO CODES": "BB / BRB",
+    "POPULATION": "285 653",
+    "AREA KM2": 431,
+    "GDP $USD": "4.262 Billion"
+  },
+  {
+    "COUNTRY": "Belarus",
+    "COUNTRY CODE": 375,
+    "ISO CODES": "BY / BLR",
+    "POPULATION": "9 685 000",
+    "AREA KM2": "207 600",
+    "GDP $USD": "69.24 Billion"
+  },
+  {
+    "COUNTRY": "Belgium",
+    "COUNTRY CODE": 32,
+    "ISO CODES": "BE / BEL",
+    "POPULATION": "10 403 000",
+    "AREA KM2": "30 510",
+    "GDP $USD": "507.4 Billion"
+  },
+  {
+    "COUNTRY": "Belize",
+    "COUNTRY CODE": 501,
+    "ISO CODES": "BZ / BLZ",
+    "POPULATION": "314 522",
+    "AREA KM2": "22 966",
+    "GDP $USD": "1.637 Billion"
+  },
+  {
+    "COUNTRY": "Benin",
+    "COUNTRY CODE": 229,
+    "ISO CODES": "BJ / BEN",
+    "POPULATION": "9 056 010",
+    "AREA KM2": "112 620",
+    "GDP $USD": "8.359 Billion"
+  },
+  {
+    "COUNTRY": "Bermuda",
+    "COUNTRY CODE": "1-441",
+    "ISO CODES": "BM / BMU",
+    "POPULATION": "65 365",
+    "AREA KM2": 53,
+    "GDP $USD": "5.6 Billion"
+  },
+  {
+    "COUNTRY": "Bhutan",
+    "COUNTRY CODE": 975,
+    "ISO CODES": "BT / BTN",
+    "POPULATION": "699 847",
+    "AREA KM2": "47 000",
+    "GDP $USD": "2.133 Billion"
+  },
+  {
+    "COUNTRY": "Bolivia",
+    "COUNTRY CODE": 591,
+    "ISO CODES": "BO / BOL",
+    "POPULATION": "9 947 418",
+    "AREA KM2": "1 098 580",
+    "GDP $USD": "30.79 Billion"
+  },
+  {
+    "COUNTRY": "Bosnia and Herzegovina",
+    "COUNTRY CODE": 387,
+    "ISO CODES": "BA / BIH",
+    "POPULATION": "4 590 000",
+    "AREA KM2": "51 129",
+    "GDP $USD": "18.87 Billion"
+  },
+  {
+    "COUNTRY": "Botswana",
+    "COUNTRY CODE": 267,
+    "ISO CODES": "BW / BWA",
+    "POPULATION": "2 029 307",
+    "AREA KM2": "600 370",
+    "GDP $USD": "15.53 Billion"
+  },
+  {
+    "COUNTRY": "Brazil",
+    "COUNTRY CODE": 55,
+    "ISO CODES": "BR / BRA",
+    "POPULATION": "201 103 330",
+    "AREA KM2": "8 511 965",
+    "GDP $USD": "2.19 Trillion"
+  },
+  {
+    "COUNTRY": "British Indian Ocean Territory",
+    "COUNTRY CODE": 246,
+    "ISO CODES": "IO / IOT",
+    "POPULATION": "4 000",
+    "AREA KM2": 60,
+    "GDP $USD": ""
+  },
+  {
+    "COUNTRY": "British Virgin Islands",
+    "COUNTRY CODE": "1-284",
+    "ISO CODES": "VG / VGB",
+    "POPULATION": "21 730",
+    "AREA KM2": 153,
+    "GDP $USD": "1.095 Billion"
+  },
+  {
+    "COUNTRY": "Brunei",
+    "COUNTRY CODE": 673,
+    "ISO CODES": "BN / BRN",
+    "POPULATION": "395 027",
+    "AREA KM2": "5 770",
+    "GDP $USD": "16.56 Billion"
+  },
+  {
+    "COUNTRY": "Bulgaria",
+    "COUNTRY CODE": 359,
+    "ISO CODES": "BG / BGR",
+    "POPULATION": "7 148 785",
+    "AREA KM2": "110 910",
+    "GDP $USD": "53.7 Billion"
+  },
+  {
+    "COUNTRY": "Burkina Faso",
+    "COUNTRY CODE": 226,
+    "ISO CODES": "BF / BFA",
+    "POPULATION": "16 241 811",
+    "AREA KM2": "274 200",
+    "GDP $USD": "12.13 Billion"
+  },
+  {
+    "COUNTRY": "Burundi",
+    "COUNTRY CODE": 257,
+    "ISO CODES": "BI / BDI",
+    "POPULATION": "9 863 117",
+    "AREA KM2": "27 830",
+    "GDP $USD": "2.676 Billion"
+  },
+  {
+    "COUNTRY": "Cambodia",
+    "COUNTRY CODE": 855,
+    "ISO CODES": "KH / KHM",
+    "POPULATION": "14 453 680",
+    "AREA KM2": "181 040",
+    "GDP $USD": "15.64 Billion"
+  },
+  {
+    "COUNTRY": "Cameroon",
+    "COUNTRY CODE": 237,
+    "ISO CODES": "CM / CMR",
+    "POPULATION": "19 294 149",
+    "AREA KM2": "475 440",
+    "GDP $USD": "27.88 Billion"
+  },
+  {
+    "COUNTRY": "Canada",
+    "COUNTRY CODE": 1,
+    "ISO CODES": "CA / CAN",
+    "POPULATION": "33 679 000",
+    "AREA KM2": "9 984 670",
+    "GDP $USD": "1.825 Trillion"
+  },
+  {
+    "COUNTRY": "Cape Verde",
+    "COUNTRY CODE": 238,
+    "ISO CODES": "CV / CPV",
+    "POPULATION": "508 659",
+    "AREA KM2": "4 033",
+    "GDP $USD": "1.955 Billion"
+  },
+  {
+    "COUNTRY": "Cayman Islands",
+    "COUNTRY CODE": "1-345",
+    "ISO CODES": "KY / CYM",
+    "POPULATION": "44 270",
+    "AREA KM2": 262,
+    "GDP $USD": "2.25 Billion"
+  },
+  {
+    "COUNTRY": "Central African Republic",
+    "COUNTRY CODE": 236,
+    "ISO CODES": "CF / CAF",
+    "POPULATION": "4 844 927",
+    "AREA KM2": "622 984",
+    "GDP $USD": "2.05 Billion"
+  },
+  {
+    "COUNTRY": "Chad",
+    "COUNTRY CODE": 235,
+    "ISO CODES": "TD / TCD",
+    "POPULATION": "10 543 464",
+    "AREA KM2": "1 284 000",
+    "GDP $USD": "13.59 Billion"
+  },
+  {
+    "COUNTRY": "Chile",
+    "COUNTRY CODE": 56,
+    "ISO CODES": "CL / CHL",
+    "POPULATION": "16 746 491",
+    "AREA KM2": "756 950",
+    "GDP $USD": "281.7 Billion"
+  },
+  {
+    "COUNTRY": "China",
+    "COUNTRY CODE": 86,
+    "ISO CODES": "CN / CHN",
+    "POPULATION": "1 330 044 000",
+    "AREA KM2": "9 596 960",
+    "GDP $USD": "9.33 Trillion"
+  },
+  {
+    "COUNTRY": "Christmas Island",
+    "COUNTRY CODE": 61,
+    "ISO CODES": "CX / CXR",
+    "POPULATION": "1 500",
+    "AREA KM2": 135,
+    "GDP $USD": ""
+  },
+  {
+    "COUNTRY": "Cocos Islands",
+    "COUNTRY CODE": 61,
+    "ISO CODES": "CC / CCK",
+    "POPULATION": 628,
+    "AREA KM2": 14,
+    "GDP $USD": ""
+  },
+  {
+    "COUNTRY": "Colombia",
+    "COUNTRY CODE": 57,
+    "ISO CODES": "CO / COL",
+    "POPULATION": "47 790 000",
+    "AREA KM2": "1 138 910",
+    "GDP $USD": "369.2 Billion"
+  },
+  {
+    "COUNTRY": "Comoros",
+    "COUNTRY CODE": 269,
+    "ISO CODES": "KM / COM",
+    "POPULATION": "773 407",
+    "AREA KM2": "2 170",
+    "GDP $USD": "658 Million"
+  },
+  {
+    "COUNTRY": "Cook Islands",
+    "COUNTRY CODE": 682,
+    "ISO CODES": "CK / COK",
+    "POPULATION": "21 388",
+    "AREA KM2": 240,
+    "GDP $USD": "183.2 Million"
+  },
+  {
+    "COUNTRY": "Costa Rica",
+    "COUNTRY CODE": 506,
+    "ISO CODES": "CR / CRI",
+    "POPULATION": "4 516 220",
+    "AREA KM2": "51 100",
+    "GDP $USD": "48.51 Billion"
+  },
+  {
+    "COUNTRY": "Croatia",
+    "COUNTRY CODE": 385,
+    "ISO CODES": "HR / HRV",
+    "POPULATION": "4 491 000",
+    "AREA KM2": "56 542",
+    "GDP $USD": "59.14 Billion"
+  },
+  {
+    "COUNTRY": "Cuba",
+    "COUNTRY CODE": 53,
+    "ISO CODES": "CU / CUB",
+    "POPULATION": "11 423 000",
+    "AREA KM2": "110 860",
+    "GDP $USD": "72.3 Billion"
+  },
+  {
+    "COUNTRY": "Curacao",
+    "COUNTRY CODE": 599,
+    "ISO CODES": "CW / CUW",
+    "POPULATION": "141 766",
+    "AREA KM2": 444,
+    "GDP $USD": "5.6 Billion"
+  },
+  {
+    "COUNTRY": "Cyprus",
+    "COUNTRY CODE": 357,
+    "ISO CODES": "CY / CYP",
+    "POPULATION": "1 102 677",
+    "AREA KM2": "9 250",
+    "GDP $USD": "21.78 Billion"
+  },
+  {
+    "COUNTRY": "Czech Republic",
+    "COUNTRY CODE": 420,
+    "ISO CODES": "CZ / CZE",
+    "POPULATION": "10 476 000",
+    "AREA KM2": "78 866",
+    "GDP $USD": "194.8 Billion"
+  },
+  {
+    "COUNTRY": "Democratic Republic of the Congo",
+    "COUNTRY CODE": 243,
+    "ISO CODES": "CD / COD",
+    "POPULATION": "70 916 439",
+    "AREA KM2": "2 345 410",
+    "GDP $USD": "18.56 Billion"
+  },
+  {
+    "COUNTRY": "Denmark",
+    "COUNTRY CODE": 45,
+    "ISO CODES": "DK / DNK",
+    "POPULATION": "5 484 000",
+    "AREA KM2": "43 094",
+    "GDP $USD": "324.3 Billion"
+  },
+  {
+    "COUNTRY": "Djibouti",
+    "COUNTRY CODE": 253,
+    "ISO CODES": "DJ / DJI",
+    "POPULATION": "740 528",
+    "AREA KM2": "23 000",
+    "GDP $USD": "1.459 Billion"
+  },
+  {
+    "COUNTRY": "Dominica",
+    "COUNTRY CODE": "1-767",
+    "ISO CODES": "DM / DMA",
+    "POPULATION": "72 813",
+    "AREA KM2": 754,
+    "GDP $USD": "495 Million"
+  },
+  {
+    "COUNTRY": "Dominican Republic",
+    "COUNTRY CODE": "1-809, 1-829, 1-849",
+    "ISO CODES": "DO / DOM",
+    "POPULATION": "9 823 821",
+    "AREA KM2": "48 730",
+    "GDP $USD": "59.27 Billion"
+  },
+  {
+    "COUNTRY": "East Timor",
+    "COUNTRY CODE": 670,
+    "ISO CODES": "TL / TLS",
+    "POPULATION": "1 154 625",
+    "AREA KM2": "15 007",
+    "GDP $USD": "6.129 Billion"
+  },
+  {
+    "COUNTRY": "Ecuador",
+    "COUNTRY CODE": 593,
+    "ISO CODES": "EC / ECU",
+    "POPULATION": "14 790 608",
+    "AREA KM2": "283 560",
+    "GDP $USD": "91.41 Billion"
+  },
+  {
+    "COUNTRY": "Egypt",
+    "COUNTRY CODE": 20,
+    "ISO CODES": "EG / EGY",
+    "POPULATION": "80 471 869",
+    "AREA KM2": "1 001 450",
+    "GDP $USD": "262 Billion"
+  },
+  {
+    "COUNTRY": "El Salvador",
+    "COUNTRY CODE": 503,
+    "ISO CODES": "SV / SLV",
+    "POPULATION": "6 052 064",
+    "AREA KM2": "21 040",
+    "GDP $USD": "24.67 Billion"
+  },
+  {
+    "COUNTRY": "Equatorial Guinea",
+    "COUNTRY CODE": 240,
+    "ISO CODES": "GQ / GNQ",
+    "POPULATION": "1 014 999",
+    "AREA KM2": "28 051",
+    "GDP $USD": "17.08 Billion"
+  },
+  {
+    "COUNTRY": "Eritrea",
+    "COUNTRY CODE": 291,
+    "ISO CODES": "ER / ERI",
+    "POPULATION": "5 792 984",
+    "AREA KM2": "121 320",
+    "GDP $USD": "3.438 Billion"
+  },
+  {
+    "COUNTRY": "Estonia",
+    "COUNTRY CODE": 372,
+    "ISO CODES": "EE / EST",
+    "POPULATION": "1 291 170",
+    "AREA KM2": "45 226",
+    "GDP $USD": "24.28 Billion"
+  },
+  {
+    "COUNTRY": "Ethiopia",
+    "COUNTRY CODE": 251,
+    "ISO CODES": "ET / ETH",
+    "POPULATION": "88 013 491",
+    "AREA KM2": "1 127 127",
+    "GDP $USD": "47.34 Billion"
+  },
+  {
+    "COUNTRY": "Falkland Islands",
+    "COUNTRY CODE": 500,
+    "ISO CODES": "FK / FLK",
+    "POPULATION": "2 638",
+    "AREA KM2": "12 173",
+    "GDP $USD": "164.5 Million"
+  },
+  {
+    "COUNTRY": "Faroe Islands",
+    "COUNTRY CODE": 298,
+    "ISO CODES": "FO / FRO",
+    "POPULATION": "48 228",
+    "AREA KM2": "1 399",
+    "GDP $USD": "2.32 Billion"
+  },
+  {
+    "COUNTRY": "Fiji",
+    "COUNTRY CODE": 679,
+    "ISO CODES": "FJ / FJI",
+    "POPULATION": "875 983",
+    "AREA KM2": "18 270",
+    "GDP $USD": "4.218 Billion"
+  },
+  {
+    "COUNTRY": "Finland",
+    "COUNTRY CODE": 358,
+    "ISO CODES": "FI / FIN",
+    "POPULATION": "5 244 000",
+    "AREA KM2": "337 030",
+    "GDP $USD": "259.6 Billion"
+  },
+  {
+    "COUNTRY": "France",
+    "COUNTRY CODE": 33,
+    "ISO CODES": "FR / FRA",
+    "POPULATION": "64 768 389",
+    "AREA KM2": "547 030",
+    "GDP $USD": "2.739 Trillion"
+  },
+  {
+    "COUNTRY": "French Polynesia",
+    "COUNTRY CODE": 689,
+    "ISO CODES": "PF / PYF",
+    "POPULATION": "270 485",
+    "AREA KM2": "4 167",
+    "GDP $USD": "5.65 Billion"
+  },
+  {
+    "COUNTRY": "Gabon",
+    "COUNTRY CODE": 241,
+    "ISO CODES": "GA / GAB",
+    "POPULATION": "1 545 255",
+    "AREA KM2": "267 667",
+    "GDP $USD": "19.97 Billion"
+  },
+  {
+    "COUNTRY": "Gambia",
+    "COUNTRY CODE": 220,
+    "ISO CODES": "GM / GMB",
+    "POPULATION": "1 593 256",
+    "AREA KM2": "11 300",
+    "GDP $USD": "896 Million"
+  },
+  {
+    "COUNTRY": "Georgia",
+    "COUNTRY CODE": 995,
+    "ISO CODES": "GE / GEO",
+    "POPULATION": "4 630 000",
+    "AREA KM2": "69 700",
+    "GDP $USD": "15.95 Billion"
+  },
+  {
+    "COUNTRY": "Germany",
+    "COUNTRY CODE": 49,
+    "ISO CODES": "DE / DEU",
+    "POPULATION": "81 802 257",
+    "AREA KM2": "357 021",
+    "GDP $USD": "3.593 Trillion"
+  },
+  {
+    "COUNTRY": "Ghana",
+    "COUNTRY CODE": 233,
+    "ISO CODES": "GH / GHA",
+    "POPULATION": "24 339 838",
+    "AREA KM2": "239 460",
+    "GDP $USD": "45.55 Billion"
+  },
+  {
+    "COUNTRY": "Gibraltar",
+    "COUNTRY CODE": 350,
+    "ISO CODES": "GI / GIB",
+    "POPULATION": "27 884",
+    "AREA KM2": 7,
+    "GDP $USD": "1.106 Billion"
+  },
+  {
+    "COUNTRY": "Greece",
+    "COUNTRY CODE": 30,
+    "ISO CODES": "GR / GRC",
+    "POPULATION": "11 000 000",
+    "AREA KM2": "131 940",
+    "GDP $USD": "243.3 Billion"
+  },
+  {
+    "COUNTRY": "Greenland",
+    "COUNTRY CODE": 299,
+    "ISO CODES": "GL / GRL",
+    "POPULATION": "56 375",
+    "AREA KM2": "2 166 086",
+    "GDP $USD": "2.16 Billion"
+  },
+  {
+    "COUNTRY": "Grenada",
+    "COUNTRY CODE": "1-473",
+    "ISO CODES": "GD / GRD",
+    "POPULATION": "107 818",
+    "AREA KM2": 344,
+    "GDP $USD": "811 Million"
+  },
+  {
+    "COUNTRY": "Guam",
+    "COUNTRY CODE": "1-671",
+    "ISO CODES": "GU / GUM",
+    "POPULATION": "159 358",
+    "AREA KM2": 549,
+    "GDP $USD": "4.6 Billion"
+  },
+  {
+    "COUNTRY": "Guatemala",
+    "COUNTRY CODE": 502,
+    "ISO CODES": "GT / GTM",
+    "POPULATION": "13 550 440",
+    "AREA KM2": "108 890",
+    "GDP $USD": "53.9 Billion"
+  },
+  {
+    "COUNTRY": "Guernsey",
+    "COUNTRY CODE": "44-1481",
+    "ISO CODES": "GG / GGY",
+    "POPULATION": "65 228",
+    "AREA KM2": 78,
+    "GDP $USD": "2.742 Billion"
+  },
+  {
+    "COUNTRY": "Guinea",
+    "COUNTRY CODE": 224,
+    "ISO CODES": "GN / GIN",
+    "POPULATION": "10 324 025",
+    "AREA KM2": "245 857",
+    "GDP $USD": "6.544 Billion"
+  },
+  {
+    "COUNTRY": "Guinea-Bissau",
+    "COUNTRY CODE": 245,
+    "ISO CODES": "GW / GNB",
+    "POPULATION": "1 565 126",
+    "AREA KM2": "36 120",
+    "GDP $USD": "880 Million"
+  },
+  {
+    "COUNTRY": "Guyana",
+    "COUNTRY CODE": 592,
+    "ISO CODES": "GY / GUY",
+    "POPULATION": "748 486",
+    "AREA KM2": "214 970",
+    "GDP $USD": "3.02 Billion"
+  },
+  {
+    "COUNTRY": "Haiti",
+    "COUNTRY CODE": 509,
+    "ISO CODES": "HT / HTI",
+    "POPULATION": "9 648 924",
+    "AREA KM2": "27 750",
+    "GDP $USD": "8.287 Billion"
+  },
+  {
+    "COUNTRY": "Honduras",
+    "COUNTRY CODE": 504,
+    "ISO CODES": "HN / HND",
+    "POPULATION": "7 989 415",
+    "AREA KM2": "112 090",
+    "GDP $USD": "18.88 Billion"
+  },
+  {
+    "COUNTRY": "Hong Kong",
+    "COUNTRY CODE": 852,
+    "ISO CODES": "HK / HKG",
+    "POPULATION": "6 898 686",
+    "AREA KM2": "1 092",
+    "GDP $USD": "272.1 Billion"
+  },
+  {
+    "COUNTRY": "Hungary",
+    "COUNTRY CODE": 36,
+    "ISO CODES": "HU / HUN",
+    "POPULATION": "9 982 000",
+    "AREA KM2": "93 030",
+    "GDP $USD": "130.6 Billion"
+  },
+  {
+    "COUNTRY": "Iceland",
+    "COUNTRY CODE": 354,
+    "ISO CODES": "IS / ISL",
+    "POPULATION": "308 910",
+    "AREA KM2": "103 000",
+    "GDP $USD": "14.59 Billion"
+  },
+  {
+    "COUNTRY": "India",
+    "COUNTRY CODE": 91,
+    "ISO CODES": "IN / IND",
+    "POPULATION": "1 173 108 018",
+    "AREA KM2": "3 287 590",
+    "GDP $USD": "1.67 Trillion"
+  },
+  {
+    "COUNTRY": "Indonesia",
+    "COUNTRY CODE": 62,
+    "ISO CODES": "ID / IDN",
+    "POPULATION": "242 968 342",
+    "AREA KM2": "1 919 440",
+    "GDP $USD": "867.5 Billion"
+  },
+  {
+    "COUNTRY": "Iran",
+    "COUNTRY CODE": 98,
+    "ISO CODES": "IR / IRN",
+    "POPULATION": "76 923 300",
+    "AREA KM2": "1 648 000",
+    "GDP $USD": "411.9 Billion"
+  },
+  {
+    "COUNTRY": "Iraq",
+    "COUNTRY CODE": 964,
+    "ISO CODES": "IQ / IRQ",
+    "POPULATION": "29 671 605",
+    "AREA KM2": "437 072",
+    "GDP $USD": "221.8 Billion"
+  },
+  {
+    "COUNTRY": "Ireland",
+    "COUNTRY CODE": 353,
+    "ISO CODES": "IE / IRL",
+    "POPULATION": "4 622 917",
+    "AREA KM2": "70 280",
+    "GDP $USD": "220.9 Billion"
+  },
+  {
+    "COUNTRY": "Isle of Man",
+    "COUNTRY CODE": "44-1624",
+    "ISO CODES": "IM / IMN",
+    "POPULATION": "75 049",
+    "AREA KM2": 572,
+    "GDP $USD": "4.076 Billion"
+  },
+  {
+    "COUNTRY": "Israel",
+    "COUNTRY CODE": 972,
+    "ISO CODES": "IL / ISR",
+    "POPULATION": "7 353 985",
+    "AREA KM2": "20 770",
+    "GDP $USD": "272.7 Billion"
+  },
+  {
+    "COUNTRY": "Italy",
+    "COUNTRY CODE": 39,
+    "ISO CODES": "IT / ITA",
+    "POPULATION": "60 340 328",
+    "AREA KM2": "301 230",
+    "GDP $USD": "2.068 Trillion"
+  },
+  {
+    "COUNTRY": "Ivory Coast",
+    "COUNTRY CODE": 225,
+    "ISO CODES": "CI / CIV",
+    "POPULATION": "21 058 798",
+    "AREA KM2": "322 460",
+    "GDP $USD": "28.28 Billion"
+  },
+  {
+    "COUNTRY": "Jamaica",
+    "COUNTRY CODE": "1-876",
+    "ISO CODES": "JM / JAM",
+    "POPULATION": "2 847 232",
+    "AREA KM2": "10 991",
+    "GDP $USD": "14.39 Billion"
+  },
+  {
+    "COUNTRY": "Japan",
+    "COUNTRY CODE": 81,
+    "ISO CODES": "JP / JPN",
+    "POPULATION": "127 288 000",
+    "AREA KM2": "377 835",
+    "GDP $USD": "5.007 Trillion"
+  },
+  {
+    "COUNTRY": "Jersey",
+    "COUNTRY CODE": "44-1534",
+    "ISO CODES": "JE / JEY",
+    "POPULATION": "90 812",
+    "AREA KM2": 116,
+    "GDP $USD": "5.1 Billion"
+  },
+  {
+    "COUNTRY": "Jordan",
+    "COUNTRY CODE": 962,
+    "ISO CODES": "JO / JOR",
+    "POPULATION": "6 407 085",
+    "AREA KM2": "92 300",
+    "GDP $USD": "34.08 Billion"
+  },
+  {
+    "COUNTRY": "Kazakhstan",
+    "COUNTRY CODE": 7,
+    "ISO CODES": "KZ / KAZ",
+    "POPULATION": "15 340 000",
+    "AREA KM2": "2 717 300",
+    "GDP $USD": "224.9 Billion"
+  },
+  {
+    "COUNTRY": "Kenya",
+    "COUNTRY CODE": 254,
+    "ISO CODES": "KE / KEN",
+    "POPULATION": "40 046 566",
+    "AREA KM2": "582 650",
+    "GDP $USD": "45.31 Billion"
+  },
+  {
+    "COUNTRY": "Kiribati",
+    "COUNTRY CODE": 686,
+    "ISO CODES": "KI / KIR",
+    "POPULATION": "92 533",
+    "AREA KM2": 811,
+    "GDP $USD": "173 Million"
+  },
+  {
+    "COUNTRY": "Kosovo",
+    "COUNTRY CODE": 383,
+    "ISO CODES": "XK / XKX",
+    "POPULATION": "1 800 000",
+    "AREA KM2": "10 887",
+    "GDP $USD": "7.15 Billion"
+  },
+  {
+    "COUNTRY": "Kuwait",
+    "COUNTRY CODE": 965,
+    "ISO CODES": "KW / KWT",
+    "POPULATION": "2 789 132",
+    "AREA KM2": "17 820",
+    "GDP $USD": "179.5 Billion"
+  },
+  {
+    "COUNTRY": "Kyrgyzstan",
+    "COUNTRY CODE": 996,
+    "ISO CODES": "KG / KGZ",
+    "POPULATION": "5 508 626",
+    "AREA KM2": "198 500",
+    "GDP $USD": "7.234 Billion"
+  },
+  {
+    "COUNTRY": "Laos",
+    "COUNTRY CODE": 856,
+    "ISO CODES": "LA / LAO",
+    "POPULATION": "6 368 162",
+    "AREA KM2": "236 800",
+    "GDP $USD": "10.1 Billion"
+  },
+  {
+    "COUNTRY": "Latvia",
+    "COUNTRY CODE": 371,
+    "ISO CODES": "LV / LVA",
+    "POPULATION": "2 217 969",
+    "AREA KM2": "64 589",
+    "GDP $USD": "30.38 Billion"
+  },
+  {
+    "COUNTRY": "Lebanon",
+    "COUNTRY CODE": 961,
+    "ISO CODES": "LB / LBN",
+    "POPULATION": "4 125 247",
+    "AREA KM2": "10 400",
+    "GDP $USD": "43.49 Billion"
+  },
+  {
+    "COUNTRY": "Lesotho",
+    "COUNTRY CODE": 266,
+    "ISO CODES": "LS / LSO",
+    "POPULATION": "1 919 552",
+    "AREA KM2": "30 355",
+    "GDP $USD": "2.457 Billion"
+  },
+  {
+    "COUNTRY": "Liberia",
+    "COUNTRY CODE": 231,
+    "ISO CODES": "LR / LBR",
+    "POPULATION": "3 685 076",
+    "AREA KM2": "111 370",
+    "GDP $USD": "1.977 Billion"
+  },
+  {
+    "COUNTRY": "Libya",
+    "COUNTRY CODE": 218,
+    "ISO CODES": "LY / LBY",
+    "POPULATION": "6 461 454",
+    "AREA KM2": "1 759 540",
+    "GDP $USD": "70.92 Billion"
+  },
+  {
+    "COUNTRY": "Liechtenstein",
+    "COUNTRY CODE": 423,
+    "ISO CODES": "LI / LIE",
+    "POPULATION": "35 000",
+    "AREA KM2": 160,
+    "GDP $USD": "5.113 Billion"
+  },
+  {
+    "COUNTRY": "Lithuania",
+    "COUNTRY CODE": 370,
+    "ISO CODES": "LT / LTU",
+    "POPULATION": "2 944 459",
+    "AREA KM2": "65 200",
+    "GDP $USD": "46.71 Billion"
+  },
+  {
+    "COUNTRY": "Luxembourg",
+    "COUNTRY CODE": 352,
+    "ISO CODES": "LU / LUX",
+    "POPULATION": "497 538",
+    "AREA KM2": "2 586",
+    "GDP $USD": "60.54 Billion"
+  },
+  {
+    "COUNTRY": "Macau",
+    "COUNTRY CODE": 853,
+    "ISO CODES": "MO / MAC",
+    "POPULATION": "449 198",
+    "AREA KM2": 254,
+    "GDP $USD": "51.68 Billion"
+  },
+  {
+    "COUNTRY": "Macedonia",
+    "COUNTRY CODE": 389,
+    "ISO CODES": "MK / MKD",
+    "POPULATION": "2 062 294",
+    "AREA KM2": "25 333",
+    "GDP $USD": "10.65 Billion"
+  },
+  {
+    "COUNTRY": "Madagascar",
+    "COUNTRY CODE": 261,
+    "ISO CODES": "MG / MDG",
+    "POPULATION": "21 281 844",
+    "AREA KM2": "587 040",
+    "GDP $USD": "10.53 Billion"
+  },
+  {
+    "COUNTRY": "Malawi",
+    "COUNTRY CODE": 265,
+    "ISO CODES": "MW / MWI",
+    "POPULATION": "15 447 500",
+    "AREA KM2": "118 480",
+    "GDP $USD": "3.683 Billion"
+  },
+  {
+    "COUNTRY": "Malaysia",
+    "COUNTRY CODE": 60,
+    "ISO CODES": "MY / MYS",
+    "POPULATION": "28 274 729",
+    "AREA KM2": "329 750",
+    "GDP $USD": "312.4 Billion"
+  },
+  {
+    "COUNTRY": "Maldives",
+    "COUNTRY CODE": 960,
+    "ISO CODES": "MV / MDV",
+    "POPULATION": "395 650",
+    "AREA KM2": 300,
+    "GDP $USD": "2.27 Billion"
+  },
+  {
+    "COUNTRY": "Mali",
+    "COUNTRY CODE": 223,
+    "ISO CODES": "ML / MLI",
+    "POPULATION": "13 796 354",
+    "AREA KM2": "1 240 000",
+    "GDP $USD": "11.37 Billion"
+  },
+  {
+    "COUNTRY": "Malta",
+    "COUNTRY CODE": 356,
+    "ISO CODES": "MT / MLT",
+    "POPULATION": "403 000",
+    "AREA KM2": 316,
+    "GDP $USD": "9.541 Billion"
+  },
+  {
+    "COUNTRY": "Marshall Islands",
+    "COUNTRY CODE": 692,
+    "ISO CODES": "MH / MHL",
+    "POPULATION": "65 859",
+    "AREA KM2": 181,
+    "GDP $USD": "193 Million"
+  },
+  {
+    "COUNTRY": "Mauritania",
+    "COUNTRY CODE": 222,
+    "ISO CODES": "MR / MRT",
+    "POPULATION": "3 205 060",
+    "AREA KM2": "1 030 700",
+    "GDP $USD": "4.183 Billion"
+  },
+  {
+    "COUNTRY": "Mauritius",
+    "COUNTRY CODE": 230,
+    "ISO CODES": "MU / MUS",
+    "POPULATION": "1 294 104",
+    "AREA KM2": "2 040",
+    "GDP $USD": "11.9 Billion"
+  },
+  {
+    "COUNTRY": "Mayotte",
+    "COUNTRY CODE": 262,
+    "ISO CODES": "YT / MYT",
+    "POPULATION": "159 042",
+    "AREA KM2": 374,
+    "GDP $USD": ""
+  },
+  {
+    "COUNTRY": "Mexico",
+    "COUNTRY CODE": 52,
+    "ISO CODES": "MX / MEX",
+    "POPULATION": "112 468 855",
+    "AREA KM2": "1 972 550",
+    "GDP $USD": "1.327 Trillion"
+  },
+  {
+    "COUNTRY": "Micronesia",
+    "COUNTRY CODE": 691,
+    "ISO CODES": "FM / FSM",
+    "POPULATION": "107 708",
+    "AREA KM2": 702,
+    "GDP $USD": "339 Million"
+  },
+  {
+    "COUNTRY": "Moldova",
+    "COUNTRY CODE": 373,
+    "ISO CODES": "MD / MDA",
+    "POPULATION": "4 324 000",
+    "AREA KM2": "33 843",
+    "GDP $USD": "7.932 Billion"
+  },
+  {
+    "COUNTRY": "Monaco",
+    "COUNTRY CODE": 377,
+    "ISO CODES": "MC / MCO",
+    "POPULATION": "32 965",
+    "AREA KM2": 2,
+    "GDP $USD": "5.748 Billion"
+  },
+  {
+    "COUNTRY": "Mongolia",
+    "COUNTRY CODE": 976,
+    "ISO CODES": "MN / MNG",
+    "POPULATION": "3 086 918",
+    "AREA KM2": "1 565 000",
+    "GDP $USD": "11.14 Billion"
+  },
+  {
+    "COUNTRY": "Montenegro",
+    "COUNTRY CODE": 382,
+    "ISO CODES": "ME / MNE",
+    "POPULATION": "666 730",
+    "AREA KM2": "14 026",
+    "GDP $USD": "4.518 Billion"
+  },
+  {
+    "COUNTRY": "Montserrat",
+    "COUNTRY CODE": "1-664",
+    "ISO CODES": "MS / MSR",
+    "POPULATION": "9 341",
+    "AREA KM2": 102,
+    "GDP $USD": ""
+  },
+  {
+    "COUNTRY": "Morocco",
+    "COUNTRY CODE": 212,
+    "ISO CODES": "MA / MAR",
+    "POPULATION": "31 627 428",
+    "AREA KM2": "446 550",
+    "GDP $USD": "104.8 Billion"
+  },
+  {
+    "COUNTRY": "Mozambique",
+    "COUNTRY CODE": 258,
+    "ISO CODES": "MZ / MOZ",
+    "POPULATION": "22 061 451",
+    "AREA KM2": "801 590",
+    "GDP $USD": "14.67 Billion"
+  },
+  {
+    "COUNTRY": "Myanmar",
+    "COUNTRY CODE": 95,
+    "ISO CODES": "MM / MMR",
+    "POPULATION": "53 414 374",
+    "AREA KM2": "678 500",
+    "GDP $USD": "59.43 Billion"
+  },
+  {
+    "COUNTRY": "Namibia",
+    "COUNTRY CODE": 264,
+    "ISO CODES": "NA / NAM",
+    "POPULATION": "2 128 471",
+    "AREA KM2": "825 418",
+    "GDP $USD": "12.3 Billion"
+  },
+  {
+    "COUNTRY": "Nauru",
+    "COUNTRY CODE": 674,
+    "ISO CODES": "NR / NRU",
+    "POPULATION": "10 065",
+    "AREA KM2": 21,
+    "GDP $USD": ""
+  },
+  {
+    "COUNTRY": "Nepal",
+    "COUNTRY CODE": 977,
+    "ISO CODES": "NP / NPL",
+    "POPULATION": "28 951 852",
+    "AREA KM2": "140 800",
+    "GDP $USD": "19.34 Billion"
+  },
+  {
+    "COUNTRY": "Netherlands",
+    "COUNTRY CODE": 31,
+    "ISO CODES": "NL / NLD",
+    "POPULATION": "16 645 000",
+    "AREA KM2": "41 526",
+    "GDP $USD": "722.3 Billion"
+  },
+  {
+    "COUNTRY": "Netherlands Antilles",
+    "COUNTRY CODE": 599,
+    "ISO CODES": "AN / ANT",
+    "POPULATION": "136 197",
+    "AREA KM2": 960,
+    "GDP $USD": ""
+  },
+  {
+    "COUNTRY": "New Caledonia",
+    "COUNTRY CODE": 687,
+    "ISO CODES": "NC / NCL",
+    "POPULATION": "216 494",
+    "AREA KM2": "19 060",
+    "GDP $USD": "9.28 Billion"
+  },
+  {
+    "COUNTRY": "New Zealand",
+    "COUNTRY CODE": 64,
+    "ISO CODES": "NZ / NZL",
+    "POPULATION": "4 252 277",
+    "AREA KM2": "268 680",
+    "GDP $USD": "181.1 Billion"
+  },
+  {
+    "COUNTRY": "Nicaragua",
+    "COUNTRY CODE": 505,
+    "ISO CODES": "NI / NIC",
+    "POPULATION": "5 995 928",
+    "AREA KM2": "129 494",
+    "GDP $USD": "11.26 Billion"
+  },
+  {
+    "COUNTRY": "Niger",
+    "COUNTRY CODE": 227,
+    "ISO CODES": "NE / NER",
+    "POPULATION": "15 878 271",
+    "AREA KM2": "1 267 000",
+    "GDP $USD": "7.304 Billion"
+  },
+  {
+    "COUNTRY": "Nigeria",
+    "COUNTRY CODE": 234,
+    "ISO CODES": "NG / NGA",
+    "POPULATION": "154 000 000",
+    "AREA KM2": "923 768",
+    "GDP $USD": "502 Billion"
+  },
+  {
+    "COUNTRY": "Niue",
+    "COUNTRY CODE": 683,
+    "ISO CODES": "NU / NIU",
+    "POPULATION": "2 166",
+    "AREA KM2": 260,
+    "GDP $USD": "10.01 Million"
+  },
+  {
+    "COUNTRY": "North Korea",
+    "COUNTRY CODE": 850,
+    "ISO CODES": "KP / PRK",
+    "POPULATION": "22 912 177",
+    "AREA KM2": "120 540",
+    "GDP $USD": "28 Billion"
+  },
+  {
+    "COUNTRY": "Northern Mariana Islands",
+    "COUNTRY CODE": "1-670",
+    "ISO CODES": "MP / MNP",
+    "POPULATION": "53 883",
+    "AREA KM2": 477,
+    "GDP $USD": "733 Million"
+  },
+  {
+    "COUNTRY": "Norway",
+    "COUNTRY CODE": 47,
+    "ISO CODES": "NO / NOR",
+    "POPULATION": "5 009 150",
+    "AREA KM2": "324 220",
+    "GDP $USD": "515.8 Billion"
+  },
+  {
+    "COUNTRY": "Oman",
+    "COUNTRY CODE": 968,
+    "ISO CODES": "OM / OMN",
+    "POPULATION": "2 967 717",
+    "AREA KM2": "212 460",
+    "GDP $USD": "81.95 Billion"
+  },
+  {
+    "COUNTRY": "Pakistan",
+    "COUNTRY CODE": 92,
+    "ISO CODES": "PK / PAK",
+    "POPULATION": "184 404 791",
+    "AREA KM2": "803 940",
+    "GDP $USD": "236.5 Billion"
+  },
+  {
+    "COUNTRY": "Palau",
+    "COUNTRY CODE": 680,
+    "ISO CODES": "PW / PLW",
+    "POPULATION": "19 907",
+    "AREA KM2": 458,
+    "GDP $USD": "221 Million"
+  },
+  {
+    "COUNTRY": "Palestine",
+    "COUNTRY CODE": 970,
+    "ISO CODES": "PS / PSE",
+    "POPULATION": "3 800 000",
+    "AREA KM2": "5 970",
+    "GDP $USD": "6.641 Billion"
+  },
+  {
+    "COUNTRY": "Panama",
+    "COUNTRY CODE": 507,
+    "ISO CODES": "PA / PAN",
+    "POPULATION": "3 410 676",
+    "AREA KM2": "78 200",
+    "GDP $USD": "40.62 Billion"
+  },
+  {
+    "COUNTRY": "Papua New Guinea",
+    "COUNTRY CODE": 675,
+    "ISO CODES": "PG / PNG",
+    "POPULATION": "6 064 515",
+    "AREA KM2": "462 840",
+    "GDP $USD": "16.1 Billion"
+  },
+  {
+    "COUNTRY": "Paraguay",
+    "COUNTRY CODE": 595,
+    "ISO CODES": "PY / PRY",
+    "POPULATION": "6 375 830",
+    "AREA KM2": "406 750",
+    "GDP $USD": "30.56 Billion"
+  },
+  {
+    "COUNTRY": "Peru",
+    "COUNTRY CODE": 51,
+    "ISO CODES": "PE / PER",
+    "POPULATION": "29 907 003",
+    "AREA KM2": "1 285 220",
+    "GDP $USD": "210.3 Billion"
+  },
+  {
+    "COUNTRY": "Philippines",
+    "COUNTRY CODE": 63,
+    "ISO CODES": "PH / PHL",
+    "POPULATION": "99 900 177",
+    "AREA KM2": "300 000",
+    "GDP $USD": "272.2 Billion"
+  },
+  {
+    "COUNTRY": "Pitcairn",
+    "COUNTRY CODE": 64,
+    "ISO CODES": "PN / PCN",
+    "POPULATION": 46,
+    "AREA KM2": 47,
+    "GDP $USD": ""
+  },
+  {
+    "COUNTRY": "Poland",
+    "COUNTRY CODE": 48,
+    "ISO CODES": "PL / POL",
+    "POPULATION": "38 500 000",
+    "AREA KM2": "312 685",
+    "GDP $USD": "513.9 Billion"
+  },
+  {
+    "COUNTRY": "Portugal",
+    "COUNTRY CODE": 351,
+    "ISO CODES": "PT / PRT",
+    "POPULATION": "10 676 000",
+    "AREA KM2": "92 391",
+    "GDP $USD": "219.3 Billion"
+  },
+  {
+    "COUNTRY": "Puerto Rico",
+    "COUNTRY CODE": "0787-01-01T09:39:00+00:00",
+    "ISO CODES": "PR / PRI",
+    "POPULATION": "3 916 632",
+    "AREA KM2": "9 104",
+    "GDP $USD": "93.52 Billion"
+  },
+  {
+    "COUNTRY": "Qatar",
+    "COUNTRY CODE": 974,
+    "ISO CODES": "QA / QAT",
+    "POPULATION": "840 926",
+    "AREA KM2": "11 437",
+    "GDP $USD": "213.1 Billion"
+  },
+  {
+    "COUNTRY": "Republic of the Congo",
+    "COUNTRY CODE": 242,
+    "ISO CODES": "CG / COG",
+    "POPULATION": "3 039 126",
+    "AREA KM2": "342 000",
+    "GDP $USD": "14.25 Billion"
+  },
+  {
+    "COUNTRY": "Reunion",
+    "COUNTRY CODE": 262,
+    "ISO CODES": "RE / REU",
+    "POPULATION": "776 948",
+    "AREA KM2": "2 517",
+    "GDP $USD": ""
+  },
+  {
+    "COUNTRY": "Romania",
+    "COUNTRY CODE": 40,
+    "ISO CODES": "RO / ROU",
+    "POPULATION": "21 959 278",
+    "AREA KM2": "237 500",
+    "GDP $USD": "188.9 Billion"
+  },
+  {
+    "COUNTRY": "Russia",
+    "COUNTRY CODE": 7,
+    "ISO CODES": "RU / RUS",
+    "POPULATION": "140 702 000",
+    "AREA KM2": "17 100 000",
+    "GDP $USD": "2.113 Trillion"
+  },
+  {
+    "COUNTRY": "Rwanda",
+    "COUNTRY CODE": 250,
+    "ISO CODES": "RW / RWA",
+    "POPULATION": "11 055 976",
+    "AREA KM2": "26 338",
+    "GDP $USD": "7.7 Billion"
+  },
+  {
+    "COUNTRY": "Saint Barthelemy",
+    "COUNTRY CODE": 590,
+    "ISO CODES": "BL / BLM",
+    "POPULATION": "8 450",
+    "AREA KM2": 21,
+    "GDP $USD": ""
+  },
+  {
+    "COUNTRY": "Saint Helena",
+    "COUNTRY CODE": 290,
+    "ISO CODES": "SH / SHN",
+    "POPULATION": "7 460",
+    "AREA KM2": 410,
+    "GDP $USD": ""
+  },
+  {
+    "COUNTRY": "Saint Kitts and Nevis",
+    "COUNTRY CODE": "1-869",
+    "ISO CODES": "KN / KNA",
+    "POPULATION": "51 134",
+    "AREA KM2": 261,
+    "GDP $USD": "767 Million"
+  },
+  {
+    "COUNTRY": "Saint Lucia",
+    "COUNTRY CODE": "1-758",
+    "ISO CODES": "LC / LCA",
+    "POPULATION": "160 922",
+    "AREA KM2": 616,
+    "GDP $USD": "1.377 Billion"
+  },
+  {
+    "COUNTRY": "Saint Martin",
+    "COUNTRY CODE": 590,
+    "ISO CODES": "MF / MAF",
+    "POPULATION": "35 925",
+    "AREA KM2": 53,
+    "GDP $USD": "561.5 Million"
+  },
+  {
+    "COUNTRY": "Saint Pierre and Miquelon",
+    "COUNTRY CODE": 508,
+    "ISO CODES": "PM / SPM",
+    "POPULATION": "7 012",
+    "AREA KM2": 242,
+    "GDP $USD": "215.3 Million"
+  },
+  {
+    "COUNTRY": "Saint Vincent and the Grenadines",
+    "COUNTRY CODE": "1-784",
+    "ISO CODES": "VC / VCT",
+    "POPULATION": "104 217",
+    "AREA KM2": 389,
+    "GDP $USD": "742 Million"
+  },
+  {
+    "COUNTRY": "Samoa",
+    "COUNTRY CODE": 685,
+    "ISO CODES": "WS / WSM",
+    "POPULATION": "192 001",
+    "AREA KM2": "2 944",
+    "GDP $USD": "705 Million"
+  },
+  {
+    "COUNTRY": "San Marino",
+    "COUNTRY CODE": 378,
+    "ISO CODES": "SM / SMR",
+    "POPULATION": "31 477",
+    "AREA KM2": 61,
+    "GDP $USD": "1.866 Billion"
+  },
+  {
+    "COUNTRY": "Sao Tome and Principe",
+    "COUNTRY CODE": 239,
+    "ISO CODES": "ST / STP",
+    "POPULATION": "175 808",
+    "AREA KM2": "1 001",
+    "GDP $USD": "311 Million"
+  },
+  {
+    "COUNTRY": "Saudi Arabia",
+    "COUNTRY CODE": 966,
+    "ISO CODES": "SA / SAU",
+    "POPULATION": "25 731 776",
+    "AREA KM2": "1 960 582",
+    "GDP $USD": "718.5 Billion"
+  },
+  {
+    "COUNTRY": "Senegal",
+    "COUNTRY CODE": 221,
+    "ISO CODES": "SN / SEN",
+    "POPULATION": "12 323 252",
+    "AREA KM2": "196 190",
+    "GDP $USD": "15.36 Billion"
+  },
+  {
+    "COUNTRY": "Serbia",
+    "COUNTRY CODE": 381,
+    "ISO CODES": "RS / SRB",
+    "POPULATION": "7 344 847",
+    "AREA KM2": "88 361",
+    "GDP $USD": "43.68 Billion"
+  },
+  {
+    "COUNTRY": "Seychelles",
+    "COUNTRY CODE": 248,
+    "ISO CODES": "SC / SYC",
+    "POPULATION": "88 340",
+    "AREA KM2": 455,
+    "GDP $USD": "1.271 Billion"
+  },
+  {
+    "COUNTRY": "Sierra Leone",
+    "COUNTRY CODE": 232,
+    "ISO CODES": "SL / SLE",
+    "POPULATION": "5 245 695",
+    "AREA KM2": "71 740",
+    "GDP $USD": "4.607 Billion"
+  },
+  {
+    "COUNTRY": "Singapore",
+    "COUNTRY CODE": 65,
+    "ISO CODES": "SG / SGP",
+    "POPULATION": "4 701 069",
+    "AREA KM2": 693,
+    "GDP $USD": "295.7 Billion"
+  },
+  {
+    "COUNTRY": "Sint Maarten",
+    "COUNTRY CODE": "1-721",
+    "ISO CODES": "SX / SXM",
+    "POPULATION": "37 429",
+    "AREA KM2": 34,
+    "GDP $USD": "794.7 Million"
+  },
+  {
+    "COUNTRY": "Slovakia",
+    "COUNTRY CODE": 421,
+    "ISO CODES": "SK / SVK",
+    "POPULATION": "5 455 000",
+    "AREA KM2": "48 845",
+    "GDP $USD": "96.96 Billion"
+  },
+  {
+    "COUNTRY": "Slovenia",
+    "COUNTRY CODE": 386,
+    "ISO CODES": "SI / SVN",
+    "POPULATION": "2 007 000",
+    "AREA KM2": "20 273",
+    "GDP $USD": "46.82 Billion"
+  },
+  {
+    "COUNTRY": "Solomon Islands",
+    "COUNTRY CODE": 677,
+    "ISO CODES": "SB / SLB",
+    "POPULATION": "559 198",
+    "AREA KM2": "28 450",
+    "GDP $USD": "1.099 Billion"
+  },
+  {
+    "COUNTRY": "Somalia",
+    "COUNTRY CODE": 252,
+    "ISO CODES": "SO / SOM",
+    "POPULATION": "10 112 453",
+    "AREA KM2": "637 657",
+    "GDP $USD": "2.372 Billion"
+  },
+  {
+    "COUNTRY": "South Africa",
+    "COUNTRY CODE": 27,
+    "ISO CODES": "ZA / ZAF",
+    "POPULATION": "49 000 000",
+    "AREA KM2": "1 219 912",
+    "GDP $USD": "353.9 Billion"
+  },
+  {
+    "COUNTRY": "South Korea",
+    "COUNTRY CODE": 82,
+    "ISO CODES": "KR / KOR",
+    "POPULATION": "48 422 644",
+    "AREA KM2": "98 480",
+    "GDP $USD": "1.198 Trillion"
+  },
+  {
+    "COUNTRY": "South Sudan",
+    "COUNTRY CODE": 211,
+    "ISO CODES": "SS / SSD",
+    "POPULATION": "8 260 490",
+    "AREA KM2": "644 329",
+    "GDP $USD": "11.77 Billion"
+  },
+  {
+    "COUNTRY": "Spain",
+    "COUNTRY CODE": 34,
+    "ISO CODES": "ES / ESP",
+    "POPULATION": "46 505 963",
+    "AREA KM2": "504 782",
+    "GDP $USD": "1.356 Trillion"
+  },
+  {
+    "COUNTRY": "Sri Lanka",
+    "COUNTRY CODE": 94,
+    "ISO CODES": "LK / LKA",
+    "POPULATION": "21 513 990",
+    "AREA KM2": "65 610",
+    "GDP $USD": "65.12 Billion"
+  },
+  {
+    "COUNTRY": "Sudan",
+    "COUNTRY CODE": 249,
+    "ISO CODES": "SD / SDN",
+    "POPULATION": "35 000 000",
+    "AREA KM2": "1 861 484",
+    "GDP $USD": "52.5 Billion"
+  },
+  {
+    "COUNTRY": "Suriname",
+    "COUNTRY CODE": 597,
+    "ISO CODES": "SR / SUR",
+    "POPULATION": "492 829",
+    "AREA KM2": "163 270",
+    "GDP $USD": "5.009 Billion"
+  },
+  {
+    "COUNTRY": "Svalbard and Jan Mayen",
+    "COUNTRY CODE": 47,
+    "ISO CODES": "SJ / SJM",
+    "POPULATION": "2 550",
+    "AREA KM2": "62 049",
+    "GDP $USD": ""
+  },
+  {
+    "COUNTRY": "Swaziland",
+    "COUNTRY CODE": 268,
+    "ISO CODES": "SZ / SWZ",
+    "POPULATION": "1 354 051",
+    "AREA KM2": "17 363",
+    "GDP $USD": "3.807 Billion"
+  },
+  {
+    "COUNTRY": "Sweden",
+    "COUNTRY CODE": 46,
+    "ISO CODES": "SE / SWE",
+    "POPULATION": "9 555 893",
+    "AREA KM2": "449 964",
+    "GDP $USD": "552 Billion"
+  },
+  {
+    "COUNTRY": "Switzerland",
+    "COUNTRY CODE": 41,
+    "ISO CODES": "CH / CHE",
+    "POPULATION": "7 581 000",
+    "AREA KM2": "41 290",
+    "GDP $USD": "646.2 Billion"
+  },
+  {
+    "COUNTRY": "Syria",
+    "COUNTRY CODE": 963,
+    "ISO CODES": "SY / SYR",
+    "POPULATION": "22 198 110",
+    "AREA KM2": "185 180",
+    "GDP $USD": "64.7 Billion"
+  },
+  {
+    "COUNTRY": "Taiwan",
+    "COUNTRY CODE": 886,
+    "ISO CODES": "TW / TWN",
+    "POPULATION": "22 894 384",
+    "AREA KM2": "35 980",
+    "GDP $USD": "484.7 Billion"
+  },
+  {
+    "COUNTRY": "Tajikistan",
+    "COUNTRY CODE": 992,
+    "ISO CODES": "TJ / TJK",
+    "POPULATION": "7 487 489",
+    "AREA KM2": "143 100",
+    "GDP $USD": "8.513 Billion"
+  },
+  {
+    "COUNTRY": "Tanzania",
+    "COUNTRY CODE": 255,
+    "ISO CODES": "TZ / TZA",
+    "POPULATION": "41 892 895",
+    "AREA KM2": "945 087",
+    "GDP $USD": "31.94 Billion"
+  },
+  {
+    "COUNTRY": "Thailand",
+    "COUNTRY CODE": 66,
+    "ISO CODES": "TH / THA",
+    "POPULATION": "67 089 500",
+    "AREA KM2": "514 000",
+    "GDP $USD": "400.9 Billion"
+  },
+  {
+    "COUNTRY": "Togo",
+    "COUNTRY CODE": 228,
+    "ISO CODES": "TG / TGO",
+    "POPULATION": "6 587 239",
+    "AREA KM2": "56 785",
+    "GDP $USD": "4.299 Billion"
+  },
+  {
+    "COUNTRY": "Tokelau",
+    "COUNTRY CODE": 690,
+    "ISO CODES": "TK / TKL",
+    "POPULATION": "1 466",
+    "AREA KM2": 10,
+    "GDP $USD": ""
+  },
+  {
+    "COUNTRY": "Tonga",
+    "COUNTRY CODE": 676,
+    "ISO CODES": "TO / TON",
+    "POPULATION": "122 580",
+    "AREA KM2": 748,
+    "GDP $USD": "477 Million"
+  },
+  {
+    "COUNTRY": "Trinidad and Tobago",
+    "COUNTRY CODE": "1-868",
+    "ISO CODES": "TT / TTO",
+    "POPULATION": "1 228 691",
+    "AREA KM2": "5 128",
+    "GDP $USD": "27.13 Billion"
+  },
+  {
+    "COUNTRY": "Tunisia",
+    "COUNTRY CODE": 216,
+    "ISO CODES": "TN / TUN",
+    "POPULATION": "10 589 025",
+    "AREA KM2": "163 610",
+    "GDP $USD": "48.38 Billion"
+  },
+  {
+    "COUNTRY": "Turkey",
+    "COUNTRY CODE": 90,
+    "ISO CODES": "TR / TUR",
+    "POPULATION": "77 804 122",
+    "AREA KM2": "780 580",
+    "GDP $USD": "821.8 Billion"
+  },
+  {
+    "COUNTRY": "Turkmenistan",
+    "COUNTRY CODE": 993,
+    "ISO CODES": "TM / TKM",
+    "POPULATION": "4 940 916",
+    "AREA KM2": "488 100",
+    "GDP $USD": "40.56 Billion"
+  },
+  {
+    "COUNTRY": "Turks and Caicos Islands",
+    "COUNTRY CODE": "1-649",
+    "ISO CODES": "TC / TCA",
+    "POPULATION": "20 556",
+    "AREA KM2": 430,
+    "GDP $USD": ""
+  },
+  {
+    "COUNTRY": "Tuvalu",
+    "COUNTRY CODE": 688,
+    "ISO CODES": "TV / TUV",
+    "POPULATION": "10 472",
+    "AREA KM2": 26,
+    "GDP $USD": "38 Million"
+  },
+  {
+    "COUNTRY": "U.S. Virgin Islands",
+    "COUNTRY CODE": "1-340",
+    "ISO CODES": "VI / VIR",
+    "POPULATION": "108 708",
+    "AREA KM2": 352,
+    "GDP $USD": ""
+  },
+  {
+    "COUNTRY": "Uganda",
+    "COUNTRY CODE": 256,
+    "ISO CODES": "UG / UGA",
+    "POPULATION": "33 398 682",
+    "AREA KM2": "236 040",
+    "GDP $USD": "22.6 Billion"
+  },
+  {
+    "COUNTRY": "Ukraine",
+    "COUNTRY CODE": 380,
+    "ISO CODES": "UA / UKR",
+    "POPULATION": "45 415 596",
+    "AREA KM2": "603 700",
+    "GDP $USD": "175.5 Billion"
+  },
+  {
+    "COUNTRY": "United Arab Emirates",
+    "COUNTRY CODE": 971,
+    "ISO CODES": "AE / ARE",
+    "POPULATION": "4 975 593",
+    "AREA KM2": "82 880",
+    "GDP $USD": "390 Billion"
+  },
+  {
+    "COUNTRY": "United Kingdom",
+    "COUNTRY CODE": 44,
+    "ISO CODES": "GB / GBR",
+    "POPULATION": "62 348 447",
+    "AREA KM2": "244 820",
+    "GDP $USD": "2.49 Trillion"
+  },
+  {
+    "COUNTRY": "United States",
+    "COUNTRY CODE": 1,
+    "ISO CODES": "US / USA",
+    "POPULATION": "310 232 863",
+    "AREA KM2": "9 629 091",
+    "GDP $USD": "16.72 Trillion"
+  },
+  {
+    "COUNTRY": "Uruguay",
+    "COUNTRY CODE": 598,
+    "ISO CODES": "UY / URY",
+    "POPULATION": "3 477 000",
+    "AREA KM2": "176 220",
+    "GDP $USD": "57.11 Billion"
+  },
+  {
+    "COUNTRY": "Uzbekistan",
+    "COUNTRY CODE": 998,
+    "ISO CODES": "UZ / UZB",
+    "POPULATION": "27 865 738",
+    "AREA KM2": "447 400",
+    "GDP $USD": "55.18 Billion"
+  },
+  {
+    "COUNTRY": "Vanuatu",
+    "COUNTRY CODE": 678,
+    "ISO CODES": "VU / VUT",
+    "POPULATION": "221 552",
+    "AREA KM2": "12 200",
+    "GDP $USD": "828 Million"
+  },
+  {
+    "COUNTRY": "Vatican",
+    "COUNTRY CODE": 379,
+    "ISO CODES": "VA / VAT",
+    "POPULATION": 921,
+    "AREA KM2": 0,
+    "GDP $USD": ""
+  },
+  {
+    "COUNTRY": "Venezuela",
+    "COUNTRY CODE": 58,
+    "ISO CODES": "VE / VEN",
+    "POPULATION": "27 223 228",
+    "AREA KM2": "912 050",
+    "GDP $USD": "367.5 Billion"
+  },
+  {
+    "COUNTRY": "Vietnam",
+    "COUNTRY CODE": 84,
+    "ISO CODES": "VN / VNM",
+    "POPULATION": "89 571 130",
+    "AREA KM2": "329 560",
+    "GDP $USD": "170 Billion"
+  },
+  {
+    "COUNTRY": "Wallis and Futuna",
+    "COUNTRY CODE": 681,
+    "ISO CODES": "WF / WLF",
+    "POPULATION": "16 025",
+    "AREA KM2": 274,
+    "GDP $USD": ""
+  },
+  {
+    "COUNTRY": "Western Sahara",
+    "COUNTRY CODE": 212,
+    "ISO CODES": "EH / ESH",
+    "POPULATION": "273 008",
+    "AREA KM2": "266 000",
+    "GDP $USD": ""
+  },
+  {
+    "COUNTRY": "Yemen",
+    "COUNTRY CODE": 967,
+    "ISO CODES": "YE / YEM",
+    "POPULATION": "23 495 361",
+    "AREA KM2": "527 970",
+    "GDP $USD": "43.89 Billion"
+  },
+  {
+    "COUNTRY": "Zambia",
+    "COUNTRY CODE": 260,
+    "ISO CODES": "ZM / ZMB",
+    "POPULATION": "13 460 305",
+    "AREA KM2": "752 614",
+    "GDP $USD": "22.24 Billion"
+  },
+  {
+    "COUNTRY": "Zimbabwe",
+    "COUNTRY CODE": 263,
+    "ISO CODES": "ZW / ZWE",
+    "POPULATION": "11 651 858",
+    "AREA KM2": "390 580",
+    "GDP $USD": "10.48 Billion"
+  }
+]
