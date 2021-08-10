@@ -1,0 +1,19 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net5.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="AngleSharp" Version="0.16.0" />
+    <PackageReference Include="AutoMapper" Version="10.1.1" />
+    <PackageReference Include="Microsoft.AspNetCore.Identity.UI" Version="5.0.8" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Oversteer.Data\Oversteer.Data.csproj" />
+    <ProjectReference Include="..\Oversteer.Web.Infrastructure\Oversteer.Web.Infrastructure.csproj" />
+    <ProjectReference Include="..\Oversteer.Web.ViewModels\Oversteer.Web.ViewModels.csproj" />
+  </ItemGroup>
+
+</Project>
