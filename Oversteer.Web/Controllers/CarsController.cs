@@ -119,7 +119,7 @@
 
             try
             {
-                await this.carService.CreateCarAsync(carModel, companyId, $"{environment.WebRootPath}/images");
+                await this.carService.CreateCarAsync(carModel, companyId);
             }
             catch (Exception ex)
             {

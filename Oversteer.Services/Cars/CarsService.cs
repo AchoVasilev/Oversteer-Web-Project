@@ -9,11 +9,14 @@
     using AutoMapper;
     using AutoMapper.QueryableExtensions;
 
+    using CloudinaryDotNet;
+
     using Microsoft.AspNetCore.Http;
     using Microsoft.EntityFrameworkCore;
 
     using Oversteer.Data;
     using Oversteer.Data.Models.Cars;
+    using Oversteer.Services.Images;
     using Oversteer.Web.Infrastructure;
     using Oversteer.Web.ViewModels.Cars;
     using Oversteer.Web.ViewModels.Cars.CarItems;
@@ -25,14 +28,18 @@
         private readonly string[] AllowedExtensions = new[] { "jpg", "png", "gif" };
         private readonly ApplicationDbContext data;
         private readonly IMapper mapper;
+        private readonly IImageService imageService;
+        private readonly Cloudinary cloudinary;
 
-        public CarsService(ApplicationDbContext data, IMapper mapper)
+        public CarsService(ApplicationDbContext data, IMapper mapper, IImageService imageService, Cloudinary cloudinary)
         {
             this.data = data;
             this.mapper = mapper;
+            this.imageService = imageService;
+            this.cloudinary = cloudinary;
         }
 
-        public async Task CreateCarAsync(CarFormModel carModel, int companyId, string imagePath)
+        public async Task CreateCarAsync(CarFormModel carModel, int companyId)
         {
             var car = new Car()
             {
@@ -50,9 +57,7 @@
                 LocationId = carModel.LocationId
             };
 
-            Directory.CreateDirectory($"{imagePath}/cars/");
-
-            await this.UploadImages(carModel.Images, companyId, imagePath, car);
+            await this.imageService.UploadImage(cloudinary, carModel.Images, companyId, car);
 
             await this.data.Cars.AddAsync(car);
             await this.data.SaveChangesAsync();

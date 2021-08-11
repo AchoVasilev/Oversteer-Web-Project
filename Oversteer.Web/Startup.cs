@@ -2,6 +2,8 @@ namespace Oversteer.Web
 {
     using System;
 
+    using CloudinaryDotNet;
+
     using Microsoft.AspNetCore.Builder;
     using Microsoft.AspNetCore.Hosting;
     using Microsoft.AspNetCore.Identity;
@@ -23,6 +25,7 @@ namespace Oversteer.Web
     using Oversteer.Services.Countries;
     using Oversteer.Services.EmailSenders;
     using Oversteer.Services.Home;
+    using Oversteer.Services.Images;
     using Oversteer.Services.Rentals;
     using Oversteer.Services.Statistics;
     using Oversteer.Web.ViewModels;
@@ -65,7 +68,8 @@ namespace Oversteer.Web
                 .AddTransient<IZipCodesService, ZipCodesService>()
                 .AddTransient<IRentingService, RentingService>()
                 .AddTransient<ILocationService, LocationService>()
-                .AddTransient<IClientsService, ClientsService>();
+                .AddTransient<IClientsService, ClientsService>()
+                .AddTransient<IImageService, ImageService>();
 
             services.AddTransient<IEmailSender, MailKitSender>();
             services.Configure<MailKitEmailSenderOptions>(options =>
@@ -77,6 +81,14 @@ namespace Oversteer.Web
                 options.SenderEmail = Configuration["SmtpSettings:SenderEmail"];
                 options.SenderName = Configuration["SmtpSettings:SenderName"];
             });
+
+            var cloud = this.Configuration.GetSection("Cloudinary")["CloudifyName"];
+            var apiKey = this.Configuration.GetSection("Cloudinary")["CloudifyAPI"];
+            var apiSecret = this.Configuration.GetSection("Cloudinary")["CloudifyKey"];
+            var cloudinaryAccount = new Account(cloud, apiKey, apiSecret);
+            var cloudinary = new Cloudinary(cloudinaryAccount);
+
+            services.AddSingleton(cloudinary);
 
             services.AddAutoMapper(typeof(Startup));
             services.AddControllersWithViews(configure =>

@@ -13,7 +13,7 @@
 
     public interface ICarsService
     {
-        Task CreateCarAsync(CarFormModel carModel, int companyId, string path);
+        Task CreateCarAsync(CarFormModel carModel, int companyId);
 
         Task DeleteCarAsync(int companyId, int carId);
 
