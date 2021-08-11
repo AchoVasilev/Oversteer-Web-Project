@@ -2,7 +2,6 @@
 {
     using System;
     using System.Linq;
-    using System.Security.Cryptography.X509Certificates;
     using System.Threading.Tasks;
 
     using Microsoft.AspNetCore.Authorization;
@@ -226,8 +225,6 @@
                 return this.BadRequest();
             }
 
-            var imagePath = $"{environment.WebRootPath}/images";
-
             try
             {
                 await this.carService.EditCarAsync(
@@ -244,7 +241,6 @@
                     carModel.ImageUrl,
                     carModel.Description,
                     carModel.Images,
-                    imagePath,
                     companyId
                     );
             }

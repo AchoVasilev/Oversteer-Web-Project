@@ -28,7 +28,6 @@ namespace Oversteer.Web
     using Oversteer.Services.Images;
     using Oversteer.Services.Rentals;
     using Oversteer.Services.Statistics;
-    using Oversteer.Web.ViewModels;
     using Oversteer.Web.ViewModels.Email;
 
     public class Startup
@@ -70,30 +69,45 @@ namespace Oversteer.Web
                 .AddTransient<ILocationService, LocationService>()
                 .AddTransient<IClientsService, ClientsService>()
                 .AddTransient<IImageService, ImageService>();
-
+            
+            //Configure MailKit
             services.AddTransient<IEmailSender, MailKitSender>();
             services.Configure<MailKitEmailSenderOptions>(options =>
             {
-                options.HostAddress = Configuration["SmtpSettings:Server"];
-                options.HostPort = Convert.ToInt32(Configuration["SmtpSettings:Port"]);
-                options.HostUsername = Configuration["SmtpSettings:Username"];
-                options.HostPassword = Configuration["SmtpSettings:Password"];
-                options.SenderEmail = Configuration["SmtpSettings:SenderEmail"];
-                options.SenderName = Configuration["SmtpSettings:SenderName"];
+                options.HostAddress = this.Configuration["SmtpSettings:Server"];
+                options.HostPort = Convert.ToInt32(this.Configuration["SmtpSettings:Port"]);
+                options.HostUsername = this.Configuration["SmtpSettings:Username"];
+                options.HostPassword = this.Configuration["SmtpSettings:Password"];
+                options.SenderEmail = this.Configuration["SmtpSettings:SenderEmail"];
+                options.SenderName = this.Configuration["SmtpSettings:SenderName"];
             });
 
-            var cloud = this.Configuration.GetSection("Cloudinary")["CloudifyName"];
-            var apiKey = this.Configuration.GetSection("Cloudinary")["CloudifyAPI"];
-            var apiSecret = this.Configuration.GetSection("Cloudinary")["CloudifyKey"];
+            //Configure Cloudinary
+            var cloud = this.Configuration["Cloudinary:CloudifyName"];
+            var apiKey = this.Configuration["Cloudinary:CloudifyAPI"];
+            var apiSecret = this.Configuration["Cloudinary:CloudifyKey"];
             var cloudinaryAccount = new Account(cloud, apiKey, apiSecret);
             var cloudinary = new Cloudinary(cloudinaryAccount);
 
             services.AddSingleton(cloudinary);
 
             services.AddAutoMapper(typeof(Startup));
+
+            //Configure External Providers
+            services.AddAuthentication().AddFacebook(fbOptions =>
+            {
+                fbOptions.AppId = this.Configuration["Facebook:AppId"];
+                fbOptions.AppSecret = this.Configuration["Facebook:AppSecret"];
+            });
+
             services.AddControllersWithViews(configure =>
             {
                 configure.Filters.Add(new AutoValidateAntiforgeryTokenAttribute());
+            });
+
+            services.AddAntiforgery(options =>
+            {
+                options.HeaderName = "X-CSRF-TOKEN";
             });
 
             services.AddRazorPages();
