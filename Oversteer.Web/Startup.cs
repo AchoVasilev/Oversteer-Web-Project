@@ -98,6 +98,13 @@ namespace Oversteer.Web
             {
                 fbOptions.AppId = this.Configuration["Facebook:AppId"];
                 fbOptions.AppSecret = this.Configuration["Facebook:AppSecret"];
+                fbOptions.AccessDeniedPath = "/AccessDeniedPathInfo";
+            });
+
+            services.AddAuthentication().AddGoogle(google =>
+            {
+                google.ClientId = this.Configuration["Google:ClientId"];
+                google.ClientSecret = this.Configuration["Google:ClientSecret"];
             });
 
             services.AddControllersWithViews(configure =>
