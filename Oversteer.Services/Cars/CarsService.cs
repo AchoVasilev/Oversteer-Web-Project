@@ -174,7 +174,7 @@
             {
                 foreach (var img in image)
                 {
-                    var imagePath = "/images/cars/" + img.Id + "." + img.Extension;
+                    var imagePath = img.Url ?? $"/images/cars/{img.Id}.{img.Extension}";
 
                     car.Urls.Add(imagePath);
                 }

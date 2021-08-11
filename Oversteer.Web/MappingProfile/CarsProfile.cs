@@ -27,7 +27,9 @@
 
             this.CreateMap<Car, CarDetailsFormModel>()
                 .ForMember(x => x.Url, opt =>
-                    opt.MapFrom(x => x.CarImages.FirstOrDefault().RemoteImageUrl));
+                    opt.MapFrom(x => x.CarImages.FirstOrDefault().RemoteImageUrl ??
+                          x.CarImages.FirstOrDefault().Url ??
+                          "/images/cars/" + x.CarImages.FirstOrDefault().Id + "." + x.CarImages.FirstOrDefault().Extension));
 
             this.CreateMap<Car, CarIndexViewModel>()
                 .ForMember(x => x.Url, opt =>
