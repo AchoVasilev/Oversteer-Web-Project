@@ -4,6 +4,8 @@
     using Microsoft.AspNetCore.Identity;
     using Oversteer.Data.Models.Users;
     using Oversteer.Data;
+    using Microsoft.EntityFrameworkCore;
+    using System.Linq;
 
     public class ClientsService : IClientsService
     {
@@ -46,5 +48,11 @@
 
             return user.ClientId;
         }
+
+        public Task<int> GetClientIdByUserId(string userId)
+            => this.data.Clients
+                        .Where(x => x.UserId == userId)
+                        .Select(x => x.Id)
+                        .FirstOrDefaultAsync();
     }
 }

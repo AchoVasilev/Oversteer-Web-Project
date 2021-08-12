@@ -18,7 +18,7 @@
         Task DeleteCarAsync(int companyId, int carId);
 
         Task<bool> EditCarAsync(int carId, int brandId, int modelId, int colorId, int carTypeId, int fuelId, int transmissionId, int? year,
-            decimal? dailyPrice, int? seatsCount, string imageUrl, string description, IEnumerable<IFormFile> images, string imagePath, int companyId);
+            decimal? dailyPrice, int? seatsCount, string imageUrl, string description, IEnumerable<IFormFile> images, int companyId);
 
         Task<bool> IsRentedAsync(DateTime startDate, DateTime endDate, int carId);
 

@@ -484,6 +484,9 @@ namespace Oversteer.Web.Data.Migrations
                     b.Property<int>("CompanyId")
                         .HasColumnType("int");
 
+                    b.Property<DateTime>("CreatedOn")
+                        .HasColumnType("datetime2");
+
                     b.Property<int>("DropOffLocationId")
                         .HasColumnType("int");
 

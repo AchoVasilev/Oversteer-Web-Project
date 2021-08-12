@@ -22,6 +22,8 @@
 
         public string TransmissionName { get; init; }
 
+        public int CompanyId { get; init; }
+
         public string CompanyName { get; init; }
 
         public string Description { get; init; }
@@ -31,8 +33,6 @@
         public int SeatsCount { get; init; }
 
         public string CompanyUserId { get; init; }
-
-        public int CompanyId { get; init; }
 
         public List<string> Urls { get; init; } = new List<string>();
     }

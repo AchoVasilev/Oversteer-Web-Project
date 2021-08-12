@@ -16,6 +16,8 @@
         [MaxLength(IdMaxLength)]
         public string Id { get; set; } = Guid.NewGuid().ToString();
 
+        public DateTime CreatedOn { get; init; } = DateTime.UtcNow;
+
         public DateTime StartDate { get; set; }
 
         public DateTime ReturnDate { get; set; }

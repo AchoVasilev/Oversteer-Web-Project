@@ -5,26 +5,30 @@
 
     public class RentPreviewModel
     {
-        public int Id { get; set; }
+        public int CarId { get; init; }
 
-        public string Model { get; set; }
+        public string Model { get; init; }
 
-        public decimal PricePerDay { get; set; }
+        public decimal PricePerDay { get; init; }
 
-        public DateTime RentStart { get; set; }
+        public int CompanyId { get; init; }
 
-        public DateTime RentEnd { get; set; }
+        public string CompanyName { get; init; }
 
-        public int Days { get; set; }
+        public DateTime RentStart { get; init; }
 
-        [Required]
-        public string Image { get; set; }
+        public DateTime RentEnd { get; init; }
 
-        [Required]
-        public string PickUpPlace { get; set; }
+        public int Days { get; init; }
 
         [Required]
-        public string ReturnPlace { get; set; }
+        public string Image { get; init; }
+
+        [Required]
+        public string PickUpPlace { get; init; }
+
+        [Required]
+        public string ReturnPlace { get; init; }
 
         public decimal TotalPrice => this.PricePerDay * this.Days;
     }

@@ -11,5 +11,7 @@
         string GetClientUserIdByEmailAsync(string email);
 
         int GetClientIdByEmailAsync(string email);
+
+        Task<int> GetClientIdByUserId(string userId);
     }
 }

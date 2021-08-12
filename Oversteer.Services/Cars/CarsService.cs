@@ -2,7 +2,6 @@
 {
     using System;
     using System.Collections.Generic;
-    using System.IO;
     using System.Linq;
     using System.Threading.Tasks;
 
@@ -25,7 +24,6 @@
 
     public class CarsService : ICarsService
     {
-        private readonly string[] AllowedExtensions = new[] { "jpg", "png", "gif" };
         private readonly ApplicationDbContext data;
         private readonly IMapper mapper;
         private readonly IImageService imageService;
@@ -74,7 +72,7 @@
         }
 
         public async Task<bool> EditCarAsync(int carId, int brandId, int modelId, int colorId, int carTypeId, int fuelId, int transmissionId, int? year,
-            decimal? dailyPrice, int? seatsCount, string imageUrl, string description, IEnumerable<IFormFile> images, string imagePath, int companyId)
+            decimal? dailyPrice, int? seatsCount, string imageUrl, string description, IEnumerable<IFormFile> images, int companyId)
         {
             var carData = this.data.Cars.Find(carId);
 
@@ -95,7 +93,7 @@
             carData.Description = description;
             carData.CarImages.Clear();
 
-            await this.UploadImages(images, companyId, imagePath, carData);
+            await this.imageService.UploadImage(cloudinary, images, companyId, carData);
 
             await this.data.SaveChangesAsync();
 
@@ -122,6 +120,7 @@
                             {
                                 Id = x.Id,
                                 Image = x.CarImages.FirstOrDefault().RemoteImageUrl ??
+                                        x.CarImages.FirstOrDefault().Url ??
                                         "/images/cars/" + x.CarImages.FirstOrDefault().Id + "." + x.CarImages.FirstOrDefault().Extension,
                                 Description = x.Description,
                                 TransmissionName = x.Transmission.Name,
@@ -129,6 +128,8 @@
                                 BrandName = x.Brand.Name,
                                 ModelName = x.Model.Name,
                                 ModelYear = x.ModelYear,
+                                CompanyId = x.CompanyId,
+                                CompanyName = x.Company.Name,
                                 Days = dates.Count,
                                 StartRent = startDate,
                                 EndRent = endDate
@@ -208,7 +209,7 @@
         {
             var dates = new List<DateTime>();
 
-            for (var i = startDate; i <= endDate; i.AddDays(1))
+            for (var i = startDate; i <= endDate; i = i.AddDays(1))
             {
                 dates.Add(i);
             }
@@ -425,32 +426,6 @@
             };
 
             return carsQuery;
-        }
-
-        private async Task UploadImages(IEnumerable<IFormFile> images, int companyId, string imagePath, Car car)
-        {
-            foreach (var image in images)
-            {
-                var extension = Path.GetExtension(image.FileName).TrimStart('.');
-
-                if (!AllowedExtensions.Any(x => extension.EndsWith(x)))
-                {
-                    throw new Exception($"Invalid image extension {extension}");
-                }
-
-                var dbImage = new CarImage()
-                {
-                    CompanyId = companyId,
-                    Extension = extension
-                };
-
-                car.CarImages.Add(dbImage);
-
-                var physicalPath = $"{imagePath}/cars/{dbImage.Id}.{extension}";
-
-                using Stream stream = new FileStream(physicalPath, FileMode.Create);
-                await image.CopyToAsync(stream);
-            }
         }
     }
 }

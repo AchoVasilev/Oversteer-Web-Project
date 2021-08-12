@@ -6,29 +6,33 @@
 
     public class CarDto
     {
-        public int Id { get; set; }
+        public int Id { get; init; }
 
-        public string BrandName { get; set; }
+        public int CompanyId { get; init; }
 
-        public string ModelName { get; set; }
+        public string CompanyName { get; init; }
 
-        public string Description { get; set; }
+        public string BrandName { get; init; }
 
-        public int ModelYear { get; set; }
+        public string ModelName { get; init; }
 
-        public string Image { get; set; }
+        public string Description { get; init; }
 
-        public string TransmissionName { get; set; }
+        public int ModelYear { get; init; }
 
-        public decimal DailyPrice { get; set; }
+        public string Image { get; init; }
 
-        public string LocationName { get; set; }
+        public string TransmissionName { get; init; }
 
-        public string StartRent { get; set; }
+        public decimal DailyPrice { get; init; }
 
-        public string EndRent { get; set; }
+        public string LocationName { get; init; }
 
-        public int Days { get; set; }
+        public string StartRent { get; init; }
+
+        public string EndRent { get; init; }
+
+        public int Days { get; init; }
 
         public virtual IEnumerable<CarRentDays> RentDays { get; set; }
     }
