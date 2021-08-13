@@ -10,5 +10,7 @@
         Task<bool> CreateOrderAsync(CreateRentFormModel model, string userId);
 
         IEnumerable<RentsDto> GetAllUserRents(string userId);
+
+        Task<RentDetailsModel> GetDetails(string rentId);
     }
 }

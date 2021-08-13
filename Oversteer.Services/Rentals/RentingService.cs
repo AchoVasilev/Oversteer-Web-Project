@@ -8,13 +8,14 @@
     using AutoMapper;
     using AutoMapper.QueryableExtensions;
 
+    using Microsoft.EntityFrameworkCore;
+
     using Oversteer.Data;
     using Oversteer.Data.Models.Enumerations;
     using Oversteer.Data.Models.Rentals;
     using Oversteer.Services.Cars;
     using Oversteer.Services.Clients;
     using Oversteer.Services.Companies;
-    using Oversteer.Web.Infrastructure;
     using Oversteer.Web.ViewModels.Rents;
 
     public class RentingService : IRentingService
@@ -107,5 +108,11 @@
 
             return rents;
         }
+
+        public async Task<RentDetailsModel> GetDetails(string rentId)
+            => await this.data.Rentals
+                            .Where(x => x.Id == rentId)
+                            .ProjectTo<RentDetailsModel>(this.mapper.ConfigurationProvider)
+                            .FirstOrDefaultAsync();
     }
 }
