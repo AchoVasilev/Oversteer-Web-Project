@@ -196,7 +196,7 @@
                 });
             }
 
-            var car = await this.GetCarById(carId);
+            var car = await this.GetCarByIdAsync(carId);
             car.IsAvailable = false;
 
             await this.data.CarRentDays.AddRangeAsync(dates);
@@ -247,7 +247,7 @@
             return brandsViewModel;
         }
 
-        public async Task<int> GetCompanyByCar(int carId)
+        public async Task<int> GetCompanyByCarAsync(int carId)
             => await this.data.Cars
                            .Where(x => x.Id == carId)
                             .Select(x => x.CompanyId)
@@ -300,17 +300,17 @@
             return carTypesModels;
         }
 
-        public int GetQueryCarsCount(CarsSearchQueryModel query)
-            => this.QueryCars(query)
-                    .Where(x => !x.IsDeleted)
-                    .Count();
+        public async Task<int> GetQueryCarsCounAsync(CarsSearchQueryModel query)
+            => await this.QueryCars(query)
+                        .Where(x => !x.IsDeleted)
+                        .CountAsync();
 
         public int GetCompanyCarsCount(int companyId)
             => this.data.Cars
                 .Where(x => x.CompanyId == companyId)
                 .Count();
 
-        public async Task<Car> GetCarById(int carId)
+        public async Task<Car> GetCarByIdAsync(int carId)
             => await this.data.Cars
                         .Where(x => x.Id == carId)
                         .FirstOrDefaultAsync();
@@ -378,6 +378,22 @@
         public bool IsCarFromCompany(int carId, int companyId)
             => this.data.Cars
                     .Any(x => x.Id == carId && x.CompanyId == companyId);
+
+        public async Task<bool> ChangeLocationAsync(int id, int returnLocationId)
+        {
+            var car = this.data.Cars.Find(id);
+
+            if (car is null)
+            {
+                return false;
+            }
+
+            car.LocationId = returnLocationId;
+
+            await this.data.SaveChangesAsync();
+
+            return true;
+        }
 
         private IEnumerable<ListCarFormModel> SearchCar(CarsSearchQueryModel query)
         {

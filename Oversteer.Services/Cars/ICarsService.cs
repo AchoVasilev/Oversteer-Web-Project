@@ -22,6 +22,16 @@
 
         Task<bool> IsRentedAsync(DateTime startDate, DateTime endDate, int carId);
 
+        Task<int> GetCompanyByCarAsync(int carId);
+
+        Task<bool> RentCarAsync(DateTime startRent, DateTime endRent, int carId);
+
+        Task<string> GetCarLocationAsync(int carId);
+
+        Task<Car> GetCarByIdAsync(int carId);
+
+        Task<bool> ChangeLocationAsync(int id, int returnLocationId);
+
         IEnumerable<CarModelFormModel> GetCarModels();
 
         IEnumerable<CarBrandFormModel> GetCarBrands();
@@ -46,15 +56,7 @@
 
         CarDetailsFormModel GetCarDetails(int carId);
 
-        int GetQueryCarsCount(CarsSearchQueryModel query);
-
-        Task<int> GetCompanyByCar(int carId);
-
-        Task<bool> RentCarAsync(DateTime startRent, DateTime endRent, int carId);
-
-        Task<string> GetCarLocationAsync(int carId);
-
-        Task<Car> GetCarById(int carId);
+        Task<int> GetQueryCarsCounAsync(CarsSearchQueryModel query);
 
         int GetCompanyCarsCount(int companyId);
 

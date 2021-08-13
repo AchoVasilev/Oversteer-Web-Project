@@ -13,8 +13,10 @@
 
         ICollection<RentsDto> GetAllCompanyRents();
 
-        Task<RentDetailsModel> GetDetails(string rentId);
+        Task<RentDetailsModel> GetDetailsAsync(string rentId);
 
-        Task<bool> Cancel(string id);
+        Task<bool> CancelAsync(string id);
+
+        Task<bool> FinishAsync(string rentId);
     }
 }

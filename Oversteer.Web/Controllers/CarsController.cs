@@ -294,7 +294,7 @@
                 CarSorting = query.CarSorting,
                 SearchTerm = query.SearchTerm,
                 CurrentPage = query.CurrentPage,
-                TotalCars = this.carService.GetQueryCarsCount(query),
+                TotalCars = this.carService.GetQueryCarsCounAsync(query),
                 CompanyId = companyId
             });
         }
@@ -308,7 +308,7 @@
                 CarSorting = query.CarSorting,
                 SearchTerm = query.SearchTerm,
                 CurrentPage = query.CurrentPage,
-                TotalCars = this.carService.GetQueryCarsCount(query)
+                TotalCars = this.carService.GetQueryCarsCounAsync(query)
             });
 
         public IActionResult Details(int id)

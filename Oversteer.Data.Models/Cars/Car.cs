@@ -60,14 +60,14 @@
         public virtual Transmission Transmission { get; set; }
 
         [ForeignKey(nameof(Company))]
-        public int CompanyId { get; init; }
+        public int CompanyId { get; set; }
 
-        public virtual Company Company { get; init; }
+        public virtual Company Company { get; set; }
 
         [ForeignKey(nameof(Location))]
-        public int LocationId { get; init; }
+        public int LocationId { get; set; }
 
-        public virtual Location Location { get; init; }
+        public virtual Location Location { get; set; }
 
         public virtual ICollection<CarImage> CarImages { get; set; } = new HashSet<CarImage>();
 

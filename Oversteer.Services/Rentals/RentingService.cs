@@ -109,25 +109,21 @@
             return rents;
         }
 
-        public async Task<RentDetailsModel> GetDetails(string rentId)
+        public async Task<RentDetailsModel> GetDetailsAsync(string rentId)
             => await this.data.Rentals
                             .Where(x => x.Id == rentId)
                             .ProjectTo<RentDetailsModel>(this.mapper.ConfigurationProvider)
                             .FirstOrDefaultAsync();
 
-        public ICollection<RentsDto> GetAllCompanyRents()
-        {
-            var orders = this.data.Rentals
+        public ICollection<RentsDto> GetAllCompanyRents() 
+            => this.data.Rentals
                             .OrderByDescending(x => x.CreatedOn)
                             .ProjectTo<RentsDto>(this.mapper.ConfigurationProvider)
                             .ToList();
 
-            return orders;
-        }
-
-        public async Task<bool> Cancel(string id)
+        public async Task<bool> CancelAsync(string rentId)
         {
-            var rent = await this.data.Rentals.FindAsync(id);
+            var rent = await this.data.Rentals.FindAsync(rentId);
 
             if (rent == null)
             {
@@ -138,6 +134,28 @@
 
             this.CancelRentDays(rent);
 
+            await this.data.SaveChangesAsync();
+
+            return true;
+        }
+
+        public async Task<bool> FinishAsync(string rentId)
+        {
+            var rent = await this.data.Rentals.FindAsync(rentId);
+
+            if (rent is null)
+            {
+                return false;
+            }
+
+            var isLocationChanged = await this.carsService.ChangeLocationAsync(rent.CarId, rent.DropOffLocationId);
+
+            if (!isLocationChanged)
+            {
+                return false;
+            }
+
+            rent.OrderStatus = OrderStatus.Finished;
             await this.data.SaveChangesAsync();
 
             return true;
