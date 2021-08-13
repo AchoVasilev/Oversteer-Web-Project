@@ -18,7 +18,7 @@ Companies can register and can add cars, they can add their offered services and
 ## Not logged in user
 - Access index page for searching
 - View the list with all cars in Car Rental
-## Registered user
+## Registered client
 - Access index page for searching
 - View the list with all cars in Car Rental
 - Search from Date To Date for cars in the locations
@@ -27,6 +27,11 @@ Companies can register and can add cars, they can add their offered services and
 - See details of every car
 - Give review
 - Change password, email and phone
+##Registered company
+- Can add, edit and delete their cars
+- Can add offered services
+- Can add locations
+- Can approve client rent orders
 ## Administrator
 - Access index page for searching
 - View the list with all cars
