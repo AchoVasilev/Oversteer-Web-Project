@@ -30,7 +30,7 @@
             ApplicationDbContext data,
             IClientsService clientsService,
             ILocationService locationService,
-            ICarsService carsService, 
+            ICarsService carsService,
             IMapper mapper)
         {
             this.data = data;
@@ -114,5 +114,42 @@
                             .Where(x => x.Id == rentId)
                             .ProjectTo<RentDetailsModel>(this.mapper.ConfigurationProvider)
                             .FirstOrDefaultAsync();
+
+        public ICollection<RentsDto> GetAllCompanyRents()
+        {
+            var orders = this.data.Rentals
+                            .OrderByDescending(x => x.CreatedOn)
+                            .ProjectTo<RentsDto>(this.mapper.ConfigurationProvider)
+                            .ToList();
+
+            return orders;
+        }
+
+        public async Task<bool> Cancel(string id)
+        {
+            var rent = await this.data.Rentals.FindAsync(id);
+
+            if (rent == null)
+            {
+                return false;
+            }
+
+            rent.OrderStatus = OrderStatus.Canceled;
+
+            this.CancelRentDays(rent);
+
+            await this.data.SaveChangesAsync();
+
+            return true;
+        }
+
+        private void CancelRentDays(Rental order)
+        {
+            for (var dt = order.StartDate; dt <= order.ReturnDate; dt = dt.AddDays(1))
+            {
+                var rentDay = order.Car.RentDays.FirstOrDefault(x => x.RentDate.Date == dt);
+                this.data.CarRentDays.Remove(rentDay);
+            }
+        }
     }
 }

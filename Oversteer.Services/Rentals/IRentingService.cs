@@ -11,6 +11,10 @@
 
         IEnumerable<RentsDto> GetAllUserRents(string userId);
 
+        ICollection<RentsDto> GetAllCompanyRents();
+
         Task<RentDetailsModel> GetDetails(string rentId);
+
+        Task<bool> Cancel(string id);
     }
 }

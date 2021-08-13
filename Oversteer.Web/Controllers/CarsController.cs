@@ -318,11 +318,6 @@
             return this.View(car);
         }
 
-        public IActionResult ById()
-        {
-            return this.View();
-        }
-
         [HttpPost]
         [Authorize]
         public IActionResult Available(SearchRentCarModel model)
