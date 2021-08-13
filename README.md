@@ -1,5 +1,4 @@
-This is my web project for SoftUni - Bulgaria ASP.NET Core Course. It is a car renting platform where users can rent cars. 
-Companies can register and can add cars, they can add their offered services and the locations from which clients can pick up cars. 
+This is my web project for SoftUni - Bulgaria ASP.NET Core Course.
 
 ### The project uses:
 - MS SQL database
@@ -17,10 +16,10 @@ Companies can register and can add cars, they can add their offered services and
 ### Features
 ## Not logged in user
 - Access index page for searching
-- View the list with all cars in Car Rental
+- View the list with all cars
 ## Registered client
 - Access index page for searching
-- View the list with all cars in Car Rental
+- View the list with all cars
 - Search from Date To Date for cars in the locations
 - Make orders
 - See his orders
