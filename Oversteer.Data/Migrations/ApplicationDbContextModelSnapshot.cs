@@ -16,7 +16,7 @@ namespace Oversteer.Web.Data.Migrations
 #pragma warning disable 612, 618
             modelBuilder
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
-                .HasAnnotation("ProductVersion", "5.0.8")
+                .HasAnnotation("ProductVersion", "5.0.9")
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>
@@ -452,6 +452,12 @@ namespace Oversteer.Web.Data.Migrations
                     b.Property<int?>("CountryId")
                         .HasColumnType("int");
 
+                    b.Property<DateTime>("DeletedOn")
+                        .HasColumnType("datetime2");
+
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("bit");
+
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
@@ -485,6 +491,9 @@ namespace Oversteer.Web.Data.Migrations
                         .HasColumnType("int");
 
                     b.Property<DateTime>("CreatedOn")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime>("DeletedOn")
                         .HasColumnType("datetime2");
 
                     b.Property<int>("DropOffLocationId")
@@ -620,9 +629,6 @@ namespace Oversteer.Web.Data.Migrations
                         .HasMaxLength(256)
                         .HasColumnType("nvarchar(256)");
 
-                    b.Property<int?>("ZipCodeId")
-                        .HasColumnType("int");
-
                     b.HasKey("Id");
 
                     b.HasIndex("CityId");
@@ -636,8 +642,6 @@ namespace Oversteer.Web.Data.Migrations
                         .IsUnique()
                         .HasDatabaseName("UserNameIndex")
                         .HasFilter("[NormalizedUserName] IS NOT NULL");
-
-                    b.HasIndex("ZipCodeId");
 
                     b.ToTable("AspNetUsers");
                 });
@@ -770,26 +774,6 @@ namespace Oversteer.Web.Data.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Countries");
-                });
-
-            modelBuilder.Entity("Oversteer.Data.Models.Users.ZipCode", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<int>("CityId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("Code")
-                        .HasColumnType("int");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("CityId");
-
-                    b.ToTable("ZipCodes");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
@@ -1068,16 +1052,9 @@ namespace Oversteer.Web.Data.Migrations
                         .HasForeignKey("CountryId")
                         .OnDelete(DeleteBehavior.Restrict);
 
-                    b.HasOne("Oversteer.Data.Models.Users.ZipCode", "ZipCode")
-                        .WithMany("Users")
-                        .HasForeignKey("ZipCodeId")
-                        .OnDelete(DeleteBehavior.Restrict);
-
                     b.Navigation("City");
 
                     b.Navigation("Country");
-
-                    b.Navigation("ZipCode");
                 });
 
             modelBuilder.Entity("Oversteer.Data.Models.Users.City", b =>
@@ -1122,17 +1099,6 @@ namespace Oversteer.Web.Data.Migrations
                         .IsRequired();
 
                     b.Navigation("Company");
-                });
-
-            modelBuilder.Entity("Oversteer.Data.Models.Users.ZipCode", b =>
-                {
-                    b.HasOne("Oversteer.Data.Models.Users.City", "City")
-                        .WithMany("ZipCodes")
-                        .HasForeignKey("CityId")
-                        .OnDelete(DeleteBehavior.Restrict)
-                        .IsRequired();
-
-                    b.Navigation("City");
                 });
 
             modelBuilder.Entity("Oversteer.Data.Models.Cars.Car", b =>
@@ -1190,8 +1156,6 @@ namespace Oversteer.Web.Data.Migrations
                     b.Navigation("Addresses");
 
                     b.Navigation("Users");
-
-                    b.Navigation("ZipCodes");
                 });
 
             modelBuilder.Entity("Oversteer.Data.Models.Users.Client", b =>
@@ -1213,11 +1177,6 @@ namespace Oversteer.Web.Data.Migrations
                     b.Navigation("ApplicationUsers");
 
                     b.Navigation("Cities");
-                });
-
-            modelBuilder.Entity("Oversteer.Data.Models.Users.ZipCode", b =>
-                {
-                    b.Navigation("Users");
                 });
 #pragma warning restore 612, 618
         }

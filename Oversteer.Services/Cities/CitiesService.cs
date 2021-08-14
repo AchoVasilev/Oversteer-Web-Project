@@ -21,7 +21,7 @@
             var city = new City
             {
                 CountryId = countryId,
-                Name = model.Name
+                Name = model.Name,
             };
 
             await this.data.Cities.AddAsync(city);

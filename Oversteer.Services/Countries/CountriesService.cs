@@ -47,14 +47,6 @@
 
             var cityName = await this.citiesService.CreateAsync(model.City, model.Id);
 
-            foreach (var countryCity in country.Cities)
-            {
-                countryCity.ZipCodes.Add(new ZipCode()
-                {
-                    Code = model.City.ZipCode.Code
-                });
-            }
-
             this.data.Update(country);
             await this.data.SaveChangesAsync();
         }

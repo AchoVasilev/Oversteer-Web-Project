@@ -17,8 +17,5 @@
         [Required]
         [StringLength(AddressNameMaxLength, MinimumLength = AddressNameMinLength)]
         public string Address { get; set; }
-
-        [Range(ZipCodeMinLength, ZipCodeMaxLength)]
-        public int ZipCode { get; set; }
     }
 }

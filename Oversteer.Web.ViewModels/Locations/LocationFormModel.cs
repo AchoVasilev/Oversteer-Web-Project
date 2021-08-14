@@ -10,15 +10,14 @@
 
         public string Name { get; init; }
 
+        public string CountryName { get; init; }
+
         [Required]
         [StringLength(CityNameMaxLength, MinimumLength = CityNameMinLength)]
         public string CityName { get; init; }
 
         [Required]
         [StringLength(AddressNameMaxLength, MinimumLength = AddressNameMinLength)]
-        public string Address { get; init; }
-
-        [Range(ZipCodeMinLength, ZipCodeMaxLength)]
-        public int ZipCode { get; init; }
+        public string AddressName { get; init; }
     }
 }

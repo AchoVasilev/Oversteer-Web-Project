@@ -64,7 +64,6 @@ namespace Oversteer.Web
                 .AddTransient<IStatisticsService, StatisticsService>()
                 .AddTransient<ICountriesService, CountriesService>()
                 .AddTransient<ICitiesService, CitiesService>()
-                .AddTransient<IZipCodesService, ZipCodesService>()
                 .AddTransient<IRentingService, RentingService>()
                 .AddTransient<ILocationService, LocationService>()
                 .AddTransient<IClientsService, ClientsService>()

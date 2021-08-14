@@ -30,8 +30,6 @@
 
         public DbSet<Country> Countries { get; set; }
 
-        public DbSet<ZipCode> ZipCodes { get; set; }
-
         public DbSet<Feedback> Feedbacks { get; set; }
 
         public DbSet<CarBrand> CarBrands { get; set; }
@@ -65,12 +63,6 @@
         {
             builder.Entity<ApplicationUser>(entity =>
             {
-                entity.HasOne(x => x.ZipCode)
-                    .WithMany(x => x.Users)
-                    .HasForeignKey(x => x.ZipCodeId)
-                    .OnDelete(DeleteBehavior.Restrict)
-                    .IsRequired(false);
-
                 entity.HasOne(x => x.Country)
                     .WithMany(x => x.ApplicationUsers)
                     .HasForeignKey(x => x.CountryId)

@@ -178,6 +178,7 @@
             }
 
             rent.IsDeleted = true;
+            rent.DeletedOn = DateTime.UtcNow;
 
             await this.data.SaveChangesAsync();
 

@@ -9,10 +9,14 @@
     {
         Task AddLocationAsync(int companyId, CreateLocationFormModel model);
 
-        IEnumerable<LocationFormModel> GetCompanyLocations(int companyId);
-
         Task<int> GetLocationIdByNameAsync(string name);
 
+        Task DeleteLocationAsync(int locationId);
+
         ICollection<string> GetAllLocationNames();
+
+        IEnumerable<LocationFormModel> GetCompanyLocations(int companyId);
+
+        IEnumerable<LocationFormModel> AllLocations(int companyId);
     }
 }

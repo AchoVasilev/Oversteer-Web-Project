@@ -28,11 +28,6 @@
 
         public virtual City City { get; set; }
 
-        [ForeignKey(nameof(ZipCode))]
-        public int? ZipCodeId { get; set; }
-
-        public virtual ZipCode ZipCode { get; set; }
-
         [ForeignKey(nameof(Company))]
         public int CompanyId { get; set; }
 

@@ -26,6 +26,8 @@
 
         public bool IsDeleted { get; set; } = false;
 
+        public DateTime DeletedOn { get; set; }
+
         public OrderStatus OrderStatus { get; set; }
 
         [ForeignKey(nameof(Location))]

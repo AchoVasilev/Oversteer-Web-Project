@@ -1,5 +1,6 @@
 ﻿namespace Oversteer.Data.Models.Rentals
 {
+    using System;
     using System.ComponentModel.DataAnnotations;
     using System.ComponentModel.DataAnnotations.Schema;
 
@@ -32,5 +33,9 @@
         public int CompanyId { get; init; }
 
         public virtual Company Company { get; init; }
+
+        public bool IsDeleted { get; set; } = false;
+
+        public DateTime DeletedOn { get; set; }
     }
 }

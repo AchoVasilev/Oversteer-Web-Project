@@ -9,7 +9,5 @@
         [Required]
         [StringLength(CityNameMaxLength, MinimumLength = CityNameMinLength)]
         public string Name { get; init; }
-
-        public ZipCodeFormModel ZipCode { get; init; }
     }
 }

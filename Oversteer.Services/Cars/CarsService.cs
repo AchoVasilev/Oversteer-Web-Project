@@ -66,7 +66,9 @@
             var car = this.data.Cars
                                .Where(x => x.Id == carId && x.CompanyId == companyId)
                                .FirstOrDefault();
+
             car.IsDeleted = true;
+            car.DeleteDate = DateTime.UtcNow;
 
             await this.data.SaveChangesAsync();
         }
