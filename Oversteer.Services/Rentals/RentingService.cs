@@ -40,7 +40,7 @@
             this.mapper = mapper;
         }
 
-        public async Task<bool> CreateOrderAsync(CreateRentFormModel model, string userId)
+        public async Task<bool> CreateOrderAsync(RentFormModel model, string userId)
         {
             var clientId = await this.clientsService.GetClientIdByUserId(userId);
 
@@ -102,6 +102,7 @@
             }
 
             var rents = this.data.Rentals
+                            .Where(x => !x.IsDeleted)
                             .OrderByDescending(x => x.CreatedOn)
                             .ProjectTo<RentsDto>(this.mapper.ConfigurationProvider)
                             .ToList();
@@ -117,13 +118,14 @@
 
         public ICollection<RentsDto> GetAllCompanyRents() 
             => this.data.Rentals
+                            .Where(x => !x.IsDeleted)
                             .OrderByDescending(x => x.CreatedOn)
                             .ProjectTo<RentsDto>(this.mapper.ConfigurationProvider)
                             .ToList();
 
         public async Task<bool> CancelAsync(string rentId)
         {
-            var rent = await this.data.Rentals.FindAsync(rentId);
+            var rent = await this.GetRentByIdAsync(rentId);
 
             if (rent == null)
             {
@@ -141,7 +143,7 @@
 
         public async Task<bool> FinishAsync(string rentId)
         {
-            var rent = await this.data.Rentals.FindAsync(rentId);
+            var rent = await this.GetRentByIdAsync(rentId);
 
             if (rent is null)
             {
@@ -156,6 +158,55 @@
             }
 
             rent.OrderStatus = OrderStatus.Finished;
+            await this.data.SaveChangesAsync();
+
+            return true;
+        }
+
+        public async Task<bool> DeleteAsync(string rentId)
+        {
+            var rent = await this.GetRentByIdAsync(rentId);
+
+            if (rent is null)
+            {
+                return false;
+            }
+
+            if (rent.OrderStatus != OrderStatus.Canceled)
+            {
+                this.CancelRentDays(rent);
+            }
+
+            rent.IsDeleted = true;
+
+            await this.data.SaveChangesAsync();
+
+            return true;
+        }
+
+        public async Task<Rental> GetRentByIdAsync(string id)
+        {
+            var rent = await this.data.Rentals
+                .Where(x => x.Id == id && !x.IsDeleted)
+                .FirstOrDefaultAsync();
+
+            return rent;
+        }
+
+        public async Task<bool> EditRentAsync(string id, string clientFirstName, string clientLastName, string clientEmail, decimal price)
+        {
+            var rent = await this.GetRentByIdAsync(id);
+
+            if (rent is null)
+            {
+                return false;
+            }
+
+            rent.Client.FirstName = clientFirstName;
+            rent.Client.LastName = clientLastName;
+            rent.Client.User.Email = clientEmail;
+            rent.Price = price;
+
             await this.data.SaveChangesAsync();
 
             return true;

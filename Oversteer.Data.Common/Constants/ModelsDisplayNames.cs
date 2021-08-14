@@ -24,5 +24,9 @@
         public const string ZipCodeDisplayName = "Zip code";
 
         public const string DisplayCompanyServices = "Add your offered services";
+
+        public const string FirstName = "First Name";
+        public const string LastName = "Last Name";
+        public const string ClientEmail = "Client Email";
     }
 }

@@ -32,6 +32,8 @@
 
         Task<bool> ChangeLocationAsync(int id, int returnLocationId);
 
+        Task<int> GetQueryCarsCounAsync(CarsSearchQueryModel query);
+
         IEnumerable<CarModelFormModel> GetCarModels();
 
         IEnumerable<CarBrandFormModel> GetCarBrands();
@@ -55,8 +57,6 @@
         IEnumerable<string> GetAddedByCompanyCarBrands(int companyId);
 
         CarDetailsFormModel GetCarDetails(int carId);
-
-        Task<int> GetQueryCarsCounAsync(CarsSearchQueryModel query);
 
         int GetCompanyCarsCount(int companyId);
 

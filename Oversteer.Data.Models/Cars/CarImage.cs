@@ -34,6 +34,6 @@
         [ForeignKey(nameof(ApplicationUser))]
         public int CompanyId { get; set; }
 
-        public Company AddedByCompany { get; set; }
+        public virtual Company AddedByCompany { get; set; }
     }
 }

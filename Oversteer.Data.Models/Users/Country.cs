@@ -11,8 +11,8 @@
         [Required]
         public string Name { get; set; }
 
-        public ICollection<City> Cities { get; set; } = new HashSet<City>();
+        public virtual ICollection<City> Cities { get; set; } = new HashSet<City>();
 
-        public ICollection<ApplicationUser> ApplicationUsers { get; set; } = new HashSet<ApplicationUser>();
+        public virtual ICollection<ApplicationUser> ApplicationUsers { get; set; } = new HashSet<ApplicationUser>();
     }
 }

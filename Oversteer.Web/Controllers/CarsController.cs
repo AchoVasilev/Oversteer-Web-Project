@@ -275,7 +275,7 @@
         }
 
         [Authorize]
-        public IActionResult MyCars([FromQuery] CarsSearchQueryModel query)
+        public async Task<IActionResult> MyCars([FromQuery] CarsSearchQueryModel query)
         {
             var currentUserId = this.User.GetId();
 
@@ -294,12 +294,12 @@
                 CarSorting = query.CarSorting,
                 SearchTerm = query.SearchTerm,
                 CurrentPage = query.CurrentPage,
-                TotalCars = this.carService.GetQueryCarsCounAsync(query),
+                TotalCars = await this.carService.GetQueryCarsCounAsync(query),
                 CompanyId = companyId
             });
         }
 
-        public IActionResult All([FromQuery] CarsSearchQueryModel query)
+        public async Task<IActionResult> All([FromQuery] CarsSearchQueryModel query)
             => this.View(new CarsSearchQueryModel()
             {
                 Brand = query.Brand,
@@ -308,7 +308,7 @@
                 CarSorting = query.CarSorting,
                 SearchTerm = query.SearchTerm,
                 CurrentPage = query.CurrentPage,
-                TotalCars = this.carService.GetQueryCarsCounAsync(query)
+                TotalCars = await this.carService.GetQueryCarsCounAsync(query)
             });
 
         public IActionResult Details(int id)

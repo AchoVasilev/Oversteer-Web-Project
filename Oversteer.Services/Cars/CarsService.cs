@@ -249,7 +249,7 @@
 
         public async Task<int> GetCompanyByCarAsync(int carId)
             => await this.data.Cars
-                           .Where(x => x.Id == carId)
+                            .Where(x => x.Id == carId)
                             .Select(x => x.CompanyId)
                             .FirstOrDefaultAsync();
 
@@ -307,7 +307,7 @@
 
         public int GetCompanyCarsCount(int companyId)
             => this.data.Cars
-                .Where(x => x.CompanyId == companyId)
+                .Where(x => x.CompanyId == companyId && !x.IsDeleted)
                 .Count();
 
         public async Task<Car> GetCarByIdAsync(int carId)

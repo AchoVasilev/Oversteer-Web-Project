@@ -58,6 +58,9 @@
 
         public DbSet<CarRentDays> CarRentDays { get; set; }
 
+        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+            => optionsBuilder.UseLazyLoadingProxies();
+
         protected override void OnModelCreating(ModelBuilder builder)
         {
             builder.Entity<ApplicationUser>(entity =>

@@ -490,6 +490,9 @@ namespace Oversteer.Web.Data.Migrations
                     b.Property<int>("DropOffLocationId")
                         .HasColumnType("int");
 
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("bit");
+
                     b.Property<int>("OrderStatus")
                         .HasColumnType("int");
 

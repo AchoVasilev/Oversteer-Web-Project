@@ -16,7 +16,7 @@
         [MaxLength(IdMaxLength)]
         public string Id { get; set; } = Guid.NewGuid().ToString();
 
-        public DateTime CreatedOn { get; init; } = DateTime.UtcNow;
+        public DateTime CreatedOn { get; set; } = DateTime.UtcNow;
 
         public DateTime StartDate { get; set; }
 
@@ -24,31 +24,33 @@
 
         public decimal Price { get; set; }
 
+        public bool IsDeleted { get; set; } = false;
+
         public OrderStatus OrderStatus { get; set; }
 
         [ForeignKey(nameof(Location))]
-        public int PickUpLocationId { get; init; }
+        public int PickUpLocationId { get; set; }
 
-        public virtual Location PickUpLocation { get; init; }
+        public virtual Location PickUpLocation { get; set; }
 
         [ForeignKey(nameof(Location))]
-        public int DropOffLocationId { get; init; }
+        public int DropOffLocationId { get; set; }
 
-        public virtual Location DropOffLocation { get; init; }
+        public virtual Location DropOffLocation { get; set; }
 
         [ForeignKey(nameof(Client))]
-        public int ClientId { get; init; }
+        public int ClientId { get; set; }
 
-        public virtual Client Client { get; init; }
+        public virtual Client Client { get; set; }
 
         [ForeignKey(nameof(Company))]
-        public int CompanyId { get; init; }
+        public int CompanyId { get; set; }
 
-        public virtual Company Company { get; init; }
+        public virtual Company Company { get; set; }
 
         [ForeignKey(nameof(Car))]
-        public int CarId { get; init; }
+        public int CarId { get; set; }
 
-        public virtual Car Car { get; init; }
+        public virtual Car Car { get; set; }
     }
 }
