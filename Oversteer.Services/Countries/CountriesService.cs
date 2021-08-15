@@ -7,7 +7,6 @@
     using AutoMapper;
 
     using Oversteer.Data;
-    using Oversteer.Data.Models.Users;
     using Oversteer.Services.Cities;
     using Oversteer.Web.ViewModels.Countries;
 
