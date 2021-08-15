@@ -23,6 +23,7 @@ namespace Oversteer.Web
     using Oversteer.Services.Clients;
     using Oversteer.Services.Companies;
     using Oversteer.Services.Companies.Account;
+    using Oversteer.Services.Companies.OfferedService;
     using Oversteer.Services.Countries;
     using Oversteer.Services.EmailSenders;
     using Oversteer.Services.Home;
@@ -69,7 +70,8 @@ namespace Oversteer.Web
                 .AddTransient<ILocationService, LocationService>()
                 .AddTransient<IClientsService, ClientsService>()
                 .AddTransient<IImageService, ImageService>()
-                .AddTransient<ICompanyAccountService, CompanyAccountService>();
+                .AddTransient<ICompanyAccountService, CompanyAccountService>()
+                .AddTransient<IOfferedServicesService, OfferedServicesService>();
             
             //Configure MailKit
             services.AddTransient<IEmailSender, MailKitSender>();

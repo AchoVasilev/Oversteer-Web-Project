@@ -1,5 +1,9 @@
 ﻿namespace Oversteer.Web.ViewModels.Cars
 {
+    using System.Collections.Generic;
+
+    using Oversteer.Web.ViewModels.Cars.CarItems;
+
     public class ListCarFormModel
     {
         public int Id { get; init; }
@@ -25,5 +29,7 @@
         public decimal DailyPrice { get; init; }
 
         public int CompanyId { get; init; }
+
+        public IEnumerable<CarFeatureFormModel> CarFeatures { get; set; }
     }
 }
