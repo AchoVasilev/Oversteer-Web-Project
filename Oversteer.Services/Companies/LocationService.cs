@@ -117,5 +117,31 @@
 
             await this.data.SaveChangesAsync();
         }
+
+        public async Task<LocationFormModel> GetCurrentLocationAsync(int locationId)
+            => await this.data.Locations
+                        .Where(x => x.Id == locationId && !x.IsDeleted)
+                        .ProjectTo<LocationFormModel>(this.mapper.ConfigurationProvider)
+                        .FirstOrDefaultAsync();
+
+        public async Task<bool> EditLocationAsync(int locationId, int countryId, string cityName, string addressName)
+        {
+            var location = await this.data.Locations
+                                    .Where(x => x.Id == locationId && !x.IsDeleted)
+                                    .FirstOrDefaultAsync();
+
+            if (location is null)
+            {
+                return false;
+            }
+
+            location.CountryId = countryId;
+            location.City.Name = cityName;
+            location.Address.Name = addressName;
+
+            await this.data.SaveChangesAsync();
+
+            return true;
+        }
     }
 }

@@ -2,6 +2,8 @@
 {
     using System.ComponentModel.DataAnnotations;
 
+    using Oversteer.Data.Models.Users;
+
     using static Oversteer.Data.Common.Constants.DataConstants.Cities;
 
     public class LocationFormModel
@@ -10,14 +12,20 @@
 
         public string Name { get; init; }
 
+        [Display(Name = (nameof(Country)))]
+        public int CountryId { get; init; }
+
+        [Display(Name = (nameof(Country)))]
         public string CountryName { get; init; }
 
         [Required]
         [StringLength(CityNameMaxLength, MinimumLength = CityNameMinLength)]
+        [Display(Name = (nameof(City)))]
         public string CityName { get; init; }
 
         [Required]
         [StringLength(AddressNameMaxLength, MinimumLength = AddressNameMinLength)]
+        [Display(Name = (nameof(Address)))]
         public string AddressName { get; init; }
     }
 }

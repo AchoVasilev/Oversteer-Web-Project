@@ -15,19 +15,19 @@
         public string Name { get; set; }
 
         [ForeignKey(nameof(Country))]
-        public int? CountryId { get; init; }
+        public int? CountryId { get; set; }
 
-        public virtual Country Country { get; init; }
+        public virtual Country Country { get; set; }
 
         [ForeignKey(nameof(City))]
-        public int? CityId { get; init; }
+        public int? CityId { get; set; }
 
-        public virtual City City { get; init; }
+        public virtual City City { get; set; }
 
         [ForeignKey(nameof(Address))]
-        public int? AddressId { get; init; }
+        public int? AddressId { get; set; }
 
-        public virtual Address Address { get; init; }
+        public virtual Address Address { get; set; }
 
         [ForeignKey(nameof(Company))]
         public int CompanyId { get; init; }
