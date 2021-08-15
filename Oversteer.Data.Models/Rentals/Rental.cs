@@ -6,6 +6,7 @@
 
     using Oversteer.Data.Models.Cars;
     using Oversteer.Data.Models.Enumerations;
+    using Oversteer.Data.Models.Others;
     using Oversteer.Data.Models.Users;
 
     using static Oversteer.Data.Common.Constants.DataConstants;
@@ -54,5 +55,10 @@
         public int CarId { get; set; }
 
         public virtual Car Car { get; set; }
+
+        [ForeignKey(nameof(Feedback))]
+        public int? FeedbackId { get; set; }
+
+        public virtual Feedback Feedback { get; set; }
     }
 }

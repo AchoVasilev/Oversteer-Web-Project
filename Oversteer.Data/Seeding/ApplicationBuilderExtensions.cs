@@ -140,7 +140,7 @@
             }
 
             var countries = new List<Country>();
-            var countriesJson = File.ReadAllText("../../Oversteer.Data/Datasets/Countries.json");
+            var countriesJson = File.ReadAllText("../../Oversteer/Oversteer.Data/Datasets/Countries.json");
             var countriesDto = JsonConvert.DeserializeObject<CountryDto[]>(countriesJson);
 
             foreach (var countryDto in countriesDto)

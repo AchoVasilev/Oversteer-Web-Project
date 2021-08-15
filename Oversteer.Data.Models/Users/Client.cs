@@ -4,6 +4,7 @@
     using System.ComponentModel.DataAnnotations;
     using System.ComponentModel.DataAnnotations.Schema;
 
+    using Oversteer.Data.Models.Others;
     using Oversteer.Data.Models.Rentals;
 
     using static Oversteer.Data.Common.Constants.DataConstants;
@@ -36,5 +37,7 @@
         public virtual ApplicationUser User { get; set; }
 
         public virtual ICollection<Rental> Rentals { get; set; } = new HashSet<Rental>();
+
+        public virtual ICollection<Feedback> Feedbacks { get; set; } = new HashSet<Feedback>();
     }
 }

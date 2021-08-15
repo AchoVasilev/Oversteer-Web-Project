@@ -9,7 +9,7 @@
 
     public class CarsSearchQueryModel
     {
-        public const int CarsPerPage = 3;
+        public const int CarsPerPage = 10;
 
         public string Brand { get; init; }
 

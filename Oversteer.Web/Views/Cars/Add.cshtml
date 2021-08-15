@@ -5,9 +5,12 @@
 }
 
 <partial name="_CarFormPartial" model="@Model" />
+
 <div class="col-sm-12 offset-lg-2 col-lg-8 offset-xl-3 col-xl-6">
+    <a class="btn btn-success" onclick="AddMoreNames()">+</a>
     <input class="btn btn-primary" type="submit" onclick="carForm.submit()" value="Save" />
 </div>
+
 @section Scripts {
     <partial name="_ValidationScriptsPartial" />
 
@@ -30,5 +33,14 @@
                 });
             });
         });
+    </script>
+
+    <script>
+        var nameIndex = 0;
+        function AddMoreNames() {
+            $("#names").
+                append("<div class='form-group'>Name: <input class='form-control' name='CarFeatures[" + nameIndex + "].Name' /></div>");
+            nameIndex++;
+        }
     </script>
 }

@@ -42,6 +42,8 @@
                     opt.MapFrom(x => x.CarImages.FirstOrDefault().RemoteImageUrl ??
                           x.CarImages.FirstOrDefault().Url ??
                           "/images/cars/" + x.CarImages.FirstOrDefault().Id + "." + x.CarImages.FirstOrDefault().Extension));
+
+            this.CreateMap<CarFeature, CarFeatureFormModel>();
         }
     }
 }

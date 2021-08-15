@@ -6,24 +6,24 @@
 
     using Oversteer.Data.Models.Users;
 
-    using static Oversteer.Data.Common.Constants.DataConstants;
-
     public class Feedback
     {
-        [Key]
-        [Required]
-        [MaxLength(IdMaxLength)]
-        public string Id { get; set; } = Guid.NewGuid().ToString();
+        public int Id { get; set; }
 
+        [Range(1, 5)]
         public int Raiting { get; set; }
 
         [Required]
         public string Comment { get; set; }
 
-        [Required]
-        [ForeignKey(nameof(ApplicationUser))]
-        public string UserId { get; set; }
+        [ForeignKey(nameof(Client))]
+        public int ClientId { get; set; }
 
-        public virtual ApplicationUser User { get; set; }
+        public virtual Client Client { get; set; }
+
+        [ForeignKey(nameof(Company))]
+        public int CompanyId { get; set; }
+
+        public virtual Company Company { get; set; }
     }
 }

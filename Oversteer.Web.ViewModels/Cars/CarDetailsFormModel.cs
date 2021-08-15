@@ -2,6 +2,8 @@
 {
     using System.Collections.Generic;
 
+    using Oversteer.Web.ViewModels.Cars.CarItems;
+
     public class CarDetailsFormModel
     {
         public int Id { get; init; }
@@ -35,5 +37,7 @@
         public string CompanyUserId { get; init; }
 
         public List<string> Urls { get; init; } = new List<string>();
+
+        public IEnumerable<CarFeatureFormModel> CarFeatures { get; set; }
     }
 }

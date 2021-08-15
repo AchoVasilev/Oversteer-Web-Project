@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Oversteer.Data;
 
-namespace Oversteer.Web.Data.Migrations
+namespace Oversteer.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
     partial class ApplicationDbContextModelSnapshot : ModelSnapshot
@@ -411,24 +411,29 @@ namespace Oversteer.Web.Data.Migrations
 
             modelBuilder.Entity("Oversteer.Data.Models.Others.Feedback", b =>
                 {
-                    b.Property<string>("Id")
-                        .HasMaxLength(40)
-                        .HasColumnType("nvarchar(40)");
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<int>("ClientId")
+                        .HasColumnType("int");
 
                     b.Property<string>("Comment")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<int>("CompanyId")
+                        .HasColumnType("int");
+
                     b.Property<int>("Raiting")
                         .HasColumnType("int");
 
-                    b.Property<string>("UserId")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(450)");
-
                     b.HasKey("Id");
 
-                    b.HasIndex("UserId");
+                    b.HasIndex("ClientId");
+
+                    b.HasIndex("CompanyId");
 
                     b.ToTable("Feedbacks");
                 });
@@ -499,6 +504,9 @@ namespace Oversteer.Web.Data.Migrations
                     b.Property<int>("DropOffLocationId")
                         .HasColumnType("int");
 
+                    b.Property<int?>("FeedbackId")
+                        .HasColumnType("int");
+
                     b.Property<bool>("IsDeleted")
                         .HasColumnType("bit");
 
@@ -526,6 +534,8 @@ namespace Oversteer.Web.Data.Migrations
                     b.HasIndex("CompanyId");
 
                     b.HasIndex("DropOffLocationId");
+
+                    b.HasIndex("FeedbackId");
 
                     b.HasIndex("PickUpLocationId");
 
@@ -952,13 +962,21 @@ namespace Oversteer.Web.Data.Migrations
 
             modelBuilder.Entity("Oversteer.Data.Models.Others.Feedback", b =>
                 {
-                    b.HasOne("Oversteer.Data.Models.Users.ApplicationUser", "User")
+                    b.HasOne("Oversteer.Data.Models.Users.Client", "Client")
                         .WithMany("Feedbacks")
-                        .HasForeignKey("UserId")
+                        .HasForeignKey("ClientId")
                         .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
-                    b.Navigation("User");
+                    b.HasOne("Oversteer.Data.Models.Users.Company", "Company")
+                        .WithMany("Feedbacks")
+                        .HasForeignKey("CompanyId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.Navigation("Client");
+
+                    b.Navigation("Company");
                 });
 
             modelBuilder.Entity("Oversteer.Data.Models.Rentals.Location", b =>
@@ -1016,6 +1034,10 @@ namespace Oversteer.Web.Data.Migrations
                         .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
+                    b.HasOne("Oversteer.Data.Models.Others.Feedback", "Feedback")
+                        .WithMany()
+                        .HasForeignKey("FeedbackId");
+
                     b.HasOne("Oversteer.Data.Models.Rentals.Location", "PickUpLocation")
                         .WithMany()
                         .HasForeignKey("PickUpLocationId")
@@ -1029,6 +1051,8 @@ namespace Oversteer.Web.Data.Migrations
                     b.Navigation("Company");
 
                     b.Navigation("DropOffLocation");
+
+                    b.Navigation("Feedback");
 
                     b.Navigation("PickUpLocation");
                 });
@@ -1151,8 +1175,6 @@ namespace Oversteer.Web.Data.Migrations
                     b.Navigation("Client");
 
                     b.Navigation("Company");
-
-                    b.Navigation("Feedbacks");
                 });
 
             modelBuilder.Entity("Oversteer.Data.Models.Users.City", b =>
@@ -1164,6 +1186,8 @@ namespace Oversteer.Web.Data.Migrations
 
             modelBuilder.Entity("Oversteer.Data.Models.Users.Client", b =>
                 {
+                    b.Navigation("Feedbacks");
+
                     b.Navigation("Rentals");
                 });
 
@@ -1172,6 +1196,8 @@ namespace Oversteer.Web.Data.Migrations
                     b.Navigation("Cars");
 
                     b.Navigation("CompanyServices");
+
+                    b.Navigation("Feedbacks");
 
                     b.Navigation("Locations");
                 });

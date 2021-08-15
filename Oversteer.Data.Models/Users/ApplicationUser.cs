@@ -1,12 +1,9 @@
 ﻿namespace Oversteer.Data.Models.Users
 {
     using System;
-    using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations.Schema;
 
     using Microsoft.AspNetCore.Identity;
-
-    using Oversteer.Data.Models.Others;
 
     public class ApplicationUser : IdentityUser
     {
@@ -37,7 +34,5 @@
         public int ClientId { get; set; }
 
         public virtual Client Client { get; set; }
-
-        public virtual ICollection<Feedback> Feedbacks { get; set; } = new HashSet<Feedback>();
     }
 }

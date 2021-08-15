@@ -52,7 +52,11 @@
                 SeatsCount = (int)carModel.SeatsCount,
                 Description = carModel.Description,
                 CompanyId = companyId,
-                LocationId = carModel.LocationId
+                LocationId = carModel.LocationId,
+                CarFeatures = carModel.CarFeatures.Select(x => new CarFeature()
+                {
+                    Name = x.Name
+                }).ToList()
             };
 
             await this.imageService.UploadImage(cloudinary, carModel.Images, companyId, car);
@@ -237,6 +241,7 @@
             => this.data.Cars
                 .Where(x => !x.IsDeleted)
                 .ProjectTo<CarIndexViewModel>(this.mapper.ConfigurationProvider)
+                .OrderByDescending(x => x.Id)
                 .Take(3)
                 .ToList();
 
