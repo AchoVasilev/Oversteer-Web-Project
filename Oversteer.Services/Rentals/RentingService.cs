@@ -42,7 +42,7 @@
 
         public async Task<bool> CreateOrderAsync(RentFormModel model, string userId)
         {
-            var clientId = await this.clientsService.GetClientIdByUserId(userId);
+            var clientId = await this.clientsService.GetClientIdByUserIdAsync(userId);
 
             var pickupLocationId = await this.locationService.GetLocationIdByNameAsync(model.StartLocation);
             var dropOffLocationId = await this.locationService.GetLocationIdByNameAsync(model.ReturnLocation);
@@ -94,7 +94,7 @@
 
         public IEnumerable<RentsDto> GetAllUserRents(string userId)
         {
-            var clientId = this.clientsService.GetClientIdByUserId(userId).GetAwaiter().GetResult();
+            var clientId = this.clientsService.GetClientIdByUserIdAsync(userId).GetAwaiter().GetResult();
 
             if (clientId == 0)
             {

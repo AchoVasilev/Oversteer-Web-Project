@@ -49,10 +49,82 @@
             return user.ClientId;
         }
 
-        public Task<int> GetClientIdByUserId(string userId)
-            => this.data.Clients
+        public async Task<int> GetClientIdByUserIdAsync(string userId)
+            => await this.data.Clients
                         .Where(x => x.UserId == userId)
                         .Select(x => x.Id)
                         .FirstOrDefaultAsync();
+
+        public async Task<string> GetClientFirstNameAsync(string userId)
+            => await this.data.Clients
+                              .Where(x => x.UserId == userId)
+                              .Select(x => x.FirstName)
+                              .FirstOrDefaultAsync();
+
+        public async Task<string> GetClientSurnameAsync(string userId)
+            => await this.data.Clients
+                      .Where(x => x.UserId == userId)
+                      .Select(x => x.Surname)
+                      .FirstOrDefaultAsync();
+
+        public async Task<string> GetClientLastNameAsync(string userId)
+            => await this.data.Clients
+                    .Where(x => x.UserId == userId)
+                    .Select(x => x.LastName)
+                    .FirstOrDefaultAsync();
+
+        public async Task<bool> SetClientFirstNameAsync(string userId, string firstName)
+        {
+            var client = await this.data.Clients
+                                  .Where(x => x.UserId == userId)
+                                  .FirstOrDefaultAsync();
+
+            if (client == null)
+            {
+                return false;
+            }
+
+            client.FirstName = firstName;
+
+            await this.data.SaveChangesAsync();
+
+            return true;
+        }
+
+        public async Task<bool> SetClientSurnameAsync(string userId, string surname)
+        {
+            var client = await this.data.Clients
+                                  .Where(x => x.UserId == userId)
+                                  .FirstOrDefaultAsync();
+
+            if (client == null)
+            {
+                return false;
+            }
+
+            client.Surname = surname;
+
+            await this.data.SaveChangesAsync();
+
+            return true;
+        }
+
+        public async Task<bool> SetClientLastNameAsync(string userId, string lastName)
+        {
+            var client = await this.data.Clients
+                                  .Where(x => x.UserId == userId)
+                                  .FirstOrDefaultAsync();
+
+            if (client == null)
+            {
+                return false;
+            }
+
+            client.LastName = lastName;
+
+            await this.data.SaveChangesAsync();
+
+            return true;
+        }
     }
 }
