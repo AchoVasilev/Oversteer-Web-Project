@@ -20,7 +20,7 @@
                 .Where(x => !x.IsDeleted)
                 .Count();
 
-            var totalUsers = this.data.Clients.Count();
+            var totalUsers = this.data.Users.Count();
 
             var totalRents = this.data.Rentals.Count();
 

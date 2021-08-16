@@ -74,7 +74,6 @@
                             .Select(x => x.Name)
                             .FirstOrDefaultAsync();
 
-
         public bool UserIsCompany(string id)
         {
             if (!data.Companies.Any(x => x.UserId == id))

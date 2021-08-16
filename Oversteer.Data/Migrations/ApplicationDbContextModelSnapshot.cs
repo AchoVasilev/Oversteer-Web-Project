@@ -416,9 +416,6 @@ namespace Oversteer.Data.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<int>("ClientId")
-                        .HasColumnType("int");
-
                     b.Property<string>("Comment")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
@@ -429,11 +426,15 @@ namespace Oversteer.Data.Migrations
                     b.Property<int>("Raiting")
                         .HasColumnType("int");
 
+                    b.Property<string>("UserId")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(450)");
+
                     b.HasKey("Id");
 
-                    b.HasIndex("ClientId");
-
                     b.HasIndex("CompanyId");
+
+                    b.HasIndex("UserId");
 
                     b.ToTable("Feedbacks");
                 });
@@ -489,9 +490,6 @@ namespace Oversteer.Data.Migrations
                     b.Property<int>("CarId")
                         .HasColumnType("int");
 
-                    b.Property<int>("ClientId")
-                        .HasColumnType("int");
-
                     b.Property<int>("CompanyId")
                         .HasColumnType("int");
 
@@ -525,11 +523,12 @@ namespace Oversteer.Data.Migrations
                     b.Property<DateTime>("StartDate")
                         .HasColumnType("datetime2");
 
+                    b.Property<string>("UserId")
+                        .HasColumnType("nvarchar(450)");
+
                     b.HasKey("Id");
 
                     b.HasIndex("CarId");
-
-                    b.HasIndex("ClientId");
 
                     b.HasIndex("CompanyId");
 
@@ -538,6 +537,8 @@ namespace Oversteer.Data.Migrations
                     b.HasIndex("FeedbackId");
 
                     b.HasIndex("PickUpLocationId");
+
+                    b.HasIndex("UserId");
 
                     b.ToTable("Rentals");
                 });
@@ -574,9 +575,6 @@ namespace Oversteer.Data.Migrations
                     b.Property<int?>("CityId")
                         .HasColumnType("int");
 
-                    b.Property<int>("ClientId")
-                        .HasColumnType("int");
-
                     b.Property<int>("CompanyId")
                         .HasColumnType("int");
 
@@ -600,14 +598,26 @@ namespace Oversteer.Data.Migrations
                     b.Property<bool>("EmailConfirmed")
                         .HasColumnType("bit");
 
+                    b.Property<string>("FirstName")
+                        .HasMaxLength(30)
+                        .HasColumnType("nvarchar(30)");
+
                     b.Property<bool>("IsDeleted")
                         .HasColumnType("bit");
+
+                    b.Property<string>("LastName")
+                        .HasMaxLength(30)
+                        .HasColumnType("nvarchar(30)");
 
                     b.Property<bool>("LockoutEnabled")
                         .HasColumnType("bit");
 
                     b.Property<DateTimeOffset?>("LockoutEnd")
                         .HasColumnType("datetimeoffset");
+
+                    b.Property<string>("MiddleName")
+                        .HasMaxLength(30)
+                        .HasColumnType("nvarchar(30)");
 
                     b.Property<DateTime?>("ModifiedOn")
                         .HasColumnType("datetime2");
@@ -675,44 +685,6 @@ namespace Oversteer.Data.Migrations
                     b.HasIndex("CountryId");
 
                     b.ToTable("Cities");
-                });
-
-            modelBuilder.Entity("Oversteer.Data.Models.Users.Client", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasMaxLength(40)
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<string>("FirstName")
-                        .IsRequired()
-                        .HasMaxLength(30)
-                        .HasColumnType("nvarchar(30)");
-
-                    b.Property<string>("LastName")
-                        .IsRequired()
-                        .HasMaxLength(30)
-                        .HasColumnType("nvarchar(30)");
-
-                    b.Property<string>("PhoneNumber")
-                        .HasMaxLength(30)
-                        .HasColumnType("nvarchar(30)");
-
-                    b.Property<string>("Surname")
-                        .HasMaxLength(30)
-                        .HasColumnType("nvarchar(30)");
-
-                    b.Property<string>("UserId")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(450)");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("UserId")
-                        .IsUnique();
-
-                    b.ToTable("Clients");
                 });
 
             modelBuilder.Entity("Oversteer.Data.Models.Users.Company", b =>
@@ -962,21 +934,21 @@ namespace Oversteer.Data.Migrations
 
             modelBuilder.Entity("Oversteer.Data.Models.Others.Feedback", b =>
                 {
-                    b.HasOne("Oversteer.Data.Models.Users.Client", "Client")
-                        .WithMany("Feedbacks")
-                        .HasForeignKey("ClientId")
-                        .OnDelete(DeleteBehavior.Restrict)
-                        .IsRequired();
-
                     b.HasOne("Oversteer.Data.Models.Users.Company", "Company")
                         .WithMany("Feedbacks")
                         .HasForeignKey("CompanyId")
                         .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
-                    b.Navigation("Client");
+                    b.HasOne("Oversteer.Data.Models.Users.ApplicationUser", "User")
+                        .WithMany()
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
 
                     b.Navigation("Company");
+
+                    b.Navigation("User");
                 });
 
             modelBuilder.Entity("Oversteer.Data.Models.Rentals.Location", b =>
@@ -1016,12 +988,6 @@ namespace Oversteer.Data.Migrations
                         .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
-                    b.HasOne("Oversteer.Data.Models.Users.Client", "Client")
-                        .WithMany("Rentals")
-                        .HasForeignKey("ClientId")
-                        .OnDelete(DeleteBehavior.Restrict)
-                        .IsRequired();
-
                     b.HasOne("Oversteer.Data.Models.Users.Company", "Company")
                         .WithMany()
                         .HasForeignKey("CompanyId")
@@ -1044,9 +1010,11 @@ namespace Oversteer.Data.Migrations
                         .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
-                    b.Navigation("Car");
+                    b.HasOne("Oversteer.Data.Models.Users.ApplicationUser", "User")
+                        .WithMany("Rental")
+                        .HasForeignKey("UserId");
 
-                    b.Navigation("Client");
+                    b.Navigation("Car");
 
                     b.Navigation("Company");
 
@@ -1055,6 +1023,8 @@ namespace Oversteer.Data.Migrations
                     b.Navigation("Feedback");
 
                     b.Navigation("PickUpLocation");
+
+                    b.Navigation("User");
                 });
 
             modelBuilder.Entity("Oversteer.Data.Models.Users.Address", b =>
@@ -1094,17 +1064,6 @@ namespace Oversteer.Data.Migrations
                         .IsRequired();
 
                     b.Navigation("Country");
-                });
-
-            modelBuilder.Entity("Oversteer.Data.Models.Users.Client", b =>
-                {
-                    b.HasOne("Oversteer.Data.Models.Users.ApplicationUser", "User")
-                        .WithOne("Client")
-                        .HasForeignKey("Oversteer.Data.Models.Users.Client", "UserId")
-                        .OnDelete(DeleteBehavior.Restrict)
-                        .IsRequired();
-
-                    b.Navigation("User");
                 });
 
             modelBuilder.Entity("Oversteer.Data.Models.Users.Company", b =>
@@ -1172,9 +1131,9 @@ namespace Oversteer.Data.Migrations
 
             modelBuilder.Entity("Oversteer.Data.Models.Users.ApplicationUser", b =>
                 {
-                    b.Navigation("Client");
-
                     b.Navigation("Company");
+
+                    b.Navigation("Rental");
                 });
 
             modelBuilder.Entity("Oversteer.Data.Models.Users.City", b =>
@@ -1182,13 +1141,6 @@ namespace Oversteer.Data.Migrations
                     b.Navigation("Addresses");
 
                     b.Navigation("Users");
-                });
-
-            modelBuilder.Entity("Oversteer.Data.Models.Users.Client", b =>
-                {
-                    b.Navigation("Feedbacks");
-
-                    b.Navigation("Rentals");
                 });
 
             modelBuilder.Entity("Oversteer.Data.Models.Users.Company", b =>

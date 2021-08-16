@@ -83,3 +83,6 @@ body {
     height: 15vw;
     object-fit: cover;
 }
+body {
+    background-image: url(../images/bg_1.jpg);
+}

@@ -167,6 +167,7 @@
         public CarDetailsFormModel GetCarDetails(int carId)
         {
             var details = new CarDetailsFormModel();
+
             var images = this.data.Cars
                 .Where(x => x.Id == carId)
                 .Select(x => x.CarImages)

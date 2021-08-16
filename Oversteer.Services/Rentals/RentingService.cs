@@ -14,27 +14,23 @@
     using Oversteer.Data.Models.Enumerations;
     using Oversteer.Data.Models.Rentals;
     using Oversteer.Services.Cars;
-    using Oversteer.Services.Clients;
     using Oversteer.Services.Companies;
     using Oversteer.Web.ViewModels.Rents;
 
     public class RentingService : IRentingService
     {
         private readonly ApplicationDbContext data;
-        private readonly IClientsService clientsService;
         private readonly ILocationService locationService;
         private readonly ICarsService carsService;
         private readonly IMapper mapper;
 
         public RentingService(
             ApplicationDbContext data,
-            IClientsService clientsService,
             ILocationService locationService,
             ICarsService carsService,
             IMapper mapper)
         {
             this.data = data;
-            this.clientsService = clientsService;
             this.locationService = locationService;
             this.carsService = carsService;
             this.mapper = mapper;
@@ -42,12 +38,10 @@
 
         public async Task<bool> CreateOrderAsync(RentFormModel model, string userId)
         {
-            var clientId = await this.clientsService.GetClientIdByUserIdAsync(userId);
-
             var pickupLocationId = await this.locationService.GetLocationIdByNameAsync(model.StartLocation);
             var dropOffLocationId = await this.locationService.GetLocationIdByNameAsync(model.ReturnLocation);
 
-            if (clientId == 0 || pickupLocationId == 0 || dropOffLocationId == 0)
+            if (userId == null || pickupLocationId == 0 || dropOffLocationId == 0)
             {
                 return false;
             }
@@ -68,7 +62,7 @@
 
             var order = new Rental()
             {
-                ClientId = clientId,
+                UserId = userId,
                 CarId = model.CarId,
                 CompanyId = model.CompanyId,
                 StartDate = pickUpDate,
@@ -94,9 +88,7 @@
 
         public IEnumerable<RentsDto> GetAllUserRents(string userId)
         {
-            var clientId = this.clientsService.GetClientIdByUserIdAsync(userId).GetAwaiter().GetResult();
-
-            if (clientId == 0)
+            if (userId == null)
             {
                 return new List<RentsDto>();
             }
@@ -203,9 +195,9 @@
                 return false;
             }
 
-            rent.Client.FirstName = clientFirstName;
-            rent.Client.LastName = clientLastName;
-            rent.Client.User.Email = clientEmail;
+            rent.User.FirstName = clientFirstName;
+            rent.User.LastName = clientLastName;
+            rent.User.Email = clientEmail;
             rent.Price = price;
 
             await this.data.SaveChangesAsync();

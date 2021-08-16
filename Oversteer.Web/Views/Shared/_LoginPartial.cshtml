@@ -4,14 +4,13 @@
 @inject SignInManager<ApplicationUser> SignInManager
 @inject UserManager<ApplicationUser> UserManager
 @inject ICompaniesService Companies
-@inject IClientsService Clients
+
 <ul class="navbar-nav">
     @if (SignInManager.IsSignedIn(User))
     {
         var userId = User.GetId();
         var userIsCompany = Companies.UserIsCompany(userId);
         var userIsAdmin = User.IsAdmin();
-        var userClientId = await Clients.GetClientIdByUserIdAsync(userId);
 
         @if (!userIsAdmin && userIsCompany)
         {
@@ -25,10 +24,13 @@
                 <a class="nav-link text-black" asp-area="Company" asp-controller="Rentals" asp-action="All">All Rents</a>
             </li>
         }
-        else if (userClientId != 0)
+        else if (!userIsAdmin && !userIsCompany)
         {
             <li class="nav-item">
                 <a class="nav-link text-black" asp-area="" asp-controller="Rentals" asp-action="MyRents">My Rents</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link text-black" asp-area="Company" asp-controller="Companies" asp-action="Create">Register Renting Service</a>
             </li>
         }
         <li class="nav-item">

@@ -6,11 +6,6 @@
 
 <div class="row">
     <div class="col-md-4">
-        <h4>Do you want to register as a rent a car dealer?</h4>
-        <a class="nav-link text-black" asp-area="Company" asp-controller="Companies" asp-action="Create">Register Renting Service</a>
-    </div>
-
-    <div class="col-md-4">
         <form asp-route-returnUrl="@Model.ReturnUrl" method="post">
             <h4>Create a new account.</h4>
             <hr />
@@ -63,23 +58,21 @@
                         {
                             if (provider.DisplayName == "Facebook")
                             {
-                                <i class="fab fa-facebook-square"></i>
+            <i class="fab fa-facebook-square"></i>
                                 <button type="submit" class="btn btn-primary"
                                         name="provider" value="@provider.Name"
                                         title="Log in using your @provider.DisplayName account">
                                     @provider.DisplayName
-                                </button> 
-                            }
+                                </button> }
                             else
                             {
-                                <i class="fab fa-google"></i>
+            <i class="fab fa-google"></i>
                                 <button type="submit" class="btn btn-danger"
                                         name="provider" value="@provider.Name"
                                         title="Log in using your @provider.DisplayName account">
                                     @provider.DisplayName
-                                </button>
-                            }
-                         }
+                                </button>}
+                        }
                     </p>
                 </div>
             </form>

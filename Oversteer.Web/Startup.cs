@@ -20,7 +20,6 @@ namespace Oversteer.Web
     using Oversteer.Services.Cars;
     using Oversteer.Services.CarScraper;
     using Oversteer.Services.Cities;
-    using Oversteer.Services.Clients;
     using Oversteer.Services.Companies;
     using Oversteer.Services.Companies.Account;
     using Oversteer.Services.Companies.OfferedService;
@@ -30,6 +29,7 @@ namespace Oversteer.Web
     using Oversteer.Services.Images;
     using Oversteer.Services.Rentals;
     using Oversteer.Services.Statistics;
+    using Oversteer.Services.Users;
     using Oversteer.Web.ViewModels.Email;
 
     public class Startup
@@ -68,7 +68,7 @@ namespace Oversteer.Web
                 .AddTransient<ICitiesService, CitiesService>()
                 .AddTransient<IRentingService, RentingService>()
                 .AddTransient<ILocationService, LocationService>()
-                .AddTransient<IClientsService, ClientsService>()
+                .AddTransient<IUserService, UserService>()
                 .AddTransient<IImageService, ImageService>()
                 .AddTransient<ICompanyAccountService, CompanyAccountService>()
                 .AddTransient<IOfferedServicesService, OfferedServicesService>();

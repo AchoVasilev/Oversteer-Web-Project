@@ -41,10 +41,10 @@
 
         public virtual Location DropOffLocation { get; set; }
 
-        [ForeignKey(nameof(Client))]
-        public int ClientId { get; set; }
+        [ForeignKey(nameof(ApplicationUser))]
+        public string UserId { get; set; }
 
-        public virtual Client Client { get; set; }
+        public virtual ApplicationUser User { get; set; }
 
         [ForeignKey(nameof(Company))]
         public int CompanyId { get; set; }

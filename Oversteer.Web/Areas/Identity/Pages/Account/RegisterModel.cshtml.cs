@@ -17,7 +17,6 @@
     using Microsoft.Extensions.Logging;
 
     using Oversteer.Data.Models.Users;
-    using Oversteer.Services.Clients;
 
     using static Oversteer.Data.Common.Constants.DataConstants.Users;
     using static Oversteer.Data.Common.Constants.ErrorMessages.UserErrors;
@@ -29,20 +28,17 @@
         private readonly UserManager<ApplicationUser> userManager;
         private readonly ILogger<RegisterModel> logger;
         private readonly IEmailSender emailSender;
-        private readonly IClientsService clientsService;
 
         public RegisterModel(
             UserManager<ApplicationUser> userManager,
             SignInManager<ApplicationUser> signInManager,
             ILogger<RegisterModel> logger,
-            IEmailSender emailSender, 
-            IClientsService clientsService)
+            IEmailSender emailSender)
         {
             this.userManager = userManager;
             this.signInManager = signInManager;
             this.logger = logger;
             this.emailSender = emailSender;
-            this.clientsService = clientsService;
         }
 
         [BindProperty]
@@ -100,7 +96,14 @@
 
             if (this.ModelState.IsValid)
             {
-                var user = new ApplicationUser { UserName = this.Input.Email, Email = this.Input.Email };
+                var user = new ApplicationUser
+                { 
+                    UserName = this.Input.Email, 
+                    Email = this.Input.Email,
+                    FirstName = this.Input.FirstName,
+                    MiddleName = this.Input.Surname,
+                    LastName = this.Input.LastName
+                };
 
                 var result = await this.userManager.CreateAsync(user, this.Input.Password);
 
@@ -115,8 +118,6 @@
                         pageHandler: null,
                         values: new { area = "Identity", userId = user.Id, code, returnUrl },
                         protocol: this.Request.Scheme);
-
-                    user.Client = await this.clientsService.RegisterUserAsync(Input.FirstName, Input.Surname, Input.LastName, Input.PhoneNumber, user.Id);
 
                     await this.emailSender.SendEmailAsync(this.Input.Email, "Confirm your email",
                         $"Please confirm your account by <a href='{HtmlEncoder.Default.Encode(callbackUrl)}'>clicking here</a>.");

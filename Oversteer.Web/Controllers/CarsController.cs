@@ -37,7 +37,7 @@
         }
 
         [Authorize]
-        public IActionResult Add()
+        public async Task<IActionResult> Add()
         {
             var userId = this.User.GetId();
 
@@ -47,6 +47,15 @@
             }
 
             var companyId = this.companiesService.GetCurrentCompanyId(userId);
+
+            var locationsCount = (await companiesService.GetCompanyLocations(companyId)).Count;
+
+            if (locationsCount == 0)
+            {
+                this.TempData["Message"] = "You need to add offered locations to add a car.";
+
+                return this.RedirectToAction(nameof(CompaniesController.AddLocation), "Companies", new { area = "Company" });
+            }
 
             return this.View(new CarFormModel()
             {

@@ -22,8 +22,6 @@
 
         public DbSet<Address> Addresses { get; set; }
 
-        public DbSet<Client> Clients { get; set; }
-
         public DbSet<Company> Companies { get; set; }
 
         public DbSet<CompanyService> CompanyServices { get; set; }
@@ -124,14 +122,6 @@
                         .WithOne(x => x.Company)
                         .HasForeignKey<Company>(x => x.UserId)
                         .OnDelete(DeleteBehavior.Restrict);
-            });
-
-            builder.Entity<Client>(entity =>
-            {
-                entity.HasOne(x => x.User)
-                    .WithOne(x => x.Client)
-                    .HasForeignKey<Client>(x => x.UserId)
-                    .OnDelete(DeleteBehavior.Restrict);
             });
 
             var entityTypes = builder.Model.GetEntityTypes().ToList();

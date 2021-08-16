@@ -1,9 +1,15 @@
 ﻿namespace Oversteer.Data.Models.Users
 {
     using System;
+    using System.Collections.Generic;
+    using System.ComponentModel.DataAnnotations;
     using System.ComponentModel.DataAnnotations.Schema;
 
     using Microsoft.AspNetCore.Identity;
+
+    using Oversteer.Data.Models.Rentals;
+
+    using static Oversteer.Data.Common.Constants.DataConstants.Users;
 
     public class ApplicationUser : IdentityUser
     {
@@ -30,9 +36,15 @@
 
         public virtual Company Company { get; set; }
 
-        [ForeignKey(nameof(Client))]
-        public int ClientId { get; set; }
+        [MaxLength(NameMaxLength)]
+        public string FirstName { get; set; }
 
-        public virtual Client Client { get; set; }
+        [MaxLength(NameMaxLength)]
+        public string MiddleName { get; set; }
+
+        [MaxLength(NameMaxLength)]
+        public string LastName { get; set; }
+
+        public virtual ICollection<Rental> Rental { get; set; } = new HashSet<Rental>();
     }
 }
