@@ -423,7 +423,13 @@ namespace Oversteer.Data.Migrations
                     b.Property<int>("CompanyId")
                         .HasColumnType("int");
 
-                    b.Property<int>("Raiting")
+                    b.Property<DateTime>("DeletedOn")
+                        .HasColumnType("datetime2");
+
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("bit");
+
+                    b.Property<int>("Rating")
                         .HasColumnType("int");
 
                     b.Property<string>("UserId")

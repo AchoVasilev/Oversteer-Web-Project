@@ -12,7 +12,7 @@
         public int Id { get; set; }
 
         [Range(1, 5)]
-        public int Raiting { get; set; }
+        public int Rating { get; set; }
 
         [Required]
         public string Comment { get; set; }
@@ -27,5 +27,9 @@
         public int CompanyId { get; set; }
 
         public virtual Company Company { get; set; }
+
+        public bool IsDeleted { get; set; } = false;
+
+        public DateTime DeletedOn { get; set; }
     }
 }

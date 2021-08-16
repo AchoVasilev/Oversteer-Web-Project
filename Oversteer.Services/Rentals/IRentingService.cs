@@ -22,6 +22,10 @@
 
         Task<bool> EditRentAsync(string id, string clientFirstName, string clientLastName, string clientEmail, decimal price);
 
+        Task<bool> IsValidReviewRequestAsync(string orderId, string customerEmail);
+
+        Task<bool> DeleteReviewFromOrderAsync(int feedbackId);
+
         IEnumerable<RentsDto> GetAllUserRents(string userId);
 
         ICollection<RentsDto> GetAllCompanyRents();

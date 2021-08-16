@@ -25,11 +25,13 @@ namespace Oversteer.Web
     using Oversteer.Services.Companies.OfferedService;
     using Oversteer.Services.Countries;
     using Oversteer.Services.EmailSenders;
+    using Oversteer.Services.Feedbacks;
     using Oversteer.Services.Home;
     using Oversteer.Services.Images;
     using Oversteer.Services.Rentals;
     using Oversteer.Services.Statistics;
     using Oversteer.Services.Users;
+    using Oversteer.Web.Hubs;
     using Oversteer.Web.ViewModels.Email;
 
     public class Startup
@@ -71,7 +73,8 @@ namespace Oversteer.Web
                 .AddTransient<IUserService, UserService>()
                 .AddTransient<IImageService, ImageService>()
                 .AddTransient<ICompanyAccountService, CompanyAccountService>()
-                .AddTransient<IOfferedServicesService, OfferedServicesService>();
+                .AddTransient<IOfferedServicesService, OfferedServicesService>()
+                .AddTransient<IFeedbackService, FeedbackService>();
             
             //Configure MailKit
             services.AddTransient<IEmailSender, MailKitSender>();
@@ -121,6 +124,8 @@ namespace Oversteer.Web
             });
 
             services.AddRazorPages();
+
+            services.AddSignalR();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -142,7 +147,7 @@ namespace Oversteer.Web
                 // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
                 app.UseHsts();
             }
-
+            
             app.UseHttpsRedirection()
                 .UseStaticFiles()
                 .UseRouting()
@@ -157,7 +162,10 @@ namespace Oversteer.Web
                     endpoints.MapControllerRoute(
                         name: "default",
                         pattern: "{controller=Home}/{action=Index}/{id?}");
+
                     endpoints.MapRazorPages();
+
+                    endpoints.MapHub<NotifyHub>("/notify");
                 });
         }
     }

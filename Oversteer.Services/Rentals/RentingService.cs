@@ -205,6 +205,37 @@
             return true;
         }
 
+        public async Task<bool> IsValidReviewRequestAsync(string orderId, string customerEmail)
+        {
+            var order = await this.data.Rentals.FindAsync(orderId);
+
+            if (order is null)
+            {
+                return false;
+            }
+
+            return order.User.Email.ToLower() == customerEmail;
+        }
+
+        public async Task<bool> DeleteReviewFromOrderAsync(int feedbackId)
+        {
+            var order = await this.data.Rentals
+                                    .Where(x => x.FeedbackId == feedbackId)
+                                    .FirstOrDefaultAsync();
+
+            if (order is null)
+            {
+                return false;
+            }
+
+            order.IsDeleted = true;
+            order.DeletedOn = DateTime.UtcNow;
+
+            await this.data.SaveChangesAsync();
+
+            return true;
+        }
+
         private void CancelRentDays(Rental order)
         {
             for (var dt = order.StartDate; dt <= order.ReturnDate; dt = dt.AddDays(1))
