@@ -28,6 +28,8 @@
             this.CreateMap<Feedback, FeedbackViewModel>();
 
             this.CreateMap<Feedback, FeedbackDto>();
+
+            this.CreateMap<Feedback, ListFeedbackModel>();
         }
     }
 }

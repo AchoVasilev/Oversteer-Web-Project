@@ -1,95 +1,109 @@
-﻿@model Oversteer.Data.Models.Rentals.Rental
+﻿@model EditRentFormModel
 
-@{
-    ViewData["Title"] = "Edit";
-    Layout = "~/Views/Shared/_Layout.cshtml";
-}
+@{ ViewData["Title"] = "Edit Rent"; }
 
-<h1>Edit</h1>
+<center>
+    <h1 style="margin-top:2%">Edit Rent: @Model.Id</h1>
+</center>
+<hr class="border-primary" />
+<div class="row col-md-12 justify-content-center">
+    <div class="col-md-10">
+        <form asp-area="Company" asp-controller="Rentals" asp-action="Edit" method="post" enctype="multipart/form-data">
+            <h3>Customer Info</h3>
+            <div class="form-row">
+                <div class="form-group col-md-4 mb-3">
+                    <label asp-for="ClientFirstName"></label>
+                    <input asp-for="ClientFirstName" class="form-control" value="@Model.ClientFirstName" />
+                    <span asp-validation-for="ClientFirstName" class="text-danger"></span>
+                </div>
 
-<h4>Rental</h4>
-<hr />
-<div class="row">
-    <div class="col-md-4">
-        <form asp-action="Edit">
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <input type="hidden" asp-for="Id" />
-            <div class="form-group">
-                <label asp-for="CreatedOn" class="control-label"></label>
-                <input asp-for="CreatedOn" class="form-control" />
-                <span asp-validation-for="CreatedOn" class="text-danger"></span>
+                <div class="form-group col-md-4 mb-3">
+                    <label asp-for="ClientLastName"></label>
+                    <input asp-for="ClientLastName" class="form-control" value="@Model.ClientLastName" />
+                    <span asp-validation-for="ClientLastName" class="text-danger"></span>
+                </div>
+
+                <div class="form-group col-md-4 mb-3">
+                    <label asp-for="ClientUserEmail"></label>
+                    <input asp-for="ClientUserEmail" readonly class="form-control" value="@Model.ClientUserEmail" />
+                    <span asp-validation-for="ClientUserEmail" class="text-danger"></span>
+                </div>
             </div>
-            <div class="form-group">
-                <label asp-for="StartDate" class="control-label"></label>
-                <input asp-for="StartDate" class="form-control" />
-                <span asp-validation-for="StartDate" class="text-danger"></span>
+            <hr />
+            <h3>Destionation Info</h3>
+            <div class="form-row">
+                <div class="form-group col-md-6 mb-3">
+                    <label asp-for="PickUpLocationName">Pick up location</label>
+                    <input asp-for="PickUpLocationName" class="form-control" readonly value="@Model.PickUpLocationName" />
+                    <span asp-validation-for="PickUpLocationName" class="text-danger"></span>
+                </div>
+
+                <div class="form-group col-md-6 mb-3">
+                    <label asp-for="DropOffLocationName" class="control-label">Return location</label>
+                    <input asp-for="DropOffLocationName" class="form-control" readonly value="@Model.DropOffLocationName" />
+                    <span asp-validation-for="DropOffLocationName" class="text-danger"></span>
+                </div>
             </div>
-            <div class="form-group">
-                <label asp-for="ReturnDate" class="control-label"></label>
-                <input asp-for="ReturnDate" class="form-control" />
-                <span asp-validation-for="ReturnDate" class="text-danger"></span>
+            <hr />
+            <h3>Dates Info</h3>
+            <div class="form-row">
+                <div class="form-group col-md-6 mb-3">
+                    <label asp-for="StartDate">Start Date</label>
+                    <input asp-for="StartDate" class="form-control" readonly value="@Model.StartDate" />
+                    <span asp-validation-for="StartDate" class="text-danger"></span>
+                </div>
+
+                <div class="form-group col-md-6 mb-3">
+                    <label asp-for="ReturnDate" class="control-label">End Date</label>
+                    <input asp-for="ReturnDate" class="form-control" readonly value="@Model.ReturnDate" />
+                    <span asp-validation-for="ReturnDate" class="text-danger"></span>
+                </div>
             </div>
-            <div class="form-group">
-                <label asp-for="Price" class="control-label"></label>
-                <input asp-for="Price" class="form-control" />
-                <span asp-validation-for="Price" class="text-danger"></span>
-            </div>
-            <div class="form-group form-check">
-                <label class="form-check-label">
-                    <input class="form-check-input" asp-for="IsDeleted" /> @Html.DisplayNameFor(model => model.IsDeleted)
-                </label>
-            </div>
-            <div class="form-group">
-                <label asp-for="DeletedOn" class="control-label"></label>
-                <input asp-for="DeletedOn" class="form-control" />
-                <span asp-validation-for="DeletedOn" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="OrderStatus" class="control-label"></label>
-                <select asp-for="OrderStatus" class="form-control"></select>
-                <span asp-validation-for="OrderStatus" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="PickUpLocationId" class="control-label"></label>
-                <select asp-for="PickUpLocationId" class="form-control" asp-items="ViewBag.PickUpLocationId"></select>
-                <span asp-validation-for="PickUpLocationId" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="DropOffLocationId" class="control-label"></label>
-                <select asp-for="DropOffLocationId" class="form-control" asp-items="ViewBag.DropOffLocationId"></select>
-                <span asp-validation-for="DropOffLocationId" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="UserId" class="control-label"></label>
-                <select asp-for="UserId" class="form-control" asp-items="ViewBag.UserId"></select>
-                <span asp-validation-for="UserId" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="CompanyId" class="control-label"></label>
-                <select asp-for="CompanyId" class="form-control" asp-items="ViewBag.CompanyId"></select>
-                <span asp-validation-for="CompanyId" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="CarId" class="control-label"></label>
-                <select asp-for="CarId" class="form-control" asp-items="ViewBag.CarId"></select>
-                <span asp-validation-for="CarId" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="FeedbackId" class="control-label"></label>
-                <select asp-for="FeedbackId" class="form-control" asp-items="ViewBag.FeedbackId"></select>
-                <span asp-validation-for="FeedbackId" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <input type="submit" value="Save" class="btn btn-primary" />
+            <hr />
+            <h3>Price Info</h3>
+            <div class="form-row">
+                <div class="form-group col-md-4 mb-3">
+                    <label asp-for="Price">Price</label>
+                    <input asp-for="Price" class="form-control" value="@Model.Price" />
+                    <span asp-validation-for="Price" class="text-danger"></span>
+                </div>
             </div>
         </form>
     </div>
 </div>
+<center>
+    <div class="col-sm-12 offset-lg-2 col-lg-8 offset-xl-3 col-xl-6">
+        <input class="btn btn-primary" type="submit" data-toggle="modal" data-target="#modalEdit" value="Edit" />
+    </div>
+</center>
 
-<div>
-    <a asp-action="Index">Back to List</a>
+<div class="modal" id="modalEdit" tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Confirm edit</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <p>
+                    Do you confirm these changes?
+                </p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary" onclick="editForm.submit()">Save changes</button>
+            </div>
+        </div>
+    </div>
 </div>
 
-@section Scripts {
-    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+@section Scripts{
+    <script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.6.2.js"></script>
+    <script src="https://ajax.aspnetcdn.com/ajax/jquery.validate/1.8.1/jquery.validate.js"></script>
+    <script src="~/lib/jquery-validation-unobtrusive/dist/jquery.validate.unobtrusive.js"></script>
 }
+
+<script src="/lib/signalr/dist/browser/signalr.min.js"></script>
+<script src="/js/notify.js"></script>

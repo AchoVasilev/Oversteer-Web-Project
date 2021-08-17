@@ -10,8 +10,7 @@
     using Oversteer.Data;
     using Oversteer.Data.Models.Cars;
 
-    [Area("Administration")]
-    public class CarsController : Controller
+    public class CarsController : AdministrationController
     {
         private readonly ApplicationDbContext _context;
 
