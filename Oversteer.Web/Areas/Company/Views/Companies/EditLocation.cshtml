@@ -1,0 +1,72 @@
+﻿@model LocationFormModel
+@inject ICountriesService CountriesService
+
+@{
+    ViewBag.Title = "Edit a office/car location";
+}
+
+<script src="/js/notify.js"></script>
+
+<div class="row">
+    <div class="col-sm-12 offset-lg-2 col-lg-8 offset-xl-3 col-xl-6">
+        <h2 class="heading-margin text-center">@ViewBag.Title</h2>
+
+        <form method="post" id="editForm">
+            <div class="form-group">
+                <label asp-for="CountryId"></label>
+                <select asp-for="CountryId" class="form-control">
+                    <option value="" class="rhth">Select Country</option>
+                    @foreach (var country in CountriesService.GetCountries())
+                    {
+                        <option class="@country.Id" value="@country.Id">@country.Name</option>
+                    }
+                </select>
+                <span asp-validation-for="CountryId" class="small text-danger"></span>
+            </div>
+            <div class="row">
+                <div class="col">
+                    <div class="form-group">
+                        <label asp-for="CityName"></label>
+                        <input asp-for="CityName" class="form-control" value="@Model.CityName" placeholder="Example: Sofia, Plovdiv">
+                        <span asp-validation-for="CityName" class="small text-danger"></span>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="form-group">
+                        <label asp-for="AddressName"></label>
+                        <input asp-for="AddressName" class="form-control" value="@Model.AddressName" placeholder="Example: Airport terminal 1, stadium, etc..">
+                        <span asp-validation-for="AddressName" class="small text-danger"></span>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+<div class="col-sm-12 offset-lg-2 col-lg-8 offset-xl-3 col-xl-6">
+    <input class="btn btn-primary" type="submit" data-toggle="modal" data-target="#modalEdit" value="Save" />
+</div>
+
+<!-- Modal -->
+<div class="modal" id="modalEdit" tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Confirm edit</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <p>
+                    Do you confirm these changes?
+                </p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary" onclick="editForm.submit()">Save changes</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="/lib/signalr/dist/browser/signalr.min.js"></script>

@@ -1,0 +1,30 @@
+﻿@model CountryFormModel
+@inject ICountriesService CountriesService
+
+<div class="row">
+    <div class="col-sm-12 offset-lg-2 col-lg-8 offset-xl-3 col-xl-6">
+        <h2 class="heading-margin text-center">Add Car</h2>
+
+        <form method="post">
+            <div class="col">
+                <div class="form-group">
+                    <label asp-for="Id"></label>
+                    <select asp-for="Id" id="selectcat" class="form-control">
+                        <option value="" class="rhth">Select Country</option>
+                        @foreach (var country in CountriesService.GetCountries())
+                        {
+                            <option class="@country.Id" value="@country.Id">@country.Name</option>
+                        }
+                    </select>
+                    <span asp-validation-for="Id" class="small text-danger"></span>
+                </div>
+            </div>
+            <div class="form-group">
+                <label asp-for="City.Name"></label>
+                <input asp-for="City.Name" class="form-control" placeholder="Enter your city.">
+                <span asp-validation-for="City.Name" class="small text-danger"></span>
+            </div>
+            <input class="btn btn-primary" type="submit" value="Save" />
+        </form>
+    </div>
+</div>

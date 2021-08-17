@@ -1,0 +1,117 @@
+﻿@model CompanyDetailsFormModel
+@inject ICompaniesService Companies
+
+@{
+    ViewData["Title"] = "Company details";
+
+    var userId = User.GetId();
+    var userIsCompany = Companies.UserIsCompany(userId);
+    var userIsAdmin = User.IsAdmin();
+}
+
+<center>
+    <h1 style="margin-top:2%">
+        @Model.Name
+    </h1>
+</center>
+<hr class="border-info" />
+
+<div class="row">
+    <div class="col">
+        <center>
+            <h3>
+                Our Locations
+            </h3>
+        </center>
+        <table id="example" class="display" style="width:100%">
+            <thead>
+                <tr>
+                    <th>Country</th>
+                    <th>City</th>
+                    <th>Address</th>
+                </tr>
+            </thead>
+            @foreach (var location in Model.Locations)
+            {
+                <tbody>
+                    <tr>
+                        <td>@location.CountryName</td>
+                        <td>@location.CityName</td>
+                        <td>@location.AddressName</td>
+                    </tr>
+                </tbody>
+            }
+            <tfoot>
+                <tr>
+                    <th>Country</th>
+                    <th>City</th>
+                    <th>Address</th>
+                </tr>
+            </tfoot>
+        </table>
+    </div>
+    <div class="col">
+        <center>
+            <h3>
+                Our Services
+            </h3>
+        </center>
+        <table id="table-two" class="display" style="width:100%">
+            <thead>
+                <tr>
+                    <th>Service Name</th>
+                </tr>
+            </thead>
+            @foreach (var service in Model.CompanyServices)
+            {
+                <tbody>
+                    <tr>
+                        <td>@service.Name</td>
+                    </tr>
+                </tbody>
+            }
+            <tfoot>
+                <tr>
+                    <th>Service Name</th>
+                </tr>
+            </tfoot>
+        </table>
+    </div>
+</div>
+
+@if (@Model.Feedbacks.Count > 0)
+{
+    @await Html.PartialAsync("~/Views/Shared/Partials/_CompanyReviewsPartial.cshtml", @Model.Feedbacks)
+}
+
+@if (Model.CarsCount == 0)
+{
+    <div class="col-md-4">
+        <h2>@Model.Name does't have any cars</h2>
+    </div>
+}
+else
+{
+    <div class="col-md-4">
+        <h4><a class="nav-link text-black" asp-area="Company" asp-controller="Cars" asp-action="Cars" asp-route-id="@Model.Id">View the company's cars</a></h4>
+    </div>
+}
+
+@section Scripts{
+    <script type="text/javascript" charset="utf8">https://code.jquery.com/jquery-3.5.1.js</script>
+    <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.25/js/jquery.dataTables.js"></script>
+
+    <script>
+        $(document).ready(function () {
+            $('#example').DataTable();
+        });
+    </script>
+
+    <script>
+        $(document).ready(function () {
+            $('#table-two').DataTable();
+        });
+    </script>
+
+    <partial name="~/Views/Shared/_FontAwesomeIcons.cshtml" />
+}

@@ -72,9 +72,9 @@
 
             return this.View(new CarFormModel()
             {
-                Brands = this.carService.GetCarBrands(),
-                CarModels = this.carService.GetCarModels(),
-                Colors = this.carService.GetCarColors(),
+                Brands = this.carCacheService.CacheCarBrands(CarBrandsCacheKey),
+                CarModels = this.carCacheService.CacheCarModels(CarModelsCacheKey),
+                Colors = this.carCacheService.CacheCarColors(CarColorsCacheKey),
                 FuelTypes = this.carService.GetFuelTypes(),
                 Transmissions = this.carService.GetTransmissionTypes(),
                 CarTypes = this.carService.GetCarTypes(),
@@ -90,7 +90,7 @@
 
             var companyId = this.companiesService.GetCurrentCompanyId(currentUserId);
 
-            if (companyId == 0)
+            if (companyId == 0 && this.User.IsAdmin())
             {
                 return this.RedirectToAction(nameof(CompaniesController.Create), "Companies", new { area = "Company" });
             }
@@ -179,9 +179,9 @@
 
             var carForm = new CarFormModel()
             {
-                Brands = this.carService.GetCarBrands(),
-                CarModels = this.carService.GetCarModels(),
-                Colors = this.carService.GetCarColors(),
+                Brands = this.carCacheService.CacheCarBrands(CarBrandsCacheKey),
+                CarModels = this.carCacheService.CacheCarModels(CarModelsCacheKey),
+                Colors = this.carCacheService.CacheCarColors(CarColorsCacheKey),
                 FuelTypes = this.carService.GetFuelTypes(),
                 Transmissions = this.carService.GetTransmissionTypes(),
                 CarTypes = this.carService.GetCarTypes(),
@@ -202,6 +202,11 @@
             if (!this.companiesService.UserIsCompany(currentUserId) && !User.IsAdmin())
             {
                 return this.RedirectToAction(nameof(CompaniesController.Create), "Companies", new { area = "Company" });
+            }
+
+            if (this.carService.IsCarFromCompany(id, companyId))
+            {
+                return NotFound();
             }
 
             if (!this.carService.GetBrandId(carModel.BrandId))
@@ -236,9 +241,9 @@
 
             if (!ModelState.IsValid)
             {
-                carModel.Brands = this.carService.GetCarBrands();
-                carModel.CarModels = this.carService.GetCarModels();
-                carModel.Colors = this.carService.GetCarColors();
+                carModel.Brands = this.carCacheService.CacheCarBrands(CarBrandsCacheKey);
+                carModel.CarModels = this.carCacheService.CacheCarModels(CarModelsCacheKey);
+                carModel.Colors = this.carCacheService.CacheCarColors(CarColorsCacheKey);
                 carModel.FuelTypes = this.carService.GetFuelTypes();
                 carModel.Transmissions = this.carService.GetTransmissionTypes();
                 carModel.CarTypes = this.carService.GetCarTypes();
@@ -284,23 +289,20 @@
         }
 
         [Authorize]
-        public async Task<IActionResult> Delete(int id, string information)
+        public async Task<IActionResult> Delete(int id)
         {
             var userId = this.User.GetId();
+            var companyId = this.companiesService.GetCurrentCompanyId(userId);
 
-            if (!this.companiesService.UserIsCompany(userId) && !User.IsAdmin())
+            if (companyId == 0 && !User.IsAdmin())
             {
                 return this.RedirectToAction(nameof(CompaniesController.Create), "Companies", new { area = "Company" });
             }
 
-            var car = await this.carService.GetCarByIdAsync(id);
-
-            if (information != car.ToFriendlyUrl())
+            if (!this.carService.IsCarFromCompany(id, companyId))
             {
                 return NotFound();
             }
-
-            var companyId = this.companiesService.GetCurrentCompanyId(userId);
 
             await this.carService.DeleteCarAsync(companyId, id);
 

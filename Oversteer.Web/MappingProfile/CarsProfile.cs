@@ -44,6 +44,8 @@
                           "/images/cars/" + x.CarImages.Where(x => !x.IsDeleted).FirstOrDefault().Id + "." + x.CarImages.Where(x => !x.IsDeleted).FirstOrDefault().Extension));
 
             this.CreateMap<CarFeature, CarFeatureFormModel>();
+
+            this.CreateMap<Car, CarDto>();
         }
     }
 }

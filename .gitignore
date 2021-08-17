@@ -1,0 +1,16 @@
+/Oversteer.Web/appsettings.json
+/Oversteer.Web/bin
+/Oversteer.Web/obj
+/Oversteer.Web/bin/Debug/net5.0/appsettings.json
+/Oversteer.Data.Models/bin
+/Oversteer.Data.Models/obj
+/Oversteer.Data.Common/bin
+/Oversteer.Data.Common/obj
+/Oversteer.Data/bin
+/Oversteer.Data/obj
+/Oversteer.Services/obj
+/Oversteer.Services/bin
+/Oversteer.Web.Infrastructure/bin
+/Oversteer.Web.Infrastructure/obj
+/Oversteer.Web.ViewModels/bin
+/Oversteer.Web.ViewModels/obj

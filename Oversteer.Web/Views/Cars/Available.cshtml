@@ -1,0 +1,69 @@
+﻿@model AvailableCarModel
+@{
+    ViewData["Title"] = "Available cars";
+}
+
+<h1 style="margin-top:2%">Available cars for the period @Model.StartDate - @Model.EndDate</h1>
+
+<hr class="border-info" />
+
+@if (Model.Cars.Count() == 0)
+{
+    <h1>Sorry, there are no available cars in this location.</h1>
+}
+else
+{
+    var counter = 0;
+
+    @: <div class="row justify-content-between">
+        @foreach (var car in Model.Cars)
+        {
+            counter++;
+            <div class="card mb-2 col-md-5 border-info ">
+                <h3 class="card-header" style="background-color:transparent">@car.ModelName</h3>
+                <img style="height: 280px; width: 440px; display: block;" src="@car.Image" alt="@car.ModelName">
+                <div class="card-body">
+                    <p class="card-text">@car.Description</p>
+                </div>
+                <ul class="list-group list-group-flush">
+                    <li class="list-group-item">Year: @car.ModelYear</li>
+                    <li class="list-group-item">Gear Type: @car.TransmissionName</li>
+                    <li class="list-group-item">Price pey day: $@car.DailyPrice</li>
+                    <li class="list-group-item">
+                        <a class="btn btn-secondary py-2 ml-1" 
+                           asp-controller="Cars" 
+                           asp-action="Details" 
+                           asp-route-id="@car.Id"
+                           asp-route-information="@car.ToFriendlyUrl()">Details</a>
+                    </li>
+                </ul>
+                <div class="justify-content-center mx-2 mb-2 m-2">
+                    @{
+                        decimal price = (decimal)Model.Days * car.DailyPrice;
+                    }
+
+                    <form asp-controller="Rentals" asp-action="Preview" method="POST">
+                        <input type="hidden" value="@car.Id" name="CarId" />
+                        <input type="hidden" value="@car.ModelName" name="Model" />
+                        <input type="hidden" value="@car.DailyPrice" name="PricePerDay" />
+                        <input type="hidden" value="@Model.Days" name="Days" />
+                        <input type="hidden" value="@Model.StartDate" name="RentStart" />
+                        <input type="hidden" value="@Model.EndDate" name="RentEnd" />
+                        <input type="hidden" value="@car.Image" name="Image" />
+                        <input type="hidden" value="@Model.PickUpPlace" name="PickUpPlace" />
+                        <input type="hidden" value="@Model.ReturnPlace" name="ReturnPlace" />
+                        <input type="hidden" value="@car.CompanyId" name="CompanyId" />
+                        <input type="hidden" value="@car.CompanyName" name="CompanyName" />
+                        <button type="submit" class="btn btn-warning w-100 ">Rent this car for $@price</button>
+                    </form>
+
+                </div>
+            </div>
+
+            if (counter % 2 == 0)
+            {
+                @Html.Raw("</div>")
+                @Html.Raw("<div class=\"row justify-content-between\">")
+            }
+        }
+    }

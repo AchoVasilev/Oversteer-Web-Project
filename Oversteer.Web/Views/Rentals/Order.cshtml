@@ -1,0 +1,85 @@
+﻿@model RentFormModel
+
+@{
+    ViewBag.Title = "Rent Car";
+}
+
+<div class="row">
+    <div class="col-sm-12 offset-lg-2 col-lg-8 offset-xl-3 col-xl-6">
+        <h2 class="heading-margin text-center">@ViewBag.Title</h2>
+
+        <form method="post" enctype="multipart/form-data">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-lg">
+                        <div class="form-group">
+                            <label asp-for="StartLocation"></label>
+                            <input asp-for="StartLocation" placeholder="Your pickup address" class="form-control">
+                            <span asp-validation-for="StartLocation" class="small text-danger"></span>
+                        </div>
+                        <div class="form-group">
+                            <label asp-for="ReturnLocation">Your returning location</label>
+                            <input asp-for="ReturnLocation" placeholder="Your drop-off address" class="form-control">
+                            <span asp-validation-for="ReturnLocation" class="small text-danger"></span>
+                        </div>
+                        <div class="row">
+                            <div class="form-group col-md-6">
+                                <label asp-for="StartDate"></label>
+                                <input asp-for="StartDate" id="start" placeholder="Your pickup date and time" class="form-control datepicker px-3">
+                                <span asp-validation-for="StartDate" class="small text-danger"></span>
+                            </div>
+                            <div class="form-group col-md-6">
+                                <label asp-for="EndDate"></label>
+                                <input asp-for="EndDate" id="return" placeholder="Your drop-off date and time" class="form-control datepicker px-3">
+                                <span asp-validation-for="EndDate" class="small text-danger"></span>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-lg-6">
+                                <input type="submit" value="Submit" class="btn btn-primary">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+@section Scripts{
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/jquery/latest/jquery.min.js"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
+
+    <script>
+        $('#start').daterangepicker(
+            {
+                "singleDatePicker": true,
+                "timePicker": true,
+                "startDate": moment().startOf('hour'),
+                "endDate": moment().startOf('hour').add(32, 'hour'),
+                "opens": "center",
+                "timePicker24Hour": true,
+                "autoApply": true,
+                "locale": {
+                    format: 'DD/MM/YYYY HH:mm'
+                },
+            });
+    </script>
+
+    <script>
+        $('#return').daterangepicker(
+            {
+                "singleDatePicker": true,
+                "timePicker": true,
+                "startDate": moment().startOf('hour'),
+                "endDate": moment().startOf('hour').add(32, 'hour'),
+                "opens": "center",
+                "timePicker24Hour": true,
+                "locale": {
+                    format: 'DD/MM/YYYY HH:mm'
+                },
+
+            });
+    </script>
+}

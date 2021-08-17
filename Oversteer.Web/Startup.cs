@@ -63,6 +63,13 @@ namespace Oversteer.Web
                 .AddRoles<IdentityRole>()
                 .AddEntityFrameworkStores<ApplicationDbContext>();
 
+            services.Configure<IdentityOptions>(opts =>
+            {
+                opts.Lockout.AllowedForNewUsers = true;
+                opts.Lockout.DefaultLockoutTimeSpan = TimeSpan.FromMinutes(10);
+                opts.Lockout.MaxFailedAccessAttempts = 3;
+            });
+
             services
                 .ConfigureApplicationCookie(options =>
                 {

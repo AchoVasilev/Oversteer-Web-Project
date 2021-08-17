@@ -1,0 +1,89 @@
+﻿@model RentDetailsModel
+
+@{ ViewData["Title"] = "Rent Details"; }
+
+@if (Model.UserEmail.ToLower() == this.User.Identity.Name.ToLower() && Model.OrderStatus == OrderStatus.Finished)
+{
+<div class="alert alert-dismissible alert-success" style="margin-top:2%">
+    <button type="button" class="close" data-dismiss="alert">&times;</button>
+    <h4 class="alert-heading">Congratulations! Your order was finished</h4>
+    <p class="mb-0">You can leave a review for your order. <a asp-controller="Feedbacks" asp-action="Create" asp-route-orderId="@Model.Id">Follow this link!</a></p>
+</div>
+}
+
+
+@if (Model.CompanyId != 0)
+{
+    <a class="btn btn-info" asp-controller="Rentals" asp-area="Company" asp-action="Edit" asp-route-id="@Model.Id">Edit Order</a>
+}
+
+@if (@Model.OrderStatus == OrderStatus.Active)
+{
+    <span class="badge badge-pill badge-warning" style="margin-top:5%">@Model.OrderStatus</span>
+ }
+else if (@Model.OrderStatus == OrderStatus.Finished)
+{
+    <span class="badge badge-pill badge-success" style="margin-top:5%">@Model.OrderStatus</span> 
+}
+else
+{
+    <span class="badge badge-pill badge-danger" style="margin-top:5%">@Model.OrderStatus</span>
+}
+
+<span class=" badge badge-pill badge-info" style="margin-top:5%; float:right" onclick="myFunction()">Print this order</span>
+
+<h1>Order ID: @Model.Id.ToUpper()</h1>
+
+<hr class="border-primary" />
+<div class="container-fluid">
+    <div class="d-flex justify-content-between">
+        <h4>Company Name:</h4>
+        <h4>@Model.CompanyName</h4>
+    </div>
+    <div class="d-flex justify-content-between">
+        <h4>Customer Email:</h4>
+        <h4>@Model.UserEmail</h4>
+    </div>
+    <hr class="border-primary" />
+    <div class="d-flex justify-content-between">
+        <h4>Pick Up Location:</h4>
+        <h4>@Model.PickUpLocationName</h4>
+    </div>
+    <div class="d-flex justify-content-between">
+        <h4>Return Location:</h4>
+        <h4>@Model.DropOffLocationName</h4>
+    </div>
+    <hr class="border-primary" />
+    <div class="d-flex justify-content-between">
+        <h4>Rent start:</h4>
+        <h4>@Model.StartDate</h4>
+    </div>
+    <div class="d-flex justify-content-between">
+        <h4>Rent end:</h4>
+        <h4>@Model.ReturnDate</h4>
+    </div>
+    <hr class="border-primary" />
+    <h2>Your Car:</h2>
+    <div class="d-flex justify-content-between">
+        <img src="@Model.Url" width="150px" height="110px" />
+        <div>
+            <h4>Model: @Model.CarModelName</h4>
+            <h4>Gear Type: @Model.CarTransmissionName</h4>
+            <h4>Year: @Model.CarModelYear</h4>
+        </div>
+    </div>
+    <div>@Model.CarDescription</div>
+    <hr class="border-primary" />
+</div>
+<center>
+    <div class="text-success" style="font-size:200%">Price: $@Model.Price</div>
+</center>
+
+<hr class="border-primary" />
+
+<script>
+    function myFunction() {
+        window.print();
+    }
+</script>
+

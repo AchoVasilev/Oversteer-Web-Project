@@ -1,0 +1,50 @@
+﻿@model FeedbackInputModel
+
+@{ ViewData["Title"] = "Create";
+                var orderId = ViewData["Order"]; }
+
+<h1 class="text-primary mb-2" style="margin-top:2%">Give feedback for Order with ID: @orderId</h1>
+
+<form asp-controller="Feedbacks" asp-action="Create" method="POST" enctype="multipart/form-data">
+    <input type="hidden" asp-for="RentId" value="@orderId" />
+    <h3>Rating</h3>
+    <hr class="border-primary" />
+    <div class="row justify-content-around">
+        <div style="white-space:nowrap;">
+            <i class="far fa-thumbs-down"></i> <label for="one">Rating: 1</label>
+            <input type="radio" id="one" name="Rating" value="1" checked="" />
+        </div>
+
+        <div style="white-space:nowrap;">
+            <label for="one">Rating: 2</label>
+            <input type="radio" id="one" name="Rating" value="2" />
+        </div>
+
+        <div style="white-space:nowrap;">
+            <label for="one">Rating: 3</label>
+            <input type="radio" id="one" name="Rating" value="3" />
+        </div>
+
+        <div style="white-space:nowrap;">
+            <label for="one">Rating: 4</label>
+            <input type="radio" id="one" name="Rating" value="4" />
+        </div>
+        <div style="white-space:nowrap;">
+            <label for="one">Rating: 5</label>
+            <input type="radio" id="one" name="Rating" value="5" />
+            <i class="far fa-thumbs-up"></i>
+        </div>
+    </div>
+
+    <br />
+    <div class="form-group">
+        <label asp-for="Comment"><h3>Your Comment</h3></label>
+        <textarea asp-for="Comment" class="form-control" rows="5" cols="10" placeholder="Your comment ..."></textarea>
+        <span asp-validation-for="Comment" class="text-danger"></span>
+    </div>
+    <button type="submit" class="btn btn-primary">Give Feedback</button>
+</form>
+
+@section Scripts {
+    <partial name="~/Views/Shared/_FontAwesomeIcons.cshtml" />
+}

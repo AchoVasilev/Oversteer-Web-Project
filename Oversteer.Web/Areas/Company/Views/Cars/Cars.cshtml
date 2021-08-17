@@ -1,0 +1,56 @@
+﻿@model CompanyCar
+
+@{
+    ViewData["Title"] = "Company cars";
+}
+
+<div class="row">
+    @foreach (var car in Model.Cars)
+    {
+        <div class="col-md-4">
+            <div class="card-img-top img-fluid mb-3">
+                <img class="img-fluid img-thumbnail card-img-top" src="@car.Url" alt="Responsive image" style=" width:100%; height: 250px !important;">
+                <div class="card-body" style="width: 18rem;">
+                    <h5 class="card-title">@car.ModelName (@car.ModelYear)</h5>
+                    <a asp-area="" 
+                       asp-controller="Cars" 
+                       asp-action="Details" 
+                       asp-route-id="@car.Id" 
+                       asp-route-information="@car.ToFriendlyUrl()"
+                       class="btn btn-primary">Details</a>
+                </div>
+            </div>
+        </div>
+    }
+</div>
+
+<nav aria-label="...">
+    <ul class="pagination justify-content-center">
+        <li class="page-item @if (!Model.HasPreviousPage) { <text>disabled</text> }">
+            <a class="page-link" asp-action="All" asp-route-id="@Model.PreviousPageNumber">Previous</a>
+        </li>
+        @for (int i = Model.PageNumber - 4; i < Model.PageNumber; i++)
+        {
+            if (i > 0)
+            {
+                <li class="page-item"><a class="page-link" asp-action="All" asp-route-id="@i">@i</a></li>
+            }
+        }
+        <li class="page-item active" aria-current="page">
+            <span class="page-link">
+                @Model.PageNumber
+                <span class="sr-only">(current)</span>
+            </span>
+        </li>
+        @for (int i = Model.PageNumber + 1; i <= Model.PageNumber + 4; i++)
+        {
+            if (i <= Model.PagesCount)
+            {
+                <li class="page-item"><a class="page-link" asp-action="All" asp-route-id="@i">@i</a></li>
+            }
+        }
+        <li class="page-item @if (!Model.HasNextPage) { <text>disabled</text> }">
+            <a class="page-link" asp-action="All" asp-route-id="@Model.NextPageNumber">Next</a>
+        </li>
+    </ul>
+</nav>
