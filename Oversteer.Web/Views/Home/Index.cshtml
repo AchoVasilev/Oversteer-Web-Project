@@ -54,6 +54,9 @@
                                     <p class="d-flex mb-0 d-block">
                                         <a class="btn btn-secondary py-2 ml-1" asp-controller="Cars" asp-action="Details" asp-route-id="@car.Id">Details</a>
                                     </p>
+                                    <p class="d-flex mb-0 d-block">
+                                        <a asp-area="Company" asp-controller="Companies" asp-action="Details" asp-route-id="@car.CompanyId">Posted by @car.CompanyName</a>
+                                    </p>
                                 </div>
                             </div>
                         </div>
@@ -92,7 +95,7 @@
 </div>
 
 @section Scripts{
-    <script src="/lib/signalr/dist/browser/signalr.js"></script>
+    <script src="/lib/signalr/dist/browser/signalr.min.js"></script>
     <script src="/js/notify.js"></script>
 
     <script type="text/javascript" src="https://cdn.jsdelivr.net/jquery/latest/jquery.min.js"></script>

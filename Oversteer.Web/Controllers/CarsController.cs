@@ -7,7 +7,9 @@
     using Microsoft.AspNetCore.Authorization;
     using Microsoft.AspNetCore.Hosting;
     using Microsoft.AspNetCore.Mvc;
+    using Microsoft.Extensions.Caching.Memory;
 
+    using Oversteer.Services.Caches;
     using Oversteer.Services.Cars;
     using Oversteer.Services.Companies;
     using Oversteer.Web.Areas.Company.Controllers;
@@ -19,21 +21,29 @@
 
     public class CarsController : Controller
     {
+        private const string CarBrandsCacheKey = "carBrandsCacheKey";
+        private const string CarModelsCacheKey = "carModelsCacheKey";
+        private const string CarColorsCacheKey = "carColorsCacheKey";
+
         private readonly ICarsService carService;
         private readonly ICompaniesService companiesService;
         private readonly IWebHostEnvironment environment;
         private readonly ILocationService locationService;
+        private readonly ICarCacheService carCacheService;
 
         public CarsController(
             ICarsService carService,
             ICompaniesService companiesService,
             IWebHostEnvironment environment,
-            ILocationService locationService)
+            ILocationService locationService, 
+            ICarCacheService carCacheService
+            )
         {
             this.carService = carService;
             this.companiesService = companiesService;
             this.environment = environment;
             this.locationService = locationService;
+            this.carCacheService = carCacheService;
         }
 
         [Authorize]
@@ -59,9 +69,9 @@
 
             return this.View(new CarFormModel()
             {
-                Brands = this.carService.GetCarBrands(),
-                CarModels = this.carService.GetCarModels(),
-                Colors = this.carService.GetCarColors(),
+                Brands = this.carCacheService.CacheCarBrands(CarBrandsCacheKey),
+                CarModels = this.carCacheService.CacheCarModels(CarModelsCacheKey),
+                Colors = this.carCacheService.CacheCarColors(CarColorsCacheKey),
                 FuelTypes = this.carService.GetFuelTypes(),
                 Transmissions = this.carService.GetTransmissionTypes(),
                 CarTypes = this.carService.GetCarTypes(),

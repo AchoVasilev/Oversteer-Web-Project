@@ -6,6 +6,7 @@ namespace Oversteer.Web
 
     using Microsoft.AspNetCore.Builder;
     using Microsoft.AspNetCore.Hosting;
+    using Microsoft.AspNetCore.Http;
     using Microsoft.AspNetCore.Identity;
     using Microsoft.AspNetCore.Identity.UI.Services;
     using Microsoft.AspNetCore.Mvc;
@@ -17,6 +18,7 @@ namespace Oversteer.Web
     using Oversteer.Data;
     using Oversteer.Data.Models.Users;
     using Oversteer.Data.Seeding;
+    using Oversteer.Services.Caches;
     using Oversteer.Services.Cars;
     using Oversteer.Services.CarScraper;
     using Oversteer.Services.Cities;
@@ -61,6 +63,23 @@ namespace Oversteer.Web
                 .AddRoles<IdentityRole>()
                 .AddEntityFrameworkStores<ApplicationDbContext>();
 
+            services
+                .ConfigureApplicationCookie(options =>
+                {
+                    options.LoginPath = "/Identity/Account/Login";
+                    options.LogoutPath = "/Identity/Account/Logout";
+                    options.AccessDeniedPath = "/Identity/Account/AccessDenied";
+                });
+
+            services
+                .Configure<CookiePolicyOptions>(options =>
+                {
+                    // This lambda determines whether user consent for non-essential cookies is needed for a given request.
+                    options.CheckConsentNeeded = context => true;
+                    options.MinimumSameSitePolicy = SameSiteMode.Lax;
+                    options.ConsentCookie.Name = ".AspNetCore.ConsentCookie";
+                });
+
             services.AddTransient<ICarsScraperService, CarsScraperService>()
                 .AddTransient<ICarsService, CarsService>()
                 .AddTransient<IHomeService, HomeService>()
@@ -74,7 +93,8 @@ namespace Oversteer.Web
                 .AddTransient<IImageService, ImageService>()
                 .AddTransient<ICompanyAccountService, CompanyAccountService>()
                 .AddTransient<IOfferedServicesService, OfferedServicesService>()
-                .AddTransient<IFeedbackService, FeedbackService>();
+                .AddTransient<IFeedbackService, FeedbackService>()
+                .AddTransient<ICarCacheService, CarsCacheService>();
             
             //Configure MailKit
             services.AddTransient<IEmailSender, MailKitSender>();
@@ -97,7 +117,7 @@ namespace Oversteer.Web
 
             services.AddSingleton(cloudinary);
 
-            services.AddSingleton<NotifyHub>();
+            services.AddMemoryCache();
 
             services.AddAutoMapper(typeof(Startup));
 
@@ -149,7 +169,9 @@ namespace Oversteer.Web
                 // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
                 app.UseHsts();
             }
-            
+
+            app.UseStatusCodePagesWithRedirects("/Home/Error{0}");
+
             app.UseHttpsRedirection()
                 .UseStaticFiles()
                 .UseRouting()
@@ -167,7 +189,7 @@ namespace Oversteer.Web
 
                     endpoints.MapRazorPages();
 
-                    endpoints.MapHub<NotifyHub>("/notifyHub");
+                    endpoints.MapHub<NotificationHub>("/notify");
                 });
         }
     }
