@@ -24,6 +24,8 @@
 
         Task<bool> IsValidReviewRequestAsync(string orderId, string customerEmail);
 
+        Task<bool> UserFinishedOrders(string name);
+
         Task<bool> DeleteReviewFromOrderAsync(int feedbackId);
 
         IEnumerable<RentsDto> GetAllUserRents(string userId);

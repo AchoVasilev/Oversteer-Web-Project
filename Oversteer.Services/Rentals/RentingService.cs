@@ -115,6 +115,10 @@
                             .ProjectTo<RentsDto>(this.mapper.ConfigurationProvider)
                             .ToList();
 
+        public async Task<bool> UserFinishedOrders(string name) 
+            => await this.data.Rentals
+                        .AnyAsync(x => x.User.UserName == name && x.OrderStatus == OrderStatus.Finished && x.FeedbackId == null);
+
         public async Task<bool> CancelAsync(string rentId)
         {
             var rent = await this.GetRentByIdAsync(rentId);
@@ -125,6 +129,8 @@
             }
 
             rent.OrderStatus = OrderStatus.Canceled;
+
+            rent.Car.IsAvailable = true;
 
             this.CancelRentDays(rent);
 
@@ -148,6 +154,8 @@
             {
                 return false;
             }
+
+            rent.Car.IsAvailable = true;
 
             rent.OrderStatus = OrderStatus.Finished;
             await this.data.SaveChangesAsync();
@@ -177,14 +185,10 @@
             return true;
         }
 
-        public async Task<Rental> GetRentByIdAsync(string id)
-        {
-            var rent = await this.data.Rentals
+        public async Task<Rental> GetRentByIdAsync(string id) 
+            => await this.data.Rentals
                 .Where(x => x.Id == id && !x.IsDeleted)
                 .FirstOrDefaultAsync();
-
-            return rent;
-        }
 
         public async Task<bool> EditRentAsync(string id, string clientFirstName, string clientLastName, string clientEmail, decimal price)
         {
@@ -240,7 +244,7 @@
         {
             for (var dt = order.StartDate; dt <= order.ReturnDate; dt = dt.AddDays(1))
             {
-                var rentDay = order.Car.RentDays.FirstOrDefault(x => x.RentDate.Date == dt);
+                var rentDay = order.Car.RentDays.FirstOrDefault(x => x.RentDate.Date == dt.Date);
                 this.data.CarRentDays.Remove(rentDay);
             }
         }

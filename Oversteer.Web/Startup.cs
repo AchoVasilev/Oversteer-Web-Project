@@ -97,6 +97,8 @@ namespace Oversteer.Web
 
             services.AddSingleton(cloudinary);
 
+            services.AddSingleton<NotifyHub>();
+
             services.AddAutoMapper(typeof(Startup));
 
             //Configure External Providers
@@ -165,7 +167,7 @@ namespace Oversteer.Web
 
                     endpoints.MapRazorPages();
 
-                    endpoints.MapHub<NotifyHub>("/notify");
+                    endpoints.MapHub<NotifyHub>("/notifyHub");
                 });
         }
     }

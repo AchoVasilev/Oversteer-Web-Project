@@ -82,16 +82,25 @@
                 <ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
 
                     <li class="nav-item">
-                        <a class="nav-link active" id="pills-description-tab" data-toggle="pill" href="#pills-description" role="tab" aria-controls="pills-description" aria-expanded="true">Features</a>
+                        <a class="nav-link active" id="pills-description-tab" data-toggle="pill" href="#pills-features" role="tab" aria-controls="pills-description" aria-expanded="true">Features</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" id="pills-manufacturer-tab" data-toggle="pill" href="#pills-manufacturer" role="tab" aria-controls="pills-manufacturer" aria-expanded="true">Description</a>
+                        <a class="nav-link" id="pills-manufacturer-tab" data-toggle="pill" href="#pills-description" role="tab" aria-controls="pills-manufacturer" aria-expanded="true">Description</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" 
+                           id="pills-company-tab" 
+                           data-toggle="pill" 
+                           href="#pills-company" 
+                           role="tab" 
+                           aria-controls="pills-manufacturer" 
+                           aria-expanded="true">Posted by @Model.CompanyName</a>
                     </li>
                 </ul>
             </div>
 
             <div class="tab-content" id="pills-tabContent">
-                <div class="tab-pane fade show active" id="pills-description" role="tabpanel" aria-labelledby="pills-description-tab">
+                <div class="tab-pane fade show active" id="pills-features" role="tabpanel" aria-labelledby="pills-features-tab">
                     <div class="row">
                         @foreach (var feature in Model.CarFeatures)
                         {
@@ -104,13 +113,20 @@
                     </div>
                 </div>
 
-                <div class="tab-pane fade" id="pills-manufacturer" role="tabpanel" aria-labelledby="pills-manufacturer-tab">
+                <div class="tab-pane fade" id="pills-description" role="tabpanel" aria-labelledby="pills-description-tab">
                     <p>@Model.Description</p>
+                </div>
+
+                <div class="tab-pane fade" id="pills-company" role="tabpanel" aria-labelledby="pills-company-tab">
+                    <p>@Model.CompanyDescription</p>
+                    <p class="mb-0">You can check out @Model.CompanyName. 
+                    <a asp-area="Company" asp-controller="Companies" asp-action="Details" asp-route-id="@Model.CompanyId">
+                        Follow this link!</a></p>
                 </div>
             </div>
         </div>
     </div>
 </div>
 
-<script src="/lib/signalr/dist/browser/signalr.min.js"></script>
+<script src="/lib/signalr/dist/browser/signalr.js"></script>
 <script src="/js/notify.js"></script>

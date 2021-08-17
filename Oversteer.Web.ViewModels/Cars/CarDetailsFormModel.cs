@@ -28,6 +28,8 @@
 
         public string CompanyName { get; init; }
 
+        public string CompanyDescription { get; init; }
+
         public string Description { get; init; }
 
         public decimal DailyPrice { get; init; }
