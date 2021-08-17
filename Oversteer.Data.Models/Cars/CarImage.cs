@@ -19,6 +19,8 @@
 
         public DateTime? ModifiedOn { get; set; }
 
+        public bool IsDeleted { get; set; }
+
         public string RemoteImageUrl { get; set; }
 
         public string Url { get; set; }

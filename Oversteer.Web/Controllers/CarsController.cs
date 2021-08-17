@@ -7,12 +7,12 @@
     using Microsoft.AspNetCore.Authorization;
     using Microsoft.AspNetCore.Hosting;
     using Microsoft.AspNetCore.Mvc;
-    using Microsoft.Extensions.Caching.Memory;
 
     using Oversteer.Services.Caches;
     using Oversteer.Services.Cars;
     using Oversteer.Services.Companies;
     using Oversteer.Web.Areas.Company.Controllers;
+    using Oversteer.Web.Extensions;
     using Oversteer.Web.Infrastructure;
     using Oversteer.Web.ViewModels.Cars;
     using Oversteer.Web.ViewModels.Home;
@@ -24,6 +24,9 @@
         private const string CarBrandsCacheKey = "carBrandsCacheKey";
         private const string CarModelsCacheKey = "carModelsCacheKey";
         private const string CarColorsCacheKey = "carColorsCacheKey";
+        private const string CarFuelTypesCacheKey = "carFuelTypesCacheKey";
+        private const string CarTransmissionTypesCacheKey = "carTransmissionTypesCacheKey";
+        private const string CarTypesCacheKey = "carTypesCacheKey";
 
         private readonly ICarsService carService;
         private readonly ICompaniesService companiesService;
@@ -35,7 +38,7 @@
             ICarsService carService,
             ICompaniesService companiesService,
             IWebHostEnvironment environment,
-            ILocationService locationService, 
+            ILocationService locationService,
             ICarCacheService carCacheService
             )
         {
@@ -69,9 +72,9 @@
 
             return this.View(new CarFormModel()
             {
-                Brands = this.carCacheService.CacheCarBrands(CarBrandsCacheKey),
-                CarModels = this.carCacheService.CacheCarModels(CarModelsCacheKey),
-                Colors = this.carCacheService.CacheCarColors(CarColorsCacheKey),
+                Brands = this.carService.GetCarBrands(),
+                CarModels = this.carService.GetCarModels(),
+                Colors = this.carService.GetCarColors(),
                 FuelTypes = this.carService.GetFuelTypes(),
                 Transmissions = this.carService.GetTransmissionTypes(),
                 CarTypes = this.carService.GetCarTypes(),
@@ -151,7 +154,7 @@
         }
 
         [Authorize]
-        public IActionResult Edit(int id)
+        public IActionResult Edit(int id, string information)
         {
             var userId = this.User.GetId();
 
@@ -161,6 +164,11 @@
             }
 
             var car = this.carService.GetCarDetails(id);
+
+            if (information != car.ToFriendlyUrl())
+            {
+                return NotFound();
+            }
 
             if (car.CompanyUserId != userId && !User.IsAdmin())
             {
@@ -241,7 +249,7 @@
 
             if (!this.carService.IsCarFromCompany(id, companyId) && !User.IsAdmin())
             {
-                return this.BadRequest();
+                return this.NotFound();
             }
 
             try
@@ -260,7 +268,8 @@
                     carModel.ImageUrl,
                     carModel.Description,
                     carModel.Images,
-                    companyId
+                    companyId,
+                    carModel.CarFeatures
                     );
             }
             catch (Exception ex)
@@ -275,13 +284,20 @@
         }
 
         [Authorize]
-        public async Task<IActionResult> Delete(int id)
+        public async Task<IActionResult> Delete(int id, string information)
         {
             var userId = this.User.GetId();
 
             if (!this.companiesService.UserIsCompany(userId) && !User.IsAdmin())
             {
                 return this.RedirectToAction(nameof(CompaniesController.Create), "Companies", new { area = "Company" });
+            }
+
+            var car = await this.carService.GetCarByIdAsync(id);
+
+            if (information != car.ToFriendlyUrl())
+            {
+                return NotFound();
             }
 
             var companyId = this.companiesService.GetCurrentCompanyId(userId);
@@ -330,9 +346,14 @@
                 TotalCars = await this.carService.GetQueryCarsCounAsync(query)
             });
 
-        public IActionResult Details(int id)
+        public IActionResult Details(int id, string information)
         {
             var car = this.carService.GetCarDetails(id);
+
+            if (information != car.ToFriendlyUrl())
+            {
+                return NotFound();
+            }
 
             return this.View(car);
         }

@@ -180,6 +180,11 @@ namespace Oversteer.Web
                 .UseEndpoints(endpoints =>
                 {
                     endpoints.MapControllerRoute(
+                        name: "Car Details",
+                        pattern: "/Cars/Details/{id}/{information}",
+                        defaults: new { controller = "Cars", action = "Details" });
+
+                    endpoints.MapControllerRoute(
                         name: "areas",
                         pattern: "{area:exists}/{controller=Home}/{action=Index}/{id?}");
 

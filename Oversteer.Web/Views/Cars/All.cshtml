@@ -49,7 +49,10 @@
             <div class="card-img-top img-fluid mb-3">
                 <img class="img-fluid img-thumbnail card-img-top" src="@car.Url" alt="Responsive image" style=" width:100%; height: 250px !important;">
                 <div class="card-body" style="width: 18rem;">
-                    <h5 class="card-title"><a asp-controller="Cars" asp-action="Details" asp-route-id="@car.Id">@car.ModelName (@car.ModelYear)</a></h5>
+                    <h5 class="card-title"><a asp-controller="Cars" 
+                                              asp-action="Details" 
+                                              asp-route-id="@car.Id" 
+                                              asp-route-information="@car.ToFriendlyUrl()">@car.ModelName (@car.ModelYear)</a></h5>
                     <div class="d-flex mb-3">
                         <span class="cat">@car.BrandName</span>
                         <p class="price ml-auto">$@car.DailyPrice<span>/day</span></p>

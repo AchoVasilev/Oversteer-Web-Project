@@ -78,7 +78,7 @@
         }
 
         public async Task<bool> EditCarAsync(int carId, int brandId, int modelId, int colorId, int carTypeId, int fuelId, int transmissionId, int? year,
-            decimal? dailyPrice, int? seatsCount, string imageUrl, string description, IEnumerable<IFormFile> images, int companyId)
+            decimal? dailyPrice, int? seatsCount, string imageUrl, string description, IEnumerable<IFormFile> images, int companyId, IEnumerable<CarFeatureFormModel> features)
         {
             var carData = this.data.Cars.Find(carId);
 
@@ -97,7 +97,21 @@
             carData.DailyPrice = (decimal)dailyPrice;
             carData.SeatsCount = (int)seatsCount;
             carData.Description = description;
-            carData.CarImages.Clear();
+
+            foreach (var image in carData.CarImages)
+            {
+                DeleteImages(image);
+            }
+
+            foreach (var feature in carData.CarFeatures)
+            {
+                DeleteFeature(feature);
+            }
+
+            carData.CarFeatures = features.Select(x => new CarFeature()
+            {
+                Name = x.Name
+            }).ToList();
 
             await this.imageService.UploadImage(cloudinary, images, companyId, carData);
 
@@ -125,9 +139,9 @@
                             .Select(x => new CarDto()
                             {
                                 Id = x.Id,
-                                Image = x.CarImages.FirstOrDefault().RemoteImageUrl ??
-                                        x.CarImages.FirstOrDefault().Url ??
-                                        "/images/cars/" + x.CarImages.FirstOrDefault().Id + "." + x.CarImages.FirstOrDefault().Extension,
+                                Image = x.CarImages.Where(x => !x.IsDeleted).FirstOrDefault().RemoteImageUrl ??
+                                        x.CarImages.Where(x => !x.IsDeleted).FirstOrDefault().Url ??
+                                        "/images/cars/" + x.CarImages.Where(x => !x.IsDeleted).FirstOrDefault().Id + "." + x.CarImages.Where(x => !x.IsDeleted).FirstOrDefault().Extension,
                                 Description = x.Description,
                                 TransmissionName = x.Transmission.Name,
                                 DailyPrice = x.DailyPrice,
@@ -170,7 +184,7 @@
 
             var images = this.data.Cars
                 .Where(x => x.Id == carId)
-                .Select(x => x.CarImages)
+                .Select(x => x.CarImages.Where(x => !x.IsDeleted).ToList())
                 .ToList();
 
             var car = this.data.Cars
@@ -318,9 +332,10 @@
                 .Where(x => x.CompanyId == companyId && !x.IsDeleted)
                 .Count();
 
-        public async Task<Car> GetCarByIdAsync(int carId)
+        public async Task<CarDto> GetCarByIdAsync(int carId)
             => await this.data.Cars
                         .Where(x => x.Id == carId)
+                        .ProjectTo<CarDto>(this.mapper.ConfigurationProvider)
                         .FirstOrDefaultAsync();
 
         public bool GetBrandId(int id)
@@ -450,6 +465,18 @@
             };
 
             return carsQuery;
+        }
+
+        private void DeleteImages(CarImage image)
+        {
+            image.IsDeleted = true;
+            image.ModifiedOn = DateTime.UtcNow;
+        }
+
+        private void DeleteFeature(CarFeature feature)
+        {
+            feature.IsDeleted = true;
+            feature.DeletedOn = DateTime.UtcNow;
         }
     }
 }

@@ -27,21 +27,21 @@
 
             this.CreateMap<Car, CarDetailsFormModel>()
                 .ForMember(x => x.Url, opt =>
-                    opt.MapFrom(x => x.CarImages.FirstOrDefault().RemoteImageUrl ??
-                          x.CarImages.FirstOrDefault().Url ??
-                          "/images/cars/" + x.CarImages.FirstOrDefault().Id + "." + x.CarImages.FirstOrDefault().Extension));
+                    opt.MapFrom(x => x.CarImages.Where(x => !x.IsDeleted).FirstOrDefault().RemoteImageUrl ??
+                          x.CarImages.Where(x => !x.IsDeleted).FirstOrDefault().Url ??
+                          "/images/cars/" + x.CarImages.Where(x => !x.IsDeleted).FirstOrDefault().Id + "." + x.CarImages.Where(x => !x.IsDeleted).FirstOrDefault().Extension));
 
             this.CreateMap<Car, CarIndexViewModel>()
                 .ForMember(x => x.Url, opt =>
-                    opt.MapFrom(x => x.CarImages.FirstOrDefault().RemoteImageUrl ??
-                          x.CarImages.FirstOrDefault().Url ??
-                          "/images/cars/" + x.CarImages.FirstOrDefault().Id + "." + x.CarImages.FirstOrDefault().Extension));
+                    opt.MapFrom(x => x.CarImages.Where(x => !x.IsDeleted).FirstOrDefault().RemoteImageUrl ??
+                          x.CarImages.Where(x => !x.IsDeleted).FirstOrDefault().Url ??
+                          "/images/cars/" + x.CarImages.Where(x => !x.IsDeleted).FirstOrDefault().Id + "." + x.CarImages.Where(x => !x.IsDeleted).FirstOrDefault().Extension));
 
             this.CreateMap<Car, ListCarFormModel>()
                 .ForMember(x => x.Url, opt =>
-                    opt.MapFrom(x => x.CarImages.FirstOrDefault().RemoteImageUrl ??
-                          x.CarImages.FirstOrDefault().Url ??
-                          "/images/cars/" + x.CarImages.FirstOrDefault().Id + "." + x.CarImages.FirstOrDefault().Extension));
+                    opt.MapFrom(x => x.CarImages.Where(x => !x.IsDeleted).FirstOrDefault().RemoteImageUrl ??
+                          x.CarImages.Where(x => !x.IsDeleted).FirstOrDefault().Url ??
+                          "/images/cars/" + x.CarImages.Where(x => !x.IsDeleted).FirstOrDefault().Id + "." + x.CarImages.Where(x => !x.IsDeleted).FirstOrDefault().Extension));
 
             this.CreateMap<CarFeature, CarFeatureFormModel>();
         }

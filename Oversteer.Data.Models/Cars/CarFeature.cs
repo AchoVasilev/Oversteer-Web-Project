@@ -1,5 +1,6 @@
 ﻿namespace Oversteer.Data.Models.Cars
 {
+    using System;
     using System.ComponentModel.DataAnnotations;
     using System.ComponentModel.DataAnnotations.Schema;
 
@@ -15,8 +16,12 @@
         public string Name { get; set; }
 
         [ForeignKey(nameof(Car))]
-        public int CarId { get; set; }
+        public int? CarId { get; set; }
 
         public virtual Car Car { get; set; }
+
+        public bool IsDeleted { get; set; }
+
+        public DateTime DeletedOn { get; set; }
     }
 }

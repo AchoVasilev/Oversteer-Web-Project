@@ -21,7 +21,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Oversteer.Web.ViewModels", 
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Oversteer.Web.Infrastructure", "Oversteer.Web.Infrastructure\Oversteer.Web.Infrastructure.csproj", "{9C6AF455-5E38-4613-A28F-F9F68BD9AF2A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Oversteer.Services", "Oversteer.Services\Oversteer.Services.csproj", "{26AC10FE-5558-4EB4-BE05-F2F5FFCE04EE}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Oversteer.Services", "Oversteer.Services\Oversteer.Services.csproj", "{26AC10FE-5558-4EB4-BE05-F2F5FFCE04EE}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

@@ -4,7 +4,7 @@
 
     using Oversteer.Data.Models.Cars;
 
-    public class CarDto
+    public class CarDto : ICarModel
     {
         public int Id { get; init; }
 
@@ -33,6 +33,8 @@
         public string EndRent { get; init; }
 
         public int Days { get; init; }
+
+        public bool IsAvailable { get; set; }
 
         public virtual IEnumerable<CarRentDays> RentDays { get; set; }
     }

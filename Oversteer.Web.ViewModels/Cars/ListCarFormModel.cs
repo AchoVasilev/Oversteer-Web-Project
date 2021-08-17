@@ -1,6 +1,6 @@
 ﻿namespace Oversteer.Web.ViewModels.Cars
 {
-    public class ListCarFormModel
+    public class ListCarFormModel : ICarModel
     {
         public int Id { get; init; }
 

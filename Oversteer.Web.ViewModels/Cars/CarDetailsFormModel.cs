@@ -4,7 +4,7 @@
 
     using Oversteer.Web.ViewModels.Cars.CarItems;
 
-    public class CarDetailsFormModel
+    public class CarDetailsFormModel : ICarModel
     {
         public int Id { get; init; }
 
