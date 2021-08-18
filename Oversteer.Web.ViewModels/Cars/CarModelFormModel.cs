@@ -6,6 +6,8 @@
 
         public string Name { get; init; }
 
-        public int CarBrandId { get; set; }
+        public int CarBrandId { get; init; }
+
+        public string CarBrandName { get; init; }
     }
 }

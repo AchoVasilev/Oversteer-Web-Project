@@ -1,7 +1,7 @@
-﻿using Microsoft.EntityFrameworkCore.Migrations;
-
-namespace Oversteer.Data.Migrations
+﻿namespace Oversteer.Data.Migrations
 {
+    using Microsoft.EntityFrameworkCore.Migrations;
+
     public partial class NullableCarFeature : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)

@@ -6,7 +6,6 @@
 
     using Microsoft.AspNetCore.Http;
 
-    using Oversteer.Data.Models.Cars;
     using Oversteer.Web.ViewModels.Cars;
     using Oversteer.Web.ViewModels.Cars.CarItems;
     using Oversteer.Web.ViewModels.Home;
@@ -48,7 +47,7 @@
 
         IEnumerable<ListCarFormModel> GetAllCars(CarsSearchQueryModel query);
 
-        IEnumerable<CarIndexViewModel> GetThreeNewestCars();
+        List<CarIndexViewModel> GetThreeNewestCars();
 
         IEnumerable<CarDto> GetAvailableCars(string startDate, string endDate, string location);
 

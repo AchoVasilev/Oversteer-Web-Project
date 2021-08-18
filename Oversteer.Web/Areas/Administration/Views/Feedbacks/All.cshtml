@@ -4,8 +4,7 @@
 
 @if (this.TempData.ContainsKey("Message"))
 {
-    <div class="alert alert-success" id="locationMessage">@this.TempData["Message"]</div>
-}
+<div class="alert alert-success" id="locationMessage">@this.TempData["Message"]</div>}
 
 <center>
     <h1 style="margin-top:2%">
@@ -25,44 +24,44 @@
             <th>Available Actions</th>
         </tr>
     </thead>
-    @foreach (var feedback in Model)
-    {
-<tbody>
-    <tr>
-        <td>@feedback.Id</td>
-        <td>@feedback.User</td>
-        <td>@feedback.CarModel</td>
-        <td>@feedback.Comment</td>
-        <td>@feedback.CompanyName</td>
-        <td>
-            <a asp-area="Administration" asp-controller="Feedbacks" asp-action="Delete" asp-route-id="@feedback.Id"
-               data-toggle="modal" data-target="#modalDelete" class="btn btn-danger">Delete</a>
+    <tbody>
+        @foreach (var feedback in Model)
+        {
+<tr>
+    <td>@feedback.Id</td>
+    <td>@feedback.User</td>
+    <td>@feedback.CarModel</td>
+    <td>@feedback.Comment</td>
+    <td>@feedback.CompanyName</td>
+    <td>
+        <a asp-area="Administration" asp-controller="Feedbacks" asp-action="Delete" asp-route-id="@feedback.Id"
+           data-toggle="modal" data-target="#modalDelete" class="btn btn-danger">Delete</a>
 
-            <div class="modal fade" id="modalDelete" tabindex="-1" role="dialog" aria-labelledby="modalDeleteLabel" aria-hidden="true">
-                <div class="modal-dialog" role="document">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <h5 class="modal-title" id="modalDeleteLabel">Confirm Delete</h5>
-                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                <span aria-hidden="true">&times;</span>
-                            </button>
-                        </div>
-                        <div class="modal-body">
-                            <p>
-                                Do you confirm these changes?
-                            </p>
-                        </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                            <a asp-area="Administration" asp-controller="Feedbacks" asp-action="Delete" asp-route-id="@feedback.Id" class="btn btn-danger">Delete</a>
-                        </div>
+        <div class="modal fade" id="modalDelete" tabindex="-1" role="dialog" aria-labelledby="modalDeleteLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="modalDeleteLabel">Confirm Delete</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <p>
+                            Do you confirm these changes?
+                        </p>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        <a asp-area="Administration" asp-controller="Feedbacks" asp-action="Delete" asp-route-id="@feedback.Id" class="btn btn-danger">Delete</a>
                     </div>
                 </div>
             </div>
-        </td>
-    </tr>
-</tbody>
-}
+        </div>
+    </td>
+</tr>}
+    </tbody>
+
     <tfoot>
         <tr>
             <th>Feedback Id</th>
@@ -79,11 +78,13 @@
     <script type="text/javascript" charset="utf8">https://code.jquery.com/jquery-3.5.1.js</script>
     <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.25/js/jquery.dataTables.js"></script>
 
-    <script>$(document).ready(function () {
+    <script>
+    $(document).ready(function () {
             $('#example').DataTable();
         });</script>
 
-    <script type="text/javascript">$(function () {
+    <script type="text/javascript">
+    $(function () {
             $('#locationMessage').hide(4000);
         });</script>
 }

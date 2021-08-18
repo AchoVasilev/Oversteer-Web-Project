@@ -63,7 +63,7 @@
 
             var countryName = countriesService.GetCountryName(model.CountryId);
 
-            var addressId = await citiesService.AddAddress(addressFormModel);
+            var addressId = await citiesService.AddAddressAsync(addressFormModel);
 
             var locationName = string.Join(", ", countryName, model.CityName, model.Address);
 
@@ -99,12 +99,6 @@
                         .Where(x => x.Name.Contains(name) && !x.IsDeleted)
                         .Select(x => x.Id)
                         .FirstOrDefaultAsync();
-
-        public IEnumerable<LocationFormModel> AllLocations(int companyId)
-            => this.data.Locations
-                    .Where(x => x.CompanyId == companyId && !x.IsDeleted)
-                    .ProjectTo<LocationFormModel>(this.mapper.ConfigurationProvider)
-                    .ToList();
 
         public async Task DeleteLocationAsync(int locationId)
         {
@@ -143,5 +137,13 @@
 
             return true;
         }
+
+        public ICollection<LocationFormModel> GetAllLocations()
+            => this.data.Locations
+                        .Where(x => !x.IsDeleted)
+                        .ProjectTo<LocationFormModel>(this.mapper.ConfigurationProvider)
+                        .ToListAsync()
+                        .GetAwaiter()
+                        .GetResult();
     }
 }

@@ -21,6 +21,6 @@
 
         IEnumerable<LocationFormModel> GetCompanyLocations(int companyId);
 
-        IEnumerable<LocationFormModel> AllLocations(int companyId);
+        ICollection<LocationFormModel> GetAllLocations();
     }
 }

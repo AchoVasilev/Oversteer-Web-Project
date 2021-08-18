@@ -6,6 +6,8 @@
 
     public class AddressFormModel
     {
+        public int Id { get; init; }
+
         [Required]
         [StringLength(AddressNameMaxLength, MinimumLength = AddressNameMinLength)]
         public string Name { get; init; }

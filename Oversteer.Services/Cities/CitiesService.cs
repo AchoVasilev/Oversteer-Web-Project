@@ -3,6 +3,8 @@
     using System.Linq;
     using System.Threading.Tasks;
 
+    using Microsoft.EntityFrameworkCore;
+
     using Oversteer.Data;
     using Oversteer.Data.Models.Users;
     using Oversteer.Web.ViewModels.Cities;
@@ -66,7 +68,7 @@
             return false;
         }
 
-        public async Task<int> AddAddress(AddressFormModel model)
+        public async Task<int> AddAddressAsync(AddressFormModel model)
         {
             var address = new Address()
             {
@@ -78,6 +80,48 @@
             await this.data.SaveChangesAsync();
 
             return address.Id;
+        }
+
+        public async Task<City> GetCityByIdAsync(int cityId)
+            => await this.data.Cities
+                                .Where(x => x.Id == cityId)
+                                .FirstOrDefaultAsync();
+
+        public async Task<bool> EditCityAsync(int cityId, string name)
+        {
+            var city = await this.GetCityByIdAsync(cityId);
+
+            if (city == null)
+            {
+                return false;
+            }
+
+            city.Name = name;
+
+            await this.data.SaveChangesAsync();
+
+            return true;
+        }
+
+        public async Task<Address> GetAddressByIdAsync(int addressId)
+            => await this.data.Addresses
+                                .Where(x => x.Id == addressId)
+                                .FirstOrDefaultAsync();
+
+        public async Task<bool> EditAddressAsync(int addressId, string name)
+        {
+            var address = await this.GetAddressByIdAsync(addressId);
+
+            if (address == null)
+            {
+                return false;
+            }
+
+            address.Name = name;
+
+            await this.data.SaveChangesAsync();
+
+            return true;
         }
     }
 }

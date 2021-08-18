@@ -6,8 +6,14 @@
 
     public class CityFormModel
     {
+        public int Id { get; init; }
+
         [Required]
         [StringLength(CityNameMaxLength, MinimumLength = CityNameMinLength)]
         public string Name { get; init; }
+
+        public int CountryId { get; init; }
+
+        public string CountryName { get; init; }
     }
 }

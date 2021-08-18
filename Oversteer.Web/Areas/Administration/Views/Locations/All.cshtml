@@ -4,15 +4,14 @@
 
 @if (this.TempData.ContainsKey("Message"))
 {
-    <div class="alert alert-success" id="locationMessage">@this.TempData["Message"]</div>
-}
+<div class="alert alert-success" id="locationMessage">@this.TempData["Message"]</div>}
 
 <center>
     <h1 style="margin-top:2%">
-        @ViewBag.Title 
+        @ViewBag.Title
         <a asp-area="Administration" asp-controller="Countries"
-        asp-action="All"
-        class="btn btn-warning">All Countries</a>
+           asp-action="All"
+           class="btn btn-warning">All Countries</a>
     </h1>
 </center>
 <hr class="border-info" />
@@ -27,50 +26,51 @@
             <th>Available Actions</th>
         </tr>
     </thead>
-    @foreach (var location in Model)
-    {
-<tbody>
-    <tr>
-        <td>@location.CountryName</td>
-        <td>@location.CityName</td>
-        <td>@location.AddressName</td>
-        <td>@location.CompanyName</td>
-        <td>
-            <a asp-area="Administration" asp-controller="Cities"
-               asp-action="Edit" asp-route-id="@location.CityId"
-               class="btn btn-warning">Edit City</a>
 
-            <a asp-area="Administration" asp-controller="Addresses"
-               asp-action="Edit" asp-route-id="@location.AddressId"
-               class="btn btn-warning">Edit Address</a>
+    <tbody>
+        @foreach (var location in Model)
+        {
+<tr>
+    <td>@location.CountryName</td>
+    <td>@location.CityName</td>
+    <td>@location.AddressName</td>
+    <td>@location.CompanyName</td>
+    <td>
+        <a asp-area="Administration" asp-controller="Cities"
+           asp-action="Edit" asp-route-id="@location.CityId"
+           class="btn btn-warning">Edit City</a>
 
-            <a asp-area="Administration" asp-controller="CarBrands" asp-action="Delete" asp-route-id="@location.Id"
-               data-toggle="modal" data-target="#modalDelete" class="btn btn-danger">Delete Location</a>
+        <a asp-area="Administration" asp-controller="Addresses"
+           asp-action="Edit" asp-route-id="@location.AddressId"
+           class="btn btn-warning">Edit Address</a>
 
-            <div class="modal fade" id="modalDelete" tabindex="-1" role="dialog" aria-labelledby="modalDeleteLabel" aria-hidden="true">
-                <div class="modal-dialog" role="document">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <h5 class="modal-title" id="modalDeleteLabel">Confirm Delete</h5>
-                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                <span aria-hidden="true">&times;</span>
-                            </button>
-                        </div>
-                        <div class="modal-body">
-                            <p>
-                                Do you confirm these changes?
-                            </p>
-                        </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                            <a asp-area="Administration" asp-controller="Locations" asp-action="Delete" asp-route-id="@location.Id" class="btn btn-danger">Delete</a>
-                        </div>
+        <a asp-area="Administration" asp-controller="CarBrands" asp-action="Delete" asp-route-id="@location.Id"
+           data-toggle="modal" data-target="#modalDelete" class="btn btn-danger">Delete Location</a>
+
+        <div class="modal fade" id="modalDelete" tabindex="-1" role="dialog" aria-labelledby="modalDeleteLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="modalDeleteLabel">Confirm Delete</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <p>
+                            Do you confirm these changes?
+                        </p>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        <a asp-area="Administration" asp-controller="Locations" asp-action="Delete" asp-route-id="@location.Id" class="btn btn-danger">Delete</a>
                     </div>
                 </div>
             </div>
-        </td>
-    </tr>
-</tbody>}
+        </div>
+    </td>
+</tr>}
+    </tbody>
     <tfoot>
         <tr>
             <th>Country</th>
@@ -86,11 +86,13 @@
     <script type="text/javascript" charset="utf8">https://code.jquery.com/jquery-3.5.1.js</script>
     <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.25/js/jquery.dataTables.js"></script>
 
-    <script>$(document).ready(function () {
+    <script>
+    $(document).ready(function () {
             $('#example').DataTable();
         });</script>
 
-    <script type="text/javascript">$(function () {
+    <script type="text/javascript">
+    $(function () {
             $('#locationMessage').hide(4000);
         });</script>
 }

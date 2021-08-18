@@ -21,9 +21,9 @@
             <th>Available actions</th>
         </tr>
     </thead>
-    @foreach (var brand in Model)
-    {
-<tbody>
+    <tbody>
+        @foreach (var brand in Model)
+        {
     <tr>
         <td>@brand.Name</td>
         <td>
@@ -38,13 +38,13 @@
             <a asp-area="Administration" asp-controller="CarBrands" asp-action="Delete" asp-route-id="@brand.Id"
                data-toggle="modal" data-target="#modalDelete" class="btn btn-danger">Delete</a>
 
-            <a asp-area="Administration" 
+            <a asp-area="Administration"
                asp-controller="CarModels"
                asp-action="Add"
                asp-route-id="@brand.Id"
                class="btn btn-success">Add Model</a>
 
-            <a asp-area="Administration" 
+            <a asp-area="Administration"
                asp-controller="CarModels"
                asp-action="All"
                asp-route-id="@brand.Id"
@@ -73,7 +73,8 @@
             </div>
         </td>
     </tr>
-</tbody>}
+        }
+                </tbody>
     <tfoot>
         <tr>
             <th>Brand Name</th>
@@ -83,7 +84,7 @@
 </table>
 
 @section Scripts {
-    <script type="text/javascript" charset="utf8">https://code.jquery.com/jquery-3.5.1.js</script>
+    <script type="text/javascript" charset="utf8" src="https://code.jquery.com/jquery-3.5.1.js"></script>
     <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.25/js/jquery.dataTables.js"></script>
 
     <script>$(document).ready(function () {

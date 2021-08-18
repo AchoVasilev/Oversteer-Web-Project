@@ -11,6 +11,12 @@
 
         Task AddCitiesToCountry(CountryFormModel model);
 
+        Task AddCountry(CountryViewModel model);
+
+        Task<bool> EditCountry(int id, string name);
+
+        Task<bool> DeleteCountry(int id);
+
         int GetCountryId(string countryName);
 
         string GetCountryName(int countryId);

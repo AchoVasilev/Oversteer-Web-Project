@@ -1,5 +1,6 @@
 ﻿namespace Oversteer.Data.Models.Users
 {
+    using System;
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
 
@@ -10,6 +11,10 @@
 
         [Required]
         public string Name { get; set; }
+
+        public bool IsDeleted { get; set; } = false;
+
+        public DateTime DeletedOn { get; set; }
 
         public virtual ICollection<City> Cities { get; set; } = new HashSet<City>();
 

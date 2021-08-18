@@ -252,7 +252,7 @@
                         .Select(x => x.Location.Name)
                         .FirstOrDefaultAsync();
 
-        public IEnumerable<CarIndexViewModel> GetThreeNewestCars()
+        public List<CarIndexViewModel> GetThreeNewestCars()
             => this.data.Cars
                 .Where(x => !x.IsDeleted)
                 .ProjectTo<CarIndexViewModel>(this.mapper.ConfigurationProvider)
@@ -263,7 +263,9 @@
         public IEnumerable<CarBrandFormModel> GetCarBrands()
         {
             var carBrands = this.data.CarBrands
+                               .Where(x => !x.IsDeleted)
                                .ToList();
+
             var brandsViewModel = this.mapper.Map<List<CarBrandFormModel>>(carBrands);
 
             return brandsViewModel;
@@ -278,6 +280,7 @@
         public IEnumerable<CarModelFormModel> GetCarModels()
         {
             var cars = this.data.CarModels
+                .Where(x => !x.IsDeleted)
                 .ToList();
             var models = this.mapper.Map<List<CarModelFormModel>>(cars);
 
@@ -340,7 +343,7 @@
 
         public bool GetBrandId(int id)
         {
-            if (!this.data.CarBrands.Any(x => x.Id == id))
+            if (!this.data.CarBrands.Any(x => x.Id == id && !x.IsDeleted))
             {
                 return false;
             }
@@ -350,7 +353,7 @@
 
         public bool GetModelId(int? id)
         {
-            if (!this.data.CarModels.Any(x => x.Id == id))
+            if (!this.data.CarModels.Any(x => x.Id == id && !x.IsDeleted))
             {
                 return false;
             }

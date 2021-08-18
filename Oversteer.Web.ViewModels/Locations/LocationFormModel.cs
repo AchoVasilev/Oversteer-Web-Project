@@ -18,14 +18,22 @@
         [Display(Name = (nameof(Country)))]
         public string CountryName { get; init; }
 
+        public int CityId { get; init; }
+
         [Required]
         [StringLength(CityNameMaxLength, MinimumLength = CityNameMinLength)]
         [Display(Name = (nameof(City)))]
         public string CityName { get; init; }
 
+        public int AddressId { get; init; }
+
         [Required]
         [StringLength(AddressNameMaxLength, MinimumLength = AddressNameMinLength)]
         [Display(Name = (nameof(Address)))]
         public string AddressName { get; init; }
+
+        public int CompanyId { get; init; }
+
+        public string CompanyName { get; init; }
     }
 }
