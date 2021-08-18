@@ -1,0 +1,96 @@
+﻿@model ICollection<CarBrandFormModel>
+
+@{ ViewBag.Title = "All Car Brands"; }
+
+@if (this.TempData.ContainsKey("Message"))
+{
+    <div class="alert alert-success" id="locationMessage">@this.TempData["Message"]</div>
+}
+
+<center>
+    <h1 style="margin-top:2%">
+        @ViewBag.Title
+    </h1>
+</center>
+<hr class="border-info" />
+
+<table id="example" class="display" style="width:100%">
+    <thead>
+        <tr>
+            <th>Brand Name</th>
+            <th>Available actions</th>
+        </tr>
+    </thead>
+    @foreach (var brand in Model)
+    {
+<tbody>
+    <tr>
+        <td>@brand.Name</td>
+        <td>
+            <a asp-area="Administration" asp-controller="CarBrands"
+               asp-action="Add"
+               class="btn btn-primary">Add</a>
+
+            <a asp-area="Administration" asp-controller="CarBrands"
+               asp-action="Edit" asp-route-id="@brand.Id"
+               class="btn btn-warning">Edit</a>
+
+            <a asp-area="Administration" asp-controller="CarBrands" asp-action="Delete" asp-route-id="@brand.Id"
+               data-toggle="modal" data-target="#modalDelete" class="btn btn-danger">Delete</a>
+
+            <a asp-area="Administration" 
+               asp-controller="CarModels"
+               asp-action="Add"
+               asp-route-id="@brand.Id"
+               class="btn btn-success">Add Model</a>
+
+            <a asp-area="Administration" 
+               asp-controller="CarModels"
+               asp-action="All"
+               asp-route-id="@brand.Id"
+               class="btn btn-success">All Brand Models</a>
+
+            <div class="modal fade" id="modalDelete" tabindex="-1" role="dialog" aria-labelledby="modalDeleteLabel" aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="modalDeleteLabel">Confirm Delete</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <p>
+                                Do you confirm these changes?
+                            </p>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                            <a asp-area="Administration" asp-controller="CarBrands" asp-action="Delete" asp-route-id="@brand.Id" class="btn btn-danger">Delete</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </td>
+    </tr>
+</tbody>}
+    <tfoot>
+        <tr>
+            <th>Brand Name</th>
+            <th>Available actions</th>
+        </tr>
+    </tfoot>
+</table>
+
+@section Scripts {
+    <script type="text/javascript" charset="utf8">https://code.jquery.com/jquery-3.5.1.js</script>
+    <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.25/js/jquery.dataTables.js"></script>
+
+    <script>$(document).ready(function () {
+            $('#example').DataTable();
+        });</script>
+
+    <script type="text/javascript">$(function () {
+            $('#locationMessage').hide(4000);
+        });</script>
+}

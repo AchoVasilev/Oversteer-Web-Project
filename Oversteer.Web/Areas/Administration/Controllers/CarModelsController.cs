@@ -1,17 +1,11 @@
 ﻿namespace Oversteer.Web.Areas.Administration.Controllers
 {
-    using System.Linq;
     using System.Threading.Tasks;
 
     using Microsoft.AspNetCore.Mvc;
-    using Microsoft.AspNetCore.Mvc.Rendering;
-    using Microsoft.EntityFrameworkCore;
 
-    using Oversteer.Data;
-    using Oversteer.Data.Models.Cars;
     using Oversteer.Services.Cars;
     using Oversteer.Web.ViewModels.Cars;
-    using Oversteer.Web.ViewModels.Cars.CarItems;
 
     public class CarModelsController : AdministrationController
     {
@@ -56,19 +50,27 @@
 
         public async Task<IActionResult> Delete(int id)
         {
-            var isDeleted = await this.carItemsService.DeleteBrandAsync(id);
+            var isDeleted = await this.carItemsService.DeleteModelAsync(id);
 
             if (!isDeleted)
             {
                 return NotFound();
             }
 
-            this.TempData["Message"] = "The brand was removed successfully.";
+            this.TempData["Message"] = "The model was removed successfully.";
 
             return this.RedirectToAction(nameof(this.All));
         }
 
-        public IActionResult Edit() => this.View();
+        public IActionResult Edit(int id)
+        {
+            var model = new CarModelFormModel()
+            {
+                Id = id
+            };
+
+            return this.View(model);
+        }
 
         [HttpPost]
         public async Task<IActionResult> Edit(CarModelFormModel model)
@@ -78,7 +80,14 @@
                 return this.View(model);
             }
 
-            await this.carItemsService.EditAsync(model);
+            var isEdited = await this.carItemsService.EditModelAsync(model);
+
+            if (isEdited)
+            {
+                return BadRequest();
+            }
+
+            this.TempData["Message"] = "The model was edited successfully.";
 
             return this.RedirectToAction(nameof(this.All));
         }

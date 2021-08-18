@@ -1,0 +1,98 @@
+﻿@model ICollection<MyRentsViewModel>
+
+@{ ViewData["Title"] = "All Orders"; }
+
+@if (this.TempData.ContainsKey("Message"))
+{
+<div class="alert alert-success" id="rentMessage">@this.TempData["Message"]</div>}
+
+<script src="/js/notify.js"></script>
+
+<tr class="row">
+    <h1 style="margin-top:2%">
+        All Orders: @Model.ToList().Count
+    </h1>
+</tr>
+<hr class="border-info" />
+
+<div class="d-flex justify-content-between mx-2 mb-2">
+    <input class="form-control col-md-2 border-primary" type="text" id="myInput" onkeyup="byId()" placeholder="Search by Id">
+    <button type="button" class="btn btn-primary" onclick="location.reload();" id="showAll">Show All</button>
+    <button type="button" class="btn btn-primary" onclick="showActive()" id="myInputActive" value="Active">Show Active</button>
+    <button type="button" class="btn btn-primary" onclick="showCanceled()" id="myInputCanceled" value="Canceled">Show Canceled</button>
+    <button type="button" class="btn btn-primary" onclick="showFinished()" id="myInputFinished" value="Finished">Show Finished</button>
+    <button type="button" class="btn btn-primary" onclick="sortTable()">Sort By End Date ASC</button>
+    <button type="button" class="btn btn-primary" onclick="sortTableDateDesc()">Sort By End Date DSC</button>
+</div>
+
+<table class="table table-hover border" style="font-size:90%" name="allorders" id="allorders">
+    <thead>
+        <tr class="table-primary">
+            <th scope="col">Order Id</th>
+            <th scope="col">Car Model</th>
+            <th scope="col">Return Location</th>
+            <th scope="col">End Date</th>
+            <th scope="col">Price</th>
+            <th scope="col">Status</th>
+            <th scope="col">Actions</th>
+        </tr>
+    </thead>
+    <tbody class="align-content-between">
+        @foreach (var rental in @Model)
+        {
+
+            if (rental.OrderStatus.ToString() == "Canceled")
+            {
+                @Html.Raw(" <tr class=\"table-danger\">") 
+            }
+            else if (rental.OrderStatus.ToString() == "Finished")
+            {
+                @Html.Raw(" <tr class=\"table-success\">") 
+            }
+            else
+            {
+                @Html.Raw(" <tr class=\"table-warning\">") 
+            }
+
+            <th scope="row"><a asp-area="" asp-action="Details" asp-controller="Rentals" asp-route-id="@rental.Id">@rental.Id.ToUpper()</a></th>
+                <td>@rental.CarModelName</td>
+                 <td name="location">@rental.PickUpLocationName</td>
+                 <td>@rental.StartDate</td>
+                 <td>$@rental.Price</td>
+                 <td>
+                      @rental.OrderStatus.ToString()
+                      @if (rental.FeedbackId > 0)
+                      {
+                         <img src="/Images/feedback-given.jpg.png" width:"25px" heigth="25px" title="Feedback is given" />
+                      }
+                 </td>
+                 <td>
+                      @if (rental.OrderStatus.ToString() != "Canceled" && rental.OrderStatus.ToString() != "Finished")
+                      {
+                          <a class="btn btn-info" asp-controller="Rentals" asp-action="Cancel" asp-route-id="@rental.Id"
+                           data-confirm="You will cancel order with ID: @rental.Id">Cancel</a>
+                      }
+                      <a class="btn btn-danger" asp-controller="Rentals" asp-action="Delete" asp-route-id="@rental.Id"
+                      data-confirm="You will delete order with ID: @rental.Id">Delete</a>
+                      @if (rental.OrderStatus.ToString() != "Canceled" && rental.OrderStatus.ToString() != "Finished")
+                      {
+                         <a class="btn btn-success" asp-controller="Rentals" asp-action="Finish" asp-route-id="@rental.Id"
+                         data-confirm="You will finish order with ID: @rental.Id">Finish</a>
+                      }
+                 </td>
+                 @Html.Raw("</tr>")}
+        </tbody>
+    </table>
+
+    @section Scripts {
+        <partial name="~/Views/Shared/Partials/_SearchAndTable_Admin_Scripts.cshtml" />
+        <partial name="~/Views/Shared/Partials/_DataValidationAndConfirmScripts.cshtml" />
+
+        <script type="text/javascript">
+            $(function () {
+                $('#rentMessage').hide(4000);
+            });
+        </script>
+    }
+
+    <script src="/lib/signalr/dist/browser/signalr.min.js"></script>

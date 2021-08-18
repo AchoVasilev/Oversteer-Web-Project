@@ -5,31 +5,31 @@
     using Microsoft.AspNetCore.Authorization;
     using Microsoft.AspNetCore.Mvc;
 
-    using Oversteer.Services.Cars;
-    using Oversteer.Web.ViewModels.Cars.CarItems;
+    using Oversteer.Services.Countries;
+    using Oversteer.Web.ViewModels.Countries;
 
     using static Oversteer.Data.Common.Constants.WebConstants;
 
     [Authorize(Roles = AdministratorRoleName)]
-    public class CarBrandsController : AdministrationController
+    public class CountriesController : AdministrationController
     {
-        private readonly ICarItemsService carItemsService;
+        private readonly ICountriesService countriesService;
 
-        public CarBrandsController(ICarItemsService carItemsService)
+        public CountriesController(ICountriesService countriesService)
         {
-            this.carItemsService = carItemsService;
+            this.countriesService = countriesService;
         }
 
         public IActionResult All()
         {
-            var models = this.carItemsService.GetAllBrandsAsync();
+            var models = this.countriesService.GetCountries();
 
             return View(models);
         }
 
         public IActionResult Edit(int id)
         {
-            var model = new CarBrandFormModel()
+            var model = new CountryViewModel()
             {
                 Id = id
             };
@@ -38,21 +38,21 @@
         }
 
         [HttpPost]
-        public async Task<IActionResult> Edit(CarBrandFormModel model)
+        public async Task<IActionResult> Edit(CountryViewModel model)
         {
             if (!ModelState.IsValid)
             {
                 return this.View(model);
             }
 
-            var isEdited = await this.carItemsService.EditBrandAsync(model);
+            var isEdited = await this.countriesService.EditCountry(model.Id, model.Name);
 
             if (isEdited)
             {
-                return BadRequest();
+                return NotFound();
             }
 
-            this.TempData["Message"] = "The brand was edited successfully.";
+            this.TempData["Message"] = "The country was edited successfully.";
 
             return this.RedirectToAction(nameof(this.All));
         }
@@ -60,30 +60,30 @@
         public IActionResult Add() => this.View();
 
         [HttpPost]
-        public async Task<IActionResult> Add(CarBrandFormModel model)
+        public async Task<IActionResult> Add(CountryViewModel model)
         {
             if (!ModelState.IsValid)
             {
                 return this.View(model);
             }
 
-            await this.carItemsService.AddBrandAsync(model);
+            await this.countriesService.AddCountry(model);
 
-            this.TempData["Message"] = "The brand was added successfully.";
+            this.TempData["Message"] = "The country was added successfully.";
 
             return this.RedirectToAction(nameof(this.All));
         }
 
         public async Task<IActionResult> Delete(int id)
         {
-            var isDeleted = await this.carItemsService.DeleteBrandAsync(id);
+            var isDeleted = await this.countriesService.DeleteCountry(id);
 
             if (!isDeleted)
             {
                 return NotFound();
             }
 
-            this.TempData["Message"] = "The brand was removed successfully.";
+            this.TempData["Message"] = "The country was removed successfully.";
 
             return this.RedirectToAction(nameof(this.All));
         }

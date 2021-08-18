@@ -1,0 +1,67 @@
+﻿
+@{ ViewData["Title"] = "Admin Panel"; }
+
+<center>
+    <h1 style="margin-top: 2%">
+        Administration Area
+    </h1>
+</center>
+<hr class="border-info" />
+
+<div class="d-flex justify-content-between" style="margin-top:4%">
+
+    <div class="card mb-3 col-md-2" style="background-color:cornflowerblue">
+        <h3 class="card-header" style="background-color:transparent">Car Admin Panel</h3>
+        <img style="height: 200px; width: 100%; display: block;margin-top:2%" src="~/Images/Admin/car.png" alt="Card image">
+        <div class="card-body">
+            <p class="card-text text-dark">Add car brands and models to our database. List with all available cars for rent.</p>
+        </div>
+        <ul class="list-group list-group-flush">
+            <li class="list-group-item" style="background-color: blanchedalmond">
+                <a class="text-dark" asp-area="Administration" asp-controller="CarBrands" asp-action="All">All Brands</a>
+            </li>
+            <li class="list-group-item" style="background-color: blanchedalmond">
+                <a class="text-dark" asp-area="Administration" asp-controller="Cars" asp-action="All">All Cars</a>
+            </li>
+        </ul>
+    </div>
+
+    <div class="card mb-3 col-md-2" style="background-color:cornflowerblue">
+        <h3 class="card-header" style="background-color:transparent">Location Panel</h3>
+        <img style="height: 200px; width: 100%; display: block;margin-top:2%" src="~/Images/Admin/location.png" alt="Card image">
+        <div class="card-body">
+            <p class="card-text text-dark">Add location to our database.</p>
+        </div>
+        <ul class="list-group list-group-flush">
+            <li class="list-group-item" style="background-color: blanchedalmond">
+                <a class="text-dark" asp-area="Administration" asp-controller="Locations" asp-action="All">Manage Locations</a>
+            </li>
+        </ul>
+    </div>
+
+    <div class="card mb-3 col-md-2" style="background-color:cornflowerblue">
+        <h3 class="card-header" style="background-color:transparent">Rents Panel</h3>
+        <img style="height: 200px; width: 100%; display: block; margin-top:2%" src="~/Images/Admin/order.png" alt="Card image">
+        <div class="card-body">
+            <p class="card-text text-dark">Modification of all orders. They can be deleted and canceled</p>
+        </div>
+        <ul class="list-group list-group-flush">
+            <li class="list-group-item" style="background-color: blanchedalmond">
+                <a class="text-dark" asp-area="Administration" asp-controller="Rentals" asp-action="All">All Rents</a>
+            </li>
+        </ul>
+    </div>
+
+    <div class="card mb-3 col-md-2" style="background-color:cornflowerblue">
+        <h4 class="card-header" style="background-color:transparent">Feedback Panel</h4>
+        <img style="height: 200px; width: 100%; display: block; margin-top:2%" src="~/Images/Admin/review.png" alt="Card image">
+        <div class="card-body">
+            <p class="card-text text-dark">Modification of all feedbacks. They can be deleted.</p>
+        </div>
+        <ul class="list-group list-group-flush">
+            <li class="list-group-item" style="background-color: blanchedalmond">
+                <a class="text-dark" asp-area="Administration" asp-controller="Feedbacks" asp-action="All">All Feedbacks</a>
+            </li>
+        </ul>
+    </div>
+</div>

@@ -91,7 +91,7 @@
                 return this.RedirectToAction(nameof(CompaniesController.Create), "Companies", new { area = "Company" });
             }
 
-            var locations = this.locationService.AllLocations(companyId);
+            var locations = this.locationService.GetCompanyLocations(companyId);
 
             return this.View(locations);
         }

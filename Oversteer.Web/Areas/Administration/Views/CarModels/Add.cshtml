@@ -1,0 +1,21 @@
+﻿@model CarModelFormModel
+
+@{
+    ViewBag.Title = "Add Model For ";
+}
+
+<center>
+    <h1 style="margin-top:2%">
+        @ViewBag.Title @Model.CarBrandName
+    </h1>
+</center>
+<hr class="border-info" />
+
+<form method="post">
+    <div class="form-group">
+        <label asp-for="Name"></label>
+        <input asp-for="Name" class="form-control" placeholder="VW, BMW, etc...">
+        <span asp-validation-for="Name" class="small text-danger"></span>
+    </div>
+    <input class="btn btn-primary" type="submit" value="Save" />
+</form>
