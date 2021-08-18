@@ -9,152 +9,78 @@
 
     using Oversteer.Data;
     using Oversteer.Data.Models.Cars;
+    using Oversteer.Services.Cars;
+    using Oversteer.Web.ViewModels.Cars;
+    using Oversteer.Web.ViewModels.Cars.CarItems;
 
     public class CarModelsController : AdministrationController
     {
-        private readonly ApplicationDbContext _context;
+        private readonly ICarItemsService carItemsService;
 
-        public CarModelsController(ApplicationDbContext context)
+        public CarModelsController(ICarItemsService carItemsService)
         {
-            _context = context;
+            this.carItemsService = carItemsService;
         }
 
-        // GET: Administration/CarModels
-        public async Task<IActionResult> Index()
+        public IActionResult All(int id)
         {
-            var applicationDbContext = _context.CarModels.Include(c => c.CarBrand);
-            return View(await applicationDbContext.ToListAsync());
+            var models = this.carItemsService.GetAllModelsAsync(id);
+
+            return View(models);
         }
 
-        // GET: Administration/CarModels/Details/5
-        public async Task<IActionResult> Details(int? id)
+        public async Task<IActionResult> Add(int id)
         {
-            if (id == null)
+            var brandName = await this.carItemsService.GetBrandNameAsync(id);
+            var model = new CarModelFormModel()
             {
-                return NotFound();
-            }
+                CarBrandName = brandName,
+                CarBrandId = id
+            };
 
-            var carModel = await _context.CarModels
-                .Include(c => c.CarBrand)
-                .FirstOrDefaultAsync(m => m.Id == id);
-            if (carModel == null)
-            {
-                return NotFound();
-            }
-
-            return View(carModel);
+            return this.View(model);
         }
 
-        // GET: Administration/CarModels/Create
-        public IActionResult Create()
-        {
-            ViewData["CarBrandId"] = new SelectList(_context.CarBrands, "Id", "Name");
-            return View();
-        }
-
-        // POST: Administration/CarModels/Create
-        // To protect from overposting attacks, enable the specific properties you want to bind to.
-        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,Name,CarBrandId")] CarModel carModel)
+        public async Task<IActionResult> Add(CarModelFormModel model)
         {
-            if (ModelState.IsValid)
+            if (!ModelState.IsValid)
             {
-                _context.Add(carModel);
-                await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
+                return this.View(model);
             }
-            ViewData["CarBrandId"] = new SelectList(_context.CarBrands, "Id", "Name", carModel.CarBrandId);
-            return View(carModel);
+
+            await this.carItemsService.AddModelAsync(model);
+
+            return this.RedirectToAction(nameof(this.All));
         }
 
-        // GET: Administration/CarModels/Edit/5
-        public async Task<IActionResult> Edit(int? id)
+        public async Task<IActionResult> Delete(int id)
         {
-            if (id == null)
+            var isDeleted = await this.carItemsService.DeleteBrandAsync(id);
+
+            if (!isDeleted)
             {
                 return NotFound();
             }
 
-            var carModel = await _context.CarModels.FindAsync(id);
-            if (carModel == null)
-            {
-                return NotFound();
-            }
-            ViewData["CarBrandId"] = new SelectList(_context.CarBrands, "Id", "Name", carModel.CarBrandId);
-            return View(carModel);
+            this.TempData["Message"] = "The brand was removed successfully.";
+
+            return this.RedirectToAction(nameof(this.All));
         }
 
-        // POST: Administration/CarModels/Edit/5
-        // To protect from overposting attacks, enable the specific properties you want to bind to.
-        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
+        public IActionResult Edit() => this.View();
+
         [HttpPost]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,Name,CarBrandId")] CarModel carModel)
+        public async Task<IActionResult> Edit(CarModelFormModel model)
         {
-            if (id != carModel.Id)
+            if (!ModelState.IsValid)
             {
-                return NotFound();
+                return this.View(model);
             }
 
-            if (ModelState.IsValid)
-            {
-                try
-                {
-                    _context.Update(carModel);
-                    await _context.SaveChangesAsync();
-                }
-                catch (DbUpdateConcurrencyException)
-                {
-                    if (!CarModelExists(carModel.Id))
-                    {
-                        return NotFound();
-                    }
-                    else
-                    {
-                        throw;
-                    }
-                }
-                return RedirectToAction(nameof(Index));
-            }
-            ViewData["CarBrandId"] = new SelectList(_context.CarBrands, "Id", "Name", carModel.CarBrandId);
-            return View(carModel);
-        }
+            await this.carItemsService.EditAsync(model);
 
-        // GET: Administration/CarModels/Delete/5
-        public async Task<IActionResult> Delete(int? id)
-        {
-            if (id == null)
-            {
-                return NotFound();
-            }
-
-            var carModel = await _context.CarModels
-                .Include(c => c.CarBrand)
-                .FirstOrDefaultAsync(m => m.Id == id);
-            if (carModel == null)
-            {
-                return NotFound();
-            }
-
-            return View(carModel);
-        }
-
-        // POST: Administration/CarModels/Delete/5
-        [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> DeleteConfirmed(int id)
-        {
-            var carModel = await _context.CarModels.FindAsync(id);
-            _context.CarModels.Remove(carModel);
-            await _context.SaveChangesAsync();
-            return RedirectToAction(nameof(Index));
-        }
-
-        private bool CarModelExists(int id)
-        {
-            return _context.CarModels.Any(e => e.Id == id);
+            return this.RedirectToAction(nameof(this.All));
         }
     }
 }

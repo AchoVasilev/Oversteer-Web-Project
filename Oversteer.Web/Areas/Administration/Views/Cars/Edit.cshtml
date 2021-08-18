@@ -1,105 +1,67 @@
-﻿@model Oversteer.Data.Models.Cars.Car
+﻿@model CarFormModel
 
 @{
-    ViewData["Title"] = "Edit";
-    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewBag.Title = "Edit Car";
 }
 
-<h1>Edit</h1>
+<partial name="_CarFormPartial" model="@Model" />
+<div class="col-sm-12 offset-lg-2 col-lg-8 offset-xl-3 col-xl-6">
+    <a class="btn btn-success" onclick="AddMoreNames()">+</a>
+    <input class="btn btn-primary" type="submit" data-toggle="modal" data-target="#modalEdit" value="Save" />
+</div>
 
-<h4>Car</h4>
-<hr />
-<div class="row">
-    <div class="col-md-4">
-        <form asp-action="Edit">
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <input type="hidden" asp-for="Id" />
-            <div class="form-group">
-                <label asp-for="CarBrandId" class="control-label"></label>
-                <select asp-for="CarBrandId" class="form-control" asp-items="ViewBag.CarBrandId"></select>
-                <span asp-validation-for="CarBrandId" class="text-danger"></span>
+<!-- Modal -->
+<div class="modal" id="modalEdit" tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Confirm edit</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
             </div>
-            <div class="form-group">
-                <label asp-for="CarModelId" class="control-label"></label>
-                <select asp-for="CarModelId" class="form-control" asp-items="ViewBag.CarModelId"></select>
-                <span asp-validation-for="CarModelId" class="text-danger"></span>
+            <div class="modal-body">
+                <p>
+                    Do you confirm these changes?
+                </p>
             </div>
-            <div class="form-group">
-                <label asp-for="ModelYear" class="control-label"></label>
-                <input asp-for="ModelYear" class="form-control" />
-                <span asp-validation-for="ModelYear" class="text-danger"></span>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary" onclick="carForm.submit()">Save changes</button>
             </div>
-            <div class="form-group">
-                <label asp-for="DailyPrice" class="control-label"></label>
-                <input asp-for="DailyPrice" class="form-control" />
-                <span asp-validation-for="DailyPrice" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="SeatsCount" class="control-label"></label>
-                <input asp-for="SeatsCount" class="form-control" />
-                <span asp-validation-for="SeatsCount" class="text-danger"></span>
-            </div>
-            <div class="form-group form-check">
-                <label class="form-check-label">
-                    <input class="form-check-input" asp-for="IsDeleted" /> @Html.DisplayNameFor(model => model.IsDeleted)
-                </label>
-            </div>
-            <div class="form-group form-check">
-                <label class="form-check-label">
-                    <input class="form-check-input" asp-for="IsAvailable" /> @Html.DisplayNameFor(model => model.IsAvailable)
-                </label>
-            </div>
-            <div class="form-group">
-                <label asp-for="DeleteDate" class="control-label"></label>
-                <input asp-for="DeleteDate" class="form-control" />
-                <span asp-validation-for="DeleteDate" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Description" class="control-label"></label>
-                <input asp-for="Description" class="form-control" />
-                <span asp-validation-for="Description" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="ColorId" class="control-label"></label>
-                <select asp-for="ColorId" class="form-control" asp-items="ViewBag.ColorId"></select>
-                <span asp-validation-for="ColorId" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="FuelId" class="control-label"></label>
-                <select asp-for="FuelId" class="form-control" asp-items="ViewBag.FuelId"></select>
-                <span asp-validation-for="FuelId" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="CarTypeId" class="control-label"></label>
-                <select asp-for="CarTypeId" class="form-control" asp-items="ViewBag.CarTypeId"></select>
-                <span asp-validation-for="CarTypeId" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="TransmissionId" class="control-label"></label>
-                <select asp-for="TransmissionId" class="form-control" asp-items="ViewBag.TransmissionId"></select>
-                <span asp-validation-for="TransmissionId" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="CompanyId" class="control-label"></label>
-                <select asp-for="CompanyId" class="form-control" asp-items="ViewBag.CompanyId"></select>
-                <span asp-validation-for="CompanyId" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="LocationId" class="control-label"></label>
-                <select asp-for="LocationId" class="form-control" asp-items="ViewBag.LocationId"></select>
-                <span asp-validation-for="LocationId" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <input type="submit" value="Save" class="btn btn-primary" />
-            </div>
-        </form>
+        </div>
     </div>
 </div>
 
-<div>
-    <a asp-action="Index">Back to List</a>
-</div>
-
 @section Scripts {
-    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+    <script src="https://code.jquery.com/jquery-3.6.0.js"
+            integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk="
+            crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-migrate-3.3.2.js"
+            integrity="sha256-BDmtN+79VRrkfamzD16UnAoJP8zMitAz093tvZATdiE="
+            crossorigin="anonymous"></script>
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+            var allOptions = $('#selectprod option')
+            $('#selectcat').change(function () {
+                $('#selectprod option').remove()
+                var classN = $('#selectcat option:selected').prop('class');
+                var opts = allOptions.filter('.' + classN);
+                $.each(opts, function (i, j) {
+                    $(j).appendTo('#selectprod');
+                });
+            });
+        });
+    </script>
+
+    <script>
+        var nameIndex = 0;
+        function AddMoreNames() {
+            $("#names").
+                append("<div class='form-row'><div class='col'>Name: <input class='form-control' name='CarFeatures[" + nameIndex + "].Name' /></div></div>");
+                    
+            nameIndex++;
+        }
+    </script>
 }

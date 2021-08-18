@@ -1,164 +1,190 @@
 ﻿namespace Oversteer.Web.Areas.Administration.Controllers
 {
-    using System.Linq;
+    using System;
     using System.Threading.Tasks;
 
+    using Microsoft.AspNetCore.Authorization;
     using Microsoft.AspNetCore.Mvc;
-    using Microsoft.AspNetCore.Mvc.Rendering;
-    using Microsoft.EntityFrameworkCore;
 
-    using Oversteer.Data;
-    using Oversteer.Data.Models.Cars;
+    using Oversteer.Services.Caches;
+    using Oversteer.Services.Cars;
+    using Oversteer.Services.Companies;
+    using Oversteer.Web.Extensions;
+    using Oversteer.Web.Infrastructure;
+    using Oversteer.Web.ViewModels.Cars;
 
+    using static Oversteer.Data.Common.Constants.WebConstants;
+    using static Oversteer.Data.Common.Constants.WebConstants.Caching;
+    using static Oversteer.Data.Common.Constants.ErrorMessages;
+
+    [Authorize(Roles = AdministratorRoleName)]
     public class CarsController : AdministrationController
     {
-        private readonly ApplicationDbContext _context;
+        private readonly ICarsService carsService;
+        private readonly ICarCacheService carCacheService;
+        private readonly ILocationService locationService;
+        private readonly ICompaniesService companiesService;
 
-        public CarsController(ApplicationDbContext context)
+        public CarsController(
+            ICarsService carsService, 
+            ICarCacheService carCacheService, 
+            ILocationService locationService, 
+            ICompaniesService companiesService)
         {
-            _context = context;
+            this.carsService = carsService;
+            this.carCacheService = carCacheService;
+            this.locationService = locationService;
+            this.companiesService = companiesService;
         }
 
-        // GET: Administration/Cars
-        public async Task<IActionResult> Index()
-        {
-            var applicationDbContext = _context.Cars.Include(c => c.Brand).Include(c => c.CarType).Include(c => c.Color).Include(c => c.Company).Include(c => c.Fuel).Include(c => c.Location).Include(c => c.Model).Include(c => c.Transmission);
-            return View(await applicationDbContext.ToListAsync());
-        }
+        public async Task<IActionResult> All([FromQuery] CarsSearchQueryModel query)
+            => this.View(new CarsSearchQueryModel()
+            {
+                Brand = query.Brand,
+                Brands = this.carsService.GetAddedCarBrands(),
+                Cars = this.carsService.GetAllCars(query),
+                CarSorting = query.CarSorting,
+                SearchTerm = query.SearchTerm,
+                CurrentPage = query.CurrentPage,
+                TotalCars = await this.carsService.GetQueryCarsCounAsync(query)
+            });
 
-        // GET: Administration/Cars/Details/5
-        public async Task<IActionResult> Details(int? id)
+        public IActionResult Edit(int id, string information)
         {
-            if (id == null)
+            if (!User.IsAdmin())
+            {
+                return Unauthorized();
+            }
+
+            var car = this.carsService.GetCarDetails(id);
+
+            if (information != car.ToFriendlyUrl())
             {
                 return NotFound();
             }
 
-            var car = await _context.Cars
-                .Include(c => c.Brand)
-                .Include(c => c.CarType)
-                .Include(c => c.Color)
-                .Include(c => c.Company)
-                .Include(c => c.Fuel)
-                .Include(c => c.Location)
-                .Include(c => c.Model)
-                .Include(c => c.Transmission)
-                .FirstOrDefaultAsync(m => m.Id == id);
-            if (car == null)
-            {
-                return NotFound();
-            }
+            var companyId = car.CompanyId;
 
-            return View(car);
+            var carForm = new CarFormModel()
+            {
+                Brands = this.carCacheService.CacheCarBrands(CarBrandsCacheKey),
+                CarModels = this.carCacheService.CacheCarModels(CarModelsCacheKey),
+                Colors = this.carCacheService.CacheCarColors(CarColorsCacheKey),
+                FuelTypes = this.carsService.GetFuelTypes(),
+                Transmissions = this.carsService.GetTransmissionTypes(),
+                CarTypes = this.carsService.GetCarTypes(),
+                Locations = this.locationService.GetCompanyLocations(companyId)
+            };
+
+            return this.View(carForm);
         }
 
-        // GET: Administration/Cars/Edit/5
-        public async Task<IActionResult> Edit(int? id)
-        {
-            if (id == null)
-            {
-                return NotFound();
-            }
-
-            var car = await _context.Cars.FindAsync(id);
-            if (car == null)
-            {
-                return NotFound();
-            }
-            ViewData["CarBrandId"] = new SelectList(_context.CarBrands, "Id", "Name", car.CarBrandId);
-            ViewData["CarTypeId"] = new SelectList(_context.CarTypes, "Id", "Name", car.CarTypeId);
-            ViewData["ColorId"] = new SelectList(_context.Colors, "Id", "Name", car.ColorId);
-            ViewData["CompanyId"] = new SelectList(_context.Companies, "Id", "Description", car.CompanyId);
-            ViewData["FuelId"] = new SelectList(_context.Fuels, "Id", "Name", car.FuelId);
-            ViewData["LocationId"] = new SelectList(_context.Locations, "Id", "Name", car.LocationId);
-            ViewData["CarModelId"] = new SelectList(_context.CarModels, "Id", "Name", car.CarModelId);
-            ViewData["TransmissionId"] = new SelectList(_context.Transmissions, "Id", "Name", car.TransmissionId);
-            return View(car);
-        }
-
-        // POST: Administration/Cars/Edit/5
-        // To protect from overposting attacks, enable the specific properties you want to bind to.
-        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,CarBrandId,CarModelId,ModelYear,DailyPrice,SeatsCount,IsDeleted,IsAvailable,DeleteDate,Description,ColorId,FuelId,CarTypeId,TransmissionId,CompanyId,LocationId")] Car car)
+        public async Task<IActionResult> Edit(int id, CarFormModel carModel)
         {
-            if (id != car.Id)
+            var currentUserId = this.User.GetId();
+
+            var companyId = this.companiesService.GetCurrentCompanyId(currentUserId);
+
+            if (User.IsAdmin())
             {
-                return NotFound();
+                return Unauthorized();
             }
 
-            if (ModelState.IsValid)
+            if (!this.carsService.GetBrandId(carModel.BrandId))
             {
-                try
-                {
-                    _context.Update(car);
-                    await _context.SaveChangesAsync();
-                }
-                catch (DbUpdateConcurrencyException)
-                {
-                    if (!CarExists(car.Id))
-                    {
-                        return NotFound();
-                    }
-                    else
-                    {
-                        throw;
-                    }
-                }
-                return RedirectToAction(nameof(Index));
+                this.ModelState.AddModelError(nameof(carModel.BrandId), CarBrandDoesntExist);
             }
-            ViewData["CarBrandId"] = new SelectList(_context.CarBrands, "Id", "Name", car.CarBrandId);
-            ViewData["CarTypeId"] = new SelectList(_context.CarTypes, "Id", "Name", car.CarTypeId);
-            ViewData["ColorId"] = new SelectList(_context.Colors, "Id", "Name", car.ColorId);
-            ViewData["CompanyId"] = new SelectList(_context.Companies, "Id", "Description", car.CompanyId);
-            ViewData["FuelId"] = new SelectList(_context.Fuels, "Id", "Name", car.FuelId);
-            ViewData["LocationId"] = new SelectList(_context.Locations, "Id", "Name", car.LocationId);
-            ViewData["CarModelId"] = new SelectList(_context.CarModels, "Id", "Name", car.CarModelId);
-            ViewData["TransmissionId"] = new SelectList(_context.Transmissions, "Id", "Name", car.TransmissionId);
-            return View(car);
+
+            if (!this.carsService.GetModelId(carModel.ModelId))
+            {
+                this.ModelState.AddModelError(nameof(carModel.ModelId), CarModelDoesntExist);
+            }
+
+            if (!this.carsService.GetCarTypeId(carModel.CarTypeId))
+            {
+                this.ModelState.AddModelError(nameof(carModel.CarTypeId), CarTypeDoesntExist);
+            }
+
+            if (!this.carsService.GetFuelTypeId(carModel.FuelId))
+            {
+                this.ModelState.AddModelError(nameof(carModel.FuelId), CarFuelTypeDoesntExist);
+            }
+
+            if (!this.carsService.GetTransmissionId(carModel.TransmissionId))
+            {
+                this.ModelState.AddModelError(nameof(carModel.TransmissionId), CarTransmissionTypeDoesntExist);
+            }
+
+            if (!this.carsService.GetColorId(carModel.ColorId))
+            {
+                this.ModelState.AddModelError(nameof(carModel.ColorId), CarColorDoesntExist);
+            }
+
+            if (!ModelState.IsValid)
+            {
+                carModel.Brands = this.carCacheService.CacheCarBrands(CarBrandsCacheKey);
+                carModel.CarModels = this.carCacheService.CacheCarModels(CarModelsCacheKey);
+                carModel.Colors = this.carCacheService.CacheCarColors(CarColorsCacheKey);
+                carModel.FuelTypes = this.carsService.GetFuelTypes();
+                carModel.Transmissions = this.carsService.GetTransmissionTypes();
+                carModel.CarTypes = this.carsService.GetCarTypes();
+                carModel.Locations = this.locationService.GetCompanyLocations(companyId);
+
+                return this.View(carModel);
+            }
+
+            if (!this.carsService.IsCarFromCompany(id, companyId) && !User.IsAdmin())
+            {
+                return this.NotFound();
+            }
+
+            try
+            {
+                await this.carsService.EditCarAsync(
+                    id,
+                    carModel.BrandId,
+                    carModel.ModelId,
+                    carModel.ColorId,
+                    carModel.CarTypeId,
+                    carModel.FuelId,
+                    carModel.TransmissionId,
+                    carModel.Year,
+                    carModel.DailyPrice,
+                    carModel.SeatsCount,
+                    carModel.ImageUrl,
+                    carModel.Description,
+                    carModel.Images,
+                    companyId,
+                    carModel.CarFeatures
+                    );
+            }
+            catch (Exception ex)
+            {
+                this.ModelState.AddModelError("", ex.Message);
+                return this.View(carModel);
+            }
+
+            this.TempData["Message"] = "The car was edited successfully.";
+
+            return this.RedirectToAction(nameof(All));
         }
 
-        // GET: Administration/Cars/Delete/5
-        public async Task<IActionResult> Delete(int? id)
+        public async Task<IActionResult> Delete(int id)
         {
-            if (id == null)
+            var userId = this.User.GetId();
+            var companyId = this.companiesService.GetCurrentCompanyId(userId);
+
+            if (User.IsAdmin())
             {
-                return NotFound();
+                return Unauthorized();
             }
 
-            var car = await _context.Cars
-                .Include(c => c.Brand)
-                .Include(c => c.CarType)
-                .Include(c => c.Color)
-                .Include(c => c.Company)
-                .Include(c => c.Fuel)
-                .Include(c => c.Location)
-                .Include(c => c.Model)
-                .Include(c => c.Transmission)
-                .FirstOrDefaultAsync(m => m.Id == id);
-            if (car == null)
-            {
-                return NotFound();
-            }
+            await this.carsService.DeleteCarAsync(companyId, id);
 
-            return View(car);
-        }
+            this.TempData["Message"] = "The car was removed successfully.";
 
-        // POST: Administration/Cars/Delete/5
-        [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> DeleteConfirmed(int id)
-        {
-            var car = await _context.Cars.FindAsync(id);
-            _context.Cars.Remove(car);
-            await _context.SaveChangesAsync();
-            return RedirectToAction(nameof(Index));
-        }
-
-        private bool CarExists(int id)
-        {
-            return _context.Cars.Any(e => e.Id == id);
+            return this.RedirectToAction(nameof(this.All));
         }
     }
 }

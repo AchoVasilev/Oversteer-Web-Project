@@ -4,12 +4,8 @@
     using System.Threading.Tasks;
 
     using Microsoft.AspNetCore.Authorization;
-    using Microsoft.AspNetCore.Identity;
-    using Microsoft.AspNetCore.Identity.UI.Services;
     using Microsoft.AspNetCore.Mvc;
-    using Microsoft.Extensions.Logging;
 
-    using Oversteer.Data.Models.Users;
     using Oversteer.Services.Cars;
     using Oversteer.Services.Companies;
     using Oversteer.Web.Controllers;
@@ -21,26 +17,14 @@
     {
         private readonly ICompaniesService companiesService;
         private readonly ILocationService locationService;
-        private readonly SignInManager<ApplicationUser> signInManager;
-        private readonly UserManager<ApplicationUser> userManager;
-        private readonly ILogger<CreateCompanyFormModel> logger;
-        private readonly IEmailSender emailSender;
         private readonly ICarsService carsService;
 
         public CompaniesController(ICompaniesService companiesService,
-            ILocationService locationService,
-            SignInManager<ApplicationUser> signInManager,
-            UserManager<ApplicationUser> userManager,
-            ILogger<CreateCompanyFormModel> logger,
-            IEmailSender emailSender, 
+            ILocationService locationService, 
             ICarsService carsService)
         {
             this.companiesService = companiesService;
             this.locationService = locationService;
-            this.signInManager = signInManager;
-            this.userManager = userManager;
-            this.logger = logger;
-            this.emailSender = emailSender;
             this.carsService = carsService;
         }
 

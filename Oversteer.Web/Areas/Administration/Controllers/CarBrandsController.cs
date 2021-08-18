@@ -1,152 +1,74 @@
 ﻿namespace Oversteer.Web.Areas.Administration.Controllers
 {
-    using System.Linq;
     using System.Threading.Tasks;
 
+    using Microsoft.AspNetCore.Authorization;
     using Microsoft.AspNetCore.Mvc;
-    using Microsoft.EntityFrameworkCore;
 
-    using Oversteer.Data;
-    using Oversteer.Data.Models.Cars;
+    using Oversteer.Services.Cars;
+    using Oversteer.Web.ViewModels.Cars.CarItems;
 
+    using static Oversteer.Data.Common.Constants.WebConstants;
+
+    [Authorize(Roles = AdministratorRoleName)]
     public class CarBrandsController : AdministrationController
     {
-        private readonly ApplicationDbContext _context;
+        private readonly ICarItemsService carItemsService;
 
-        public CarBrandsController(ApplicationDbContext context)
+        public CarBrandsController(ICarItemsService carItemsService)
         {
-            _context = context;
+            this.carItemsService = carItemsService;
         }
 
-        // GET: Administration/CarBrands
-        public async Task<IActionResult> Index()
+        public IActionResult All()
         {
-            return View(await _context.CarBrands.ToListAsync());
+            var models = this.carItemsService.GetAllBrandsAsync();
+
+            return View(models);
         }
 
-        // GET: Administration/CarBrands/Details/5
-        public async Task<IActionResult> Details(int? id)
-        {
-            if (id == null)
-            {
-                return NotFound();
-            }
+        public IActionResult Edit() => this.View();
 
-            var carBrand = await _context.CarBrands
-                .FirstOrDefaultAsync(m => m.Id == id);
-            if (carBrand == null)
-            {
-                return NotFound();
-            }
-
-            return View(carBrand);
-        }
-
-        // GET: Administration/CarBrands/Create
-        public IActionResult Create()
-        {
-            return View();
-        }
-
-        // POST: Administration/CarBrands/Create
-        // To protect from overposting attacks, enable the specific properties you want to bind to.
-        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,Name")] CarBrand carBrand)
+        public async Task<IActionResult> Edit(CarBrandFormModel model)
         {
-            if (ModelState.IsValid)
+            if (!ModelState.IsValid)
             {
-                _context.Add(carBrand);
-                await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
+                return this.View(model);
             }
-            return View(carBrand);
+
+            await this.carItemsService.EditBrandAsync(model);
+
+            return this.RedirectToAction(nameof(this.All));
         }
 
-        // GET: Administration/CarBrands/Edit/5
-        public async Task<IActionResult> Edit(int? id)
-        {
-            if (id == null)
-            {
-                return NotFound();
-            }
+        public IActionResult Add() => this.View();
 
-            var carBrand = await _context.CarBrands.FindAsync(id);
-            if (carBrand == null)
-            {
-                return NotFound();
-            }
-            return View(carBrand);
-        }
-
-        // POST: Administration/CarBrands/Edit/5
-        // To protect from overposting attacks, enable the specific properties you want to bind to.
-        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,Name")] CarBrand carBrand)
+        public async Task<IActionResult> Add(CarBrandFormModel model)
         {
-            if (id != carBrand.Id)
+            if (!ModelState.IsValid)
+            {
+                return this.View(model);
+            }
+
+            await this.carItemsService.AddBrandAsync(model);
+
+            return this.RedirectToAction(nameof(this.All));
+        }
+
+        public async Task<IActionResult> Delete(int id)
+        {
+            var isDeleted = await this.carItemsService.DeleteBrandAsync(id);
+
+            if (!isDeleted)
             {
                 return NotFound();
             }
 
-            if (ModelState.IsValid)
-            {
-                try
-                {
-                    _context.Update(carBrand);
-                    await _context.SaveChangesAsync();
-                }
-                catch (DbUpdateConcurrencyException)
-                {
-                    if (!CarBrandExists(carBrand.Id))
-                    {
-                        return NotFound();
-                    }
-                    else
-                    {
-                        throw;
-                    }
-                }
-                return RedirectToAction(nameof(Index));
-            }
-            return View(carBrand);
-        }
+            this.TempData["Message"] = "The brand was removed successfully.";
 
-        // GET: Administration/CarBrands/Delete/5
-        public async Task<IActionResult> Delete(int? id)
-        {
-            if (id == null)
-            {
-                return NotFound();
-            }
-
-            var carBrand = await _context.CarBrands
-                .FirstOrDefaultAsync(m => m.Id == id);
-            if (carBrand == null)
-            {
-                return NotFound();
-            }
-
-            return View(carBrand);
-        }
-
-        // POST: Administration/CarBrands/Delete/5
-        [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> DeleteConfirmed(int id)
-        {
-            var carBrand = await _context.CarBrands.FindAsync(id);
-            _context.CarBrands.Remove(carBrand);
-            await _context.SaveChangesAsync();
-            return RedirectToAction(nameof(Index));
-        }
-
-        private bool CarBrandExists(int id)
-        {
-            return _context.CarBrands.Any(e => e.Id == id);
+            return this.RedirectToAction(nameof(this.All));
         }
     }
 }

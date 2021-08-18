@@ -101,7 +101,8 @@ namespace Oversteer.Web
                 .AddTransient<ICompanyAccountService, CompanyAccountService>()
                 .AddTransient<IOfferedServicesService, OfferedServicesService>()
                 .AddTransient<IFeedbackService, FeedbackService>()
-                .AddTransient<ICarCacheService, CarsCacheService>();
+                .AddTransient<ICarCacheService, CarsCacheService>()
+                .AddTransient<ICarItemsService, CarItemsService>();
             
             //Configure MailKit
             services.AddTransient<IEmailSender, MailKitSender>();
