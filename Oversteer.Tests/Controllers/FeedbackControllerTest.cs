@@ -17,6 +17,7 @@
     using Oversteer.Tests.Data;
     using Oversteer.Tests.Mocks;
     using Oversteer.Web.Controllers;
+    using Oversteer.Web.ViewModels.Feedbacks;
 
     using Xunit;
 
@@ -61,7 +62,7 @@
         {
             var data = DatabaseMock.Instance;
             var mapper = MapperMock.Instance;
-            
+
             data.Users.Add(new ApplicationUser { Id = "12345", UserName = "pesho@pesho.bg" });
             data.Rentals.Add(new Rental { Id = "gosho", UserId = "12345" });
 
@@ -83,6 +84,36 @@
             feedBackController.ControllerContext.HttpContext = new DefaultHttpContext { User = user };
 
             var result = await feedBackController.Create("gosho");
+
+            Assert.IsType<RedirectToActionResult>(result);
+        }
+
+        [Fact]
+        public async Task CreateShouldReturnRedirectToActionIfRequestIsValid()
+        {
+            var data = DatabaseMock.Instance;
+            var mapper = MapperMock.Instance;
+
+            var mockRent = new Mock<IRentingService>();
+
+            mockRent.Setup(x => x.IsValidReviewRequestAsync("gosho", "5868"))
+                .ReturnsAsync(false);
+
+            var model = new FeedbackInputModel
+            {
+                RentId = "goshoghosho",
+                Comment = "peshopeshopesho",
+                Rating = 5
+            };
+
+            var mockFeedback = new Mock<IFeedbackService>();
+
+            mockFeedback.Setup(x => x.CreateFeedbackAsync(model.RentId, model.Rating, model.Comment))
+                .ReturnsAsync(true);
+
+            var feedBackController = new FeedbacksController(mockFeedback.Object, mockRent.Object);
+
+            var result = await feedBackController.Create(model);
 
             Assert.IsType<RedirectToActionResult>(result);
         }
