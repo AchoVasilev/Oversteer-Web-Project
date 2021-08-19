@@ -21,12 +21,10 @@
         }
 
         [Authorize]
-        public IActionResult Create(string orderId)
+        public async Task<IActionResult> Create(string orderId)
         {
-            bool isValidRequest = this.rentingService
-                .IsValidReviewRequestAsync(orderId, this.User.Identity.Name.ToLower())
-                .GetAwaiter()
-                .GetResult();
+            bool isValidRequest = await this.rentingService
+                .IsValidReviewRequestAsync(orderId, this.User.Identity.Name.ToLower());
 
             if (!isValidRequest)
             {

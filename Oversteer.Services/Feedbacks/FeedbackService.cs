@@ -64,7 +64,7 @@
             return true;
         }
 
-        public ICollection<ListFeedbackModel> GetAllFeedbacks() 
+        public IEnumerable<ListFeedbackModel> GetAllFeedbacks() 
             => this.data.Feedbacks
                 .Where(x => !x.IsDeleted)
                 .ProjectTo<ListFeedbackModel>(this.mapper.ConfigurationProvider)

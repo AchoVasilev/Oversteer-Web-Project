@@ -11,6 +11,6 @@
 
         Task<bool> DeleteFeedbackAsync(int feedbackId);
 
-        ICollection<ListFeedbackModel> GetAllFeedbacks();
+        IEnumerable<ListFeedbackModel> GetAllFeedbacks();
     }
 }

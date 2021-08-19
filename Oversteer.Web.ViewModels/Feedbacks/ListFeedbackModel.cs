@@ -4,8 +4,6 @@
     {
         public int Id { get; set; }
 
-        public string CarModel { get; set; }
-
         public string User { get; set; }
 
         public int Rating { get; set; }

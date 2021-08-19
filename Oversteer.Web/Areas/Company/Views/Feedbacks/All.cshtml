@@ -18,7 +18,6 @@
     <thead>
         <tr class="table-primary">
             <th scope="col">Customer Email</th>
-            <th scope="col">Car Model</th>
             <th scope="col">Comment</th>
             <th scope="col">Rating/5</th>
             <th scope="col">Actions</th>
@@ -29,7 +28,6 @@
         @foreach (var feedback in @Model)
         {
             <th style="font-size:150%" scope="row">@feedback.User</th>
-                <td style="font-size:150%">@feedback.CarModel</td>
                 <td style="font-size:150%">@feedback.Comment</td>
                 <td style="font-size:150%">@feedback.Rating</td>
                 <td>

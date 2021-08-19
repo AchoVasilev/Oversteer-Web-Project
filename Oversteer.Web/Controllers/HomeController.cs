@@ -8,11 +8,6 @@
     using Oversteer.Services.Companies;
     using Oversteer.Services.Home;
     using Oversteer.Web.ViewModels.Home;
-    using Microsoft.Extensions.Caching.Memory;
-    using System.Collections.Generic;
-    using System;
-
-    using static Oversteer.Data.Common.Constants.WebConstants.Caching;
 
     public class HomeController : Controller
     {

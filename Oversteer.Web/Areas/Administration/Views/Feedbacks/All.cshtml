@@ -19,7 +19,6 @@
             <th>Feedback Id</th>
             <th>Given By User</th>
             <th>Reviewed Company</th>
-            <th>Car Model</th>
             <th>Comment</th>
             <th>Available Actions</th>
         </tr>
@@ -30,9 +29,8 @@
 <tr>
     <td>@feedback.Id</td>
     <td>@feedback.User</td>
-    <td>@feedback.CarModel</td>
-    <td>@feedback.Comment</td>
     <td>@feedback.CompanyName</td>
+    <td>@feedback.Comment</td>
     <td>
         <a asp-area="Administration" asp-controller="Feedbacks" asp-action="Delete" asp-route-id="@feedback.Id"
            data-toggle="modal" data-target="#modalDelete" class="btn btn-danger">Delete</a>

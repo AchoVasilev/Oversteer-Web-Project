@@ -1,0 +1,676 @@
+{
+  "format": 1,
+  "restore": {
+    "D:\\Курс програмиране\\CSharp - ASP.NET Core\\Oversteer\\Oversteer\\Oversteer.Tests\\Oversteer.Tests.csproj": {}
+  },
+  "projects": {
+    "D:\\Курс програмиране\\CSharp - ASP.NET Core\\Oversteer\\Oversteer\\Oversteer.Data.Common\\Oversteer.Data.Common.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "D:\\Курс програмиране\\CSharp - ASP.NET Core\\Oversteer\\Oversteer\\Oversteer.Data.Common\\Oversteer.Data.Common.csproj",
+        "projectName": "Oversteer.Data.Common",
+        "projectPath": "D:\\Курс програмиране\\CSharp - ASP.NET Core\\Oversteer\\Oversteer\\Oversteer.Data.Common\\Oversteer.Data.Common.csproj",
+        "packagesPath": "C:\\Users\\defie\\.nuget\\packages\\",
+        "outputPath": "D:\\Курс програмиране\\CSharp - ASP.NET Core\\Oversteer\\Oversteer\\Oversteer.Data.Common\\obj\\",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "C:\\Users\\defie\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "net5.0"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net5.0": {
+            "targetAlias": "net5.0",
+            "projectReferences": {}
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "net5.0": {
+          "targetAlias": "net5.0",
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.400\\RuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "D:\\Курс програмиране\\CSharp - ASP.NET Core\\Oversteer\\Oversteer\\Oversteer.Data.Models\\Oversteer.Data.Models.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "D:\\Курс програмиране\\CSharp - ASP.NET Core\\Oversteer\\Oversteer\\Oversteer.Data.Models\\Oversteer.Data.Models.csproj",
+        "projectName": "Oversteer.Data.Models",
+        "projectPath": "D:\\Курс програмиране\\CSharp - ASP.NET Core\\Oversteer\\Oversteer\\Oversteer.Data.Models\\Oversteer.Data.Models.csproj",
+        "packagesPath": "C:\\Users\\defie\\.nuget\\packages\\",
+        "outputPath": "D:\\Курс програмиране\\CSharp - ASP.NET Core\\Oversteer\\Oversteer\\Oversteer.Data.Models\\obj\\",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "C:\\Users\\defie\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "net5.0"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net5.0": {
+            "targetAlias": "net5.0",
+            "projectReferences": {
+              "D:\\Курс програмиране\\CSharp - ASP.NET Core\\Oversteer\\Oversteer\\Oversteer.Data.Common\\Oversteer.Data.Common.csproj": {
+                "projectPath": "D:\\Курс програмиране\\CSharp - ASP.NET Core\\Oversteer\\Oversteer\\Oversteer.Data.Common\\Oversteer.Data.Common.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "net5.0": {
+          "targetAlias": "net5.0",
+          "dependencies": {
+            "Microsoft.Extensions.Identity.Stores": {
+              "target": "Package",
+              "version": "[5.0.8, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.400\\RuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "D:\\Курс програмиране\\CSharp - ASP.NET Core\\Oversteer\\Oversteer\\Oversteer.Data\\Oversteer.Data.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "D:\\Курс програмиране\\CSharp - ASP.NET Core\\Oversteer\\Oversteer\\Oversteer.Data\\Oversteer.Data.csproj",
+        "projectName": "Oversteer.Data",
+        "projectPath": "D:\\Курс програмиране\\CSharp - ASP.NET Core\\Oversteer\\Oversteer\\Oversteer.Data\\Oversteer.Data.csproj",
+        "packagesPath": "C:\\Users\\defie\\.nuget\\packages\\",
+        "outputPath": "D:\\Курс програмиране\\CSharp - ASP.NET Core\\Oversteer\\Oversteer\\Oversteer.Data\\obj\\",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "C:\\Users\\defie\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "net5.0"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net5.0": {
+            "targetAlias": "net5.0",
+            "projectReferences": {
+              "D:\\Курс програмиране\\CSharp - ASP.NET Core\\Oversteer\\Oversteer\\Oversteer.Data.Models\\Oversteer.Data.Models.csproj": {
+                "projectPath": "D:\\Курс програмиране\\CSharp - ASP.NET Core\\Oversteer\\Oversteer\\Oversteer.Data.Models\\Oversteer.Data.Models.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "net5.0": {
+          "targetAlias": "net5.0",
+          "dependencies": {
+            "Microsoft.AspNetCore.Http.Abstractions": {
+              "target": "Package",
+              "version": "[2.2.0, )"
+            },
+            "Microsoft.AspNetCore.Identity.EntityFrameworkCore": {
+              "target": "Package",
+              "version": "[5.0.8, )"
+            },
+            "Microsoft.EntityFrameworkCore.Proxies": {
+              "target": "Package",
+              "version": "[5.0.9, )"
+            },
+            "Microsoft.EntityFrameworkCore.SqlServer": {
+              "target": "Package",
+              "version": "[5.0.8, )"
+            },
+            "Newtonsoft.Json": {
+              "target": "Package",
+              "version": "[13.0.1, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.400\\RuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "D:\\Курс програмиране\\CSharp - ASP.NET Core\\Oversteer\\Oversteer\\Oversteer.Services\\Oversteer.Services.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "D:\\Курс програмиране\\CSharp - ASP.NET Core\\Oversteer\\Oversteer\\Oversteer.Services\\Oversteer.Services.csproj",
+        "projectName": "Oversteer.Services",
+        "projectPath": "D:\\Курс програмиране\\CSharp - ASP.NET Core\\Oversteer\\Oversteer\\Oversteer.Services\\Oversteer.Services.csproj",
+        "packagesPath": "C:\\Users\\defie\\.nuget\\packages\\",
+        "outputPath": "D:\\Курс програмиране\\CSharp - ASP.NET Core\\Oversteer\\Oversteer\\Oversteer.Services\\obj\\",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "C:\\Users\\defie\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "net5.0"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net5.0": {
+            "targetAlias": "net5.0",
+            "projectReferences": {
+              "D:\\Курс програмиране\\CSharp - ASP.NET Core\\Oversteer\\Oversteer\\Oversteer.Data\\Oversteer.Data.csproj": {
+                "projectPath": "D:\\Курс програмиране\\CSharp - ASP.NET Core\\Oversteer\\Oversteer\\Oversteer.Data\\Oversteer.Data.csproj"
+              },
+              "D:\\Курс програмиране\\CSharp - ASP.NET Core\\Oversteer\\Oversteer\\Oversteer.Web.Infrastructure\\Oversteer.Web.Infrastructure.csproj": {
+                "projectPath": "D:\\Курс програмиране\\CSharp - ASP.NET Core\\Oversteer\\Oversteer\\Oversteer.Web.Infrastructure\\Oversteer.Web.Infrastructure.csproj"
+              },
+              "D:\\Курс програмиране\\CSharp - ASP.NET Core\\Oversteer\\Oversteer\\Oversteer.Web.ViewModels\\Oversteer.Web.ViewModels.csproj": {
+                "projectPath": "D:\\Курс програмиране\\CSharp - ASP.NET Core\\Oversteer\\Oversteer\\Oversteer.Web.ViewModels\\Oversteer.Web.ViewModels.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "net5.0": {
+          "targetAlias": "net5.0",
+          "dependencies": {
+            "AngleSharp": {
+              "target": "Package",
+              "version": "[0.16.0, )"
+            },
+            "AutoMapper": {
+              "target": "Package",
+              "version": "[10.1.1, )"
+            },
+            "CloudinaryDotNet": {
+              "target": "Package",
+              "version": "[1.15.2, )"
+            },
+            "Microsoft.AspNetCore.Identity.UI": {
+              "target": "Package",
+              "version": "[5.0.8, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.400\\RuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "D:\\Курс програмиране\\CSharp - ASP.NET Core\\Oversteer\\Oversteer\\Oversteer.Tests\\Oversteer.Tests.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "D:\\Курс програмиране\\CSharp - ASP.NET Core\\Oversteer\\Oversteer\\Oversteer.Tests\\Oversteer.Tests.csproj",
+        "projectName": "Oversteer.Tests",
+        "projectPath": "D:\\Курс програмиране\\CSharp - ASP.NET Core\\Oversteer\\Oversteer\\Oversteer.Tests\\Oversteer.Tests.csproj",
+        "packagesPath": "C:\\Users\\defie\\.nuget\\packages\\",
+        "outputPath": "D:\\Курс програмиране\\CSharp - ASP.NET Core\\Oversteer\\Oversteer\\Oversteer.Tests\\obj\\",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "C:\\Users\\defie\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "net5.0"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net5.0": {
+            "targetAlias": "net5.0",
+            "projectReferences": {
+              "D:\\Курс програмиране\\CSharp - ASP.NET Core\\Oversteer\\Oversteer\\Oversteer.Web\\Oversteer.Web.csproj": {
+                "projectPath": "D:\\Курс програмиране\\CSharp - ASP.NET Core\\Oversteer\\Oversteer\\Oversteer.Web\\Oversteer.Web.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "net5.0": {
+          "targetAlias": "net5.0",
+          "dependencies": {
+            "Microsoft.EntityFrameworkCore.InMemory": {
+              "target": "Package",
+              "version": "[5.0.9, )"
+            },
+            "Microsoft.NET.Test.Sdk": {
+              "target": "Package",
+              "version": "[16.9.4, )"
+            },
+            "Moq": {
+              "target": "Package",
+              "version": "[4.16.1, )"
+            },
+            "MyTested.AspNetCore.Mvc.Universe": {
+              "target": "Package",
+              "version": "[5.0.0, )"
+            },
+            "coverlet.collector": {
+              "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[3.0.2, )"
+            },
+            "xunit": {
+              "target": "Package",
+              "version": "[2.4.1, )"
+            },
+            "xunit.runner.visualstudio": {
+              "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[2.4.3, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.400\\RuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "D:\\Курс програмиране\\CSharp - ASP.NET Core\\Oversteer\\Oversteer\\Oversteer.Web.Infrastructure\\Oversteer.Web.Infrastructure.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "D:\\Курс програмиране\\CSharp - ASP.NET Core\\Oversteer\\Oversteer\\Oversteer.Web.Infrastructure\\Oversteer.Web.Infrastructure.csproj",
+        "projectName": "Oversteer.Web.Infrastructure",
+        "projectPath": "D:\\Курс програмиране\\CSharp - ASP.NET Core\\Oversteer\\Oversteer\\Oversteer.Web.Infrastructure\\Oversteer.Web.Infrastructure.csproj",
+        "packagesPath": "C:\\Users\\defie\\.nuget\\packages\\",
+        "outputPath": "D:\\Курс програмиране\\CSharp - ASP.NET Core\\Oversteer\\Oversteer\\Oversteer.Web.Infrastructure\\obj\\",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "C:\\Users\\defie\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "net5.0"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net5.0": {
+            "targetAlias": "net5.0",
+            "projectReferences": {
+              "D:\\Курс програмиране\\CSharp - ASP.NET Core\\Oversteer\\Oversteer\\Oversteer.Data.Common\\Oversteer.Data.Common.csproj": {
+                "projectPath": "D:\\Курс програмиране\\CSharp - ASP.NET Core\\Oversteer\\Oversteer\\Oversteer.Data.Common\\Oversteer.Data.Common.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "net5.0": {
+          "targetAlias": "net5.0",
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.400\\RuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "D:\\Курс програмиране\\CSharp - ASP.NET Core\\Oversteer\\Oversteer\\Oversteer.Web.ViewModels\\Oversteer.Web.ViewModels.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "D:\\Курс програмиране\\CSharp - ASP.NET Core\\Oversteer\\Oversteer\\Oversteer.Web.ViewModels\\Oversteer.Web.ViewModels.csproj",
+        "projectName": "Oversteer.Web.ViewModels",
+        "projectPath": "D:\\Курс програмиране\\CSharp - ASP.NET Core\\Oversteer\\Oversteer\\Oversteer.Web.ViewModels\\Oversteer.Web.ViewModels.csproj",
+        "packagesPath": "C:\\Users\\defie\\.nuget\\packages\\",
+        "outputPath": "D:\\Курс програмиране\\CSharp - ASP.NET Core\\Oversteer\\Oversteer\\Oversteer.Web.ViewModels\\obj\\",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "C:\\Users\\defie\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "net5.0"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net5.0": {
+            "targetAlias": "net5.0",
+            "projectReferences": {
+              "D:\\Курс програмиране\\CSharp - ASP.NET Core\\Oversteer\\Oversteer\\Oversteer.Data.Common\\Oversteer.Data.Common.csproj": {
+                "projectPath": "D:\\Курс програмиране\\CSharp - ASP.NET Core\\Oversteer\\Oversteer\\Oversteer.Data.Common\\Oversteer.Data.Common.csproj"
+              },
+              "D:\\Курс програмиране\\CSharp - ASP.NET Core\\Oversteer\\Oversteer\\Oversteer.Data.Models\\Oversteer.Data.Models.csproj": {
+                "projectPath": "D:\\Курс програмиране\\CSharp - ASP.NET Core\\Oversteer\\Oversteer\\Oversteer.Data.Models\\Oversteer.Data.Models.csproj"
+              },
+              "D:\\Курс програмиране\\CSharp - ASP.NET Core\\Oversteer\\Oversteer\\Oversteer.Web.Infrastructure\\Oversteer.Web.Infrastructure.csproj": {
+                "projectPath": "D:\\Курс програмиране\\CSharp - ASP.NET Core\\Oversteer\\Oversteer\\Oversteer.Web.Infrastructure\\Oversteer.Web.Infrastructure.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "net5.0": {
+          "targetAlias": "net5.0",
+          "dependencies": {
+            "MailKit": {
+              "target": "Package",
+              "version": "[2.14.0, )"
+            },
+            "Microsoft.AspNetCore.Http.Features": {
+              "target": "Package",
+              "version": "[5.0.8, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.400\\RuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "D:\\Курс програмиране\\CSharp - ASP.NET Core\\Oversteer\\Oversteer\\Oversteer.Web\\Oversteer.Web.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "D:\\Курс програмиране\\CSharp - ASP.NET Core\\Oversteer\\Oversteer\\Oversteer.Web\\Oversteer.Web.csproj",
+        "projectName": "Oversteer.Web",
+        "projectPath": "D:\\Курс програмиране\\CSharp - ASP.NET Core\\Oversteer\\Oversteer\\Oversteer.Web\\Oversteer.Web.csproj",
+        "packagesPath": "C:\\Users\\defie\\.nuget\\packages\\",
+        "outputPath": "D:\\Курс програмиране\\CSharp - ASP.NET Core\\Oversteer\\Oversteer\\Oversteer.Web\\obj\\",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "C:\\Users\\defie\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "net5.0"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net5.0": {
+            "targetAlias": "net5.0",
+            "projectReferences": {
+              "D:\\Курс програмиране\\CSharp - ASP.NET Core\\Oversteer\\Oversteer\\Oversteer.Data.Models\\Oversteer.Data.Models.csproj": {
+                "projectPath": "D:\\Курс програмиране\\CSharp - ASP.NET Core\\Oversteer\\Oversteer\\Oversteer.Data.Models\\Oversteer.Data.Models.csproj"
+              },
+              "D:\\Курс програмиране\\CSharp - ASP.NET Core\\Oversteer\\Oversteer\\Oversteer.Services\\Oversteer.Services.csproj": {
+                "projectPath": "D:\\Курс програмиране\\CSharp - ASP.NET Core\\Oversteer\\Oversteer\\Oversteer.Services\\Oversteer.Services.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "net5.0": {
+          "targetAlias": "net5.0",
+          "dependencies": {
+            "AngleSharp": {
+              "target": "Package",
+              "version": "[0.16.0, )"
+            },
+            "AutoMapper": {
+              "target": "Package",
+              "version": "[10.1.1, )"
+            },
+            "AutoMapper.Extensions.Microsoft.DependencyInjection": {
+              "target": "Package",
+              "version": "[8.1.1, )"
+            },
+            "Bootstrap.v3.Datetimepicker": {
+              "target": "Package",
+              "version": "[4.17.49, )"
+            },
+            "Bootstrap.v3.Datetimepicker.CSS": {
+              "target": "Package",
+              "version": "[4.17.49, )"
+            },
+            "CloudinaryDotNet": {
+              "target": "Package",
+              "version": "[1.15.2, )"
+            },
+            "ElasticEmail.WebApiClient": {
+              "target": "Package",
+              "version": "[1.3.107, )"
+            },
+            "FontAwesome": {
+              "target": "Package",
+              "version": "[4.7.0, )"
+            },
+            "MailKit": {
+              "target": "Package",
+              "version": "[2.14.0, )"
+            },
+            "Microsoft.AspNetCore.Authentication.Facebook": {
+              "target": "Package",
+              "version": "[5.0.9, )"
+            },
+            "Microsoft.AspNetCore.Authentication.Google": {
+              "target": "Package",
+              "version": "[5.0.9, )"
+            },
+            "Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore": {
+              "target": "Package",
+              "version": "[5.0.9, )"
+            },
+            "Microsoft.AspNetCore.Identity.EntityFrameworkCore": {
+              "target": "Package",
+              "version": "[5.0.8, )"
+            },
+            "Microsoft.AspNetCore.Identity.UI": {
+              "target": "Package",
+              "version": "[5.0.8, )"
+            },
+            "Microsoft.AspNetCore.Mvc.Razor.RuntimeCompilation": {
+              "target": "Package",
+              "version": "[5.0.9, )"
+            },
+            "Microsoft.AspNetCore.SignalR": {
+              "target": "Package",
+              "version": "[1.1.0, )"
+            },
+            "Microsoft.AspNetCore.SignalR.Protocols.MessagePack": {
+              "target": "Package",
+              "version": "[5.0.9, )"
+            },
+            "Microsoft.EntityFrameworkCore.SqlServer": {
+              "target": "Package",
+              "version": "[5.0.8, )"
+            },
+            "Microsoft.EntityFrameworkCore.Tools": {
+              "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[5.0.8, )"
+            },
+            "Microsoft.VisualStudio.Web.CodeGeneration.Design": {
+              "target": "Package",
+              "version": "[5.0.2, )"
+            },
+            "Moment.js": {
+              "target": "Package",
+              "version": "[2.29.1, )"
+            },
+            "Newtonsoft.Json": {
+              "target": "Package",
+              "version": "[13.0.1, )"
+            },
+            "bootstrap-select": {
+              "target": "Package",
+              "version": "[1.13.18, )"
+            },
+            "datatables.net": {
+              "target": "Package",
+              "version": "[1.10.24, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.AspNetCore.App": {
+              "privateAssets": "none"
+            },
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.400\\RuntimeIdentifierGraph.json"
+        }
+      }
+    }
+  }
+}
