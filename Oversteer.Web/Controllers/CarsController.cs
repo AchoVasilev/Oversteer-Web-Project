@@ -323,7 +323,7 @@
                 return this.RedirectToAction(nameof(CompaniesController.Create), "Companies", new { area = "Company" });
             }
 
-            return this.View(new CarsSearchQueryModel()
+            var model = new CarsSearchQueryModel()
             {
                 Brand = query.Brand,
                 Brands = this.carService.GetAddedByCompanyCarBrands(companyId),
@@ -333,7 +333,9 @@
                 CurrentPage = query.CurrentPage,
                 TotalCars = await this.carService.GetQueryCarsCounAsync(query),
                 CompanyId = companyId
-            });
+            };
+
+            return this.View(model);
         }
 
         public async Task<IActionResult> All([FromQuery] CarsSearchQueryModel query)
