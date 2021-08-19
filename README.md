@@ -12,6 +12,7 @@ This is my web project for SoftUni - Bulgaria ASP.NET Core Course.
 - External logins and registrations with Facebook and Google
 - Bootstrap and font awesome
 - NewtonSoft Json
+- NUnit for testing
 
 ### Features
 ## Not logged in user
