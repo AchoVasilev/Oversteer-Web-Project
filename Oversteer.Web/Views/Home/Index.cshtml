@@ -8,25 +8,23 @@
     <div class="alert alert-danger" id="carMessage">@this.TempData["Message"]</div>
 }
 
-<script src="/js/notify.js"></script>
-
 <h1 style="margin-top: 2%" id="myTop">
     Oversteer - Find And Book A Great Deal Today in Bulgaria
 </h1>
 
 @if (Model.TotalCars == 0)
 {
-<div class="jumbotron">
-    <p class="lead">Currently there are no cars in our platform.</p>
-    <hr class="my-4">
-    <p>Why don't you be the first one to add a car?</p>
-    <p class="lead">
-        <a class="btn btn-primary btn-lg" asp-area="Company" asp-controller="Companies" asp-action="Create" role="button">Learn more</a>
-    </p>
-    <div class="notfound-social">
-        <a href="https://www.facebook.com/Prezavivane"><i class="fa fa-facebook"></i></a>
+    <div class="jumbotron">
+        <p class="lead">Currently there are no cars in our platform.</p>
+        <hr class="my-4">
+        <p>Why don't you be the first one to add a car?</p>
+        <p class="lead">
+            <a class="btn btn-primary btn-lg" asp-area="Company" asp-controller="Companies" asp-action="Create" role="button">Learn more</a>
+        </p>
+        <div class="notfound-social">
+            <a href="https://www.facebook.com/Prezavivane"><i class="fa fa-facebook"></i></a>
+        </div>
     </div>
-</div>
 }
 else
 {
@@ -119,6 +117,7 @@ else
 }
 @section Scripts{
     <script src="/lib/signalr/dist/browser/signalr.min.js"></script>
+    <script src="/js/notify.js"></script>
 
     <script type="text/javascript" src="https://cdn.jsdelivr.net/jquery/latest/jquery.min.js"></script>
     <script type="text/javascript" src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>

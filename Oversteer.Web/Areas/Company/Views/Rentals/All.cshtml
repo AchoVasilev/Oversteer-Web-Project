@@ -6,8 +6,6 @@
 {
 <div class="alert alert-success" id="rentMessage">@this.TempData["Message"]</div>}
 
-<script src="/js/notify.js"></script>
-
 <tr class="row">
     <h1 style="margin-top:2%">
         All Orders: @Model.ToList().Count
@@ -95,4 +93,5 @@
         </script>
     }
 
-    <script src="/lib/signalr/dist/browser/signalr.min.js"></script>
+<script src="/lib/signalr/dist/browser/signalr.min.js"></script>
+<script src="/js/notify.js"></script>

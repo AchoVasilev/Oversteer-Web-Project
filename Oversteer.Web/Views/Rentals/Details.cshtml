@@ -1,7 +1,13 @@
 ﻿@model RentDetailsModel
+@inject ICompaniesService CompaniesService
 
-@{ ViewData["Title"] = "Rent Details"; }
+@{ 
+    ViewData["Title"] = "Rent Details";
+}
 
+@{ 
+    var isCompany = CompaniesService.UserIsCompany(this.User.GetId());
+}
 @if (Model.UserEmail.ToLower() == this.User.Identity.Name.ToLower() && Model.OrderStatus == OrderStatus.Finished)
 {
 <div class="alert alert-dismissible alert-success" style="margin-top:2%">
@@ -12,7 +18,7 @@
 }
 
 
-@if (Model.CompanyId != 0)
+@if (isCompany)
 {
     <a class="btn btn-info" asp-controller="Rentals" asp-area="Company" asp-action="Edit" asp-route-id="@Model.Id">Edit Order</a>
 }

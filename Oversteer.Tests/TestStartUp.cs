@@ -11,15 +11,16 @@
 
     class TestStartup : Startup
     {
-        public TestStartup(IConfiguration configuration) : base(configuration)
+        public TestStartup(IConfiguration configuration) 
+            : base(configuration)
         {
         }
 
         public void ConfigureTestServices(IServiceCollection services)
         {
-            var cloud = "dpo3vbxnl";
-            var apiKey = "713733769727835";
-            var apiSecret = "AxitLgW4XE_LhDgvwBWGRSsSjv0";
+            var cloud = this.Configuration["Cloudinary:CloudifyName"];
+            var apiKey = this.Configuration["Cloudinary:CloudifyAPI"];
+            var apiSecret = this.Configuration["Cloudinary:CloudifyKey"];
             var cloudinaryAccount = new Account(cloud, apiKey, apiSecret);
             var cloudinary = new Cloudinary(cloudinaryAccount);
 

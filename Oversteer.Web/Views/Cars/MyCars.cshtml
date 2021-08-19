@@ -10,8 +10,6 @@
     <div class="alert alert-success" id="carMessage">@this.TempData["Message"]</div>
 }
 
-<script src="/js/notify.js"></script>
-
 @if (!Model.Cars.Any())
 {
     <h2 class="text-center">You do not have any cars yet. So why don't you add one?</h2>
@@ -62,16 +60,16 @@ else
                     <img class="img-fluid img-thumbnail card-img-top" src="@car.Url" alt="Responsive image" style=" width:100%; height: 250px !important;">
                     <div class="card-body" style="width: 18rem;">
                         <h5 class="card-title">@car.ModelName (@car.ModelYear)</h5>
-                        <a asp-controller="Cars" 
-                           asp-action="Details" 
+                        <a asp-controller="Cars"
+                           asp-action="Details"
                            asp-route-id="@car.Id"
                            asp-route-information="@car.ToFriendlyUrl()"
                            class="btn btn-primary">Details</a>
 
                         @if (ViewBag.AllowCarEdit || User.IsAdmin())
                         {
-                            <a asp-controller="Cars" 
-                               asp-action="Edit" asp-route-id="@car.Id" 
+                            <a asp-controller="Cars"
+                               asp-action="Edit" asp-route-id="@car.Id"
                                asp-route-information="@car.ToFriendlyUrl()"
                                class="btn btn-warning">Edit</a>
                             <a asp-controller="Cars" asp-action="Delete" asp-route-id="@car.Id"
@@ -153,3 +151,6 @@ else
         $('modalDelete').modal('')
     </script>
 }
+
+<script src="/lib/signalr/dist/browser/signalr.min.js"></script>
+<script src="/js/notify.js"></script>

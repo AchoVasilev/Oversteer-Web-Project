@@ -6,8 +6,6 @@
 {
 <div class="alert alert-success" id="locationMessage">@this.TempData["Message"]</div>}
 
-<script src="/js/notify.js"></script>
-
 <center>
     <h1 style="margin-top:2%">
         My Locations/Addresses <a asp-area="Company" asp-controller="Companies" asp-action="AddLocation" class="btn btn-primary">Add</a>
@@ -60,7 +58,8 @@
             </div>
         </div>
     </td>
-</tr>}
+</tr>
+}
     </tbody>
     <tfoot>
         <tr>
@@ -88,4 +87,5 @@
     </script>
 }
 
-<script src="/lib/signalr/dist/browser/signalr.js"></script>
+<script src="/lib/signalr/dist/browser/signalr.min.js"></script>
+<script src="/js/notify.js"></script>

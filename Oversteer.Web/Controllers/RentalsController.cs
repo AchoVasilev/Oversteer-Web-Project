@@ -91,7 +91,7 @@
 
             var days = (returnDate - pickUpDate).Days;
 
-            var message = string.Format(SignalRMessageForNewOrder, carModel, days);
+            var message = string.Format(SignalRMessageForNewOrder, carModel.ModelName, days);
 
             await this.notificationHub.Clients.All.SendAsync(SignalRMethodNewOrder, message);
 

@@ -4,8 +4,6 @@
     ViewBag.Title = "Edit Car";
 }
 
-<script src="/js/notify.js"></script>
-
 <partial name="_CarFormPartial" model="@Model" />
 <div class="col-sm-12 offset-lg-2 col-lg-8 offset-xl-3 col-xl-6">
     <a class="btn btn-success" onclick="AddMoreNames()">+</a>
@@ -62,8 +60,11 @@
         function AddMoreNames() {
             $("#names").
                 append("<div class='form-row'><div class='col'>Name: <input class='form-control' name='CarFeatures[" + nameIndex + "].Name' /></div></div>");
-                    
+
             nameIndex++;
         }
     </script>
 }
+
+<script src="/lib/signalr/dist/browser/signalr.min.js"></script>
+<script src="/js/notify.js"></script>
