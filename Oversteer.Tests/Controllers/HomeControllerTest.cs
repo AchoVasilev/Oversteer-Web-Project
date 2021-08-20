@@ -59,7 +59,7 @@
 
             data.SaveChanges();
 
-            var carsService = new CarsService(data, mapper, null, null);
+            var carsService = new CarsService(data, mapper, null, null, null);
             var homeService = new HomeService(data);
             var locationService = new LocationService(data, null, null, mapper);
             var homeController = new HomeController(carsService, homeService, locationService);

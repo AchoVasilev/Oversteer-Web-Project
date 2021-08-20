@@ -3,8 +3,7 @@
     using System;
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
-
-    using Oversteer.Web.Infrastructure;
+    using System.Globalization;
 
     public class SearchRentCarModel : IValidatableObject
     {
@@ -23,16 +22,18 @@
 
         public IEnumerable<ValidationResult> Validate(ValidationContext validationContext)
         {
-            var pickUpDate = DateTimeParser.ParseDate(this.PickUpDate);
+            var pickUpDate = DateTime.TryParseExact(this.PickUpDate, "dd/MM/yyyy HH:mm", CultureInfo.InvariantCulture,
+                DateTimeStyles.None, out var pickRentDate);
 
-            var returnDate = DateTimeParser.ParseDate(this.ReturnDate);
+            var returnDate = DateTime.TryParseExact(this.ReturnDate, "dd/MM/yyyy HH:mm", CultureInfo.InvariantCulture,
+                DateTimeStyles.None, out var returnRentDate);
 
-            if (pickUpDate.Date >= returnDate.Date || pickUpDate.Date < DateTime.UtcNow.Date)
+            if (pickRentDate.Date >= returnRentDate.Date || pickRentDate.Date < DateTime.UtcNow.Date)
             {
                 yield return new ValidationResult(PickupError);
             }
 
-            if (returnDate.Date < DateTime.UtcNow.Date)
+            if (returnRentDate.Date < DateTime.UtcNow.Date)
             {
                 yield return new ValidationResult(ReturnError);
             }

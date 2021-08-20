@@ -1,11 +1,11 @@
-﻿namespace Oversteer.Web.Infrastructure
+﻿namespace Oversteer.Services.DateTime
 {
     using System;
     using System.Globalization;
 
-    public static class DateTimeParser
+    public class DateTimeParserService : IDateTimeParserService
     {
-        public static DateTime ParseDate(string date)
+        public DateTime ParseDate(string date)
         {
             var parse = DateTime.TryParseExact(date, "dd/MM/yyyy HH:mm", CultureInfo.InvariantCulture,
                 DateTimeStyles.None, out var rentDate);

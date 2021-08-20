@@ -15,8 +15,8 @@
 
     using Oversteer.Data;
     using Oversteer.Data.Models.Cars;
+    using Oversteer.Services.DateTime;
     using Oversteer.Services.Images;
-    using Oversteer.Web.Infrastructure;
     using Oversteer.Web.ViewModels.Cars;
     using Oversteer.Web.ViewModels.Cars.CarItems;
     using Oversteer.Web.ViewModels.Cars.Enumerations;
@@ -27,14 +27,21 @@
         private readonly ApplicationDbContext data;
         private readonly IMapper mapper;
         private readonly IImageService imageService;
+        private readonly IDateTimeParserService dateTimeParserService;
         private readonly Cloudinary cloudinary;
 
-        public CarsService(ApplicationDbContext data, IMapper mapper, IImageService imageService, Cloudinary cloudinary)
+        public CarsService(
+            ApplicationDbContext data, 
+            IMapper mapper, 
+            IImageService imageService, 
+            Cloudinary cloudinary, 
+            IDateTimeParserService dateTimeParserService)
         {
             this.data = data;
             this.mapper = mapper;
             this.imageService = imageService;
             this.cloudinary = cloudinary;
+            this.dateTimeParserService = dateTimeParserService;
         }
 
         public async Task CreateCarAsync(CarFormModel carModel, int companyId)
@@ -124,8 +131,8 @@
         {
             var dates = new List<DateTime>();
 
-            var startRentDate = DateTimeParser.ParseDate(startDate);
-            var returnRentDate = DateTimeParser.ParseDate(endDate);
+            var startRentDate = this.dateTimeParserService.ParseDate(startDate);
+            var returnRentDate = this.dateTimeParserService.ParseDate(endDate);
 
             for (var date = startRentDate.Date; date <= returnRentDate.Date; date = date.AddDays(1))
             {

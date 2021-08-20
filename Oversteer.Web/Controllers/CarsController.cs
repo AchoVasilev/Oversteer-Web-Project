@@ -11,6 +11,7 @@
     using Oversteer.Services.Caches;
     using Oversteer.Services.Cars;
     using Oversteer.Services.Companies;
+    using Oversteer.Services.DateTime;
     using Oversteer.Web.Areas.Company.Controllers;
     using Oversteer.Web.Extensions;
     using Oversteer.Web.Infrastructure;
@@ -33,20 +34,22 @@
         private readonly IWebHostEnvironment environment;
         private readonly ILocationService locationService;
         private readonly ICarCacheService carCacheService;
+        private readonly IDateTimeParserService dateTimeParserService;
 
         public CarsController(
             ICarsService carService,
             ICompaniesService companiesService,
             IWebHostEnvironment environment,
             ILocationService locationService,
-            ICarCacheService carCacheService
-            )
+            ICarCacheService carCacheService, 
+            IDateTimeParserService dateTimeParserService)
         {
             this.carService = carService;
             this.companiesService = companiesService;
             this.environment = environment;
             this.locationService = locationService;
             this.carCacheService = carCacheService;
+            this.dateTimeParserService = dateTimeParserService;
         }
 
         [Authorize]
@@ -373,9 +376,9 @@
 
             var cars = this.carService.GetAvailableCars(model.PickUpDate, model.ReturnDate, model.PickUpLocation);
 
-            var startDate = DateTimeParser.ParseDate(model.PickUpDate);
+            var startDate = this.dateTimeParserService.ParseDate(model.PickUpDate);
 
-            var endDate = DateTimeParser.ParseDate(model.ReturnDate);
+            var endDate = this.dateTimeParserService.ParseDate(model.ReturnDate);
 
             var daysCount = (endDate - startDate).TotalDays;
 

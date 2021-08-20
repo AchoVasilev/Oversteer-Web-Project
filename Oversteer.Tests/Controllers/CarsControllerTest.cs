@@ -41,7 +41,7 @@
             carsMock.Setup(x => x.GetQueryCarsCounAsync(model))
                 .ReturnsAsync(5);
 
-            var carsController = new CarsController(carsMock.Object, companiesMock.Object, null, null, null);
+            var carsController = new CarsController(carsMock.Object, companiesMock.Object, null, null, null, null);
 
             ControllerExtensions.WithIdentity(carsController, "gosho", "pesho");
 
@@ -75,7 +75,7 @@
             carsMock.Setup(x => x.GetQueryCarsCounAsync(model))
                 .ReturnsAsync(5);
 
-            var carsController = new CarsController(carsMock.Object, companiesMock.Object, null, null, null);
+            var carsController = new CarsController(carsMock.Object, companiesMock.Object, null, null, null, null);
 
             ControllerExtensions.WithIdentity(carsController, "gosho", "pesho");
 
@@ -100,7 +100,7 @@
             carsMock.Setup(x => x.GetQueryCarsCounAsync(model))
                 .ReturnsAsync(model.TotalCars);
 
-            var carsController = new CarsController(carsMock.Object, null, null, null, null);
+            var carsController = new CarsController(carsMock.Object, null, null, null, null, null);
 
             ControllerExtensions.WithIdentity(carsController, "gosho", "pesho");
 
@@ -126,7 +126,7 @@
             carsMock.Setup(x => x.GetCarDetails(1))
                 .Returns(model);
 
-            var carsController = new CarsController(carsMock.Object, null, null, null, null);
+            var carsController = new CarsController(carsMock.Object, null, null, null, null, null);
 
             ControllerExtensions.WithIdentity(carsController, "gosho", "pesho");
 
@@ -152,7 +152,7 @@
             carsMock.Setup(x => x.GetCarDetails(1))
                 .Returns(model);
 
-            var carsController = new CarsController(carsMock.Object, null, null, null, null);
+            var carsController = new CarsController(carsMock.Object, null, null, null, null, null);
 
             ControllerExtensions.WithIdentity(carsController, "gosho", "pesho");
 
@@ -188,7 +188,7 @@
             var tempData = new TempDataDictionary(httpContext, Mock.Of<ITempDataProvider>());
             tempData["SessionVariable"] = "admin";
 
-            var carsController = new CarsController(carsMock.Object, companyMock.Object, null, null, null);
+            var carsController = new CarsController(carsMock.Object, companyMock.Object, null, null, null, null);
 
             carsController.TempData = tempData;
 
@@ -209,7 +209,7 @@
             companyMock.Setup(x => x.GetCurrentCompanyId("gosho"))
                 .Returns(0);
 
-            var carsController = new CarsController(null, companyMock.Object, null, null, null);
+            var carsController = new CarsController(null, companyMock.Object, null, null, null, null);
 
             ControllerExtensions.WithIdentity(carsController, "gosho", "pesho");
 
@@ -232,7 +232,7 @@
             carsMock.Setup(x => x.IsCarFromCompany(5, 1))
                 .Returns(false);
 
-            var carsController = new CarsController(carsMock.Object, companyMock.Object, null, null, null);
+            var carsController = new CarsController(carsMock.Object, companyMock.Object, null, null, null, null);
 
             ControllerExtensions.WithIdentity(carsController, "gosho", "pesho");
 

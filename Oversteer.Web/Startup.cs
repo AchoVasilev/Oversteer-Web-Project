@@ -26,6 +26,7 @@ namespace Oversteer.Web
     using Oversteer.Services.Companies.Account;
     using Oversteer.Services.Companies.OfferedService;
     using Oversteer.Services.Countries;
+    using Oversteer.Services.DateTime;
     using Oversteer.Services.EmailSenders;
     using Oversteer.Services.Feedbacks;
     using Oversteer.Services.Home;
@@ -102,7 +103,8 @@ namespace Oversteer.Web
                 .AddTransient<IOfferedServicesService, OfferedServicesService>()
                 .AddTransient<IFeedbackService, FeedbackService>()
                 .AddTransient<ICarCacheService, CarsCacheService>()
-                .AddTransient<ICarItemsService, CarItemsService>();
+                .AddTransient<ICarItemsService, CarItemsService>()
+                .AddTransient<IDateTimeParserService, DateTimeParserService>();
             
             //Configure MailKit
             services.AddTransient<IEmailSender, MailKitSender>();
