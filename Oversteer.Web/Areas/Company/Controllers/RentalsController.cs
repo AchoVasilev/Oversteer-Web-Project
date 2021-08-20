@@ -132,9 +132,16 @@
                 return RedirectToAction(nameof(this.All), "Rentals", new { area = "Company" });
             }
 
-            await this.rentingService
+            var isEdited = await this.rentingService
                 .EditRentAsync(inputModel.Id, inputModel.ClientFirstName, inputModel.ClientLastName,
                                                        inputModel.ClientUserEmail, inputModel.Price);
+
+            if (!isEdited)
+            {
+                this.TempData["Message"] = "There was an error and the rent was not edited successfully. Please try again.";
+
+                return RedirectToAction(nameof(this.All), "Rentals", new { area = "Company" });
+            }
 
             this.TempData["Message"] = "The rent was edited successfully.";
 
@@ -146,7 +153,7 @@
         {
             var userIsCompany = this.companiesService.UserIsCompany(this.User.GetId());
 
-            if (!userIsCompany && this.User.IsAdmin())
+            if (!userIsCompany && !this.User.IsAdmin())
             {
                 return this.RedirectToAction(nameof(CompaniesController.Create), "Companies", new { area = "Company" });
             }

@@ -7,11 +7,12 @@
     using Oversteer.Services.Rentals;
     using Oversteer.Web.ViewModels.Home;
 
-    public class CompanyDetailsViewComponent : ViewComponent
+    [ViewComponent(Name = "UserOrderBar")]
+    public class UserFinishedOrdersBarViewComponent : ViewComponent
     {
         private readonly IRentingService rentingService;
 
-        public CompanyDetailsViewComponent(IRentingService rentingService)
+        public UserFinishedOrdersBarViewComponent(IRentingService rentingService)
         {
             this.rentingService = rentingService;
         }
