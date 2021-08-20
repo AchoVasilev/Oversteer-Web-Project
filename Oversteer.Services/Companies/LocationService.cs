@@ -145,5 +145,10 @@
                         .ToListAsync()
                         .GetAwaiter()
                         .GetResult();
+
+        public async Task<bool> LocationIsFromCompanyAsync(int companyId, int locationId)
+            => await this.data.Locations
+                        .AnyAsync(x => x.Id == locationId && x.CompanyId == companyId);
+                        
     }
 }

@@ -10,8 +10,6 @@
 
     using Oversteer.Data.Models.Rentals;
     using Oversteer.Data.Models.Users;
-    using Oversteer.Services.Cars;
-    using Oversteer.Services.Companies;
     using Oversteer.Services.Feedbacks;
     using Oversteer.Services.Rentals;
     using Oversteer.Tests.Data;

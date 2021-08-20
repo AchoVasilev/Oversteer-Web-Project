@@ -1,10 +1,10 @@
-﻿using Oversteer.Tests.Mocks;
-using Oversteer.Web.Controllers.Api;
-
-using Xunit;
-
-namespace Oversteer.Tests.Controllers
+﻿namespace Oversteer.Tests.Controllers
 {
+    using Oversteer.Tests.Mocks;
+    using Oversteer.Web.Controllers.Api;
+
+    using Xunit;
+
     public class StatisticsApiControllerTest
     {
         [Fact]

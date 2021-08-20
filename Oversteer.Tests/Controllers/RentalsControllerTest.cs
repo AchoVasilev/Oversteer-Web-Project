@@ -1,30 +1,23 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Threading.Tasks;
-
-using AutoMapper;
-
-using Microsoft.AspNetCore.Mvc;
-
-using Moq;
-
-using Oversteer.Data.Models.Cars;
-using Oversteer.Data.Models.Rentals;
-using Oversteer.Services.Cars;
-using Oversteer.Services.Companies;
-using Oversteer.Services.Rentals;
-using Oversteer.Tests.Extensions;
-using Oversteer.Tests.Mocks;
-using Oversteer.Web.Controllers;
-using Oversteer.Web.ViewModels.Cars;
-using Oversteer.Web.ViewModels.Rents;
-
-using Xunit;
-
-using static Oversteer.Tests.ModelConstants.CarConstants;
-
-namespace Oversteer.Tests.Controllers
+﻿namespace Oversteer.Tests.Controllers
 {
+    using System;
+    using System.Collections.Generic;
+    using System.Threading.Tasks;
+
+    using Microsoft.AspNetCore.Mvc;
+
+    using Moq;
+
+    using Oversteer.Data.Models.Rentals;
+    using Oversteer.Services.Companies;
+    using Oversteer.Services.Rentals;
+    using Oversteer.Tests.Extensions;
+    using Oversteer.Tests.Mocks;
+    using Oversteer.Web.Controllers;
+    using Oversteer.Web.ViewModels.Rents;
+
+    using Xunit;
+
     public class RentalsControllerTest
     {
         [Fact]

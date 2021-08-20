@@ -17,6 +17,8 @@
 
         Task<bool> EditLocationAsync(int locationId, int countryId, string cityName, string addressName);
 
+        Task<bool> LocationIsFromCompanyAsync(int companyId, int locationId);
+
         ICollection<string> GetAllLocationNames();
 
         IEnumerable<LocationFormModel> GetCompanyLocations(int companyId);

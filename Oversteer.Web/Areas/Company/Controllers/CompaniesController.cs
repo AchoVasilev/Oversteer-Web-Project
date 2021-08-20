@@ -1,6 +1,5 @@
 ﻿namespace Oversteer.Web.Areas.Company.Controllers
 {
-    using System.Linq;
     using System.Threading.Tasks;
 
     using Microsoft.AspNetCore.Authorization;
@@ -123,12 +122,11 @@
                 return this.RedirectToAction(nameof(CompaniesController.Create), "Companies", new { area = "Company" });
             }
 
-            var company = await this.companiesService.DetailsAsync(companyId);
-            var locationIsFromCompany = company.Locations.Any(x => x.Id == id);
+            var locationIsFromCompany = await this.locationService.LocationIsFromCompanyAsync(companyId, id);
 
             if (!locationIsFromCompany && !this.User.IsAdmin())
             {
-                return this.Unauthorized();
+                return this.NotFound();
             }
 
             var model = await this.locationService.GetCurrentLocationAsync(id);

@@ -1,25 +1,24 @@
-﻿using System.Collections.Generic;
-using System.Threading.Tasks;
-
-using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.ViewFeatures;
-
-using Moq;
-
-using Oversteer.Data.Models.Cars;
-using Oversteer.Services.Cars;
-using Oversteer.Services.Companies;
-using Oversteer.Tests.Extensions;
-using Oversteer.Tests.Mocks;
-using Oversteer.Web.Controllers;
-using Oversteer.Web.Extensions;
-using Oversteer.Web.ViewModels.Cars;
-
-using Xunit;
-
-namespace Oversteer.Tests.Controllers
+﻿namespace Oversteer.Tests.Controllers
 {
+    using System.Threading.Tasks;
+
+    using Microsoft.AspNetCore.Http;
+    using Microsoft.AspNetCore.Mvc;
+    using Microsoft.AspNetCore.Mvc.ViewFeatures;
+
+    using Moq;
+
+    using Oversteer.Data.Models.Cars;
+    using Oversteer.Services.Cars;
+    using Oversteer.Services.Companies;
+    using Oversteer.Tests.Extensions;
+    using Oversteer.Tests.Mocks;
+    using Oversteer.Web.Controllers;
+    using Oversteer.Web.Extensions;
+    using Oversteer.Web.ViewModels.Cars;
+
+    using Xunit;
+
     public class CarsControllerTest
     {
         [Fact]

@@ -1,10 +1,10 @@
-﻿using System.Security.Claims;
-
-using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
-
-namespace Oversteer.Tests.Extensions
+﻿namespace Oversteer.Tests.Extensions
 {
+    using System.Security.Claims;
+
+    using Microsoft.AspNetCore.Http;
+    using Microsoft.AspNetCore.Mvc;
+
     public static class ControllerExtensions
     {
         public static T WithIdentity<T>(this T controller, string nameIdentifier, string name) where T : Controller
