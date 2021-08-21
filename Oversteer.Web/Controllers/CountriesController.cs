@@ -12,12 +12,10 @@
     public class CountriesController : Controller
     {
         private readonly ICountriesService countriesService;
-        private readonly ICitiesService citiesService;
 
-        public CountriesController(ICountriesService countriesService, ICitiesService citiesService)
+        public CountriesController(ICountriesService countriesService)
         {
             this.countriesService = countriesService;
-            this.citiesService = citiesService;
         }
 
         [Authorize]

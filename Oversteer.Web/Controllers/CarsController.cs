@@ -19,16 +19,10 @@
     using Oversteer.Web.ViewModels.Home;
 
     using static Oversteer.Data.Common.Constants.ErrorMessages;
+    using static Oversteer.Data.Common.Constants.WebConstants.Caching;
 
     public class CarsController : Controller
     {
-        private const string CarBrandsCacheKey = "carBrandsCacheKey";
-        private const string CarModelsCacheKey = "carModelsCacheKey";
-        private const string CarColorsCacheKey = "carColorsCacheKey";
-        private const string CarFuelTypesCacheKey = "carFuelTypesCacheKey";
-        private const string CarTransmissionTypesCacheKey = "carTransmissionTypesCacheKey";
-        private const string CarTypesCacheKey = "carTypesCacheKey";
-
         private readonly ICarsService carService;
         private readonly ICompaniesService companiesService;
         private readonly IWebHostEnvironment environment;
@@ -56,13 +50,12 @@
         public async Task<IActionResult> Add()
         {
             var userId = this.User.GetId();
+            var companyId = this.companiesService.GetCurrentCompanyId(userId);
 
-            if (!this.companiesService.UserIsCompany(userId))
+            if (companyId == 0)
             {
                 return this.RedirectToAction(nameof(CompaniesController.Create), "Companies", new { area = "Company" });
             }
-
-            var companyId = this.companiesService.GetCurrentCompanyId(userId);
 
             var locationsCount = (await companiesService.GetCompanyLocations(companyId)).Count;
 
@@ -78,9 +71,9 @@
                 Brands = this.carCacheService.CacheCarBrands(CarBrandsCacheKey),
                 CarModels = this.carCacheService.CacheCarModels(CarModelsCacheKey),
                 Colors = this.carCacheService.CacheCarColors(CarColorsCacheKey),
-                FuelTypes = this.carService.GetFuelTypes(),
-                Transmissions = this.carService.GetTransmissionTypes(),
-                CarTypes = this.carService.GetCarTypes(),
+                FuelTypes = this.carCacheService.CacheCarFuelTypes(CarFuelTypesCacheKey),
+                Transmissions = this.carCacheService.CacheCarTransmissionTypes(CarTransmissionTypesCacheKey),
+                CarTypes = this.carCacheService.CacheCarTypes(CarTypesCacheKey),
                 Locations = this.locationService.GetCompanyLocations(companyId)
             });
         }
@@ -93,7 +86,7 @@
 
             var companyId = this.companiesService.GetCurrentCompanyId(currentUserId);
 
-            if (companyId == 0 && this.User.IsAdmin())
+            if (companyId == 0 && !this.User.IsAdmin())
             {
                 return this.RedirectToAction(nameof(CompaniesController.Create), "Companies", new { area = "Company" });
             }
@@ -130,12 +123,12 @@
 
             if (!ModelState.IsValid)
             {
-                carModel.Brands = this.carService.GetCarBrands();
-                carModel.CarModels = this.carService.GetCarModels();
-                carModel.Colors = this.carService.GetCarColors();
-                carModel.FuelTypes = this.carService.GetFuelTypes();
-                carModel.Transmissions = this.carService.GetTransmissionTypes();
-                carModel.CarTypes = this.carService.GetCarTypes();
+                carModel.Brands = this.carCacheService.CacheCarBrands(CarBrandsCacheKey);
+                carModel.CarModels = this.carCacheService.CacheCarModels(CarModelsCacheKey);
+                carModel.Colors = this.carCacheService.CacheCarColors(CarColorsCacheKey);
+                carModel.FuelTypes = this.carCacheService.CacheCarFuelTypes(CarFuelTypesCacheKey);
+                carModel.Transmissions = this.carCacheService.CacheCarTransmissionTypes(CarTransmissionTypesCacheKey);
+                carModel.CarTypes = this.carCacheService.CacheCarTypes(CarTypesCacheKey);
                 carModel.Locations = this.locationService.GetCompanyLocations(companyId);
 
                 return this.View(carModel);
@@ -161,7 +154,9 @@
         {
             var userId = this.User.GetId();
 
-            if (!this.companiesService.UserIsCompany(userId) && !User.IsAdmin())
+            var companyId = this.companiesService.GetCurrentCompanyId(userId);
+
+            if (companyId == 0 && !User.IsAdmin())
             {
                 return this.RedirectToAction(nameof(CompaniesController.Create), "Companies", new { area = "Company" });
             }
@@ -178,16 +173,14 @@
                 return this.Unauthorized();
             }
 
-            var companyId = this.companiesService.GetCurrentCompanyId(userId);
-
             var carForm = new CarFormModel()
             {
                 Brands = this.carCacheService.CacheCarBrands(CarBrandsCacheKey),
                 CarModels = this.carCacheService.CacheCarModels(CarModelsCacheKey),
                 Colors = this.carCacheService.CacheCarColors(CarColorsCacheKey),
-                FuelTypes = this.carService.GetFuelTypes(),
-                Transmissions = this.carService.GetTransmissionTypes(),
-                CarTypes = this.carService.GetCarTypes(),
+                FuelTypes = this.carCacheService.CacheCarFuelTypes(CarFuelTypesCacheKey),
+                Transmissions = this.carCacheService.CacheCarTransmissionTypes(CarTransmissionTypesCacheKey),
+                CarTypes = this.carCacheService.CacheCarTypes(CarTypesCacheKey),
                 Locations = this.locationService.GetCompanyLocations(companyId)
             };
 
@@ -202,12 +195,12 @@
 
             var companyId = this.companiesService.GetCurrentCompanyId(currentUserId);
 
-            if (!this.companiesService.UserIsCompany(currentUserId) && !User.IsAdmin())
+            if (companyId == 0 && !User.IsAdmin())
             {
                 return this.RedirectToAction(nameof(CompaniesController.Create), "Companies", new { area = "Company" });
             }
 
-            if (this.carService.IsCarFromCompany(id, companyId))
+            if (!this.carService.IsCarFromCompany(id, companyId))
             {
                 return NotFound();
             }
@@ -247,9 +240,9 @@
                 carModel.Brands = this.carCacheService.CacheCarBrands(CarBrandsCacheKey);
                 carModel.CarModels = this.carCacheService.CacheCarModels(CarModelsCacheKey);
                 carModel.Colors = this.carCacheService.CacheCarColors(CarColorsCacheKey);
-                carModel.FuelTypes = this.carService.GetFuelTypes();
-                carModel.Transmissions = this.carService.GetTransmissionTypes();
-                carModel.CarTypes = this.carService.GetCarTypes();
+                carModel.FuelTypes = this.carCacheService.CacheCarFuelTypes(CarFuelTypesCacheKey);
+                carModel.Transmissions = this.carCacheService.CacheCarTransmissionTypes(CarTransmissionTypesCacheKey);
+                carModel.CarTypes = this.carCacheService.CacheCarTypes(CarTypesCacheKey);
                 carModel.Locations = this.locationService.GetCompanyLocations(companyId);
 
                 return this.View(carModel);

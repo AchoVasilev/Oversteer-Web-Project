@@ -41,7 +41,7 @@
         }
 
         [Fact]
-        public void CarsShouldReturnNotFoundIfCompanyIdIsWrong()
+        public void CarsShouldReturnNotFoundIfCarsIdIsWrong()
         {
             var carsController = new CarsController(null, null);
 
