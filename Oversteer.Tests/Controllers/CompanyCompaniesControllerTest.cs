@@ -41,7 +41,7 @@
 
             var companiesController = new CompaniesController(companiesMock.Object, null, null);
 
-            ControllerExtensions.WithIdentity(companiesController, "gosho", "pesho");
+            ControllerExtensions.WithIdentity(companiesController, "gosho", "pesho", "pipi");
 
             var result = await companiesController.Create(expected);
 
@@ -66,7 +66,7 @@
 
             var rentalsController = new CompaniesController(companiesMock.Object, null, null);
 
-            ControllerExtensions.WithIdentity(rentalsController, "gosho", "pesho");
+            ControllerExtensions.WithIdentity(rentalsController, "gosho", "pesho", "pipi");
 
             var result = await rentalsController.Create(expected);
 
@@ -112,7 +112,7 @@
 
             companiesController.TempData = tempData;
 
-            ControllerExtensions.WithIdentity(companiesController, "gosho", "pesho");
+            ControllerExtensions.WithIdentity(companiesController, "gosho", "pesho", "pipi");
 
             var result = await companiesController.AddLocation(expected);
 
@@ -136,7 +136,7 @@
 
             var companiesController = new CompaniesController(companiesMock.Object, null, null);
 
-            ControllerExtensions.WithIdentity(companiesController, "gosho", "pesho");
+            ControllerExtensions.WithIdentity(companiesController, "gosho", "pesho", "pipi");
 
             var result = await companiesController.AddLocation(expected);
 
@@ -161,7 +161,7 @@
 
             var companiesController = new CompaniesController(companiesMock.Object, locationMock.Object, null);
 
-            ControllerExtensions.WithIdentity(companiesController, "gosho", "pesho");
+            ControllerExtensions.WithIdentity(companiesController, "gosho", "pesho", "pipi");
 
             var result = companiesController.MyLocations();
 
@@ -183,7 +183,7 @@
 
             var companiesController = new CompaniesController(companiesMock.Object, null, null);
 
-            ControllerExtensions.WithIdentity(companiesController, "gosho", "pesho");
+            ControllerExtensions.WithIdentity(companiesController, "gosho", "pesho", "pipi");
 
             var result = companiesController.MyLocations();
 
@@ -214,7 +214,7 @@
 
             companiesController.TempData = tempData;
 
-            ControllerExtensions.WithIdentity(companiesController, "gosho", "pesho");
+            ControllerExtensions.WithIdentity(companiesController, "gosho", "pesho", "pipi");
 
             var result = await companiesController.DeleteLocation(1);
 
@@ -236,7 +236,7 @@
 
             var companiesController = new CompaniesController(companiesMock.Object, null, null);
 
-            ControllerExtensions.WithIdentity(companiesController, "gosho", "pesho");
+            ControllerExtensions.WithIdentity(companiesController, "gosho", "pesho", "pipi");
 
             var result = await companiesController.DeleteLocation(1);
 
@@ -259,7 +259,7 @@
 
             var companiesController = new CompaniesController(companiesMock.Object, null, null);
 
-            ControllerExtensions.WithIdentity(companiesController, "gosho", "pesho");
+            ControllerExtensions.WithIdentity(companiesController, "gosho", "pesho", "pipi");
 
             var result = await companiesController.EditLocation(1);
 
@@ -286,7 +286,7 @@
 
             var companiesController = new CompaniesController(companiesMock.Object, locationsMock.Object, null);
 
-            ControllerExtensions.WithIdentity(companiesController, "gosho", "pesho");
+            ControllerExtensions.WithIdentity(companiesController, "gosho", "pesho", "pipi");
 
             var result = await companiesController.EditLocation(1);
 
@@ -313,7 +313,7 @@
 
             var companiesController = new CompaniesController(companiesMock.Object, locationsMock.Object, null);
 
-            ControllerExtensions.WithIdentity(companiesController, "gosho", "pesho");
+            ControllerExtensions.WithIdentity(companiesController, "gosho", "pesho", "pipi");
 
             var result = await companiesController.EditLocation(1);
 
@@ -347,7 +347,7 @@
 
             companiesController.TempData = tempData;
 
-            ControllerExtensions.WithIdentity(companiesController, "gosho", "pesho");
+            ControllerExtensions.WithIdentity(companiesController, "gosho", "pesho", "pipi");
 
             var result = await companiesController.EditLocation(expected);
 
@@ -374,7 +374,7 @@
 
             var companiesController = new CompaniesController(companiesMock.Object, locationsMock.Object, null);
 
-            ControllerExtensions.WithIdentity(companiesController, "gosho", "pesho");
+            ControllerExtensions.WithIdentity(companiesController, "gosho", "pesho", "pipi");
 
             var result = await companiesController.EditLocation(expected);
 
@@ -409,7 +409,7 @@
 
             companiesController.TempData = tempData;
 
-            ControllerExtensions.WithIdentity(companiesController, "gosho", "pesho");
+            ControllerExtensions.WithIdentity(companiesController, "gosho", "pesho", "pipi");
 
             var result = await companiesController.EditLocation(expected);
 

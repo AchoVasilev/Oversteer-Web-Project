@@ -1,4 +1,4 @@
-﻿namespace Oversteer.Tests.Mocks
+﻿namespace Oversteer.Tests.Mock
 {
 
     using Moq;

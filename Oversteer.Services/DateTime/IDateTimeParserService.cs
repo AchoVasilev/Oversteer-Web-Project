@@ -4,6 +4,8 @@
 
     public interface IDateTimeParserService
     {
-        DateTime ParseDate(string date);
+        DateTime TryParseExact(string date);
+
+        DateTime Parse(string date);
     }
 }

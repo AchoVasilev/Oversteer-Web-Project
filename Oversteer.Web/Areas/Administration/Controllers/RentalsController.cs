@@ -5,15 +5,11 @@
 
     using AutoMapper;
 
-    using Microsoft.AspNetCore.Authorization;
     using Microsoft.AspNetCore.Mvc;
 
     using Oversteer.Services.Rentals;
     using Oversteer.Web.ViewModels.Rents;
 
-    using static Oversteer.Data.Common.Constants.WebConstants;
-
-    [Authorize(Roles = AdministratorRoleName)]
     public class RentalsController : AdministrationController
     {
         private readonly IRentingService rentingService;

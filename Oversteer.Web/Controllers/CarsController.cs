@@ -369,9 +369,9 @@
 
             var cars = this.carService.GetAvailableCars(model.PickUpDate, model.ReturnDate, model.PickUpLocation);
 
-            var startDate = this.dateTimeParserService.ParseDate(model.PickUpDate);
+            var startDate = this.dateTimeParserService.TryParseExact(model.PickUpDate);
 
-            var endDate = this.dateTimeParserService.ParseDate(model.ReturnDate);
+            var endDate = this.dateTimeParserService.TryParseExact(model.ReturnDate);
 
             var daysCount = (endDate - startDate).TotalDays;
 

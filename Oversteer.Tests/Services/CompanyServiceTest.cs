@@ -6,7 +6,8 @@
     using Oversteer.Data.Models.Rentals;
     using Oversteer.Data.Models.Users;
     using Oversteer.Services.Companies;
-    using Oversteer.Tests.Mocks;
+    using Oversteer.Tests.Mock;
+    using Oversteer.Web.ViewModels.Companies;
 
     using Xunit;
 
@@ -106,6 +107,28 @@
             var result = await companyService.GetCompanyLocations(5);
 
             Assert.Equal(2, result.Count);
+        }
+
+        [Fact]
+        public async Task CreateCompanyAsyncShouldCreateAUserAsACompany()
+        {
+            var model = new CreateCompanyFormModel
+            {
+                CompanyName = "PeshoCO",
+                Description = "Peshopeshopeshopeshopesho",
+                PhoneNumber = "0988878263",
+                CompanyServices = new List<CreateCompanyServiceFormModel>()
+            };
+            
+            using var data = DatabaseMock.Instance;
+            var mapperMock = MapperMock.Instance;
+
+            var service = new CompaniesService(data, mapperMock);
+
+            var result = await service.CreateCompanyAsync(model, "gosho");
+
+            Assert.NotNull(result);
+            Assert.IsType<Company>(result);
         }
     }
 }

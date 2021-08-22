@@ -4,7 +4,7 @@
 
     using Oversteer.Data.Models.Rentals;
     using Oversteer.Services.Companies;
-    using Oversteer.Tests.Mocks;
+    using Oversteer.Tests.Mock;
 
     using Xunit;
 

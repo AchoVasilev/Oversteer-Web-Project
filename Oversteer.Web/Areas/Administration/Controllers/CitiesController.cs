@@ -2,15 +2,11 @@
 {
     using System.Threading.Tasks;
 
-    using Microsoft.AspNetCore.Authorization;
     using Microsoft.AspNetCore.Mvc;
 
     using Oversteer.Services.Cities;
     using Oversteer.Web.ViewModels.Cities;
 
-    using static Oversteer.Data.Common.Constants.WebConstants;
-
-    [Authorize(Roles = AdministratorRoleName)]
     public class CitiesController : AdministrationController
     {
         private readonly ICitiesService citiesService;

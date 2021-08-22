@@ -4,14 +4,10 @@
 
     using AutoMapper;
 
-    using Microsoft.AspNetCore.Authorization;
     using Microsoft.AspNetCore.Mvc;
 
     using Oversteer.Services.Feedbacks;
 
-    using static Oversteer.Data.Common.Constants.WebConstants;
-
-    [Authorize(Roles = AdministratorRoleName)]
     public class FeedbacksController : AdministrationController
     {
         private readonly IFeedbackService feedbackService;

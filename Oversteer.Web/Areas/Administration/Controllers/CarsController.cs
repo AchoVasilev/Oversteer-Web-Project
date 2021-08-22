@@ -2,8 +2,6 @@
 {
     using System;
     using System.Threading.Tasks;
-
-    using Microsoft.AspNetCore.Authorization;
     using Microsoft.AspNetCore.Mvc;
 
     using Oversteer.Services.Caches;
@@ -12,12 +10,9 @@
     using Oversteer.Web.Extensions;
     using Oversteer.Web.Infrastructure;
     using Oversteer.Web.ViewModels.Cars;
-
-    using static Oversteer.Data.Common.Constants.WebConstants;
     using static Oversteer.Data.Common.Constants.WebConstants.Caching;
     using static Oversteer.Data.Common.Constants.ErrorMessages;
 
-    [Authorize(Roles = AdministratorRoleName)]
     public class CarsController : AdministrationController
     {
         private readonly ICarsService carsService;
@@ -51,7 +46,7 @@
 
         public IActionResult Edit(int id, string information)
         {
-            if (!User.IsAdmin())
+            if (!this.User.IsAdmin())
             {
                 return Unauthorized();
             }
@@ -84,9 +79,7 @@
         {
             var currentUserId = this.User.GetId();
 
-            var companyId = this.companiesService.GetCurrentCompanyId(currentUserId);
-
-            if (User.IsAdmin())
+            if (!this.User.IsAdmin())
             {
                 return Unauthorized();
             }
@@ -120,6 +113,8 @@
             {
                 this.ModelState.AddModelError(nameof(carModel.ColorId), CarColorDoesntExist);
             }
+
+            var companyId = this.companiesService.GetCurrentCompanyId(currentUserId);
 
             if (!ModelState.IsValid)
             {
@@ -173,9 +168,10 @@
         public async Task<IActionResult> Delete(int id)
         {
             var userId = this.User.GetId();
-            var companyId = this.companiesService.GetCurrentCompanyId(userId);
 
-            if (User.IsAdmin())
+            var companyId = await this.carsService.GetCompanyByCarAsync(id);
+
+            if (!this.User.IsAdmin())
             {
                 return Unauthorized();
             }

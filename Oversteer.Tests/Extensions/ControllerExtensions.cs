@@ -7,15 +7,15 @@
 
     public static class ControllerExtensions
     {
-        public static T WithIdentity<T>(this T controller, string nameIdentifier, string name) where T : Controller
+        public static T WithIdentity<T>(this T controller, string nameIdentifier, string name, string role) where T : Controller
         {
             controller.EnsureHttpContext();
 
             var principal = new ClaimsPrincipal(new ClaimsIdentity(new Claim[]
                             {
                                 new Claim(ClaimTypes.NameIdentifier, nameIdentifier),
-                                new Claim(ClaimTypes.Name, name)
-                                // other required and custom claims
+                                new Claim(ClaimTypes.Name, name),
+                                new Claim(ClaimTypes.Role, role)
                             }, "TestAuthentication"));
 
             controller.ControllerContext.HttpContext.User = principal;

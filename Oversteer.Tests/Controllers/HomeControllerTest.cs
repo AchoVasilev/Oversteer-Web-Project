@@ -7,7 +7,7 @@
     using Oversteer.Services.Companies;
     using Oversteer.Services.Home;
     using Oversteer.Tests.Data;
-    using Oversteer.Tests.Mocks;
+    using Oversteer.Tests.Mock;
     using Oversteer.Web.Controllers;
     using Oversteer.Web.ViewModels.Home;
 

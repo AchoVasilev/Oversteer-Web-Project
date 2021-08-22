@@ -131,8 +131,8 @@
         {
             var dates = new List<DateTime>();
 
-            var startRentDate = this.dateTimeParserService.ParseDate(startDate);
-            var returnRentDate = this.dateTimeParserService.ParseDate(endDate);
+            var startRentDate = this.dateTimeParserService.TryParseExact(startDate);
+            var returnRentDate = this.dateTimeParserService.TryParseExact(endDate);
 
             for (var date = startRentDate.Date; date <= returnRentDate.Date; date = date.AddDays(1))
             {
@@ -344,7 +344,7 @@
 
         public async Task<CarDto> GetCarByIdAsync(int carId)
             => await this.data.Cars
-                        .Where(x => x.Id == carId)
+                        .Where(x => x.Id == carId && !x.IsDeleted)
                         .ProjectTo<CarDto>(this.mapper.ConfigurationProvider)
                         .FirstOrDefaultAsync();
 
@@ -380,7 +380,7 @@
 
         public bool GetFuelTypeId(int id)
         {
-            if (!this.data.CarBrands.Any(x => x.Id == id))
+            if (!this.data.Fuels.Any(x => x.Id == id))
             {
                 return false;
             }

@@ -32,7 +32,7 @@
                 .Returns(model);
 
             var serviceController = new ServicesController(servicesMock.Object, companiesMock.Object);
-            ControllerExtensions.WithIdentity(serviceController, "gosho", "pesho");
+            ControllerExtensions.WithIdentity(serviceController, "gosho", "pesho", "pipi");
 
             var result = serviceController.MyServices();
 
@@ -51,7 +51,7 @@
                 .Returns(0);
 
             var serviceController = new ServicesController(null, companiesMock.Object);
-            ControllerExtensions.WithIdentity(serviceController, "gosho", "pesho");
+            ControllerExtensions.WithIdentity(serviceController, "gosho", "pesho", "pipi");
 
             var result = serviceController.MyServices();
 
@@ -77,7 +77,7 @@
                 .ReturnsAsync(true);
 
             var serviceController = new ServicesController(serviceMock.Object, companiesMock.Object);
-            ControllerExtensions.WithIdentity(serviceController, "gosho", "pesho");
+            ControllerExtensions.WithIdentity(serviceController, "gosho", "pesho", "pipi");
 
             var httpContext = new DefaultHttpContext();
             var tempData = new TempDataDictionary(httpContext, Mock.Of<ITempDataProvider>());
@@ -104,7 +104,7 @@
 
             var serviceController = new ServicesController(null, companiesMock.Object);
 
-            ControllerExtensions.WithIdentity(serviceController, "gosho", "pesho");
+            ControllerExtensions.WithIdentity(serviceController, "gosho", "pesho", "pipi");
 
             var result = await serviceController.Delete(1);
 
@@ -135,7 +135,7 @@
 
             serviceController.TempData = tempData;
 
-            ControllerExtensions.WithIdentity(serviceController, "gosho", "pesho");
+            ControllerExtensions.WithIdentity(serviceController, "gosho", "pesho", "pipi");
 
             var result = await serviceController.Delete(1);
 
@@ -159,7 +159,7 @@
 
             var serviceController = new ServicesController(serviceMock.Object, companiesMock.Object);
 
-            ControllerExtensions.WithIdentity(serviceController, "gosho", "pesho");
+            ControllerExtensions.WithIdentity(serviceController, "gosho", "pesho", "pipi");
             var httpContext = new DefaultHttpContext();
             var tempData = new TempDataDictionary(httpContext, Mock.Of<ITempDataProvider>());
             tempData["SessionVariable"] = "admin";
@@ -184,7 +184,7 @@
                 .Returns(1);
 
             var serviceController = new ServicesController(null, companiesMock.Object);
-            ControllerExtensions.WithIdentity(serviceController, "gosho", "pesho");
+            ControllerExtensions.WithIdentity(serviceController, "gosho", "pesho", "pipi");
 
             var result = serviceController.Add();
 
@@ -201,7 +201,7 @@
 
             var serviceController = new ServicesController(null, companiesMock.Object);
 
-            ControllerExtensions.WithIdentity(serviceController, "gosho", "pesho");
+            ControllerExtensions.WithIdentity(serviceController, "gosho", "pesho", "pipi");
 
             var result = serviceController.Add();
 
@@ -225,7 +225,7 @@
 
             var controller = new ServicesController(serviceMock.Object, companiesMock.Object);
 
-            ControllerExtensions.WithIdentity(controller, "gosho", "pesho");
+            ControllerExtensions.WithIdentity(controller, "gosho", "pesho", "pipi");
 
             var result = await controller.Add(serviceModel);
 
@@ -249,7 +249,7 @@
 
             var controller = new ServicesController(serviceMock.Object, companiesMock.Object);
 
-            ControllerExtensions.WithIdentity(controller, "gosho", "pesho");
+            ControllerExtensions.WithIdentity(controller, "gosho", "pesho", "pipi");
 
             var result = await controller.Add(serviceModel);
 
@@ -275,7 +275,7 @@
                 .ReturnsAsync(expected);
 
             var serviceController = new ServicesController(serviceMock.Object, companiesMock.Object);
-            ControllerExtensions.WithIdentity(serviceController, "gosho", "pesho");
+            ControllerExtensions.WithIdentity(serviceController, "gosho", "pesho", "pipi");
 
             var httpContext = new DefaultHttpContext();
             var tempData = new TempDataDictionary(httpContext, Mock.Of<ITempDataProvider>());
@@ -302,7 +302,7 @@
 
             var controller = new ServicesController(serviceMock.Object, companiesMock.Object);
 
-            ControllerExtensions.WithIdentity(controller, "gosho", "pesho");
+            ControllerExtensions.WithIdentity(controller, "gosho", "pesho", "pipi");
 
             var result = await controller.Edit(1);
 
@@ -327,7 +327,7 @@
             serviceMock.Setup(x => x.GetServiceAsync(1, 1));
 
             var serviceController = new ServicesController(serviceMock.Object, companiesMock.Object);
-            ControllerExtensions.WithIdentity(serviceController, "gosho", "pesho");
+            ControllerExtensions.WithIdentity(serviceController, "gosho", "pesho", "pipi");
 
             var httpContext = new DefaultHttpContext();
             var tempData = new TempDataDictionary(httpContext, Mock.Of<ITempDataProvider>());
@@ -356,7 +356,7 @@
             var serviceMock = new Mock<IOfferedServicesService>();
 
             var serviceController = new ServicesController(serviceMock.Object, companiesMock.Object);
-            ControllerExtensions.WithIdentity(serviceController, "gosho", "pesho");
+            ControllerExtensions.WithIdentity(serviceController, "gosho", "pesho", "pipi");
 
             var result = await serviceController.Edit(serviceModel);
 
@@ -380,7 +380,7 @@
 
             var controller = new ServicesController(serviceMock.Object, companiesMock.Object);
 
-            ControllerExtensions.WithIdentity(controller, "gosho", "pesho");
+            ControllerExtensions.WithIdentity(controller, "gosho", "pesho", "pipi");
 
             var result = await controller.Edit(serviceModel);
 

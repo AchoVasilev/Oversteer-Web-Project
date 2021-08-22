@@ -50,9 +50,8 @@
                         .ProjectTo<CompanyDetailsFormModel>(this.mapper.ConfigurationProvider)
                         .FirstOrDefaultAsync();
 
-        public IEnumerable<ListCarFormModel> AllCompanyCars(int page, int itemsPerPage, int companyId)
-        {
-            return this.data.Cars
+        public IEnumerable<ListCarFormModel> AllCompanyCars(int page, int itemsPerPage, int companyId) 
+            => this.data.Cars
                                 .Where(x => !x.IsDeleted && x.CompanyId == companyId)
                                 .AsQueryable()
                                 .OrderBy(x => x.Id)
@@ -60,7 +59,6 @@
                                 .Take(itemsPerPage)
                                 .ProjectTo<ListCarFormModel>(this.mapper.ConfigurationProvider)
                                 .ToList();
-        }
 
         public async Task<List<string>> GetCompanyLocations(int companyId)
             => await this.data.Locations

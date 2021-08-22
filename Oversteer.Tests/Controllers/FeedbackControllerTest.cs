@@ -13,7 +13,8 @@
     using Oversteer.Services.Feedbacks;
     using Oversteer.Services.Rentals;
     using Oversteer.Tests.Data;
-    using Oversteer.Tests.Mocks;
+    using Oversteer.Tests.Extensions;
+    using Oversteer.Tests.Mock;
     using Oversteer.Web.Controllers;
     using Oversteer.Web.ViewModels.Feedbacks;
 
@@ -114,6 +115,28 @@
             var result = await feedBackController.Create(model);
 
             Assert.IsType<RedirectToActionResult>(result);
+        }
+
+        [Fact]
+        public async Task CreateShouldRedirectToCreateeWithInputId()
+        {
+            var model = new FeedbackInputModel
+            {
+                RentId = "goshoghosho",
+                Comment = "peshopeshopesho",
+                Rating = 5
+            };
+
+            var controller = new FeedbacksController(null, null);
+
+            ControllerExtensions.WithIdentity(controller, "gosho", "pesho", "pipi");
+            controller.ModelState.AddModelError("test", "test");
+            var result = await controller.Create(model);
+
+            Assert.NotNull(result);
+            var route = Assert.IsType<RedirectToActionResult>(result);
+
+            Assert.Equal("Create", route.ActionName);
         }
 
         private static ClaimsPrincipal GetUser(string identifier, string name)

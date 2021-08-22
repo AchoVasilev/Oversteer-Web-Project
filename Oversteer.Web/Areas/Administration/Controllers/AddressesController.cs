@@ -7,7 +7,6 @@
     using Oversteer.Services.Cities;
     using Oversteer.Web.ViewModels.Cities;
 
-    [Area("Administration")]
     public class AddressesController : Controller
     {
         private readonly ICitiesService citiesService;
@@ -35,9 +34,9 @@
                 return this.View(model);
             }
 
-            var isEdited = await this.citiesService.EditCityAsync(model.Id, model.Name);
+            var isEdited = await this.citiesService.EditCityAsync(model.CityId, model.Name);
 
-            if (isEdited)
+            if (!isEdited)
             {
                 return NotFound();
             }

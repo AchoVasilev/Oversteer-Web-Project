@@ -2,15 +2,11 @@
 {
     using System.Threading.Tasks;
 
-    using Microsoft.AspNetCore.Authorization;
     using Microsoft.AspNetCore.Mvc;
 
     using Oversteer.Services.Countries;
     using Oversteer.Web.ViewModels.Countries;
 
-    using static Oversteer.Data.Common.Constants.WebConstants;
-
-    [Authorize(Roles = AdministratorRoleName)]
     public class CountriesController : AdministrationController
     {
         private readonly ICountriesService countriesService;

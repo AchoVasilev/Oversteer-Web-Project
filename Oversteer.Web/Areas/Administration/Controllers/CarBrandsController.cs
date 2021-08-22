@@ -2,15 +2,11 @@
 {
     using System.Threading.Tasks;
 
-    using Microsoft.AspNetCore.Authorization;
     using Microsoft.AspNetCore.Mvc;
 
     using Oversteer.Services.Cars;
     using Oversteer.Web.ViewModels.Cars.CarItems;
 
-    using static Oversteer.Data.Common.Constants.WebConstants;
-
-    [Authorize(Roles = AdministratorRoleName)]
     public class CarBrandsController : AdministrationController
     {
         private readonly ICarItemsService carItemsService;
@@ -47,7 +43,7 @@
 
             var isEdited = await this.carItemsService.EditBrandAsync(model);
 
-            if (isEdited)
+            if (!isEdited)
             {
                 return BadRequest();
             }

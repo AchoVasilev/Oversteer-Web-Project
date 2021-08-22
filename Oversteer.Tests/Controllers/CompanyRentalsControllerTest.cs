@@ -13,7 +13,7 @@
     using Oversteer.Services.Companies;
     using Oversteer.Services.Rentals;
     using Oversteer.Tests.Extensions;
-    using Oversteer.Tests.Mocks;
+    using Oversteer.Tests.Mock;
     using Oversteer.Web.Areas.Company.Controllers;
     using Oversteer.Web.ViewModels.Rents;
 
@@ -40,7 +40,7 @@
 
             rentalsController.TempData = tempData;
 
-            ControllerExtensions.WithIdentity(rentalsController, "gosho", "pesho");
+            ControllerExtensions.WithIdentity(rentalsController, "gosho", "pesho", "pipi");
 
             var result = await rentalsController.Cancel("asd");
 
@@ -63,7 +63,7 @@
 
             var rentalsController = new RentalsController(null, null, companiesMock.Object);
 
-            ControllerExtensions.WithIdentity(rentalsController, "gosho", "pesho");
+            ControllerExtensions.WithIdentity(rentalsController, "gosho", "pesho", "pipi");
 
             var httpContext = new DefaultHttpContext();
             var tempData = new TempDataDictionary(httpContext, Mock.Of<ITempDataProvider>());
@@ -94,7 +94,7 @@
                 .ReturnsAsync(false);
 
             var rentalsController = new RentalsController(rentsMock.Object, null, companiesMock.Object);
-            ControllerExtensions.WithIdentity(rentalsController, "gosho", "pesho");
+            ControllerExtensions.WithIdentity(rentalsController, "gosho", "pesho", "pipi");
 
             var httpContext = new DefaultHttpContext();
             var tempData = new TempDataDictionary(httpContext, Mock.Of<ITempDataProvider>());
@@ -132,7 +132,7 @@
 
             rentalsController.TempData = tempData;
 
-            ControllerExtensions.WithIdentity(rentalsController, "gosho", "pesho");
+            ControllerExtensions.WithIdentity(rentalsController, "gosho", "pesho", "pipi");
 
             var result = await rentalsController.Delete("asd");
 
@@ -155,7 +155,7 @@
 
             var rentalsController = new RentalsController(null, null, companiesMock.Object);
 
-            ControllerExtensions.WithIdentity(rentalsController, "gosho", "pesho");
+            ControllerExtensions.WithIdentity(rentalsController, "gosho", "pesho", "pipi");
 
             var result = await rentalsController.Delete("asd");
 
@@ -181,7 +181,7 @@
                 .ReturnsAsync(false);
 
             var rentalsController = new RentalsController(rentsMock.Object, null, companiesMock.Object);
-            ControllerExtensions.WithIdentity(rentalsController, "gosho", "pesho");
+            ControllerExtensions.WithIdentity(rentalsController, "gosho", "pesho", "pipi");
 
             var httpContext = new DefaultHttpContext();
             var tempData = new TempDataDictionary(httpContext, Mock.Of<ITempDataProvider>());
@@ -219,7 +219,7 @@
 
             rentalsController.TempData = tempData;
 
-            ControllerExtensions.WithIdentity(rentalsController, "gosho", "pesho");
+            ControllerExtensions.WithIdentity(rentalsController, "gosho", "pesho", "pipi");
 
             var result = await rentalsController.Finish("asd");
 
@@ -242,7 +242,7 @@
 
             var rentalsController = new RentalsController(null, null, companiesMock.Object);
 
-            ControllerExtensions.WithIdentity(rentalsController, "gosho", "pesho");
+            ControllerExtensions.WithIdentity(rentalsController, "gosho", "pesho", "pipi");
 
             var result = await rentalsController.Finish("asd");
 
@@ -268,7 +268,7 @@
                 .ReturnsAsync(false);
 
             var rentalsController = new RentalsController(rentsMock.Object, null, companiesMock.Object);
-            ControllerExtensions.WithIdentity(rentalsController, "gosho", "pesho");
+            ControllerExtensions.WithIdentity(rentalsController, "gosho", "pesho", "pipi");
 
             var httpContext = new DefaultHttpContext();
             var tempData = new TempDataDictionary(httpContext, Mock.Of<ITempDataProvider>());
@@ -304,7 +304,7 @@
 
             var rentalsController = new RentalsController(rentingMock.Object, mapperMock, companiesMock.Object);
 
-            ControllerExtensions.WithIdentity(rentalsController, "gosho", "pesho");
+            ControllerExtensions.WithIdentity(rentalsController, "gosho", "pesho", "pipi");
 
             var result = await rentalsController.Edit("asd");
 
@@ -324,7 +324,7 @@
 
             var rentalsController = new RentalsController(null, null, companiesMock.Object);
 
-            ControllerExtensions.WithIdentity(rentalsController, "gosho", "pesho");
+            ControllerExtensions.WithIdentity(rentalsController, "gosho", "pesho", "pipi");
 
             var result = await rentalsController.Edit("asd");
 
@@ -349,7 +349,7 @@
             rentsMock.Setup(x => x.GetRentByIdAsync("asd"));
 
             var rentalsController = new RentalsController(rentsMock.Object, null, companiesMock.Object);
-            ControllerExtensions.WithIdentity(rentalsController, "gosho", "pesho");
+            ControllerExtensions.WithIdentity(rentalsController, "gosho", "pesho", "pipi");
 
             var result = await rentalsController.Edit("asd");
 
@@ -374,7 +374,7 @@
 
             var rentalsController = new RentalsController(rentingMock.Object, null, null);
 
-            ControllerExtensions.WithIdentity(rentalsController, "gosho", "pesho");
+            ControllerExtensions.WithIdentity(rentalsController, "gosho", "pesho", "pipi");
 
             var httpContext = new DefaultHttpContext();
             var tempData = new TempDataDictionary(httpContext, Mock.Of<ITempDataProvider>());
@@ -404,7 +404,7 @@
 
             var rentalsController = new RentalsController(rentingMock.Object, null, null);
 
-            ControllerExtensions.WithIdentity(rentalsController, "gosho", "pesho");
+            ControllerExtensions.WithIdentity(rentalsController, "gosho", "pesho", "pipi");
 
             var httpContext = new DefaultHttpContext();
             var tempData = new TempDataDictionary(httpContext, Mock.Of<ITempDataProvider>());
@@ -440,7 +440,7 @@
             var mapperMock = MapperMock.Instance;
 
             var rentalsController = new RentalsController(rentingMock.Object, mapperMock, companiesMock.Object);
-            ControllerExtensions.WithIdentity(rentalsController, "gosho", "pesho");
+            ControllerExtensions.WithIdentity(rentalsController, "gosho", "pesho", "pipi");
 
             var result = rentalsController.All();
 
@@ -459,7 +459,7 @@
                 .Returns(false);
 
             var rentalsController = new RentalsController(null, null, companiesMock.Object);
-            ControllerExtensions.WithIdentity(rentalsController, "gosho", "pesho");
+            ControllerExtensions.WithIdentity(rentalsController, "gosho", "pesho", "pipi");
 
             var result = rentalsController.All();
 

@@ -82,7 +82,7 @@
 
             var isEdited = await this.carItemsService.EditModelAsync(model);
 
-            if (isEdited)
+            if (!isEdited)
             {
                 return BadRequest();
             }

@@ -1,6 +1,5 @@
 ﻿namespace Oversteer.Web.Controllers
 {
-    using System;
     using System.Collections.Generic;
     using System.Threading.Tasks;
 
@@ -12,13 +11,13 @@
 
     using Oversteer.Services.Cars;
     using Oversteer.Services.Companies;
+    using Oversteer.Services.DateTime;
     using Oversteer.Services.Rentals;
     using Oversteer.Web.Hubs;
     using Oversteer.Web.Infrastructure;
     using Oversteer.Web.ViewModels.Rents;
 
     using static Oversteer.Data.Common.Constants.ErrorMessages;
-    using static Oversteer.Data.Common.Constants.ErrorMessages.UserErrors;
     using static Oversteer.Data.Common.Constants.WebConstants;
     using static Oversteer.Data.Common.Constants.WebConstants.SignalR;
 
@@ -30,6 +29,7 @@
         private readonly ILocationService locationService;
         private readonly IMapper mapper;
         private readonly IHubContext<NotificationHub> notificationHub;
+        private readonly IDateTimeParserService dateTimeParserService;
 
         public RentalsController(
             IRentingService rentingService,
@@ -37,8 +37,8 @@
             ICompaniesService companiesService,
             ILocationService locationService,
             IMapper mapper,
-            IHubContext<NotificationHub> notificationHub
-            )
+            IHubContext<NotificationHub> notificationHub, 
+            IDateTimeParserService dateTimeParserService)
         {
             this.rentingService = rentingService;
             this.carsService = carsService;
@@ -46,6 +46,7 @@
             this.locationService = locationService;
             this.mapper = mapper;
             this.notificationHub = notificationHub;
+            this.dateTimeParserService = dateTimeParserService;
         }
 
         [HttpPost]
@@ -61,19 +62,16 @@
                 return RedirectToAction("Register", "Account", new { area = "Identity" });
             }
 
-            if (!this.ModelState.IsValid)
-            {
-                return RedirectToAction(nameof(HomeController.Index), "Home");
-            }
+            var carModel = await this.carsService.GetCarByIdAsync(model.CarId);
 
-            if (await this.carsService.GetCarByIdAsync(model.CarId) == null)
+            if (carModel == null)
             {
                 this.ModelState.AddModelError(nameof(model.CarId), CarDoesntExist);
             }
 
-            if (await this.carsService.GetCompanyByCarAsync(model.CarId) == 0)
+            if (!this.ModelState.IsValid)
             {
-                this.ModelState.AddModelError(nameof(model.CompanyId), CarNotInCompany);
+                return this.View(model);
             }
 
             var result = await this.rentingService.CreateOrderAsync(model, userId);
@@ -83,11 +81,9 @@
                 return RedirectToAction(nameof(Invalid));
             }
 
-            var carModel = await this.carsService.GetCarByIdAsync(model.CarId);
+            var pickUpDate = this.dateTimeParserService.Parse(model.StartDate);
 
-            var pickUpDate = DateTime.Parse(model.StartDate);
-
-            var returnDate = DateTime.Parse(model.EndDate);
+            var returnDate = this.dateTimeParserService.Parse(model.EndDate);
 
             var days = (returnDate - pickUpDate).Days;
 
@@ -104,7 +100,7 @@
         {
             if (!ModelState.IsValid)
             {
-                return Redirect("/");
+                return RedirectToAction(nameof(HomeController.Index), "Home");
             }
 
             return this.View(inputModel);

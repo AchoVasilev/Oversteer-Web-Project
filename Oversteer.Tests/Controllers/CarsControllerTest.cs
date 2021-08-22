@@ -16,7 +16,7 @@
     using Oversteer.Services.Companies;
     using Oversteer.Services.DateTime;
     using Oversteer.Tests.Extensions;
-    using Oversteer.Tests.Mocks;
+    using Oversteer.Tests.Mock;
     using Oversteer.Web.Controllers;
     using Oversteer.Web.Extensions;
     using Oversteer.Web.ViewModels.Cars;
@@ -50,7 +50,7 @@
 
             var carsController = new CarsController(carsMock.Object, companiesMock.Object, null, null, null, null);
 
-            ControllerExtensions.WithIdentity(carsController, "gosho", "pesho");
+            ControllerExtensions.WithIdentity(carsController, "gosho", "pesho", "pipi");
 
             var result = await carsController.MyCars(model);
 
@@ -84,7 +84,7 @@
 
             var carsController = new CarsController(carsMock.Object, companiesMock.Object, null, null, null, null);
 
-            ControllerExtensions.WithIdentity(carsController, "gosho", "pesho");
+            ControllerExtensions.WithIdentity(carsController, "gosho", "pesho", "pipi");
 
             var result = await carsController.MyCars(model);
 
@@ -109,7 +109,7 @@
 
             var carsController = new CarsController(carsMock.Object, null, null, null, null, null);
 
-            ControllerExtensions.WithIdentity(carsController, "gosho", "pesho");
+            ControllerExtensions.WithIdentity(carsController, "gosho", "pesho", "pipi");
 
             var result = await carsController.All(model);
 
@@ -135,7 +135,7 @@
 
             var carsController = new CarsController(carsMock.Object, null, null, null, null, null);
 
-            ControllerExtensions.WithIdentity(carsController, "gosho", "pesho");
+            ControllerExtensions.WithIdentity(carsController, "gosho", "pesho", "pipi");
 
             var result = carsController.Details(1, model.ToFriendlyUrl());
 
@@ -161,7 +161,7 @@
 
             var carsController = new CarsController(carsMock.Object, null, null, null, null, null);
 
-            ControllerExtensions.WithIdentity(carsController, "gosho", "pesho");
+            ControllerExtensions.WithIdentity(carsController, "gosho", "pesho", "pipi");
 
             var result = carsController.Details(1, "gogo");
 
@@ -199,7 +199,7 @@
 
             carsController.TempData = tempData;
 
-            ControllerExtensions.WithIdentity(carsController, "gosho", "pesho");
+            ControllerExtensions.WithIdentity(carsController, "gosho", "pesho", "pipi");
 
             var result = await carsController.Delete(model.Id);
 
@@ -218,7 +218,7 @@
 
             var carsController = new CarsController(null, companyMock.Object, null, null, null, null);
 
-            ControllerExtensions.WithIdentity(carsController, "gosho", "pesho");
+            ControllerExtensions.WithIdentity(carsController, "gosho", "pesho", "pipi");
 
             var result = await carsController.Delete(1);
 
@@ -241,7 +241,7 @@
 
             var carsController = new CarsController(carsMock.Object, companyMock.Object, null, null, null, null);
 
-            ControllerExtensions.WithIdentity(carsController, "gosho", "pesho");
+            ControllerExtensions.WithIdentity(carsController, "gosho", "pesho", "pipi");
 
             var result = await carsController.Delete(1);
 
@@ -295,7 +295,7 @@
 
             var controller = new CarsController(null, companiesMock.Object, null, locationsMock.Object, cacheMock.Object, null);
 
-            ControllerExtensions.WithIdentity(controller, "gosho", "pesho");
+            ControllerExtensions.WithIdentity(controller, "gosho", "pesho", "pipi");
 
             var httpContext = new DefaultHttpContext();
             var tempData = new TempDataDictionary(httpContext, Mock.Of<ITempDataProvider>());
@@ -320,7 +320,7 @@
 
             var controller = new CarsController(null, companiesMock.Object, null, null, null, null);
 
-            ControllerExtensions.WithIdentity(controller, "gosho", "pesho");
+            ControllerExtensions.WithIdentity(controller, "gosho", "pesho", "pipi");
 
             var httpContext = new DefaultHttpContext();
             var tempData = new TempDataDictionary(httpContext, Mock.Of<ITempDataProvider>());
@@ -351,7 +351,7 @@
 
             var controller = new CarsController(null, companiesMock.Object, null, null, null, null);
 
-            ControllerExtensions.WithIdentity(controller, "gosho", "pesho");
+            ControllerExtensions.WithIdentity(controller, "gosho", "pesho", "pipi");
 
             var httpContext = new DefaultHttpContext();
             var tempData = new TempDataDictionary(httpContext, Mock.Of<ITempDataProvider>());
@@ -431,7 +431,7 @@
                 .Returns(types);
 
             var controller = new CarsController(carsMock.Object, companiesMock.Object, null, locationsMock.Object, cacheMock.Object, null);
-            ControllerExtensions.WithIdentity(controller, "gosho", "pesho");
+            ControllerExtensions.WithIdentity(controller, "gosho", "pesho", "pipi");
 
             var httpContext = new DefaultHttpContext();
             var tempData = new TempDataDictionary(httpContext, Mock.Of<ITempDataProvider>());
@@ -467,7 +467,7 @@
 
             var controller = new CarsController(null, companiesMock.Object, null, null, null, null);
 
-            ControllerExtensions.WithIdentity(controller, "gosho", "pesho");
+            ControllerExtensions.WithIdentity(controller, "gosho", "pesho", "pipi");
 
             var httpContext = new DefaultHttpContext();
             var tempData = new TempDataDictionary(httpContext, Mock.Of<ITempDataProvider>());
@@ -547,9 +547,8 @@
                 .Returns(types);
 
             var controller = new CarsController(carsMock.Object, companiesMock.Object, null, locationsMock.Object, cacheMock.Object, null);
-            ControllerExtensions.WithIdentity(controller, "gosho", "pesho");
 
-            ControllerExtensions.WithIdentity(controller, "gosho", "pesho");
+            ControllerExtensions.WithIdentity(controller, "gosho", "pesho", "pipi");
 
             var result = await controller.Add(expected);
 
@@ -619,9 +618,8 @@
                 .Returns(types);
 
             var controller = new CarsController(carsMock.Object, companiesMock.Object, null, locationsMock.Object, cacheMock.Object, null);
-            ControllerExtensions.WithIdentity(controller, "gosho", "pesho");
-
-            ControllerExtensions.WithIdentity(controller, "gosho", "pesho");
+      
+            ControllerExtensions.WithIdentity(controller, "gosho", "pesho", "pipi");
 
             var result = await controller.Add(expected);
 
@@ -691,9 +689,8 @@
                 .Returns(types);
 
             var controller = new CarsController(carsMock.Object, companiesMock.Object, null, locationsMock.Object, cacheMock.Object, null);
-            ControllerExtensions.WithIdentity(controller, "gosho", "pesho");
 
-            ControllerExtensions.WithIdentity(controller, "gosho", "pesho");
+            ControllerExtensions.WithIdentity(controller, "gosho", "pesho", "pipi");
 
             var result = await controller.Add(expected);
 
@@ -763,9 +760,9 @@
                 .Returns(types);
 
             var controller = new CarsController(carsMock.Object, companiesMock.Object, null, locationsMock.Object, cacheMock.Object, null);
-            ControllerExtensions.WithIdentity(controller, "gosho", "pesho");
+           
+            ControllerExtensions.WithIdentity(controller, "gosho", "pesho", "pipi");
 
-            ControllerExtensions.WithIdentity(controller, "gosho", "pesho");
 
             var result = await controller.Add(expected);
 
@@ -835,9 +832,8 @@
                 .Returns(types);
 
             var controller = new CarsController(carsMock.Object, companiesMock.Object, null, locationsMock.Object, cacheMock.Object, null);
-            ControllerExtensions.WithIdentity(controller, "gosho", "pesho");
 
-            ControllerExtensions.WithIdentity(controller, "gosho", "pesho");
+            ControllerExtensions.WithIdentity(controller, "gosho", "pesho", "pipi");
 
             var result = await controller.Add(expected);
 
@@ -907,9 +903,7 @@
                 .Returns(types);
 
             var controller = new CarsController(carsMock.Object, companiesMock.Object, null, locationsMock.Object, cacheMock.Object, null);
-            ControllerExtensions.WithIdentity(controller, "gosho", "pesho");
-
-            ControllerExtensions.WithIdentity(controller, "gosho", "pesho");
+            ControllerExtensions.WithIdentity(controller, "gosho", "pesho", "pipi");
 
             var result = await controller.Add(expected);
 
@@ -969,7 +963,7 @@
 
             var controller = new CarsController(carsMock.Object, companiesMock.Object, null, locationsMock.Object, cacheMock.Object, null);
 
-            ControllerExtensions.WithIdentity(controller, "gosho", "pesho");
+            ControllerExtensions.WithIdentity(controller, "gosho", "pesho", "pipi");
 
             var result = controller.Edit(1, carModel.ToFriendlyUrl());
 
@@ -989,7 +983,7 @@
 
             var controller = new CarsController(null, companiesMock.Object, null, null, null, null);
 
-            ControllerExtensions.WithIdentity(controller, "gosho", "pesho");
+            ControllerExtensions.WithIdentity(controller, "gosho", "pesho", "pipi");
 
             var result = controller.Edit(1, "asd");
 
@@ -1016,7 +1010,7 @@
 
             var controller = new CarsController(carsMock.Object, companiesMock.Object, null, null, null, null);
 
-            ControllerExtensions.WithIdentity(controller, "gosho", "pesho");
+            ControllerExtensions.WithIdentity(controller, "gosho", "pesho", "pipi");
 
             var result = controller.Edit(1, "asd");
 
@@ -1040,7 +1034,7 @@
 
             var controller = new CarsController(carsMock.Object, companiesMock.Object, null, null, null, null);
 
-            ControllerExtensions.WithIdentity(controller, "gosho", "pesho");
+            ControllerExtensions.WithIdentity(controller, "gosho", "pesho", "pipi");
 
             var result = controller.Edit(1, carModel.ToFriendlyUrl());
 
@@ -1116,7 +1110,7 @@
                 .Returns(types);
 
             var controller = new CarsController(carsMock.Object, companiesMock.Object, null, locationsMock.Object, cacheMock.Object, null);
-            ControllerExtensions.WithIdentity(controller, "gosho", "pesho");
+            ControllerExtensions.WithIdentity(controller, "gosho", "pesho", "pipi");
 
             var httpContext = new DefaultHttpContext();
             var tempData = new TempDataDictionary(httpContext, Mock.Of<ITempDataProvider>());
@@ -1152,7 +1146,7 @@
 
             var controller = new CarsController(null, companiesMock.Object, null, null, null, null);
 
-            ControllerExtensions.WithIdentity(controller, "gosho", "pesho");
+            ControllerExtensions.WithIdentity(controller, "gosho", "pesho", "pipi");
 
             var result = await controller.Edit(1, expected);
 
@@ -1188,7 +1182,7 @@
 
             var controller = new CarsController(carsMock.Object, companiesMock.Object, null, null, null, null);
 
-            ControllerExtensions.WithIdentity(controller, "gosho", "pesho");
+            ControllerExtensions.WithIdentity(controller, "gosho", "pesho", "pipi");
 
             var result = await controller.Edit(1, expected);
 
@@ -1262,9 +1256,8 @@
                 .Returns(types);
 
             var controller = new CarsController(carsMock.Object, companiesMock.Object, null, locationsMock.Object, cacheMock.Object, null);
-            ControllerExtensions.WithIdentity(controller, "gosho", "pesho");
-
-            ControllerExtensions.WithIdentity(controller, "gosho", "pesho");
+            
+            ControllerExtensions.WithIdentity(controller, "gosho", "pesho", "pipi");
 
             var result = await controller.Edit(1, expected);
 
@@ -1336,9 +1329,8 @@
                 .Returns(types);
 
             var controller = new CarsController(carsMock.Object, companiesMock.Object, null, locationsMock.Object, cacheMock.Object, null);
-            ControllerExtensions.WithIdentity(controller, "gosho", "pesho");
-
-            ControllerExtensions.WithIdentity(controller, "gosho", "pesho");
+            
+            ControllerExtensions.WithIdentity(controller, "gosho", "pesho", "pipi");
 
             var result = await controller.Edit(1, expected);
 
@@ -1410,9 +1402,8 @@
                 .Returns(types);
 
             var controller = new CarsController(carsMock.Object, companiesMock.Object, null, locationsMock.Object, cacheMock.Object, null);
-            ControllerExtensions.WithIdentity(controller, "gosho", "pesho");
-
-            ControllerExtensions.WithIdentity(controller, "gosho", "pesho");
+            
+            ControllerExtensions.WithIdentity(controller, "gosho", "pesho", "pipi");
 
             var result = await controller.Edit(1, expected);
 
@@ -1484,9 +1475,7 @@
                 .Returns(types);
 
             var controller = new CarsController(carsMock.Object, companiesMock.Object, null, locationsMock.Object, cacheMock.Object, null);
-            ControllerExtensions.WithIdentity(controller, "gosho", "pesho");
-
-            ControllerExtensions.WithIdentity(controller, "gosho", "pesho");
+            ControllerExtensions.WithIdentity(controller, "gosho", "pesho", "pipi");
 
             var result = await controller.Edit(1, expected);
 
@@ -1558,9 +1547,8 @@
                 .Returns(types);
 
             var controller = new CarsController(carsMock.Object, companiesMock.Object, null, locationsMock.Object, cacheMock.Object, null);
-            ControllerExtensions.WithIdentity(controller, "gosho", "pesho");
 
-            ControllerExtensions.WithIdentity(controller, "gosho", "pesho");
+            ControllerExtensions.WithIdentity(controller, "gosho", "pesho", "pipi");
 
             var result = await controller.Edit(1, expected);
 
@@ -1632,9 +1620,7 @@
                 .Returns(types);
 
             var controller = new CarsController(carsMock.Object, companiesMock.Object, null, locationsMock.Object, cacheMock.Object, null);
-            ControllerExtensions.WithIdentity(controller, "gosho", "pesho");
-
-            ControllerExtensions.WithIdentity(controller, "gosho", "pesho");
+            ControllerExtensions.WithIdentity(controller, "gosho", "pesho", "pipi");
 
             var result = await controller.Edit(1, expected);
 
@@ -1655,7 +1641,7 @@
 
             var controller = new CarsController(carsMock.Object, null, null, null, null, dateTimeMock.Object);
 
-            ControllerExtensions.WithIdentity(controller, "gosho", "pesho");
+            ControllerExtensions.WithIdentity(controller, "gosho", "pesho", "pipi");
 
             var result = controller.Available(searchRentModel);
 

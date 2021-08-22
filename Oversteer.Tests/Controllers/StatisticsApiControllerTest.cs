@@ -1,6 +1,6 @@
 ﻿namespace Oversteer.Tests.Controllers
 {
-    using Oversteer.Tests.Mocks;
+    using Oversteer.Tests.Mock;
     using Oversteer.Web.Controllers.Api;
 
     using Xunit;

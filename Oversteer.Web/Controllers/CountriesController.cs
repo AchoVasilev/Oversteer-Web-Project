@@ -5,7 +5,6 @@
     using Microsoft.AspNetCore.Authorization;
     using Microsoft.AspNetCore.Mvc;
 
-    using Oversteer.Services.Cities;
     using Oversteer.Services.Countries;
     using Oversteer.Web.ViewModels.Countries;
 

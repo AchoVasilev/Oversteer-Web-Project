@@ -9,7 +9,7 @@
     using Oversteer.Data.Models.Users;
     using Oversteer.Services.Feedbacks;
     using Oversteer.Services.Rentals;
-    using Oversteer.Tests.Mocks;
+    using Oversteer.Tests.Mock;
 
     using Xunit;
 
