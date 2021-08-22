@@ -27,7 +27,7 @@
 
             if (!isCanceled)
             {
-                return RedirectToAction("Index", "Home");
+                return BadRequest();
             }
 
             return RedirectToAction(nameof(All));
@@ -39,7 +39,7 @@
 
             if (!isDeleted)
             {
-                return RedirectToAction("Index", "Home");
+                return BadRequest();
             }
 
             return RedirectToAction(nameof(All));
@@ -51,7 +51,7 @@
 
             if (rent is null)
             {
-                return NotFound();
+                return BadRequest();
             }
 
             var dto = this.mapper.Map<RentsDto>(rent);
@@ -70,9 +70,14 @@
                 return RedirectToAction(nameof(this.All));
             }
 
-            await this.rentingService
+            var isEdited = await this.rentingService
                 .EditRentAsync(inputModel.Id, inputModel.ClientFirstName, inputModel.ClientLastName,
                                                        inputModel.ClientUserEmail, inputModel.Price);
+
+            if (!isEdited)
+            {
+                return BadRequest();
+            }
 
             this.TempData["Message"] = "The rent was edited successfully.";
 

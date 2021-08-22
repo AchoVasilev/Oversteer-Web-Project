@@ -43,7 +43,7 @@
 
             var isEdited = await this.countriesService.EditCountry(model.Id, model.Name);
 
-            if (isEdited)
+            if (!isEdited)
             {
                 return NotFound();
             }

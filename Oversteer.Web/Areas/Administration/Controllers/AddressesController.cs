@@ -34,7 +34,7 @@
                 return this.View(model);
             }
 
-            var isEdited = await this.citiesService.EditCityAsync(model.CityId, model.Name);
+            var isEdited = await this.citiesService.EditAddressAsync(model.Id, model.Name);
 
             if (!isEdited)
             {

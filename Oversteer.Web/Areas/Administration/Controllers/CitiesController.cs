@@ -18,7 +18,7 @@
 
         public IActionResult Edit(int id)
         {
-            var model = new AddressFormModel()
+            var model = new CityFormModel()
             {
                 Id = id
             };
@@ -27,16 +27,16 @@
         }
 
         [HttpPost]
-        public async Task<IActionResult> Edit(AddressFormModel model)
+        public async Task<IActionResult> Edit(CityFormModel model)
         {
             if (!ModelState.IsValid)
             {
                 return this.View(model);
             }
 
-            var isEdited = await this.citiesService.EditAddressAsync(model.Id, model.Name);
+            var isEdited = await this.citiesService.EditCityAsync(model.Id, model.Name);
 
-            if (isEdited)
+            if (!isEdited)
             {
                 return NotFound();
             }

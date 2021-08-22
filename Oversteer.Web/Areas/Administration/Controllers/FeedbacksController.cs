@@ -2,8 +2,6 @@
 {
     using System.Threading.Tasks;
 
-    using AutoMapper;
-
     using Microsoft.AspNetCore.Mvc;
 
     using Oversteer.Services.Feedbacks;
@@ -11,12 +9,10 @@
     public class FeedbacksController : AdministrationController
     {
         private readonly IFeedbackService feedbackService;
-        private readonly IMapper mapper;
 
-        public FeedbacksController(IFeedbackService feedbackService, IMapper mapper)
+        public FeedbacksController(IFeedbackService feedbackService)
         {
             this.feedbackService = feedbackService;
-            this.mapper = mapper;
         }
 
         public IActionResult All()
@@ -32,7 +28,7 @@
 
             if (!isDeleted)
             {
-                return RedirectToAction(nameof(this.All), "Feedbacks");
+                return NotFound();
             }
 
             return RedirectToAction(nameof(All));

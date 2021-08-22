@@ -763,7 +763,6 @@
            
             ControllerExtensions.WithIdentity(controller, "gosho", "pesho", "pipi");
 
-
             var result = await controller.Add(expected);
 
             Assert.False(controller.ModelState.IsValid);

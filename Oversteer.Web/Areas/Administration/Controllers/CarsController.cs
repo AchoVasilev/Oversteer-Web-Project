@@ -46,11 +46,6 @@
 
         public IActionResult Edit(int id, string information)
         {
-            if (!this.User.IsAdmin())
-            {
-                return Unauthorized();
-            }
-
             var car = this.carsService.GetCarDetails(id);
 
             if (information != car.ToFriendlyUrl())
@@ -78,11 +73,6 @@
         public async Task<IActionResult> Edit(int id, CarFormModel carModel)
         {
             var currentUserId = this.User.GetId();
-
-            if (!this.User.IsAdmin())
-            {
-                return Unauthorized();
-            }
 
             if (!this.carsService.GetBrandId(carModel.BrandId))
             {
@@ -167,15 +157,7 @@
 
         public async Task<IActionResult> Delete(int id)
         {
-            var userId = this.User.GetId();
-
             var companyId = await this.carsService.GetCompanyByCarAsync(id);
-
-            if (!this.User.IsAdmin())
-            {
-                return Unauthorized();
-            }
-
             await this.carsService.DeleteCarAsync(companyId, id);
 
             this.TempData["Message"] = "The car was removed successfully.";

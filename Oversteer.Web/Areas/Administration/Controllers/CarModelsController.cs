@@ -5,6 +5,7 @@
     using Microsoft.AspNetCore.Mvc;
 
     using Oversteer.Services.Cars;
+    using Oversteer.Web.Infrastructure;
     using Oversteer.Web.ViewModels.Cars;
 
     public class CarModelsController : AdministrationController
@@ -25,6 +26,11 @@
 
         public async Task<IActionResult> Add(int id)
         {
+            if (!this.User.IsAdmin())
+            {
+                return Unauthorized();
+            }
+
             var brandName = await this.carItemsService.GetBrandNameAsync(id);
             var model = new CarModelFormModel()
             {
@@ -38,6 +44,11 @@
         [HttpPost]
         public async Task<IActionResult> Add(CarModelFormModel model)
         {
+            if (!this.User.IsAdmin())
+            {
+                return Unauthorized();
+            }
+
             if (!ModelState.IsValid)
             {
                 return this.View(model);
@@ -50,6 +61,11 @@
 
         public async Task<IActionResult> Delete(int id)
         {
+            if (!this.User.IsAdmin())
+            {
+                return Unauthorized();
+            }
+
             var isDeleted = await this.carItemsService.DeleteModelAsync(id);
 
             if (!isDeleted)
@@ -64,6 +80,11 @@
 
         public IActionResult Edit(int id)
         {
+            if (!this.User.IsAdmin())
+            {
+                return Unauthorized();
+            }
+
             var model = new CarModelFormModel()
             {
                 Id = id
@@ -75,6 +96,11 @@
         [HttpPost]
         public async Task<IActionResult> Edit(CarModelFormModel model)
         {
+            if (!this.User.IsAdmin())
+            {
+                return Unauthorized();
+            }
+
             if (!ModelState.IsValid)
             {
                 return this.View(model);
