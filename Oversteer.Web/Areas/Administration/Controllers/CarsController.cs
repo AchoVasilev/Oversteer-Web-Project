@@ -119,11 +119,6 @@
                 return this.View(carModel);
             }
 
-            if (!this.carsService.IsCarFromCompany(id, companyId) && !User.IsAdmin())
-            {
-                return this.NotFound();
-            }
-
             try
             {
                 await this.carsService.EditCarAsync(

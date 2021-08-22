@@ -65,9 +65,7 @@
         {
             if (!ModelState.IsValid)
             {
-                this.TempData["Message"] = "The rent was an error editing the rent. Please try again.";
-
-                return RedirectToAction(nameof(this.All));
+                return this.View(inputModel);
             }
 
             var isEdited = await this.rentingService
@@ -86,9 +84,9 @@
 
         public IActionResult All()
         {
-            var orders = this.rentingService.GetAllCompanyRents();
+            var rents = this.rentingService.GetAllCompanyRents();
 
-            var viewModels = this.mapper.Map<List<MyRentsViewModel>>(orders);
+            var viewModels = this.mapper.Map<List<MyRentsViewModel>>(rents);
 
             return this.View(viewModels);
         }

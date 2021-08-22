@@ -11,8 +11,5 @@
 
         public static bool IsAdmin(this ClaimsPrincipal user)
             => user.IsInRole(WebConstants.AdministratorRoleName);
-
-        public static string GetEmail(this ClaimsPrincipal user)
-            => user.FindFirst(ClaimTypes.Email).Value;
     }
 }
