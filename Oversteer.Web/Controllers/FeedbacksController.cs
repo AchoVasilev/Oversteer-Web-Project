@@ -24,7 +24,7 @@
         public async Task<IActionResult> Create(string orderId)
         {
             bool isValidRequest = await this.rentingService
-                .IsValidReviewRequestAsync(orderId, this.User.Identity.Name.ToLower());
+                .IsValidFeedbackRequestAsync(orderId, this.User.Identity.Name.ToLower());
 
             if (!isValidRequest)
             {

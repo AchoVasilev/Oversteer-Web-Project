@@ -31,7 +31,7 @@
             var feedbackComment = Guid.NewGuid().ToString();
 
             var ordersServiceMock = new Mock<IRentingService>();
-            ordersServiceMock.Setup(x => x.DeleteReviewFromOrderAsync(It.IsAny<int>())).
+            ordersServiceMock.Setup(x => x.DeleteFeedbackFromRentAsync(It.IsAny<int>())).
                                     ReturnsAsync(true);
 
             var feedbackService = new FeedbackService(data, ordersServiceMock.Object, mapper);
@@ -62,7 +62,7 @@
             var feedbackComment = Guid.NewGuid().ToString();
 
             var ordersServiceMock = new Mock<IRentingService>();
-            ordersServiceMock.Setup(x => x.DeleteReviewFromOrderAsync(It.IsAny<int>())).
+            ordersServiceMock.Setup(x => x.DeleteFeedbackFromRentAsync(It.IsAny<int>())).
                                     ReturnsAsync(true);
 
             var feedbackService = new FeedbackService(data, ordersServiceMock.Object, mapper);
@@ -92,7 +92,7 @@
             var feedbackComment = Guid.NewGuid().ToString();
 
             var rentingService = new Mock<IRentingService>();
-            rentingService.Setup(x => x.DeleteReviewFromOrderAsync(It.IsAny<int>())).
+            rentingService.Setup(x => x.DeleteFeedbackFromRentAsync(It.IsAny<int>())).
                                     ReturnsAsync(true);
 
             var feedbackService = new FeedbackService(data, rentingService.Object, mapper);
@@ -130,7 +130,7 @@
             var feedbackComment = Guid.NewGuid().ToString();
 
             var rentingService = new Mock<IRentingService>();
-            rentingService.Setup(x => x.DeleteReviewFromOrderAsync(It.IsAny<int>())).
+            rentingService.Setup(x => x.DeleteFeedbackFromRentAsync(It.IsAny<int>())).
                                     ReturnsAsync(true);
 
             var feedbackService = new FeedbackService(data, rentingService.Object, mapper);

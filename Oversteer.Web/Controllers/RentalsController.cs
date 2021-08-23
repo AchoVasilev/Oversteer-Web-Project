@@ -74,7 +74,7 @@
                 return this.View(model);
             }
 
-            var result = await this.rentingService.CreateOrderAsync(model, userId);
+            var result = await this.rentingService.CreateRentAsync(model, userId);
 
             if (!result)
             {

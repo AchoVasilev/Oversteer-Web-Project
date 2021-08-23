@@ -8,7 +8,7 @@
 
     public interface IRentingService
     {
-        Task<bool> CreateOrderAsync(RentFormModel model, string userId);
+        Task<bool> CreateRentAsync(RentFormModel model, string userId);
 
         Task<RentDetailsModel> GetDetailsAsync(string rentId);
 
@@ -22,11 +22,11 @@
 
         Task<bool> EditRentAsync(string id, string clientFirstName, string clientLastName, string clientEmail, decimal price);
 
-        Task<bool> IsValidReviewRequestAsync(string orderId, string customerEmail);
+        Task<bool> IsValidFeedbackRequestAsync(string orderId, string customerEmail);
 
-        Task<bool> UserFinishedOrders(string name);
+        Task<bool> UserFinishedRentsAsync(string username);
 
-        Task<bool> DeleteReviewFromOrderAsync(int feedbackId);
+        Task<bool> DeleteFeedbackFromRentAsync(int feedbackId);
 
         IEnumerable<RentsDto> GetAllUserRents(string userId);
 

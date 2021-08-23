@@ -27,7 +27,7 @@
         {
             var model = new UserFinishedOrdersBarViewModel
             {
-                HasFinished = await this.rentingService.UserFinishedOrders(this.User.Identity.Name)
+                HasFinished = await this.rentingService.UserFinishedRentsAsync(this.User.Identity.Name)
             };
 
             return await Task.FromResult(model);

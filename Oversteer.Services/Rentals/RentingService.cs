@@ -15,6 +15,7 @@
     using Oversteer.Data.Models.Rentals;
     using Oversteer.Services.Cars;
     using Oversteer.Services.Companies;
+    using Oversteer.Services.DateTime;
     using Oversteer.Web.ViewModels.Rents;
 
     public class RentingService : IRentingService
@@ -23,20 +24,24 @@
         private readonly ILocationService locationService;
         private readonly ICarsService carsService;
         private readonly IMapper mapper;
+        private readonly IDateTimeParserService dateTimeParserService;
 
         public RentingService(
             ApplicationDbContext data,
             ILocationService locationService,
             ICarsService carsService,
-            IMapper mapper)
+            IMapper mapper, 
+            IDateTimeParserService dateTimeParserService
+            )
         {
             this.data = data;
             this.locationService = locationService;
             this.carsService = carsService;
             this.mapper = mapper;
+            this.dateTimeParserService = dateTimeParserService;
         }
 
-        public async Task<bool> CreateOrderAsync(RentFormModel model, string userId)
+        public async Task<bool> CreateRentAsync(RentFormModel model, string userId)
         {
             var pickupLocationId = await this.locationService.GetLocationIdByNameAsync(model.StartLocation);
             var dropOffLocationId = await this.locationService.GetLocationIdByNameAsync(model.ReturnLocation);
@@ -46,9 +51,9 @@
                 return false;
             }
 
-            var pickUpDate = DateTime.Parse(model.StartDate);
+            var pickUpDate = this.dateTimeParserService.Parse(model.StartDate);
 
-            var returnDate = DateTime.Parse(model.EndDate);
+            var returnDate = this.dateTimeParserService.Parse(model.EndDate);
 
             var isRented = await this.carsService.IsRentedAsync(pickUpDate, returnDate, model.CarId);
 
@@ -59,6 +64,13 @@
 
             var days = (returnDate - pickUpDate).Days;
             var totalPrice = model.Price * days;
+
+            var rentCar = await this.carsService.RentCarAsync(pickUpDate, returnDate, model.CarId);
+
+            if (!rentCar)
+            {
+                return false;
+            }
 
             var order = new Rental()
             {
@@ -72,13 +84,6 @@
                 Price = totalPrice,
                 OrderStatus = OrderStatus.Active
             };
-
-            var rentCar = await this.carsService.RentCarAsync(pickUpDate, returnDate, model.CarId);
-
-            if (!rentCar)
-            {
-                return false;
-            }
 
             await this.data.Rentals.AddAsync(order);
             await this.data.SaveChangesAsync();
@@ -94,7 +99,7 @@
             }
 
             var rents = this.data.Rentals
-                            .Where(x => !x.IsDeleted)
+                            .Where(x => !x.IsDeleted && x.UserId == userId)
                             .OrderByDescending(x => x.CreatedOn)
                             .ProjectTo<RentsDto>(this.mapper.ConfigurationProvider)
                             .ToList();
@@ -115,9 +120,12 @@
                             .ProjectTo<RentsDto>(this.mapper.ConfigurationProvider)
                             .ToList();
 
-        public async Task<bool> UserFinishedOrders(string name) 
+        public async Task<bool> UserFinishedRentsAsync(string username) 
             => await this.data.Rentals
-                        .AnyAsync(x => x.User.UserName == name && x.OrderStatus == OrderStatus.Finished && x.FeedbackId == null);
+                        .AnyAsync(x => 
+                        x.User.UserName == username && 
+                        x.OrderStatus == OrderStatus.Finished && 
+                        x.FeedbackId == null);
 
         public async Task<bool> CancelAsync(string rentId)
         {
@@ -209,9 +217,9 @@
             return true;
         }
 
-        public async Task<bool> IsValidReviewRequestAsync(string orderId, string customerEmail)
+        public async Task<bool> IsValidFeedbackRequestAsync(string rentId, string customerEmail)
         {
-            var order = await this.data.Rentals.FindAsync(orderId);
+            var order = await this.data.Rentals.FindAsync(rentId);
 
             if (order is null)
             {
@@ -221,7 +229,7 @@
             return order.User.Email.ToLower() == customerEmail;
         }
 
-        public async Task<bool> DeleteReviewFromOrderAsync(int feedbackId)
+        public async Task<bool> DeleteFeedbackFromRentAsync(int feedbackId)
         {
             var order = await this.data.Rentals
                                     .Where(x => x.FeedbackId == feedbackId)
@@ -232,8 +240,8 @@
                 return false;
             }
 
-            order.IsDeleted = true;
-            order.DeletedOn = DateTime.UtcNow;
+            order.Feedback.IsDeleted = true;
+            order.Feedback.DeletedOn = DateTime.UtcNow;
 
             await this.data.SaveChangesAsync();
 
@@ -245,6 +253,7 @@
             for (var dt = order.StartDate; dt <= order.ReturnDate; dt = dt.AddDays(1))
             {
                 var rentDay = order.Car.RentDays.FirstOrDefault(x => x.RentDate.Date == dt.Date);
+
                 this.data.CarRentDays.Remove(rentDay);
             }
         }

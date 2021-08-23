@@ -208,7 +208,7 @@
                 .ReturnsAsync(carModel);
 
             var rentsMock = new Mock<IRentingService>();
-            rentsMock.Setup(x => x.CreateOrderAsync(model, "gosho"))
+            rentsMock.Setup(x => x.CreateRentAsync(model, "gosho"))
                 .ReturnsAsync(true);
 
             var hubMock = new Mock<IHubContext<NotificationHub>>();
@@ -283,7 +283,7 @@
                 .ReturnsAsync(carModel);
 
             var rentsMock = new Mock<IRentingService>();
-            rentsMock.Setup(x => x.CreateOrderAsync(model, "gosho"))
+            rentsMock.Setup(x => x.CreateRentAsync(model, "gosho"))
                 .ReturnsAsync(false);
 
             var controller = new RentalsController(rentsMock.Object, carsMock.Object, companiesMock.Object, null, null, null, null);

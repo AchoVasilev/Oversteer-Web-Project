@@ -38,7 +38,7 @@
 
             var user = GetUser("someValue", "pesho@pesho.bg");
 
-            mockRent.Setup(x => x.IsValidReviewRequestAsync("gosho", "pesho@pesho.bg"))
+            mockRent.Setup(x => x.IsValidFeedbackRequestAsync("gosho", "pesho@pesho.bg"))
                 .ReturnsAsync(true);
 
             var feedbackService = new FeedbackService(data, mockRent.Object, mapper);
@@ -69,7 +69,7 @@
 
             var mockRent = new Mock<IRentingService>();
 
-            mockRent.Setup(x => x.IsValidReviewRequestAsync("gosho", "5868"))
+            mockRent.Setup(x => x.IsValidFeedbackRequestAsync("gosho", "5868"))
                 .ReturnsAsync(false);
 
             var feedbackService = new FeedbackService(data, mockRent.Object, mapper);
@@ -95,7 +95,7 @@
 
             var mockRent = new Mock<IRentingService>();
 
-            mockRent.Setup(x => x.IsValidReviewRequestAsync("gosho", "5868"))
+            mockRent.Setup(x => x.IsValidFeedbackRequestAsync("gosho", "5868"))
                 .ReturnsAsync(false);
 
             var model = new FeedbackInputModel

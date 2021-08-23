@@ -55,7 +55,7 @@
                 return false;
             }
 
-            await this.rentingService.DeleteReviewFromOrderAsync(feedbackId);
+            await this.rentingService.DeleteFeedbackFromRentAsync(feedbackId);
 
             this.data.Feedbacks.Remove(feedback);
 
