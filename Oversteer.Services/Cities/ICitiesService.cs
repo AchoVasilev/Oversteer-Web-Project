@@ -19,7 +19,7 @@
 
         Task<bool> EditAddressAsync(int addressId, string name);
 
-        bool CityIsInCountry(int countryId, string cityName);
+        Task<bool> CityIsInCountry(int countryId, string cityName);
 
         int GetCityIdByCountry(int countryId, string cityName);
 

@@ -21,7 +21,7 @@
 
         Task<bool> IsRentedAsync(DateTime startDate, DateTime endDate, int carId);
 
-        Task<int> GetCompanyByCarAsync(int carId);
+        Task<int> GetCompanyIdByCarIdAsync(int carId);
 
         Task<bool> RentCarAsync(DateTime startRent, DateTime endRent, int carId);
 
@@ -57,7 +57,7 @@
 
         CarDetailsFormModel GetCarDetails(int carId);
 
-        int GetCompanyCarsCount(int companyId);
+        Task<int> GetCompanyCarsCount(int companyId);
 
         bool GetBrandId(int id);
 

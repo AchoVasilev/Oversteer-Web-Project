@@ -9,16 +9,14 @@
     {
         IEnumerable<CountryViewModel> GetCountries();
 
-        Task AddCitiesToCountry(CountryFormModel model);
+        Task AddCityToCountryAsync(CountryFormModel model);
 
-        Task AddCountry(CountryViewModel model);
+        Task AddCountryAsync(CountryViewModel model);
 
-        Task<bool> EditCountry(int id, string name);
+        Task<bool> EditCountryAsync(int id, string name);
 
-        Task<bool> DeleteCountry(int id);
+        Task<bool> DeleteCountryAsync(int id);
 
-        int GetCountryId(string countryName);
-
-        string GetCountryName(int countryId);
+        Task<string> GetCountryName(int countryId);
     }
 }

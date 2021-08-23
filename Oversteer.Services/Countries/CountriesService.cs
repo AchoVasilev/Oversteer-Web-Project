@@ -39,7 +39,7 @@
             return countriesFromModel;
         }
 
-        public async Task AddCitiesToCountry(CountryFormModel model)
+        public async Task AddCityToCountryAsync(CountryFormModel model)
         {
             var country = this.data.Countries
                 .Where(x => x.Id == model.Id && !x.IsDeleted)
@@ -50,30 +50,19 @@
                 return;
             }
 
-            var cityName = await this.citiesService.CreateAsync(model.City, model.Id);
+            var cityName = await this.citiesService.CreateAsync(model.City, country.Id);
 
             this.data.Update(country);
             await this.data.SaveChangesAsync();
         }
 
-        public int GetCountryId(string countryName)
-            => this.data.Countries
-                    .Where(x => x.Name == countryName)
-                    .Select(x => x.Id)
-                    .FirstOrDefault();
-
-        public string GetCountryName(int countryId)
-            => this.data.Countries
-                .Where(x => x.Id == countryId)
-                .Select(x => x.Name)
-                .FirstOrDefault();
-
-        public async Task<Country> GetCountry(int countryId)
+        public async Task<string> GetCountryName(int countryId)
             => await this.data.Countries
-                        .Where(x => x.Id == countryId && !x.IsDeleted)
+                        .Where(x => x.Id == countryId)
+                        .Select(x => x.Name)
                         .FirstOrDefaultAsync();
 
-        public async Task AddCountry(CountryViewModel model)
+        public async Task AddCountryAsync(CountryViewModel model)
         {
             var country = new Country()
             {
@@ -85,7 +74,7 @@
             await this.data.SaveChangesAsync();
         }
 
-        public async Task<bool> EditCountry(int id, string name)
+        public async Task<bool> EditCountryAsync(int id, string name)
         {
             var country = await this.GetCountry(id);
 
@@ -101,7 +90,7 @@
             return true;
         }
 
-        public async Task<bool> DeleteCountry(int id)
+        public async Task<bool> DeleteCountryAsync(int id)
         {
             var country = await this.GetCountry(id);
 
@@ -117,5 +106,10 @@
 
             return true;
         }
+
+        private async Task<Country> GetCountry(int countryId)
+            => await this.data.Countries
+                        .Where(x => x.Id == countryId && !x.IsDeleted)
+                        .FirstOrDefaultAsync();
     }
 }

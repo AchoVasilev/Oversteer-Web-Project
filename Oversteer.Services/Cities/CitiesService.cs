@@ -32,10 +32,10 @@
             return city.Id;
         }
 
-        public bool CityIsInCountry(int countryId, string cityName)
+        public async Task<bool> CityIsInCountry(int countryId, string cityName)
         {
-            var exists = this.data.Cities
-                .Any(x => x.CountryId == countryId && x.Name == cityName);
+            var exists = await this.data.Cities
+                .AnyAsync(x => x.CountryId == countryId && x.Name == cityName);
 
             if (!exists)
             {

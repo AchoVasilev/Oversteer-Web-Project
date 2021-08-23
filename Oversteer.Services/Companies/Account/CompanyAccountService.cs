@@ -3,8 +3,6 @@
     using System.Linq;
     using System.Threading.Tasks;
 
-    using AutoMapper;
-
     using Microsoft.EntityFrameworkCore;
 
     using Oversteer.Data;
@@ -12,12 +10,10 @@
     public class CompanyAccountService : ICompanyAccountService
     {
         private readonly ApplicationDbContext data;
-        private readonly IMapper mapper;
 
-        public CompanyAccountService(ApplicationDbContext data, IMapper mapper)
+        public CompanyAccountService(ApplicationDbContext data)
         {
             this.data = data;
-            this.mapper = mapper;
         }
 
         public async Task<bool> SetCompanyName(string userId, string name)

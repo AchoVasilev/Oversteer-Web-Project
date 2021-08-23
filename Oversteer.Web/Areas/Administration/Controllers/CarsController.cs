@@ -152,7 +152,7 @@
 
         public async Task<IActionResult> Delete(int id)
         {
-            var companyId = await this.carsService.GetCompanyByCarAsync(id);
+            var companyId = await this.carsService.GetCompanyIdByCarIdAsync(id);
             await this.carsService.DeleteCarAsync(companyId, id);
 
             this.TempData["Message"] = "The car was removed successfully.";

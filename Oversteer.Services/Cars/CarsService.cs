@@ -107,7 +107,7 @@
 
             foreach (var image in carData.CarImages)
             {
-                DeleteImages(image);
+                DeleteImage(image);
             }
 
             foreach (var feature in carData.CarFeatures)
@@ -175,11 +175,11 @@
 
         public IEnumerable<string> GetAddedByCompanyCarBrands(int companyId)
             => this.data.Cars
-            .Where(x => x.CompanyId == companyId && !x.IsDeleted)
-            .Select(c => c.Brand.Name)
-            .OrderBy(c => c)
-            .Distinct()
-            .ToList();
+                    .Where(x => x.CompanyId == companyId && !x.IsDeleted)
+                    .Select(c => c.Brand.Name)
+                    .OrderBy(c => c)
+                    .Distinct()
+                    .ToList();
 
         public IEnumerable<ListCarFormModel> GetAllCars(CarsSearchQueryModel query)
             => this.SearchCar(query)
@@ -225,6 +225,12 @@
             }
 
             var car = await this.GetCarByIdAsync(carId);
+
+            if (car == null)
+            {
+                return false;
+            }
+
             car.IsAvailable = false;
 
             await this.data.CarRentDays.AddRangeAsync(dates);
@@ -278,7 +284,7 @@
             return brandsViewModel;
         }
 
-        public async Task<int> GetCompanyByCarAsync(int carId)
+        public async Task<int> GetCompanyIdByCarIdAsync(int carId)
             => await this.data.Cars
                             .Where(x => x.Id == carId)
                             .Select(x => x.CompanyId)
@@ -337,10 +343,10 @@
                         .Where(x => !x.IsDeleted)
                         .CountAsync();
 
-        public int GetCompanyCarsCount(int companyId)
-            => this.data.Cars
+        public async Task<int> GetCompanyCarsCount(int companyId)
+            => await this.data.Cars
                 .Where(x => x.CompanyId == companyId && !x.IsDeleted)
-                .Count();
+                .CountAsync();
 
         public async Task<CarDto> GetCarByIdAsync(int carId)
             => await this.data.Cars
@@ -477,7 +483,7 @@
             return carsQuery;
         }
 
-        private void DeleteImages(CarImage image)
+        private void DeleteImage(CarImage image)
         {
             image.IsDeleted = true;
             image.ModifiedOn = DateTime.UtcNow;

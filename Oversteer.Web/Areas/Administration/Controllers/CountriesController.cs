@@ -41,7 +41,7 @@
                 return this.View(model);
             }
 
-            var isEdited = await this.countriesService.EditCountry(model.Id, model.Name);
+            var isEdited = await this.countriesService.EditCountryAsync(model.Id, model.Name);
 
             if (!isEdited)
             {
@@ -63,7 +63,7 @@
                 return this.View(model);
             }
 
-            await this.countriesService.AddCountry(model);
+            await this.countriesService.AddCountryAsync(model);
 
             this.TempData["Message"] = "The country was added successfully.";
 
@@ -72,7 +72,7 @@
 
         public async Task<IActionResult> Delete(int id)
         {
-            var isDeleted = await this.countriesService.DeleteCountry(id);
+            var isDeleted = await this.countriesService.DeleteCountryAsync(id);
 
             if (!isDeleted)
             {

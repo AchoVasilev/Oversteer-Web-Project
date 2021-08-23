@@ -1,5 +1,7 @@
 ﻿namespace Oversteer.Web.Areas.Company.Controllers
 {
+    using System.Threading.Tasks;
+
     using Microsoft.AspNetCore.Mvc;
 
     using Oversteer.Services.Cars;
@@ -17,7 +19,7 @@
             this.companiesService = companiesService;
         }
 
-        public IActionResult Cars(int id)
+        public async Task<IActionResult> Cars(int id)
         {
             if (id <= 0)
             {
@@ -33,7 +35,7 @@
                 PageNumber = pageNumber,
                 Cars = this.companiesService.AllCompanyCars(pageNumber, ItemsPerPage, id),
                 CompanyId = id,
-                ItemsCount = this.carsService.GetCompanyCarsCount(id)
+                ItemsCount = await this.carsService.GetCompanyCarsCount(id)
             };
 
             return this.View(viewModel);

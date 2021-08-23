@@ -1,6 +1,7 @@
 ﻿namespace Oversteer.Tests.Controllers
 {
     using System.Collections.Generic;
+    using System.Threading.Tasks;
 
     using Microsoft.AspNetCore.Mvc;
 
@@ -17,14 +18,14 @@
     public class CompanyCarsControllerTest
     {
         [Fact]
-        public void CarsShouldReturnCorrectViewAndModel()
+        public async Task CarsShouldReturnCorrectViewAndModel()
         {
             var model = new CompanyCar();
             var cars = new List<ListCarFormModel>();
 
             var carsMock = new Mock<ICarsService>();
             carsMock.Setup(x => x.GetCompanyCarsCount(3))
-                .Returns(5);
+                .ReturnsAsync(5);
 
             var companiesMock = new Mock<ICompaniesService>();
             companiesMock.Setup(x => x.AllCompanyCars(5, 5, 3))
@@ -32,7 +33,7 @@
 
             var carsController = new CarsController(carsMock.Object, companiesMock.Object);
 
-            var result = carsController.Cars(3);
+            var result = await carsController.Cars(3);
 
             Assert.NotNull(result);
 
@@ -41,11 +42,11 @@
         }
 
         [Fact]
-        public void CarsShouldReturnNotFoundIfCarsIdIsWrong()
+        public async Task CarsShouldReturnNotFoundIfCarsIdIsWrong()
         {
             var carsController = new CarsController(null, null);
 
-            var result = carsController.Cars(0);
+            var result = await carsController.Cars(0);
 
             Assert.NotNull(result);
 

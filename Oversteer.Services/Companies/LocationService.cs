@@ -1,5 +1,6 @@
 ﻿namespace Oversteer.Services.Companies
 {
+    using System;
     using System.Collections.Generic;
     using System.Linq;
     using System.Threading.Tasks;
@@ -16,7 +17,6 @@
     using Oversteer.Web.ViewModels.Cities;
     using Oversteer.Web.ViewModels.Countries;
     using Oversteer.Services.Countries;
-    using System;
 
     public class LocationService : ILocationService
     {
@@ -26,9 +26,9 @@
         private readonly IMapper mapper;
 
         public LocationService(
-            ApplicationDbContext data, 
-            ICitiesService citiesService, 
-            ICountriesService countriesService, 
+            ApplicationDbContext data,
+            ICitiesService citiesService,
+            ICountriesService countriesService,
             IMapper mapper)
         {
             this.data = data;
@@ -39,7 +39,7 @@
 
         public async Task AddLocationAsync(int companyId, CreateLocationFormModel model)
         {
-            var cityExists = citiesService.CityIsInCountry(model.CountryId, model.CityName);
+            var cityExists = await citiesService.CityIsInCountry(model.CountryId, model.CityName);
 
             var countryFormModel = new CountryFormModel()
             {
@@ -50,10 +50,10 @@
                 }
             };
 
-            var cityId = cityExists ? citiesService.GetCityIdByCountry(model.CountryId, model.CityName)
-                                     : await citiesService.CreateAsync(countryFormModel.City, model.CountryId);
+            var cityId = cityExists ? await this.citiesService.GetCityIdByCountry(model.CountryId, model.CityName)
+                                     : await this.citiesService.CreateAsync(countryFormModel.City, model.CountryId);
 
-            await countriesService.AddCitiesToCountry(countryFormModel);
+            await this.countriesService.AddCityToCountryAsync(countryFormModel);
 
             var addressFormModel = new AddressFormModel()
             {
@@ -61,9 +61,9 @@
                 CityId = cityId
             };
 
-            var countryName = countriesService.GetCountryName(model.CountryId);
+            var countryName = await this.countriesService.GetCountryName(model.CountryId);
 
-            var addressId = await citiesService.AddAddressAsync(addressFormModel);
+            var addressId = await this.citiesService.AddAddressAsync(addressFormModel);
 
             var locationName = string.Join(", ", countryName, model.CityName, model.Address);
 
@@ -76,8 +76,8 @@
                 CompanyId = companyId
             };
 
-            await data.Locations.AddAsync(location);
-            await data.SaveChangesAsync();
+            await this.data.Locations.AddAsync(location);
+            await this.data.SaveChangesAsync();
         }
 
         public ICollection<string> GetAllLocationNames()
@@ -89,7 +89,7 @@
         }
 
         public IEnumerable<LocationFormModel> GetCompanyLocations(int companyId)
-            => data.Locations
+            => this.data.Locations
                     .Where(x => x.CompanyId == companyId && !x.IsDeleted)
                     .ProjectTo<LocationFormModel>(this.mapper.ConfigurationProvider)
                     .ToList();
@@ -149,6 +149,6 @@
         public async Task<bool> LocationIsFromCompanyAsync(int companyId, int locationId)
             => await this.data.Locations
                         .AnyAsync(x => x.Id == locationId && x.CompanyId == companyId);
-                        
+
     }
 }

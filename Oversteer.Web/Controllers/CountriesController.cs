@@ -25,7 +25,7 @@
         [Authorize]
         public async Task<IActionResult> Add(CountryFormModel model)
         {
-            await this.countriesService.AddCitiesToCountry(model);
+            await this.countriesService.AddCityToCountryAsync(model);
 
             return this.RedirectToAction(nameof(HomeController.Index), "Home");
         }
