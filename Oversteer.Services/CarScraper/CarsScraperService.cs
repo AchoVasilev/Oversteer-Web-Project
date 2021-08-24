@@ -34,13 +34,6 @@
 
             var carBrands = new List<CarBrandDto>();
 
-            try
-            {
-                carBrands = this.GetBrand().ToList();
-            }
-            catch
-            { }
-
             var carCount = 1;
             Parallel.For(1, carCount, (i) =>
             {

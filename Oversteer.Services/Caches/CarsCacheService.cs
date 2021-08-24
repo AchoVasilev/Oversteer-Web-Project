@@ -28,10 +28,10 @@
             {
                 carsBrands = this.carsService.GetCarBrands();
 
-                var chacheOptions = new MemoryCacheEntryOptions()
+                var cacheOptions = new MemoryCacheEntryOptions()
                     .SetAbsoluteExpiration(TimeSpan.FromMinutes(15));
 
-                this.memoryCache.Set(key, carsBrands, chacheOptions);
+                var cached = this.memoryCache.Set(key, carsBrands, cacheOptions);
             }
 
             return carsBrands;

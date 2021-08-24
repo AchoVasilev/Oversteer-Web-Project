@@ -16,7 +16,7 @@
             this.data = data;
         }
 
-        public async Task<bool> SetCompanyName(string userId, string name)
+        public async Task<bool> SetCompanyNameAsync(string userId, string name)
         {
             var company = await this.data.Companies
                                   .Where(x => x.UserId == userId)
@@ -34,7 +34,7 @@
             return true;
         }
 
-        public async Task<bool> SetCompanyDescription(string userId, string description)
+        public async Task<bool> SetCompanyDescriptionAsync(string userId, string description)
         {
             var company = await this.data.Companies
                                   .Where(x => x.UserId == userId)

@@ -168,7 +168,7 @@
 
                 if (Input.CompanyName != companyDetails.Name)
                 {
-                    var setCompanyName = await this.companyAccountService.SetCompanyName(user.Id, Input.CompanyName);
+                    var setCompanyName = await this.companyAccountService.SetCompanyNameAsync(user.Id, Input.CompanyName);
 
                     if (!setCompanyName)
                     {
@@ -179,7 +179,7 @@
 
                 if (Input.Description != companyDetails.Description)
                 {
-                    var setCompanyDescription = await this.companyAccountService.SetCompanyDescription(user.Id, Input.Description);
+                    var setCompanyDescription = await this.companyAccountService.SetCompanyDescriptionAsync(user.Id, Input.Description);
 
                     if (!setCompanyDescription)
                     {
