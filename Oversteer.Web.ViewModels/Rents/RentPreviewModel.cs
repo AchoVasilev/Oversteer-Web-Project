@@ -15,9 +15,9 @@
 
         public string CompanyName { get; init; }
 
-        public DateTime RentStart { get; init; }
+        public string RentStart { get; init; }
 
-        public DateTime RentEnd { get; init; }
+        public string RentEnd { get; init; }
 
         public int Days { get; init; }
 

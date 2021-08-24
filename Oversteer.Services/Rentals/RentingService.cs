@@ -51,9 +51,9 @@
                 return false;
             }
 
-            var pickUpDate = this.dateTimeParserService.Parse(model.StartDate);
+            var pickUpDate = this.dateTimeParserService.TryParseExact(model.StartDate);
 
-            var returnDate = this.dateTimeParserService.Parse(model.EndDate);
+            var returnDate = this.dateTimeParserService.TryParseExact(model.EndDate);
 
             var isRented = await this.carsService.IsRentedAsync(pickUpDate, returnDate, model.CarId);
 

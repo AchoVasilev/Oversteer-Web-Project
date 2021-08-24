@@ -1,12 +1,15 @@
 ﻿namespace Oversteer.Web.Controllers
 {
+    using System.Diagnostics;
     using System.Linq;
 
+    using Microsoft.AspNetCore.Authorization;
     using Microsoft.AspNetCore.Mvc;
 
     using Oversteer.Services.Cars;
     using Oversteer.Services.Companies;
     using Oversteer.Services.Home;
+    using Oversteer.Web.ViewModels;
     using Oversteer.Web.ViewModels.Home;
 
     public class HomeController : Controller
@@ -30,7 +33,7 @@
         {
             var cars = this.carsService.GetThreeNewestCars();
             var totalCars = this.homeService.GetTotalCarsCount();
-            
+
             return this.View(new IndexViewModel()
             {
                 TotalCars = totalCars,
@@ -45,8 +48,10 @@
         public IActionResult Privacy()
             => this.View();
 
+        [AllowAnonymous]
         public IActionResult Error()
-            => this.View();
+            => this.View(new ErrorViewModel
+            { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
 
         public IActionResult Error404()
         {

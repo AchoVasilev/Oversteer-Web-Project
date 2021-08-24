@@ -140,7 +140,7 @@
             }
 
             var countries = new List<Country>();
-            var countriesJson = File.ReadAllText("../../Oversteer/Oversteer.Data/Datasets/Countries.json");
+            var countriesJson = File.ReadAllText("Datasets/Countries.json");
             var countriesDto = JsonConvert.DeserializeObject<CountryDto[]>(countriesJson);
 
             foreach (var countryDto in countriesDto)
@@ -164,7 +164,7 @@
                 .Select(x => x.Id)
                 .FirstOrDefault();
 
-            var citiesJson = File.ReadAllText("../../Oversteer/Oversteer.Data/Datasets/Cities.json");
+            var citiesJson = File.ReadAllText("Datasets/Cities.json");
             var citiesDto = JsonConvert.DeserializeObject<CityDto[]>(citiesJson);
             var cities = new List<City>();
 

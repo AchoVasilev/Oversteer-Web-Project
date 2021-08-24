@@ -43,8 +43,8 @@
                 Model = "VW",
                 PickUpPlace = "Sofia",
                 ReturnPlace = "Kaspichan",
-                RentStart = DateTime.UtcNow.Date,
-                RentEnd = DateTime.UtcNow.Date.AddDays(3)
+                RentStart = "24/08/2021 23:26",
+                RentEnd = "29/08/2021 23:26"
             };
 
             var result = rentalsController.Preview(previewModel);

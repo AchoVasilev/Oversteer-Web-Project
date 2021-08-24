@@ -18,7 +18,6 @@
     using Oversteer.Web.ViewModels.Rents;
 
     using static Oversteer.Data.Common.Constants.ErrorMessages;
-    using static Oversteer.Data.Common.Constants.WebConstants;
     using static Oversteer.Data.Common.Constants.WebConstants.SignalR;
 
     public class RentalsController : Controller
@@ -81,9 +80,9 @@
                 return RedirectToAction(nameof(Invalid));
             }
 
-            var pickUpDate = this.dateTimeParserService.Parse(model.StartDate);
+            var pickUpDate = this.dateTimeParserService.TryParseExact(model.StartDate);
 
-            var returnDate = this.dateTimeParserService.Parse(model.EndDate);
+            var returnDate = this.dateTimeParserService.TryParseExact(model.EndDate);
 
             var days = (returnDate - pickUpDate).Days;
 
@@ -123,7 +122,7 @@
             var userId = this.User.GetId();
             var companyId = this.companiesService.GetCurrentCompanyId(userId);
 
-            if (!this.User.IsInRole(AdministratorRoleName) && userId == null && companyId == 0)
+            if (!this.User.IsAdmin() && userId == null && companyId == 0)
             {
                 return this.RedirectToAction(nameof(CarsController.All), "Cars");
             }

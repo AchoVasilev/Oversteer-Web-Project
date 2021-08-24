@@ -89,9 +89,9 @@
             //Renting
             this.CreateMap<Rental, RentsDto>()
                 .ForMember(x => x.StartDate, opt =>
-                    opt.MapFrom(x => x.StartDate.ToString("g")))
+                    opt.MapFrom(x => x.StartDate.ToString("dd/MM/yyyy HH:mm")))
                 .ForMember(x => x.ReturnDate, opt =>
-                    opt.MapFrom(x => x.ReturnDate.ToString("g")));
+                    opt.MapFrom(x => x.ReturnDate.ToString("dd/MM/yyyy HH:mm")));
 
             this.CreateMap<RentsDto, MyRentsViewModel>()
                 .ReverseMap();

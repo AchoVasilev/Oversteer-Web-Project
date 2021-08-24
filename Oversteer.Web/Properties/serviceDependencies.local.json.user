@@ -1,4 +1,24 @@
 {
-  "dependencies": {},
-  "parameters": {}
+  "dependencies": {
+    "signalr1": {
+      "restored": true,
+      "restoreTime": "2021-08-24T18:44:10.074764Z"
+    },
+    "secrets1": {
+      "restored": true,
+      "restoreTime": "2021-08-24T18:44:07.4242797Z"
+    }
+  },
+  "parameters": {
+    "signalr1.resourceGroupName": {
+      "Name": "signalr1.resourceGroupName",
+      "Type": "resourceGroup",
+      "Value": "oversteer"
+    },
+    "signalr1.subscriptionId": {
+      "Name": "signalr1.subscriptionId",
+      "Type": "subscription",
+      "Value": "8dc5b826-333c-4a2c-b0bd-5396a6242402"
+    }
+  }
 }
