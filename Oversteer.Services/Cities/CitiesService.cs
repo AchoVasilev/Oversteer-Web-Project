@@ -32,41 +32,15 @@
             return city.Id;
         }
 
-        public async Task<bool> CityIsInCountry(int countryId, string cityName)
-        {
-            var exists = await this.data.Cities
-                .AnyAsync(x => x.CountryId == countryId && x.Name == cityName);
+        public async Task<bool> CityIsInCountryAsync(int countryId, string cityName) 
+            => await this.data.Cities
+                    .AnyAsync(x => x.CountryId == countryId && x.Name == cityName);
 
-            if (!exists)
-            {
-                return false;
-            }
-
-            return true;
-        }
-
-        public int GetCityIdByCountry(int countryId, string cityName)
-            => this.data.Cities
-                    .Where(x => x.CountryId == countryId && x.Name == cityName)
-                    .Select(x => x.Id)
-                    .FirstOrDefault();
-
-        public bool CityHasUser(string userId)
-        {
-            var cities = this.data.Cities.ToList();
-
-            foreach (var city in cities)
-            {
-                var userHasCity = city.Users.Any(x => x.Id == userId);
-
-                if (userHasCity == true)
-                {
-                    return true;
-                }
-            }
-
-            return false;
-        }
+        public async Task<int> GetCityIdByCountryAsync(int countryId, string cityName)
+            => await this.data.Cities
+                            .Where(x => x.CountryId == countryId && x.Name == cityName)
+                            .Select(x => x.Id)
+                            .FirstOrDefaultAsync();
 
         public async Task<int> AddAddressAsync(AddressFormModel model)
         {

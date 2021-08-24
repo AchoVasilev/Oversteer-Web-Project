@@ -19,10 +19,8 @@
 
         Task<bool> EditAddressAsync(int addressId, string name);
 
-        Task<bool> CityIsInCountry(int countryId, string cityName);
+        Task<bool> CityIsInCountryAsync(int countryId, string cityName);
 
-        int GetCityIdByCountry(int countryId, string cityName);
-
-        bool CityHasUser(string userId);
+        Task<int> GetCityIdByCountryAsync(int countryId, string cityName);
     }
 }

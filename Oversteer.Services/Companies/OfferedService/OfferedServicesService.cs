@@ -35,7 +35,9 @@
 
         public async Task<bool> CompanyHasServiceAsync(int serviceId, int companyId)
             => await this.data.CompanyServices
-                                .AnyAsync(x => x.Id == serviceId && x.CompanyId == companyId && !x.IsDeleted);
+                                .AnyAsync(x => x.Id == serviceId && 
+                                x.CompanyId == companyId && 
+                                !x.IsDeleted);
 
         public async Task<bool> DeleteServiceAsync(int serviceId)
         {

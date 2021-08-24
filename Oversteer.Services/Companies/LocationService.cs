@@ -39,7 +39,7 @@
 
         public async Task AddLocationAsync(int companyId, CreateLocationFormModel model)
         {
-            var cityExists = await citiesService.CityIsInCountry(model.CountryId, model.CityName);
+            var cityExists = await citiesService.CityIsInCountryAsync(model.CountryId, model.CityName);
 
             var countryFormModel = new CountryFormModel()
             {
@@ -50,7 +50,7 @@
                 }
             };
 
-            var cityId = cityExists ? await this.citiesService.GetCityIdByCountry(model.CountryId, model.CityName)
+            var cityId = cityExists ? await this.citiesService.GetCityIdByCountryAsync(model.CountryId, model.CityName)
                                      : await this.citiesService.CreateAsync(countryFormModel.City, model.CountryId);
 
             await this.countriesService.AddCityToCountryAsync(countryFormModel);
