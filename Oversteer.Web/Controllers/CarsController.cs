@@ -1,7 +1,6 @@
 ﻿namespace Oversteer.Web.Controllers
 {
     using System;
-    using System.Linq;
     using System.Threading.Tasks;
 
     using Microsoft.AspNetCore.Authorization;
@@ -91,32 +90,32 @@
                 return this.RedirectToAction(nameof(CompaniesController.Create), "Companies", new { area = "Company" });
             }
 
-            if (!this.carService.GetBrandId(carModel.BrandId))
+            if (!await this.carService.BrandExistsAsync(carModel.BrandId))
             {
                 this.ModelState.AddModelError(nameof(carModel.BrandId), CarBrandDoesntExist);
             }
 
-            if (!this.carService.GetModelId(carModel.ModelId))
+            if (!await this.carService.ModelExistsAsync(carModel.ModelId))
             {
                 this.ModelState.AddModelError(nameof(carModel.ModelId), CarModelDoesntExist);
             }
 
-            if (!this.carService.GetCarTypeId(carModel.CarTypeId))
+            if (!await this.carService.CarTypeExistsAsync(carModel.CarTypeId))
             {
                 this.ModelState.AddModelError(nameof(carModel.CarTypeId), CarTypeDoesntExist);
             }
 
-            if (!this.carService.GetFuelTypeId(carModel.FuelId))
+            if (!await this.carService.FuelTypeExistsAsync(carModel.FuelId))
             {
                 this.ModelState.AddModelError(nameof(carModel.FuelId), CarFuelTypeDoesntExist);
             }
 
-            if (!this.carService.GetTransmissionId(carModel.TransmissionId))
+            if (!await this.carService.TransmissionExistsAsync(carModel.TransmissionId))
             {
                 this.ModelState.AddModelError(nameof(carModel.TransmissionId), CarTransmissionTypeDoesntExist);
             }
 
-            if (!this.carService.GetColorId(carModel.ColorId))
+            if (!await this.carService.ColorExistsAsync(carModel.ColorId))
             {
                 this.ModelState.AddModelError(nameof(carModel.ColorId), CarColorDoesntExist);
             }
@@ -195,42 +194,42 @@
 
             var companyId = this.companiesService.GetCurrentCompanyId(currentUserId);
 
-            if (companyId == 0 && !User.IsAdmin())
+            if (companyId == 0 && !this.User.IsAdmin())
             {
                 return this.RedirectToAction(nameof(CompaniesController.Create), "Companies", new { area = "Company" });
             }
 
-            if (!this.carService.IsCarFromCompany(id, companyId))
+            if (!await this.carService.IsCarFromCompanyAsync(id, companyId))
             {
                 return NotFound();
             }
 
-            if (!this.carService.GetBrandId(carModel.BrandId))
+            if (!await this.carService.BrandExistsAsync(carModel.BrandId))
             {
                 this.ModelState.AddModelError(nameof(carModel.BrandId), CarBrandDoesntExist);
             }
 
-            if (!this.carService.GetModelId(carModel.ModelId))
+            if (!await this.carService.ModelExistsAsync(carModel.ModelId))
             {
                 this.ModelState.AddModelError(nameof(carModel.ModelId), CarModelDoesntExist);
             }
 
-            if (!this.carService.GetCarTypeId(carModel.CarTypeId))
+            if (!await this.carService.CarTypeExistsAsync(carModel.CarTypeId))
             {
                 this.ModelState.AddModelError(nameof(carModel.CarTypeId), CarTypeDoesntExist);
             }
 
-            if (!this.carService.GetFuelTypeId(carModel.FuelId))
+            if (!await this.carService.FuelTypeExistsAsync(carModel.FuelId))
             {
                 this.ModelState.AddModelError(nameof(carModel.FuelId), CarFuelTypeDoesntExist);
             }
 
-            if (!this.carService.GetTransmissionId(carModel.TransmissionId))
+            if (!await this.carService.TransmissionExistsAsync(carModel.TransmissionId))
             {
                 this.ModelState.AddModelError(nameof(carModel.TransmissionId), CarTransmissionTypeDoesntExist);
             }
 
-            if (!this.carService.GetColorId(carModel.ColorId))
+            if (!await this.carService.ColorExistsAsync(carModel.ColorId))
             {
                 this.ModelState.AddModelError(nameof(carModel.ColorId), CarColorDoesntExist);
             }
@@ -248,7 +247,7 @@
                 return this.View(carModel);
             }
 
-            if (!this.carService.IsCarFromCompany(id, companyId) && !User.IsAdmin())
+            if (!await this.carService.IsCarFromCompanyAsync(id, companyId) && !this.User.IsAdmin())
             {
                 return this.NotFound();
             }
@@ -295,7 +294,7 @@
                 return this.RedirectToAction(nameof(CompaniesController.Create), "Companies", new { area = "Company" });
             }
 
-            if (!this.carService.IsCarFromCompany(id, companyId))
+            if (!await this.carService.IsCarFromCompanyAsync(id, companyId))
             {
                 return NotFound();
             }
@@ -313,6 +312,7 @@
             var currentUserId = this.User.GetId();
 
             var companyId = this.companiesService.GetCurrentCompanyId(currentUserId);
+            const int ItemsPerPage = 12;
 
             if (!this.companiesService.UserIsCompany(currentUserId))
             {
@@ -323,11 +323,11 @@
             {
                 Brand = query.Brand,
                 Brands = this.carService.GetAddedByCompanyCarBrands(companyId),
-                Cars = this.carService.GetAllCars(query).Where(x => x.CompanyId == companyId),
+                Cars = this.companiesService.AllCompanyCars(query.CurrentPage, ItemsPerPage, companyId),
                 CarSorting = query.CarSorting,
                 SearchTerm = query.SearchTerm,
                 CurrentPage = query.CurrentPage,
-                TotalCars = await this.carService.GetQueryCarsCounAsync(query),
+                TotalCars = await this.carService.GetCompanyCarsCount(companyId),
                 CompanyId = companyId
             };
 

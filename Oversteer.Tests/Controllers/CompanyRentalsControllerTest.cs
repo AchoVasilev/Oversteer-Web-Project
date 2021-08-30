@@ -10,6 +10,7 @@
     using Moq;
 
     using Oversteer.Data.Models.Rentals;
+    using Oversteer.Data.Models.Users;
     using Oversteer.Services.Companies;
     using Oversteer.Services.Rentals;
     using Oversteer.Tests.Extensions;
@@ -426,15 +427,20 @@
         [Fact]
         public void AllShouldReturnCorrectViewModelAndViewResult()
         {
+            var datamock = DatabaseMock.Instance;
+
+            datamock.Companies.Add(new Company { Id = 1, UserId = "gosho" });
+            datamock.SaveChanges();
+
             var rent = new List<RentsDto>();
             var model = new List<MyRentsViewModel>();
 
             var companiesMock = new Mock<ICompaniesService>();
-            companiesMock.Setup(x => x.UserIsCompany("gosho"))
-                .Returns(true);
+            companiesMock.Setup(x => x.GetCurrentCompanyId("gosho"))
+                .Returns(1);
 
             var rentingMock = new Mock<IRentingService>();
-            rentingMock.Setup(x => x.GetAllCompanyRents())
+            rentingMock.Setup(x => x.GetCurrentCompanyRents(1))
                 .Returns(rent);
 
             var mapperMock = MapperMock.Instance;

@@ -11,8 +11,8 @@
     public class CreateCompanyFormModel
     {
         [Required]
-        [StringLength(NameMaxLength, MinimumLength = NameMinLength, ErrorMessage = InvalidNameLength)]
         [Display(Name = CompanyDisplayName)]
+        [StringLength(NameMaxLength, MinimumLength = NameMinLength, ErrorMessage = InvalidNameLength)]
         public string CompanyName { get; set; }
 
         [Required]

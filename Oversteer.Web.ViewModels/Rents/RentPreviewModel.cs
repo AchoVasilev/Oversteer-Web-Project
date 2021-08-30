@@ -1,6 +1,5 @@
 ﻿namespace Oversteer.Web.ViewModels.Rents
 {
-    using System;
     using System.ComponentModel.DataAnnotations;
 
     public class RentPreviewModel

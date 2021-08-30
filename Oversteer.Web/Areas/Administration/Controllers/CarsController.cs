@@ -74,32 +74,32 @@
         {
             var currentUserId = this.User.GetId();
 
-            if (!this.carsService.GetBrandId(carModel.BrandId))
+            if (!await this.carsService.BrandExistsAsync(carModel.BrandId))
             {
                 this.ModelState.AddModelError(nameof(carModel.BrandId), CarBrandDoesntExist);
             }
 
-            if (!this.carsService.GetModelId(carModel.ModelId))
+            if (!await this.carsService.ModelExistsAsync(carModel.ModelId))
             {
                 this.ModelState.AddModelError(nameof(carModel.ModelId), CarModelDoesntExist);
             }
 
-            if (!this.carsService.GetCarTypeId(carModel.CarTypeId))
+            if (!await this.carsService.CarTypeExistsAsync(carModel.CarTypeId))
             {
                 this.ModelState.AddModelError(nameof(carModel.CarTypeId), CarTypeDoesntExist);
             }
 
-            if (!this.carsService.GetFuelTypeId(carModel.FuelId))
+            if (!await this.carsService.FuelTypeExistsAsync(carModel.FuelId))
             {
                 this.ModelState.AddModelError(nameof(carModel.FuelId), CarFuelTypeDoesntExist);
             }
 
-            if (!this.carsService.GetTransmissionId(carModel.TransmissionId))
+            if (!await this.carsService.TransmissionExistsAsync(carModel.TransmissionId))
             {
                 this.ModelState.AddModelError(nameof(carModel.TransmissionId), CarTransmissionTypeDoesntExist);
             }
 
-            if (!this.carsService.GetColorId(carModel.ColorId))
+            if (!await this.carsService.ColorExistsAsync(carModel.ColorId))
             {
                 this.ModelState.AddModelError(nameof(carModel.ColorId), CarColorDoesntExist);
             }

@@ -30,6 +30,8 @@
 
         IEnumerable<RentsDto> GetAllUserRents(string userId);
 
-        ICollection<RentsDto> GetAllCompanyRents();
+        ICollection<RentsDto> GetCurrentCompanyRents(int companyId);
+
+        ICollection<RentsDto> GetAllCompaniesRents();
     }
 }

@@ -59,18 +59,18 @@
 
         Task<int> GetCompanyCarsCount(int companyId);
 
-        bool GetBrandId(int id);
+        Task<bool> BrandExistsAsync(int id);
 
-        bool GetModelId(int? id);
+        Task<bool> ModelExistsAsync(int? id);
 
-        bool GetColorId(int id);
+        Task<bool> ColorExistsAsync(int id);
 
-        bool GetFuelTypeId(int id);
+        Task<bool> FuelTypeExistsAsync(int id);
 
-        bool GetTransmissionId(int id);
+        Task<bool> TransmissionExistsAsync(int id);
 
-        bool GetCarTypeId(int id);
+        Task<bool> CarTypeExistsAsync(int id);
 
-        bool IsCarFromCompany(int carId, int companyId);
+        Task<bool> IsCarFromCompanyAsync(int carId, int companyId);
     }
 }

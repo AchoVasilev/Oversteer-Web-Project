@@ -354,9 +354,9 @@
                         .ProjectTo<CarDto>(this.mapper.ConfigurationProvider)
                         .FirstOrDefaultAsync();
 
-        public bool GetBrandId(int id)
+        public async Task<bool> BrandExistsAsync(int id)
         {
-            if (!this.data.CarBrands.Any(x => x.Id == id && !x.IsDeleted))
+            if (!await this.data.CarBrands.AnyAsync(x => x.Id == id && !x.IsDeleted))
             {
                 return false;
             }
@@ -364,9 +364,9 @@
             return true;
         }
 
-        public bool GetModelId(int? id)
+        public async Task<bool> ModelExistsAsync(int? id)
         {
-            if (!this.data.CarModels.Any(x => x.Id == id && !x.IsDeleted))
+            if (!await this.data.CarModels.AnyAsync(x => x.Id == id && !x.IsDeleted))
             {
                 return false;
             }
@@ -374,9 +374,9 @@
             return true;
         }
 
-        public bool GetColorId(int id)
+        public async Task<bool> ColorExistsAsync(int id)
         {
-            if (!this.data.Colors.Any(x => x.Id == id))
+            if (!await this.data.Colors.AnyAsync(x => x.Id == id))
             {
                 return false;
             }
@@ -384,9 +384,9 @@
             return true;
         }
 
-        public bool GetFuelTypeId(int id)
+        public async Task<bool> FuelTypeExistsAsync(int id)
         {
-            if (!this.data.Fuels.Any(x => x.Id == id))
+            if (!await this.data.Fuels.AnyAsync(x => x.Id == id))
             {
                 return false;
             }
@@ -394,9 +394,9 @@
             return true;
         }
 
-        public bool GetTransmissionId(int id)
+        public async Task<bool> TransmissionExistsAsync(int id)
         {
-            if (!this.data.Transmissions.Any(x => x.Id == id))
+            if (!await this.data.Transmissions.AnyAsync(x => x.Id == id))
             {
                 return false;
             }
@@ -404,9 +404,9 @@
             return true;
         }
 
-        public bool GetCarTypeId(int id)
+        public async Task<bool> CarTypeExistsAsync(int id)
         {
-            if (!this.data.CarTypes.Any(x => x.Id == id))
+            if (!await this.data.CarTypes.AnyAsync(x => x.Id == id))
             {
                 return false;
             }
@@ -414,9 +414,9 @@
             return true;
         }
 
-        public bool IsCarFromCompany(int carId, int companyId)
-            => this.data.Cars
-                    .Any(x => x.Id == carId && x.CompanyId == companyId);
+        public async Task<bool> IsCarFromCompanyAsync(int carId, int companyId)
+            => await this.data.Cars
+                        .AnyAsync(x => x.Id == carId && x.CompanyId == companyId);
 
         public async Task<bool> ChangeLocationAsync(int id, int returnLocationId)
         {

@@ -188,8 +188,8 @@
                 .Returns(1);
 
             var carsMock = new Mock<ICarsService>();
-            carsMock.Setup(x => x.IsCarFromCompany(5, 1))
-                .Returns(true);
+            carsMock.Setup(x => x.IsCarFromCompanyAsync(5, 1))
+                .ReturnsAsync(true);
 
             var httpContext = new DefaultHttpContext();
             var tempData = new TempDataDictionary(httpContext, Mock.Of<ITempDataProvider>());
@@ -236,8 +236,8 @@
                 .Returns(1);
 
             var carsMock = new Mock<ICarsService>();
-            carsMock.Setup(x => x.IsCarFromCompany(5, 1))
-                .Returns(false);
+            carsMock.Setup(x => x.IsCarFromCompanyAsync(5, 1))
+                .ReturnsAsync(false);
 
             var carsController = new CarsController(carsMock.Object, companyMock.Object, null, null, null, null);
 
@@ -403,18 +403,18 @@
                 .Returns(locations);
 
             var carsMock = new Mock<ICarsService>();
-            carsMock.Setup(x => x.GetBrandId(expected.BrandId))
-                .Returns(true);
-            carsMock.Setup(x => x.GetModelId(expected.ModelId))
-                .Returns(true);
-            carsMock.Setup(x => x.GetCarTypeId(expected.CarTypeId))
-                .Returns(true);
-            carsMock.Setup(x => x.GetFuelTypeId(expected.FuelId))
-                .Returns(true);
-            carsMock.Setup(x => x.GetTransmissionId(expected.TransmissionId))
-                .Returns(true);
-            carsMock.Setup(x => x.GetColorId(expected.ColorId))
-                .Returns(true);
+            carsMock.Setup(x => x.BrandExistsAsync(expected.BrandId))
+                .ReturnsAsync(true);
+            carsMock.Setup(x => x.ModelExistsAsync(expected.ModelId))
+                .ReturnsAsync(true);
+            carsMock.Setup(x => x.CarTypeExistsAsync(expected.CarTypeId))
+                .ReturnsAsync(true);
+            carsMock.Setup(x => x.FuelTypeExistsAsync(expected.FuelId))
+                .ReturnsAsync(true);
+            carsMock.Setup(x => x.TransmissionExistsAsync(expected.TransmissionId))
+                .ReturnsAsync(true);
+            carsMock.Setup(x => x.ColorExistsAsync(expected.ColorId))
+                .ReturnsAsync(true);
 
             var cacheMock = new Mock<ICarCacheService>();
             cacheMock.Setup(x => x.CacheCarBrands("brand"))
@@ -519,18 +519,18 @@
                 .Returns(locations);
 
             var carsMock = new Mock<ICarsService>();
-            carsMock.Setup(x => x.GetBrandId(expected.BrandId))
-                .Returns(false);
-            carsMock.Setup(x => x.GetModelId(expected.ModelId))
-                .Returns(true);
-            carsMock.Setup(x => x.GetCarTypeId(expected.CarTypeId))
-                .Returns(true);
-            carsMock.Setup(x => x.GetFuelTypeId(expected.FuelId))
-                .Returns(true);
-            carsMock.Setup(x => x.GetTransmissionId(expected.TransmissionId))
-                .Returns(true);
-            carsMock.Setup(x => x.GetColorId(expected.ColorId))
-                .Returns(true);
+            carsMock.Setup(x => x.BrandExistsAsync(expected.BrandId))
+                .ReturnsAsync(false);
+            carsMock.Setup(x => x.ModelExistsAsync(expected.ModelId))
+                .ReturnsAsync(true);
+            carsMock.Setup(x => x.CarTypeExistsAsync(expected.CarTypeId))
+                .ReturnsAsync(true);
+            carsMock.Setup(x => x.FuelTypeExistsAsync(expected.FuelId))
+                .ReturnsAsync(true);
+            carsMock.Setup(x => x.TransmissionExistsAsync(expected.TransmissionId))
+                .ReturnsAsync(true);
+            carsMock.Setup(x => x.ColorExistsAsync(expected.ColorId))
+                .ReturnsAsync(true);
 
             var cacheMock = new Mock<ICarCacheService>();
             cacheMock.Setup(x => x.CacheCarBrands("brand"))
@@ -590,18 +590,18 @@
                 .Returns(locations);
 
             var carsMock = new Mock<ICarsService>();
-            carsMock.Setup(x => x.GetBrandId(expected.BrandId))
-                .Returns(true);
-            carsMock.Setup(x => x.GetModelId(expected.ModelId))
-                .Returns(false);
-            carsMock.Setup(x => x.GetCarTypeId(expected.CarTypeId))
-                .Returns(true);
-            carsMock.Setup(x => x.GetFuelTypeId(expected.FuelId))
-                .Returns(true);
-            carsMock.Setup(x => x.GetTransmissionId(expected.TransmissionId))
-                .Returns(true);
-            carsMock.Setup(x => x.GetColorId(expected.ColorId))
-                .Returns(true);
+            carsMock.Setup(x => x.BrandExistsAsync(expected.BrandId))
+                .ReturnsAsync(true);
+            carsMock.Setup(x => x.ModelExistsAsync(expected.ModelId))
+                .ReturnsAsync(false);
+            carsMock.Setup(x => x.CarTypeExistsAsync(expected.CarTypeId))
+                .ReturnsAsync(true);
+            carsMock.Setup(x => x.FuelTypeExistsAsync(expected.FuelId))
+                .ReturnsAsync(true);
+            carsMock.Setup(x => x.TransmissionExistsAsync(expected.TransmissionId))
+                .ReturnsAsync(true);
+            carsMock.Setup(x => x.ColorExistsAsync(expected.ColorId))
+                .ReturnsAsync(true);
 
             var cacheMock = new Mock<ICarCacheService>();
             cacheMock.Setup(x => x.CacheCarBrands("brand"))
@@ -618,7 +618,7 @@
                 .Returns(types);
 
             var controller = new CarsController(carsMock.Object, companiesMock.Object, null, locationsMock.Object, cacheMock.Object, null);
-      
+
             ControllerExtensions.WithIdentity(controller, "gosho", "pesho", "pipi");
 
             var result = await controller.Add(expected);
@@ -661,18 +661,18 @@
                 .Returns(locations);
 
             var carsMock = new Mock<ICarsService>();
-            carsMock.Setup(x => x.GetBrandId(expected.BrandId))
-                .Returns(true);
-            carsMock.Setup(x => x.GetModelId(expected.ModelId))
-                .Returns(true);
-            carsMock.Setup(x => x.GetCarTypeId(expected.CarTypeId))
-                .Returns(false);
-            carsMock.Setup(x => x.GetFuelTypeId(expected.FuelId))
-                .Returns(true);
-            carsMock.Setup(x => x.GetTransmissionId(expected.TransmissionId))
-                .Returns(true);
-            carsMock.Setup(x => x.GetColorId(expected.ColorId))
-                .Returns(true);
+            carsMock.Setup(x => x.BrandExistsAsync(expected.BrandId))
+                .ReturnsAsync(true);
+            carsMock.Setup(x => x.ModelExistsAsync(expected.ModelId))
+                .ReturnsAsync(true);
+            carsMock.Setup(x => x.CarTypeExistsAsync(expected.CarTypeId))
+                .ReturnsAsync(false);
+            carsMock.Setup(x => x.FuelTypeExistsAsync(expected.FuelId))
+                .ReturnsAsync(true);
+            carsMock.Setup(x => x.TransmissionExistsAsync(expected.TransmissionId))
+                .ReturnsAsync(true);
+            carsMock.Setup(x => x.ColorExistsAsync(expected.ColorId))
+                .ReturnsAsync(true);
 
             var cacheMock = new Mock<ICarCacheService>();
             cacheMock.Setup(x => x.CacheCarBrands("brand"))
@@ -732,18 +732,18 @@
                 .Returns(locations);
 
             var carsMock = new Mock<ICarsService>();
-            carsMock.Setup(x => x.GetBrandId(expected.BrandId))
-                .Returns(true);
-            carsMock.Setup(x => x.GetModelId(expected.ModelId))
-                .Returns(true);
-            carsMock.Setup(x => x.GetCarTypeId(expected.CarTypeId))
-                .Returns(true);
-            carsMock.Setup(x => x.GetFuelTypeId(expected.FuelId))
-                .Returns(false);
-            carsMock.Setup(x => x.GetTransmissionId(expected.TransmissionId))
-                .Returns(true);
-            carsMock.Setup(x => x.GetColorId(expected.ColorId))
-                .Returns(true);
+            carsMock.Setup(x => x.BrandExistsAsync(expected.BrandId))
+                .ReturnsAsync(true);
+            carsMock.Setup(x => x.ModelExistsAsync(expected.ModelId))
+                .ReturnsAsync(true);
+            carsMock.Setup(x => x.CarTypeExistsAsync(expected.CarTypeId))
+                .ReturnsAsync(true);
+            carsMock.Setup(x => x.FuelTypeExistsAsync(expected.FuelId))
+                .ReturnsAsync(false);
+            carsMock.Setup(x => x.TransmissionExistsAsync(expected.TransmissionId))
+                .ReturnsAsync(true);
+            carsMock.Setup(x => x.ColorExistsAsync(expected.ColorId))
+                .ReturnsAsync(true);
 
             var cacheMock = new Mock<ICarCacheService>();
             cacheMock.Setup(x => x.CacheCarBrands("brand"))
@@ -760,7 +760,7 @@
                 .Returns(types);
 
             var controller = new CarsController(carsMock.Object, companiesMock.Object, null, locationsMock.Object, cacheMock.Object, null);
-           
+
             ControllerExtensions.WithIdentity(controller, "gosho", "pesho", "pipi");
 
             var result = await controller.Add(expected);
@@ -803,18 +803,18 @@
                 .Returns(locations);
 
             var carsMock = new Mock<ICarsService>();
-            carsMock.Setup(x => x.GetBrandId(expected.BrandId))
-                .Returns(true);
-            carsMock.Setup(x => x.GetModelId(expected.ModelId))
-                .Returns(true);
-            carsMock.Setup(x => x.GetCarTypeId(expected.CarTypeId))
-                .Returns(true);
-            carsMock.Setup(x => x.GetFuelTypeId(expected.FuelId))
-                .Returns(true);
-            carsMock.Setup(x => x.GetTransmissionId(expected.TransmissionId))
-                .Returns(false);
-            carsMock.Setup(x => x.GetColorId(expected.ColorId))
-                .Returns(true);
+            carsMock.Setup(x => x.BrandExistsAsync(expected.BrandId))
+                .ReturnsAsync(true);
+            carsMock.Setup(x => x.ModelExistsAsync(expected.ModelId))
+                .ReturnsAsync(true);
+            carsMock.Setup(x => x.CarTypeExistsAsync(expected.CarTypeId))
+                .ReturnsAsync(true);
+            carsMock.Setup(x => x.FuelTypeExistsAsync(expected.FuelId))
+                .ReturnsAsync(true);
+            carsMock.Setup(x => x.TransmissionExistsAsync(expected.TransmissionId))
+                .ReturnsAsync(false);
+            carsMock.Setup(x => x.ColorExistsAsync(expected.ColorId))
+                .ReturnsAsync(true);
 
             var cacheMock = new Mock<ICarCacheService>();
             cacheMock.Setup(x => x.CacheCarBrands("brand"))
@@ -874,18 +874,18 @@
                 .Returns(locations);
 
             var carsMock = new Mock<ICarsService>();
-            carsMock.Setup(x => x.GetBrandId(expected.BrandId))
-                .Returns(true);
-            carsMock.Setup(x => x.GetModelId(expected.ModelId))
-                .Returns(true);
-            carsMock.Setup(x => x.GetCarTypeId(expected.CarTypeId))
-                .Returns(true);
-            carsMock.Setup(x => x.GetFuelTypeId(expected.FuelId))
-                .Returns(true);
-            carsMock.Setup(x => x.GetTransmissionId(expected.TransmissionId))
-                .Returns(true);
-            carsMock.Setup(x => x.GetColorId(expected.ColorId))
-                .Returns(false);
+            carsMock.Setup(x => x.BrandExistsAsync(expected.BrandId))
+                .ReturnsAsync(true);
+            carsMock.Setup(x => x.ModelExistsAsync(expected.ModelId))
+                .ReturnsAsync(true);
+            carsMock.Setup(x => x.CarTypeExistsAsync(expected.CarTypeId))
+                .ReturnsAsync(true);
+            carsMock.Setup(x => x.FuelTypeExistsAsync(expected.FuelId))
+                .ReturnsAsync(true);
+            carsMock.Setup(x => x.TransmissionExistsAsync(expected.TransmissionId))
+                .ReturnsAsync(true);
+            carsMock.Setup(x => x.ColorExistsAsync(expected.ColorId))
+                .ReturnsAsync(false);
 
             var cacheMock = new Mock<ICarCacheService>();
             cacheMock.Setup(x => x.CacheCarBrands("brand"))
@@ -1079,20 +1079,20 @@
                 .Returns(locations);
 
             var carsMock = new Mock<ICarsService>();
-            carsMock.Setup(x => x.GetBrandId(expected.BrandId))
-                .Returns(true);
-            carsMock.Setup(x => x.GetModelId(expected.ModelId))
-                .Returns(true);
-            carsMock.Setup(x => x.GetCarTypeId(expected.CarTypeId))
-                .Returns(true);
-            carsMock.Setup(x => x.GetFuelTypeId(expected.FuelId))
-                .Returns(true);
-            carsMock.Setup(x => x.GetTransmissionId(expected.TransmissionId))
-                .Returns(true);
-            carsMock.Setup(x => x.GetColorId(expected.ColorId))
-                .Returns(true);
-            carsMock.Setup(x => x.IsCarFromCompany(car.Id, car.CompanyId))
-                .Returns(true);
+            carsMock.Setup(x => x.BrandExistsAsync(expected.BrandId))
+                .ReturnsAsync(true);
+            carsMock.Setup(x => x.ModelExistsAsync(expected.ModelId))
+                .ReturnsAsync(true);
+            carsMock.Setup(x => x.CarTypeExistsAsync(expected.CarTypeId))
+                .ReturnsAsync(true);
+            carsMock.Setup(x => x.FuelTypeExistsAsync(expected.FuelId))
+                .ReturnsAsync(true);
+            carsMock.Setup(x => x.TransmissionExistsAsync(expected.TransmissionId))
+                .ReturnsAsync(true);
+            carsMock.Setup(x => x.ColorExistsAsync(expected.ColorId))
+                .ReturnsAsync(true);
+            carsMock.Setup(x => x.IsCarFromCompanyAsync(car.Id, car.CompanyId))
+                .ReturnsAsync(true);
 
             var cacheMock = new Mock<ICarCacheService>();
             cacheMock.Setup(x => x.CacheCarBrands("brand"))
@@ -1176,8 +1176,8 @@
                 .Returns(1);
 
             var carsMock = new Mock<ICarsService>();
-            carsMock.Setup(x => x.IsCarFromCompany(1, 1))
-                .Returns(false);
+            carsMock.Setup(x => x.IsCarFromCompanyAsync(1, 1))
+                .ReturnsAsync(false);
 
             var controller = new CarsController(carsMock.Object, companiesMock.Object, null, null, null, null);
 
@@ -1225,20 +1225,20 @@
                 .Returns(locations);
 
             var carsMock = new Mock<ICarsService>();
-            carsMock.Setup(x => x.GetBrandId(expected.BrandId))
-                .Returns(false);
-            carsMock.Setup(x => x.GetModelId(expected.ModelId))
-                .Returns(true);
-            carsMock.Setup(x => x.GetCarTypeId(expected.CarTypeId))
-                .Returns(true);
-            carsMock.Setup(x => x.GetFuelTypeId(expected.FuelId))
-                .Returns(true);
-            carsMock.Setup(x => x.GetTransmissionId(expected.TransmissionId))
-                .Returns(true);
-            carsMock.Setup(x => x.GetColorId(expected.ColorId))
-                .Returns(true);
-            carsMock.Setup(x => x.IsCarFromCompany(1, 1))
-                .Returns(true);
+            carsMock.Setup(x => x.BrandExistsAsync(expected.BrandId))
+                .ReturnsAsync(false);
+            carsMock.Setup(x => x.ModelExistsAsync(expected.ModelId))
+                .ReturnsAsync(true);
+            carsMock.Setup(x => x.CarTypeExistsAsync(expected.CarTypeId))
+                .ReturnsAsync(true);
+            carsMock.Setup(x => x.FuelTypeExistsAsync(expected.FuelId))
+                .ReturnsAsync(true);
+            carsMock.Setup(x => x.TransmissionExistsAsync(expected.TransmissionId))
+                .ReturnsAsync(true);
+            carsMock.Setup(x => x.ColorExistsAsync(expected.ColorId))
+                .ReturnsAsync(true);
+            carsMock.Setup(x => x.IsCarFromCompanyAsync(1, 1))
+                .ReturnsAsync(true);
 
             var cacheMock = new Mock<ICarCacheService>();
             cacheMock.Setup(x => x.CacheCarBrands("brand"))
@@ -1255,7 +1255,7 @@
                 .Returns(types);
 
             var controller = new CarsController(carsMock.Object, companiesMock.Object, null, locationsMock.Object, cacheMock.Object, null);
-            
+
             ControllerExtensions.WithIdentity(controller, "gosho", "pesho", "pipi");
 
             var result = await controller.Edit(1, expected);
@@ -1298,20 +1298,20 @@
                 .Returns(locations);
 
             var carsMock = new Mock<ICarsService>();
-            carsMock.Setup(x => x.GetBrandId(expected.BrandId))
-                .Returns(true);
-            carsMock.Setup(x => x.GetModelId(expected.ModelId))
-                .Returns(false);
-            carsMock.Setup(x => x.GetCarTypeId(expected.CarTypeId))
-                .Returns(true);
-            carsMock.Setup(x => x.GetFuelTypeId(expected.FuelId))
-                .Returns(true);
-            carsMock.Setup(x => x.GetTransmissionId(expected.TransmissionId))
-                .Returns(true);
-            carsMock.Setup(x => x.GetColorId(expected.ColorId))
-                .Returns(true);
-            carsMock.Setup(x => x.IsCarFromCompany(1, 1))
-                .Returns(true);
+            carsMock.Setup(x => x.BrandExistsAsync(expected.BrandId))
+                .ReturnsAsync(true);
+            carsMock.Setup(x => x.ModelExistsAsync(expected.ModelId))
+                .ReturnsAsync(false);
+            carsMock.Setup(x => x.CarTypeExistsAsync(expected.CarTypeId))
+                .ReturnsAsync(true);
+            carsMock.Setup(x => x.FuelTypeExistsAsync(expected.FuelId))
+                .ReturnsAsync(true);
+            carsMock.Setup(x => x.TransmissionExistsAsync(expected.TransmissionId))
+                .ReturnsAsync(true);
+            carsMock.Setup(x => x.ColorExistsAsync(expected.ColorId))
+                .ReturnsAsync(true);
+            carsMock.Setup(x => x.IsCarFromCompanyAsync(1, 1))
+                .ReturnsAsync(true);
 
             var cacheMock = new Mock<ICarCacheService>();
             cacheMock.Setup(x => x.CacheCarBrands("brand"))
@@ -1328,7 +1328,7 @@
                 .Returns(types);
 
             var controller = new CarsController(carsMock.Object, companiesMock.Object, null, locationsMock.Object, cacheMock.Object, null);
-            
+
             ControllerExtensions.WithIdentity(controller, "gosho", "pesho", "pipi");
 
             var result = await controller.Edit(1, expected);
@@ -1371,20 +1371,20 @@
                 .Returns(locations);
 
             var carsMock = new Mock<ICarsService>();
-            carsMock.Setup(x => x.GetBrandId(expected.BrandId))
-                .Returns(true);
-            carsMock.Setup(x => x.GetModelId(expected.ModelId))
-                .Returns(true);
-            carsMock.Setup(x => x.GetCarTypeId(expected.CarTypeId))
-                .Returns(false);
-            carsMock.Setup(x => x.GetFuelTypeId(expected.FuelId))
-                .Returns(true);
-            carsMock.Setup(x => x.GetTransmissionId(expected.TransmissionId))
-                .Returns(true);
-            carsMock.Setup(x => x.GetColorId(expected.ColorId))
-                .Returns(true);
-            carsMock.Setup(x => x.IsCarFromCompany(1, 1))
-                .Returns(true);
+            carsMock.Setup(x => x.BrandExistsAsync(expected.BrandId))
+                .ReturnsAsync(true);
+            carsMock.Setup(x => x.ModelExistsAsync(expected.ModelId))
+                .ReturnsAsync(true);
+            carsMock.Setup(x => x.CarTypeExistsAsync(expected.CarTypeId))
+                .ReturnsAsync(false);
+            carsMock.Setup(x => x.FuelTypeExistsAsync(expected.FuelId))
+                .ReturnsAsync(true);
+            carsMock.Setup(x => x.TransmissionExistsAsync(expected.TransmissionId))
+                .ReturnsAsync(true);
+            carsMock.Setup(x => x.ColorExistsAsync(expected.ColorId))
+                .ReturnsAsync(true);
+            carsMock.Setup(x => x.IsCarFromCompanyAsync(1, 1))
+                .ReturnsAsync(true);
 
             var cacheMock = new Mock<ICarCacheService>();
             cacheMock.Setup(x => x.CacheCarBrands("brand"))
@@ -1401,7 +1401,7 @@
                 .Returns(types);
 
             var controller = new CarsController(carsMock.Object, companiesMock.Object, null, locationsMock.Object, cacheMock.Object, null);
-            
+
             ControllerExtensions.WithIdentity(controller, "gosho", "pesho", "pipi");
 
             var result = await controller.Edit(1, expected);
@@ -1444,20 +1444,20 @@
                 .Returns(locations);
 
             var carsMock = new Mock<ICarsService>();
-            carsMock.Setup(x => x.GetBrandId(expected.BrandId))
-                .Returns(true);
-            carsMock.Setup(x => x.GetModelId(expected.ModelId))
-                .Returns(true);
-            carsMock.Setup(x => x.GetCarTypeId(expected.CarTypeId))
-                .Returns(true);
-            carsMock.Setup(x => x.GetFuelTypeId(expected.FuelId))
-                .Returns(false);
-            carsMock.Setup(x => x.GetTransmissionId(expected.TransmissionId))
-                .Returns(true);
-            carsMock.Setup(x => x.GetColorId(expected.ColorId))
-                .Returns(true);
-            carsMock.Setup(x => x.IsCarFromCompany(1, 1))
-                .Returns(true);
+            carsMock.Setup(x => x.BrandExistsAsync(expected.BrandId))
+                .ReturnsAsync(true);
+            carsMock.Setup(x => x.ModelExistsAsync(expected.ModelId))
+                .ReturnsAsync(true);
+            carsMock.Setup(x => x.CarTypeExistsAsync(expected.CarTypeId))
+                .ReturnsAsync(true);
+            carsMock.Setup(x => x.FuelTypeExistsAsync(expected.FuelId))
+                .ReturnsAsync(false);
+            carsMock.Setup(x => x.TransmissionExistsAsync(expected.TransmissionId))
+                .ReturnsAsync(true);
+            carsMock.Setup(x => x.ColorExistsAsync(expected.ColorId))
+                .ReturnsAsync(true);
+            carsMock.Setup(x => x.IsCarFromCompanyAsync(1, 1))
+                .ReturnsAsync(true);
 
             var cacheMock = new Mock<ICarCacheService>();
             cacheMock.Setup(x => x.CacheCarBrands("brand"))
@@ -1516,20 +1516,20 @@
                 .Returns(locations);
 
             var carsMock = new Mock<ICarsService>();
-            carsMock.Setup(x => x.GetBrandId(expected.BrandId))
-                .Returns(true);
-            carsMock.Setup(x => x.GetModelId(expected.ModelId))
-                .Returns(true);
-            carsMock.Setup(x => x.GetCarTypeId(expected.CarTypeId))
-                .Returns(true);
-            carsMock.Setup(x => x.GetFuelTypeId(expected.FuelId))
-                .Returns(true);
-            carsMock.Setup(x => x.GetTransmissionId(expected.TransmissionId))
-                .Returns(false);
-            carsMock.Setup(x => x.GetColorId(expected.ColorId))
-                .Returns(true);
-            carsMock.Setup(x => x.IsCarFromCompany(1, 1))
-                .Returns(true);
+            carsMock.Setup(x => x.BrandExistsAsync(expected.BrandId))
+                .ReturnsAsync(true);
+            carsMock.Setup(x => x.ModelExistsAsync(expected.ModelId))
+                .ReturnsAsync(true);
+            carsMock.Setup(x => x.CarTypeExistsAsync(expected.CarTypeId))
+                .ReturnsAsync(true);
+            carsMock.Setup(x => x.FuelTypeExistsAsync(expected.FuelId))
+                .ReturnsAsync(true);
+            carsMock.Setup(x => x.TransmissionExistsAsync(expected.TransmissionId))
+                .ReturnsAsync(false);
+            carsMock.Setup(x => x.ColorExistsAsync(expected.ColorId))
+                .ReturnsAsync(true);
+            carsMock.Setup(x => x.IsCarFromCompanyAsync(1, 1))
+                .ReturnsAsync(true);
 
             var cacheMock = new Mock<ICarCacheService>();
             cacheMock.Setup(x => x.CacheCarBrands("brand"))
@@ -1589,20 +1589,20 @@
                 .Returns(locations);
 
             var carsMock = new Mock<ICarsService>();
-            carsMock.Setup(x => x.GetBrandId(expected.BrandId))
-                .Returns(true);
-            carsMock.Setup(x => x.GetModelId(expected.ModelId))
-                .Returns(true);
-            carsMock.Setup(x => x.GetCarTypeId(expected.CarTypeId))
-                .Returns(true);
-            carsMock.Setup(x => x.GetFuelTypeId(expected.FuelId))
-                .Returns(true);
-            carsMock.Setup(x => x.GetTransmissionId(expected.TransmissionId))
-                .Returns(true);
-            carsMock.Setup(x => x.GetColorId(expected.ColorId))
-                .Returns(false);
-            carsMock.Setup(x => x.IsCarFromCompany(1, 1))
-                .Returns(true);
+            carsMock.Setup(x => x.BrandExistsAsync(expected.BrandId))
+                .ReturnsAsync(true);
+            carsMock.Setup(x => x.ModelExistsAsync(expected.ModelId))
+                .ReturnsAsync(true);
+            carsMock.Setup(x => x.CarTypeExistsAsync(expected.CarTypeId))
+                .ReturnsAsync(true);
+            carsMock.Setup(x => x.FuelTypeExistsAsync(expected.FuelId))
+                .ReturnsAsync(true);
+            carsMock.Setup(x => x.TransmissionExistsAsync(expected.TransmissionId))
+                .ReturnsAsync(true);
+            carsMock.Setup(x => x.ColorExistsAsync(expected.ColorId))
+                .ReturnsAsync(false);
+            carsMock.Setup(x => x.IsCarFromCompanyAsync(1, 1))
+                .ReturnsAsync(true);
 
             var cacheMock = new Mock<ICarCacheService>();
             cacheMock.Setup(x => x.CacheCarBrands("brand"))
@@ -1647,6 +1647,25 @@
             var model = Assert.IsType<ViewResult>(result);
 
             Assert.IsType<AvailableCarModel>(model.Model);
+        }
+
+        [Fact]
+        public void AvailableShouldRedirectToHomeIfModelstateIsNotValid()
+        {
+            var model = new SearchRentCarModel();
+
+            var controller = new CarsController(null, null, null, null, null, null);
+
+            ControllerExtensions.WithIdentity(controller, "gosho", "pesho", "pipi");
+
+            controller.ModelState.AddModelError("test", "test");
+
+            var result = controller.Available(model);
+
+            var route = Assert.IsType<RedirectToActionResult>(result);
+
+            Assert.Equal("Index", route.ActionName);
+            Assert.Equal("Home", route.ControllerName);
         }
     }
 }

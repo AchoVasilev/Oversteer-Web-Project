@@ -84,7 +84,7 @@
 
         public IActionResult All()
         {
-            var rents = this.rentingService.GetAllCompanyRents();
+            var rents = this.rentingService.GetAllCompaniesRents();
 
             var viewModels = this.mapper.Map<List<MyRentsViewModel>>(rents);
 

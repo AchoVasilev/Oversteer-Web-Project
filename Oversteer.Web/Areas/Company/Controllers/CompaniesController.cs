@@ -59,7 +59,7 @@
         [Authorize]
         public async Task<IActionResult> AddLocation(CreateLocationFormModel model)
         {
-            var userId = User.GetId();
+            var userId = this.User.GetId();
             var userIsCompany = companiesService.UserIsCompany(userId);
             var companyId = companiesService.GetCurrentCompanyId(userId);
 
@@ -164,7 +164,6 @@
             return this.RedirectToAction(nameof(this.MyLocations), "Companies", new { area = "Company" });
         }
 
-        [AllowAnonymous]
         public async Task<IActionResult> Details(int id)
         {
             var company = await this.companiesService.DetailsAsync(id);

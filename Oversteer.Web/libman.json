@@ -3,7 +3,7 @@
   "defaultProvider": "jsdelivr",
   "libraries": [
     {
-      "library": "jquery@3.5.1",
+      "library": "jquery@latest",
       "destination": "wwwroot/lib/jquery/",
       "files": [
         "dist/jquery.min.js",
@@ -21,7 +21,7 @@
       ]
     },
     {
-      "library": "jquery-validation@1.19.2",
+      "library": "jquery-validation@latest",
       "destination": "wwwroot/lib/jquery-validation/",
       "files": [
         "dist/jquery.validate.js",
@@ -45,7 +45,7 @@
       ]
     },
     {
-      "library": "@fortawesome/fontawesome-free@5.15.3",
+      "library": "@fortawesome/fontawesome-free@latest",
       "destination": "wwwroot/lib/fontawesome/",
       "files": [
         "webfonts/fa-brands-400.eot",

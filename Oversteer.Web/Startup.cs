@@ -179,7 +179,7 @@ namespace Oversteer.Web
             }
 
             app.UseStatusCodePagesWithRedirects("/Home/Error{0}");
-
+            app.UseCookiePolicy();
             app.UseHttpsRedirection()
                 .UseStaticFiles()
                 .UseRouting()

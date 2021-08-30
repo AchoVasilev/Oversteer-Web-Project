@@ -113,12 +113,19 @@
                             .ProjectTo<RentDetailsModel>(this.mapper.ConfigurationProvider)
                             .FirstOrDefaultAsync();
 
-        public ICollection<RentsDto> GetAllCompanyRents() 
+        public ICollection<RentsDto> GetCurrentCompanyRents(int companyId) 
             => this.data.Rentals
-                            .Where(x => !x.IsDeleted)
+                            .Where(x => !x.IsDeleted && x.CompanyId == companyId)
                             .OrderByDescending(x => x.CreatedOn)
                             .ProjectTo<RentsDto>(this.mapper.ConfigurationProvider)
                             .ToList();
+
+        public ICollection<RentsDto> GetAllCompaniesRents()
+            => this.data.Rentals
+                    .Where(x => !x.IsDeleted)
+                    .OrderByDescending(x => x.CreatedOn)
+                    .ProjectTo<RentsDto>(this.mapper.ConfigurationProvider)
+                    .ToList();
 
         public async Task<bool> UserFinishedRentsAsync(string username) 
             => await this.data.Rentals

@@ -151,16 +151,16 @@
         [Authorize]
         public IActionResult All()
         {
-            var userIsCompany = this.companiesService.UserIsCompany(this.User.GetId());
+            var companyId = this.companiesService.GetCurrentCompanyId(this.User.GetId());
 
-            if (!userIsCompany && !this.User.IsAdmin())
+            if (companyId == 0 && !this.User.IsAdmin())
             {
                 return this.RedirectToAction(nameof(CompaniesController.Create), "Companies", new { area = "Company" });
             }
 
-            var orders = this.rentingService.GetAllCompanyRents();
+            var rents = this.rentingService.GetCurrentCompanyRents(companyId);
 
-            var viewModels = this.mapper.Map<List<MyRentsViewModel>>(orders);
+            var viewModels = this.mapper.Map<List<MyRentsViewModel>>(rents);
 
             return this.View(viewModels);
         }
